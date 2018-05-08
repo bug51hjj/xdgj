@@ -1,0 +1,18 @@
+page-user-index {
+
+}
+/*个人中心*/
+.m-center-top{background:#d83547;padding:18.5px 0px 18.5px 15px;border-bottom-left-radius:20px;border-bottom-right-radius:20px;}
+.m-center-top .fl{display:block;width:63.5px;height:63.5px;border-radius:100%;margin-right:17.5px;}
+.m-center-top .r-content{}
+.m-center-top .r-content .list{margin-bottom:2.5px;color:#ffbcc3;}
+.m-center-top .r-content .list.hello{color:#fff;font-size: 16px;}
+.m-center-top .r-content .list.hello img{height: 18px;}
+.m-center-top .r-content .list span{color:#ffba42;font-weight:bold;}
+.m-center-top .r-content .list i{width:20px;height:20px;text-align:center;line-height:23px;background:#ec9aa3;border-radius:100%;display:inline-block;vertical-align:middle;color:#fff;font-size:13px;margin-left:2.5px;margin-top:-1px;overflow:hidden;}
+.m-center-top .r-content .list i.rotate{transition:1.5s ease-out;-webkit-transition:1.5s ease-out;transform:rotate(360deg);-webkit-transform:rotate(360deg);}
+
+.m-center-list{width:33.33%;float:left;border-bottom:1px solid #ededed;text-align:center;padding-top:25px;padding-bottom:27.5px;}
+.m-center-list a{color: #666;}
+.m-center-list i{width:100%;height:40px;display:block;background-position:center top;background-size:auto 29px;background-repeat:no-repeat;}
+.m-center-list i.icon09{background-size:auto 25px;}

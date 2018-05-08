@@ -1,0 +1,36 @@
+<!--
+  Generated template for the LoginPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+  <ion-toolbar color="primary">
+    <ion-title>
+    	欢迎登录使用
+    </ion-title>
+  </ion-toolbar>
+</ion-header>
+
+
+<ion-content class="login">
+	<div class="img">
+		<img class="full-image" src="./assets/img/login-img.jpg" alt="">
+	</div>
+	<div class="list list-inset">
+        <label class="item item-input">
+          <i class="iconfont icon-yonghuming assertive placeholder-icon"></i>
+          <input type="text" [ngModel]="username" (ngModelChange)="changeUsername($event)" placeholder="请输入账号">
+          <!-- <i class="iconfont icon-guanbi-copy placeholder-icon"></i> -->
+        </label>
+    </div>
+    <div class="list list-inset">
+        <label class="item item-input">
+          <i class="iconfont icon-mima placeholder-icon assertive"></i>
+          <input type="password" [ngModel]="password" (ngModelChange)="changePassword($event)" placeholder="请输入密码">
+        </label>
+    </div>
+    <div class="list list-inset">
+        <input class="button button-assertive" type="button" value="登录" (click)="loginEvent()">
+    </div>
+</ion-content>

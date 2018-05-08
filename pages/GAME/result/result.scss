@@ -1,0 +1,44 @@
+page-result {
+
+}
+/*开奖结果*/
+.game-data{background: #fff;width: 100%;padding: 0 15px;}
+.game-data>div{width: 48%;text-align: center;}
+.game-data>div select{padding-left: 15px; border-radius: 2px; width: 100%;font-size: 14px;text-align: center;height: 30px;}
+.igk-table .subHeader .rec span{width: 25px;height: 25px; line-height: 25px; float: left;margin:0;}
+.igk-table .subHeader{top: 90px;}
+.igk-table .subHeader .right{text-align: right;}
+.igk-table .subHeader .igk-content .left{line-height: 28px;font-size: 14px;}
+.igk-table .subHeader .igk-content .right span{float: left;margin:0;}
+.igk-table-header{top: 88px;background: #fff;position: relative;z-index: 10;border-top: 10px solid #ededed;}
+.igk-table .item{margin:0;margin-top: -1px;border-right: none;border-left: none;padding: 10px 5px;min-height: 50px;}
+.igk-table-header .left span{line-height: 30px;}
+.igk-table-header .right span.btn{display: inline-block;background: #ccc;color: #fff;padding: 0px 10px;height: 30px;line-height: 30px; border-radius: 20px;float: left;margin-right:10px;}
+.igk-table-header span.btn.active{background: #d83547;}
+.igk-table table{width: 100%;}
+.igk-table tbody{position: relative;top: 100px;}
+.igk-table tbody td{text-align: center;}
+
+.igk-table .igk-header{font-size: 14px;}
+.igk-table .igk-header span{margin:0 5px;}
+.igk-table .igk-header .right{text-align: right;}
+.igk-table .igk-header .right span{margin:0 2px; background-color: #ccc;color: #fff;border-radius: 20px;display: inline-block;padding: 2px 10px;}
+.igk-table .igk-header .right span.active{background-color: #d83547;}
+
+
+/*六合彩开奖结果*/
+.liuhecai-result .game-result-content .result-list{border-bottom: 1px solid #ddd;}
+.liuhecai-result .game-result-content .result-list time{padding-right: 10px;}
+.liuhecai-result .game-result-content .result-list .top{padding:5px 10px 10px;font-size: 16px;}
+.liuhecai-result .game-result-content .result-list .bottom{padding:0 20px;}
+.liuhecai-result .game-result-content .result-list .bottom>div{text-align: center; display: inline-block;font-size: 16px;color: #333;}
+.liuhecai-result .game-result-content .result-list .bottom>div span{color: #333;line-height: 22px;}
+.liuhecai-result .result-list .rec span{padding-right: 4px;margin-bottom: 5px;}
+.liuhecai-result .result-list .rec p{font-size: 16px;color: #333;}
+.liuhecai-result .result-list .rec .and{line-height: 0px!important;color:#666!important;font-size: 20px;}
+
+
+/*时时彩开奖*/
+.igk-table .subHeader.ssc .rec span{border-radius: 100%;margin:0 5px;width: 30px;height: 30px;line-height: 30px;}
+.igk-table .subHeader.ssc .igk-content .right span{text-align: center;font-style: normal;}
+.igk-table .subHeader.ssc.all .igk-content .right span{margin:0 3px;}

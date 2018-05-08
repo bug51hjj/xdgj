@@ -1,0 +1,116 @@
+page-ssc-game {
+
+}
+//footer
+.gameFooter{
+	background-color:#444;
+	display:flex;
+	text-align:center;
+	padding:5px;
+	align-items:center;
+	height:62px;
+	.col_1{
+		width:100px;
+		height:36px;
+		background:none;
+		border:1px solid #fff;
+		border-radius:2px;
+		color:#fff;
+		text-indent:10px;
+		font-size:13px;
+	}
+	.col_2{
+		flex:1;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+		color:#fff;
+		p{
+			font-size:13px;
+			span{color:#d83547;font-weight:700;}
+		}
+		a{
+			color:#fff;
+			font-size:12px;
+			padding:2px 10px;
+			margin-top:5px;
+			border-radius:5px;
+			background-color:#fff;
+			color:#333;
+		}
+	}
+}
+//game tabs
+.gameTabCont{
+	display:flex;
+	li{
+		flex:1;
+		line-height:35px;
+		text-align:center;
+		color:#7a7a7a;
+	}
+	.active{color:#444444}
+}
+/*时时彩*/
+.bj-data-num{padding-bottom: 5px;
+	border-bottom:1px solid #eee;}
+
+.data-content{padding: 5px;}
+.data-content .active time{border:1px solid #d83547;}
+.data-content span{margin-right: 12px;}
+.data-content .clearfix>div{width: 49%;}
+.data-content time{border:1px solid #333333;border-radius: 2px;text-align: center;padding:2px 10px;}
+
+.gamePageContainer{
+	width:100%;height:100%;display: flex;flex-direction: column;
+	.cont1{}
+	.cont2{
+		flex:1;
+		.gameLeftView{
+			width:25%;height:100%;float: left;background-color:#d83547;
+			.gameKey{
+				display:block;
+			    color: #fff;
+			    border-bottom: 1px solid #fff;
+			    line-height: 35px;
+			    max-width: 100%;
+			    height: 35px;
+			    text-align: center;
+			    text-decoration: none;
+			    text-overflow: ellipsis;
+			    white-space: nowrap;
+			    font-weight: 400;
+			    font-size: 14px;
+    			font-family: "-apple-system","Helvetica Neue",Roboto,"Segoe UI",sans-serif;
+    			opacity: .7;
+			}
+			.gameKey:active,.gameKey.active{background-color:#a11020}
+		}
+		.gameMainView{
+			width:75%;height:100%;float: left;background: #ecf4f9;
+			.publicTitle{
+				color: #fff;
+			    background: #ffabb4;
+			    border: none;
+			    border-bottom: 1px solid #fff;
+			    border-right: 1px solid #fff;
+			    line-height: 35px!important;
+			}
+		}
+	}
+
+}
+
+
+/*北京pk*/
+.rec span.number01{background:#61e5e4;}
+.rec span.number02{background:#8b8b8b;}
+.rec span.number03{background:#ed6e11;}
+.rec span.number04{background:#6b0206;}
+.rec span.number05{background:#ffd014;}
+.rec span.number06{background:#2983f7;}
+.rec span.number07{background:#34c119;}
+.rec span.number08{background:#f8020f;}
+.rec span.number09{background:#e3de57;}
+.rec span.number10{background:#4312fe;}

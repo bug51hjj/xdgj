@@ -1,0 +1,16 @@
+page-report {
+
+}
+
+/*投注报表*/
+.m-betting-tab{padding:20px;background: #fff;}
+.m-betting-tab ul{border:1px solid #d83547;border-right:none;border-radius:5px;overflow:hidden;}
+.m-betting-tab ul li{width:25%;float:left;text-align:center;border-right:1px solid #d83547;height:30px;line-height:30px;color:#d83547;}
+.m-betting-tab ul li.active{background:#d83547;color:#fff;}
+.member-bg{background: #ecf4f9;}
+.m-betting-tab-conTable{text-align:center;background:#fff;}
+.m-betting-tab-conTable tr td{padding:10px 0;}
+.m-betting-tab-conTable thead{background:#9090ab;color: #fff;}
+.m-betting-tab-conTable tbody{color:#333;}
+.m-betting-tab-conTable tbody tr td{border-bottom:1px solid #e6e6e6;}
+.m-betting-tab-conTable tbody tr td.red{color:#d83547;}

@@ -1,0 +1,67 @@
+page-home {
+
+}
+// .back-button.disable-hover.bar-button.bar-button-ios.back-button-ios.bar-button-default.bar-button-default-ios.show-back-button{display:none;}
+.tabs-assertive>.tabs, .tabs.tabs-assertive {
+	height:48px; border-color: #d83547; background-color: #d83547; background-image: linear-gradient(0deg,#d83547,#d83547 50%,transparent 50%); color: #fff; display:flex;
+    .tab-item{
+	    flex: 1; display:flex; flex-direction:column; justify-content:center; overflow: hidden; color: inherit; text-align: center; text-decoration: none; text-overflow: ellipsis; white-space: nowrap; font-weight: 400; font-family: "-apple-system","Helvetica Neue",Roboto,"Segoe UI",sans-serif; opacity: .7; font-size:10px;
+	    .iconfont{ font-size:20px; }
+    }
+}
+.homeHeader{
+	display:flex; justify-content:space-between; align-items:center;
+	img{ width:100px; height:30px; }
+	a{
+		color:white; font-size:18px; font-weight:300;
+		i{ font-size:20px; padding:0 5px; }
+	}
+}
+/*index*/
+/*头部logo*/
+.header-logo{width: 100px;}
+.banner img{display: block;}
+.user-img.icon-ren:before{font-size: 22px!important;}
+/*消息滚动展示*/
+.index-content{background:#f5f5f5;}
+.index-content img{max-width:100%;}
+.index-content .message-move{position: relative;height:35px;line-height:35px;background:#fff;}
+.index-content .message-move:after{display: block;content: "";width:15px;height:35px;position: absolute;right: 0;top: 0;background: #fff;}
+.index-content .message-move .box{position: absolute;left: 0px;height:100%;background: #fff;z-index: 1;line-height:35px;width:40px;text-align:right;padding-right: 5px;}
+.index-content .message-move .info{padding-left:40px; white-space: nowrap;font-size:14px;}
+.index-content .message-move i{display:inline-block;font-size:24px;}
+.index-content .message-move i:before{line-height:35px;}
+.index-content .message-move .move{-webkit-animation: 15s rowup linear infinite normal;animation: 15s rowup linear infinite normal;position: relative;}
+@keyframes rowup {
+    0%{-webkit-transform: translate3d(0px, 0, 0);transform: translate3d(0px, 0, 0);}
+    20%{-webkit-transform: translate3d(0px, 0, 0);transform: translate3d(0px, 0, 0);}
+    100%{-webkit-transform: translate3d(-220%, 0,0);transform: translate3d(-220%, 0,0);}
+}
+
+
+/*游戏分类布局*/
+.row-game{
+	overflow:hidden;
+	.col-game{
+		box-sizing:border-box;
+		-moz-box-sizing:border-box; /* Firefox */
+		-webkit-box-sizing:border-box; /* Safari */
+		width:calc(50% - 14px);
+		margin-left:10px;
+		margin-top:12px;
+		float:left;
+		display:flex;
+		flex-direction:column;
+		justify-content:center;
+		align-items:center;
+		background-color:#fff;
+		padding:15px 0;
+		border-radius:10px;
+		img{
+			width:100%;
+		}
+		p{color:#333}
+	}
+}
+.row-game .noGame{width:100%;text-align:center;}
+.index-content .game-class{background:#edf2f6;}

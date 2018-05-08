@@ -1,0 +1,434 @@
+ Empty. Add your own CSS if you like */
+@charset "UTF-8";
+/*resetcss*/
+
+.clearfix{*zoom:1;}
+.clearfix:before{display:table;content:"";}
+.clearfix:after{clear:both;display:block;content:"";height:0;overflow:hidden;visibility:hidden;}
+
+.fl{float:left;} 
+.fr{float:right;}
+.clear{clear:both;}
+.pt45{padding-top:45px;}
+.mr5{margin-right: 5px;font-size: 15px;color: #000;font-weight: 600;}
+a{text-decoration:none;}
+.menu-right, .menu-right .item a{background-color: #2c2c3e;}
+.menu-right .item{border-color:#2c2c3e;color: #fff;}
+.item.active,
+.item.activated,
+.item-complex.active .item-content,
+.item-complex.activated .item-content,
+.item .item-content.active,
+.item .item-content.activated {border-color: #d83547;background-color: #d83547;}
+.item-complex .item-content, .item-radio .item-content{padding-right: 16px;}
+.bar .button.button-clear .icon:before, .bar .button.button-clear.icon-left:before, .bar .button.button-clear.icon-right:before, .bar .button.button-clear.icon:before, .bar button.button-clear .icon:before, .bar button.button-clear.icon-left:before, .bar button.button-clear.icon-right:before, .bar button.button-clear.icon:before {
+    font-size: 30px;}
+.item-complex .item-content, .item-radio .item-content{background-color: #444;color: #fff;}
+.game-tab .tabs{background: #e8e8e8;}
+.game-tabs .tabs {line-height: 35px;height: 35px;}
+.game-tabs .tab-item{max-width: none;}
+.game-tabs .number *{float: left;}
+.game-tabs .tab-item.activated,.game-tabs .tab-item.active,.game-tabs .tab-item.tab-item-active{background: #fff;}
+.game-tabs .has-tabs-top{top: 45px;}
+.game-tabs .has-footer{bottom:80px;}
+.game-header .icon-jiantou-:before{font-size: 18px!important;}
+.game-footer{height: 80px;padding: 5px 15px;}
+.game-footer .button-large{font-size: 18px;margin-left: 15px;}
+.game-footer .left input{width: 118px;border-radius: 2px;padding: 0 10px;color: #fff;border: 1px solid #fff;line-height: 34px;}
+.game-table-details{min-height: 100%;padding-bottom: 80px;}
+.table-bg ion-scroll {background: #ecf4f9;}
+.game-table-details .tab-item{color: #fff;border-bottom: 1px solid #fff;line-height: 35px;max-width: 100%;height: 35px;}
+.game-table-details .scroll-view{margin-top: 0;}
+.game-table-details .tab-item.activated,.game-table-details .tab-item.active,.game-table-details  .tab-item.tab-item-active{background: #a11020;}
+.game-table-details .tab-item.activated{position: relative;}
+.game-table-details .tab-item.activated:after {content: "";width: 5px;height: 5px;background: #fff;display: block;border-radius: 100%; position: absolute;left: 12px;top: 50%;margin-top: -3px;}
+.data-content{padding: 5px;}
+.data-content .active time{border:1px solid #d83547;}
+.data-content span{margin-right: 12px;}
+.data-content .clearfix>div{width: 49%;}
+.data-content time{border:1px solid #333333;border-radius: 2px;text-align: center;padding:2px 10px;}
+
+.menu-icon i{font-size: 22px;margin-right: 8px;vertical-align: middle;}
+.menu-icon .activated i{color: #fff;}
+
+/*游戏名称*/
+.game-name.hide{display: block;}
+
+
+
+/*游戏下拉菜单*/
+.game-menu .popover-arrow{display: none;}
+.game-menu.popover{width: 100%;left: 0!important;top: 32px!important;border-radius:0;}
+
+.game-menu{opacity: 0;z-index: -1; position: fixed;top: 50px;left: 0;width: 100%;height: 100%; background-color: rgba(0,0,0,.5);}
+.game-menu ul{width: 100%;background-color: #fff;font-size: 14px;}
+.game-menu ul li{height: 50px;line-height: 50px;vertical-align: middle;border-bottom: 1px solid #e6e6e6;}
+.game-menu ul li a{width: 100%;height: 100%;display: inline-block;}
+.game-menu ul li span{color: #333;}
+.game-menu ul li .fr{position: relative;padding-right: 30px;}
+.game-menu ul li .fr span{color: #999;}
+.game-menu ul li .fr i{transform: rotate(180deg);position: absolute;right: 8px;top: 12px; font-size: 20px;color: #dedede;}
+.game-menu ul li .fl{padding-left: 40px;position: relative;}
+.game-menu ul li .fl i{position: absolute;left: 15px;top: 16px; width: 40px;font-size: 20px;font-weight: normal;color: #d83547;margin-right:15px;vertical-align: middle;}
+.game-menu ul li .fl i.icon-jiangbeixianxing{top: 15px;}
+.game-menu ul li .fl i.icon-jiangbeixianxing:before{font-weight: bold;font-size: 20px;opacity: .75;}
+.game-menu ul li .fl i.icon-guize:before{font-size: 17px;}
+.game-menu ul li .fl i.icon-chongzhi,.game-menu ul li .fl i.icon-tixian{left: 10px;}
+.game-menu ul li .fl i.icon-chongzhi:before,.game-menu ul li .fl i.icon-tixian:before{font-size: 24px;}
+.game-menu ul li .fl i.icon-qian{top: 14px;}
+.game-menu ul li .fl i.icon-qian:before{font-size: 16px;}
+.game-menu ul li .fl i.icon-quick{opacity: .9;}
+
+/*index*/
+/*头部logo*/
+.header-logo{width: 100px;}
+.banner img{display: block;}
+.user-img.icon-ren:before{font-size: 22px!important;}
+/*消息滚动展示*/
+.index-content{background:#f5f5f5;}
+.index-content img{max-width:100%;}
+.index-content .message-move{position: relative;height:35px;line-height:35px;background:#fff;}
+.index-content .message-move:after{display: block;content: "";width:15px;height:35px;position: absolute;right: 0;top: 0;background: #fff;}
+.index-content .message-move .box{position: absolute;left: 0px;height:100%;background: #fff;z-index: 1;line-height:35px;width:40px;text-align:right;padding-right: 5px;}
+.index-content .message-move .info{padding-left:40px; white-space: nowrap;font-size:14px;}
+.index-content .message-move i{display:inline-block;font-size:24px;}
+.index-content .message-move i:before{line-height:35px;}
+.index-content .message-move .move{-webkit-animation: 15s rowup linear infinite normal;animation: 15s rowup linear infinite normal;position: relative;}
+@keyframes rowup {
+    0%{-webkit-transform: translate3d(0px, 0, 0);transform: translate3d(0px, 0, 0);}
+    20%{-webkit-transform: translate3d(0px, 0, 0);transform: translate3d(0px, 0, 0);}
+    100%{-webkit-transform: translate3d(-220%, 0,0);transform: translate3d(-220%, 0,0);}
+}
+
+
+
+/*游戏大厅*/
+.game-list.index-content{background: #b7e2ff;}
+.game-list .bg{width: 100%;background: #b7e2ff;height: 35px;position: absolute;left: 0;top: 0;}
+.game-list.index-content .message-move .box,.game-list.index-content .message-move:after{background: #b7e2ff;}
+.index-content.game-list-content .game-class{background: #fff;}
+
+
+
+
+
+
+/*游戏分类布局*/
+.index-content .game-class{background:#edf2f6;}
+.index-content .game-class .list{position:relative;border-radius:10px;text-align: center;color:#fff;overflow: hidden;padding:0;border:none;-webkit-box-shadow: 0 0 10px 0px #d3e1ed; box-shadow: 0 0 10px 0px #d3e1ed;}
+.index-content .game-class .list > img{width:100%;display: block;}
+.index-content .game-class .list a{color: #fff;display:block;position:absolute;left:0;top:0;width:100%;height:100%;padding-top:10%;font-size:16px;}
+.index-content .game-class .list time{min-width:95px;padding:0 10px; height:30px;line-height:30px;display:inline-block;border-radius:50px;background:#d83547;font-size:16px;margin-top:5px;}
+.index-content .game-class .list .img{height:50%;display:block;position:relative;}
+.index-content .game-class .list .img img{max-width:90%;position:absolute;left:0;top:0;right:0;bottom:0;margin:auto;}
+.index-content .game-class .list p{color:#333;border:none;}
+.index-content .game-class{padding:5px;}
+.index-footer .tab-item .icon{font-size: 30px;height: 30px;}
+.index-footer .tab-item .icon:before{font-size: 24px;}
+
+/*北京pk*/
+.bj-data-num{padding: 40px 5px 10px 5px; border-bottom:1px solid #ededed;}
+.bj-data-num .date{color:#333;margin-bottom:0.375rem;}
+
+
+
+/*北京pk table表格*/
+.game-table table{width: 100%;background-color: #ecf4f9;}
+.game-table .right tr{line-height: 40px;text-align: center;}
+.game-table .right tr td{background: #ecf4f9;color: #333;border-right:1px solid #fff;border-bottom:1px solid #fff;}
+.game-table .right tbody tr td.active{background: #b7e2ff!important;}
+.game-table-left{border-right: 1px solid #fff;z-index: 5;}
+.game-table .right thead tr{height: 36px;line-height: 36px;}
+.game-table .right thead tr td{color:#fff;background: #ffabb4;border:none;border-bottom: 1px solid #fff;border-right: 1px solid #fff;line-height: 35px!important;}
+
+
+/*个人中心*/
+.m-center-top{background:#d83547;padding:18.5px 0px 18.5px 15px;border-bottom-left-radius:20px;border-bottom-right-radius:20px;}
+.m-center-top .fl{display:block;width:63.5px;height:63.5px;border-radius:100%;margin-right:17.5px;}
+.m-center-top .r-content{}
+.m-center-top .r-content .list{margin-bottom:2.5px;color:#ffbcc3;}
+.m-center-top .r-content .list.hello{color:#fff;font-size: 16px;}
+.m-center-top .r-content .list.hello img{height: 18px;}
+.m-center-top .r-content .list span{color:#ffba42;font-weight:bold;}
+.m-center-top .r-content .list i{width:20px;height:20px;text-align:center;line-height:23px;background:#ec9aa3;border-radius:100%;display:inline-block;vertical-align:middle;color:#fff;font-size:13px;margin-left:2.5px;margin-top:-1px;overflow:hidden;}
+.m-center-top .r-content .list i.rotate{transition:1.5s ease-out;-webkit-transition:1.5s ease-out;transform:rotate(360deg);-webkit-transform:rotate(360deg);}
+
+.m-center-list{width:33.33%;float:left;border-bottom:1px solid #ededed;text-align:center;padding-top:25px;padding-bottom:27.5px;}
+.m-center-list a{color: #666;}
+.m-center-list i{width:100%;height:40px;display:block;background-position:center top;background-size:auto 29px;background-repeat:no-repeat;}
+.m-center-list i.icon09{background-size:auto 25px;}
+
+/*即时注单*/
+.detail-header i{left: 0;}
+.detail-info{padding:10px;background-color: #ededed;height: 100%;overflow-y: auto;}
+.detail-info .list{background-color: #fff;font-size: 14px;padding: 5px;margin-bottom:10px;border-radius: 3px;}
+.detail-info .list .title{padding-left: .100px; line-height: 40px;color: #d83547;border-bottom: 1px dashed #9f9f9f;}
+.detail-info .list .title h3{font-size: 16px;}
+.detail-info .list .container>div{width: 50%;text-align: center;color: #333;padding:10px 0 7.5px;}
+.detail-info .list .container>div p{line-height: 35px;margin: 0;}
+.detail-info .list .container .fl span{color: #d83547;border-bottom: 1px solid #d83547;}
+/*即时注单详情*/
+.detailInfo-header i{left: 0;}
+.detailInfo-tab{height: 100%;overflow-y: auto;}
+.detailInfo-tab table{width: 100%;}
+.detailInfo-tab table td{color: #333; vertical-align: middle;text-align: center;width: 20%;}
+.detailInfo-tab table thead tr{height: 35px;background-color: #9090ab;}
+.detailInfo-tab table thead tr td{color: #fff;}
+.detailInfo-tab table tbody{color: #333;}
+.detailInfo-tab table tbody tr{height: 50px;background-color: #fff;}
+.detailInfo-tab table tbody tr td{border-bottom: 1px solid #e6e6e6;}
+.detailInfo-tab table tbody tr td a{border:1px solid #d83547;border-radius: 3px;color: #d83547;padding:4px 10px;}
+
+/*投注报表*/
+.m-betting-tab{padding:20px;background: #fff;}
+.m-betting-tab ul{border:1px solid #d83547;border-right:none;border-radius:5px;overflow:hidden;}
+.m-betting-tab ul li{width:25%;float:left;text-align:center;border-right:1px solid #d83547;height:30px;line-height:30px;color:#d83547;}
+.m-betting-tab ul li.active{background:#d83547;color:#fff;}
+.member-bg{background: #ecf4f9;}
+.m-betting-tab-con table{text-align:center;background:#fff;}
+.m-betting-tab-con table tr td{padding:10px 0;}
+.m-betting-tab-con table thead{background:#9090ab;color: #fff;}
+.m-betting-tab-con table tbody{color:#333;}
+.m-betting-tab-con table tbody tr td{border-bottom:1px solid #e6e6e6;}
+.m-betting-tab-con table tbody tr td.red{color:#d83547;}
+/*账户*/
+.m-account-list{border-bottom:1px solid #e6e6e6;background:#fff;color:#333;padding:0px 15px;height:44px;line-height:44px;}
+.height20{height:20px;clear:both;}
+.height30{height:30px;clear:both;}
+/*信息中心*/
+.m-msn-detalis{padding:15px;}
+/*.m-msn-detalis .title{color:#333;}*/
+.m-msn-detalis .date{color:#999;padding-bottom:15px;border-bottom:1px solid #999;}
+.m-msn-detalis .contxt{padding:12.5px 0;line-height:21px;color:#333;}
+
+/*信息中心列表*/
+.m-msn-tab{padding:15px;}
+.m-msn-tab ul{border:1px solid #d83547;border-right:none;border-radius:5px;overflow:hidden;}
+.m-msn-tab ul li{width:50%;float:left;text-align:center;border-right:1px solid #d83547;height:29px;line-height:29px;color:#d83547;}
+.m-msn-tab ul li.active{background:#d83547;color:#fff;}
+
+.m-msn-tab-con{display:none;}
+.m-msn-tab-con .list{background:#fff;border-bottom:1px solid #e6e6e6;padding:12.5px 15px;padding-left:27.5px;position:relative;}
+.m-msn-tab-con .list i{width:6px;height:6px;border-radius:100%;display:block;position:absolute;left:15px;top:16px;}
+.m-msn-tab-con .list a{display:block;color:#333;}
+.m-msn-tab-con .list .date{color:#999;margin-top:5px;}
+.m-msn-tab-con .list.no-read i{background:#d83547;}
+
+/*修改密码*/
+.m-update-pwd-tab ul{overflow:hidden;}
+.m-update-pwd-tab ul li{width:50%;float:left;text-align:center;border-bottom:2px solid #e6e6e6;height:45px;line-height:45px;background:#fff;}
+.m-update-pwd-tab ul li.active{color:#d83547;border-bottom:2px solid #d83547;}
+
+.m-update-pwd-tab-con{display:none;}
+.m-update-pwd-tab-con .list{padding:0px 15px;margin-top:15px;}
+.m-update-pwd-tab-con .list input{border-radius:5px;background:#fff;padding:0px 15px;height:45px;width:100%;outline: none;border:none;}
+.m-update-pwd-tab-con .list input[type="text"]{border:1px solid #e6e6e6;}
+.m-update-pwd-tab-con .list input[type="button"]{background:#d83547;color:#fff;}
+
+/*银行交易*/
+.m-bank-tab ul{overflow:hidden;}
+.m-bank-tab ul li{width:33.33%;float:left;text-align:center;border-bottom:1px solid #e6e6e6;height:45px;line-height:45px;background:#fff;}
+.m-bank-tab ul li.active{color:#d83547;border-bottom:2px solid #d83547;}
+.m-bank-tab-con{display:none;padding:0px 15px;}
+
+.m-bank-record .m-record-tab{margin:22.5px 0;}
+.m-bank-record .m-record-tab ul{border:1px solid #d83547;border-right:none;border-radius:5px;overflow:hidden;}
+.m-bank-record .m-record-tab ul li{width:33.33%;float:left;text-align:center;border-right:1px solid #d83547;height:29px;line-height:29px;color:#d83547;}
+.m-bank-record .m-record-tab ul li.active{background:#d83547;color:#fff;}
+
+.m-record-tab-con{display:none;}
+
+.m-bank-record .box-list{margin-bottom:15px;}
+.m-bank-record .box-list .date{}
+.m-bank-record .box-list .list{margin-top:12.5px;border:1px solid #e6e6e6;border-radius:10px;background:#fff;box-shadow:0px 0px 5px rgba(0,0,0,0.15);overflow:hidden;}
+.m-bank-record .box-list .list .order-number{height:40px;border-bottom:1px solid #e6e6e6;padding:0px 10px;background:#ededed;line-height:40px;}
+.m-bank-record .box-list .list .con{background:#fff;padding:12.5px 10px 0px 10px;}
+.m-bank-record .box-list .list .con div{margin-bottom:12.5px;}
+.m-bank-record .box-list .list .con i{margin-right:5px;}
+.m-bank-record .box-list .list .con i.icon-guanbi-copy{color:#d83547;display:inline-block;vertical-align:middle;}
+
+
+.m-deposit{padding-top:15px;}
+.m-deposit .m-deposit-selectPay{border-radius:5px;border:1px solid #ccc;border-right:none;overflow:hidden;}
+.m-deposit .m-deposit-selectPay .img{position:relative;height:44px;float:left;border-right:1px solid #ccc;width:25%;}
+.m-deposit .m-deposit-selectPay .img img{position:absolute;left:0;top:0;right:0;bottom:0;max-height:34px;display:block;margin:auto;}
+.m-deposit .m-deposit-selectPay .img.active{background:#e6e6e6;}
+
+.m-deposit-selectPay-con{display:none;}
+.m-deposit-selectPay-con .sale-txt{margin-bottom:.100px;text-align:center;}
+
+.m-deposit .m-deposit-list .tit{margin-bottom:.100px;}
+
+.m-deposit .m-deposit-list .input-box{border-right:none;height:25px;position:relative;}
+.m-deposit .m-deposit-list .input-box .input{height:24px;display:block;float:left;}
+.m-deposit .m-deposit-list .input-box .input input{width:100%;height:100%;background:none;border:none;padding:0;text-align:center;border:1px solid #ccc;border-right:none;border-radius:0;}
+.m-deposit .m-deposit-list .input-box .input:last-child input{border-right:1px solid #ccc;}
+.m-deposit .m-deposit-list span{padding:0px .100px;line-height:24px;display:block;}
+
+.m-deposit .m-deposit-list .input-box06{width:148px;}
+.m-deposit .m-deposit-list .input-box06 .input{width:16.67%;}
+
+.m-deposit .m-deposit-list .input-box04{width:100px;}
+.m-deposit .m-deposit-list .input-box04 .input{width:25%;}
+
+.m-deposit .m-deposit-list select{width:100%;border:1px solid #ccc;height:40px;padding:0px 10px;}
+
+.m-deposit .m-deposit-list .tit{margin-bottom:10px;}
+
+.m-deposit .m-deposit-list .input-box{border-right:none;height:25px;position:relative;}
+.m-deposit .m-deposit-list .input-box .input{height:24px;display:block;float:left;}
+.m-deposit .m-deposit-list .input-box .input input{width:100%;height:100%;background:none;border:none;padding:0;text-align:center;border:1px solid #ccc;border-right:none;border-radius:0;}
+.m-deposit .m-deposit-list .input-box .input:last-child input{border-right:1px solid #ccc;}
+.m-deposit .m-deposit-list span{padding:0px .100px;line-height:24px;display:block;}
+
+.m-deposit .m-deposit-list .input-box06{width:148px;}
+.m-deposit .m-deposit-list .input-box06 .input{width:16.67%;}
+
+.m-deposit .m-deposit-list .input-box04{width:100px;}
+.m-deposit .m-deposit-list .input-box04 .input{width:25%;}
+
+.m-deposit .m-deposit-list select{width:100%;border:1px solid #ccc;height:40px;padding:0px .100px;}
+
+
+.m-draw .server-time{text-align:center;padding:10px 0;color:#999;}
+.m-draw .list{margin-bottom:12.5px;}
+.m-draw .list input{height:40px;border-radius:5px;padding:0px 10px;width:100%;border:none;}
+.m-draw .list input[type="text"],.m-draw .list input[type="password"]{border:1px solid #ccc;}
+.m-draw .list p{color:#999;margin-bottom:7.5px;}
+.m-draw .list .txt{color:#d83547;}
+.m-draw .list span.other{background:#f7f7f7;height:20px;line-height:19px;border:1px solid #ccc;width:100%;display:block;margin-top:5px;padding:0px 5px;}
+.m-draw .list input[type="button"]{background:#d83547;color:#fff;}
+.m-draw .list .deposit-p{margin-top:.500px;}
+
+
+/*银行资料*/
+
+.m-bank-data-con{padding:0px 15px;padding-bottom:15px;}
+.m-bank-data-list{background:#fff;margin-top:15px;border-radius:10px;border:1px solid #e6e6e6;padding:9px 12.5px;line-height:24px;}
+
+/*登录*/
+.login .img{margin-bottom:50px;}
+.login i{font-size: 24px;}
+.login i.icon-mima{font-size: 20px;}
+.login .item-input{padding: 6px 16px 5px 16px;}
+.login .list-inset{margin: 20px 30px;}
+.login .list-inset .item:last-child{border-radius: 30px;background: #edf2f6;border:none;}
+.login input[type="button"]{width: 100%;border-radius: 30px;border:none;}
+
+
+/*分享*/
+.share{display: block;position: absolute;height: 100%;width: 100%;}
+.share .content{position: fixed;left: 0;bottom: 0;background: #fff;width: 100%;}
+.share .content .tit{font-size: 10px;color: #333;padding:20px 10px; border-bottom: 1px solid #e6e6e6;text-align: left;}
+.share .content .tit span{font-size: 14px;color: #2bb01f;}
+.share .content .share-list{padding: 17.5px 0 55px 0;}
+.share .content .share-list img{width: 45px;}
+.share .content .share-list>div{float: left;width: 25%;text-align: center;}
+.share .content .share-list p{font-size: 12px;color: #333;margin-top: 7.5px;}
+.share .content button{font-size: 14px; width: 100%;height: 45px;text-align: center;line-height: 45px;background: #ccc;color: #fff;}
+
+/*开奖结果*/
+.game-data{background: #fff;width: 100%;padding: 0 15px;}
+.game-data>div{width: 48%;text-align: center;}
+.game-data>div select{padding-left: 15px; border-radius: 2px; width: 100%;font-size: 14px;text-align: center;height: 30px;}
+.igk-table .subHeader .rec span{width: 25px;height: 25px; line-height: 25px; float: left;margin:0;}
+.igk-table .subHeader{top: 90px;}
+.igk-table .subHeader .right{text-align: right;}
+.igk-table .subHeader .igk-content .left{line-height: 28px;font-size: 14px;}
+.igk-table .subHeader .igk-content .right span{float: left;margin:0;}
+.igk-table-header{top: 88px;background: #fff;position: relative;z-index: 10;border-top: 10px solid #ededed;}
+.igk-table .item{margin:0;margin-top: -1px;border-right: none;border-left: none;padding: 10px 5px;min-height: 50px;}
+.igk-table-header .left span{line-height: 30px;}
+.igk-table-header .right span.btn{display: inline-block;background: #ccc;color: #fff;padding: 0px 10px;height: 30px;line-height: 30px; border-radius: 20px;float: left;margin-right:10px;}
+.igk-table-header span.btn.active{background: #d83547;}
+.igk-table table{width: 100%;}
+.igk-table tbody{position: relative;top: 100px;}
+.igk-table tbody td{text-align: center;}
+
+.igk-table .igk-header{font-size: 14px;}
+.igk-table .igk-header span{margin:0 5px;}
+.igk-table .igk-header .right{text-align: right;}
+.igk-table .igk-header .right span{margin:0 2px; background-color: #ccc;color: #fff;border-radius: 20px;display: inline-block;padding: 2px 10px;}
+.igk-table .igk-header .right span.active{background-color: #d83547;}
+
+
+/*六合彩开奖结果*/
+.liuhecai-result .game-result-content .result-list{border-bottom: 1px solid #ddd;}
+.liuhecai-result .game-result-content .result-list time{padding-right: 10px;}
+.liuhecai-result .game-result-content .result-list .top{padding:5px 10px 10px;font-size: 16px;}
+.liuhecai-result .game-result-content .result-list .bottom{padding:0 20px;}
+.liuhecai-result .game-result-content .result-list .bottom>div{text-align: center; display: inline-block;font-size: 16px;color: #333;}
+.liuhecai-result .game-result-content .result-list .bottom>div span{color: #333;line-height: 22px;}
+.liuhecai-result .result-list .rec span{padding-right: 4px;margin-bottom: 5px;}
+.liuhecai-result .result-list .rec p{font-size: 16px;color: #333;}
+.liuhecai-result .result-list .rec .and{line-height: 0px!important;color:#666!important;font-size: 20px;}
+
+
+/*时时彩开奖*/
+.igk-table .subHeader.ssc .rec span{border-radius: 100%;margin:0 5px;width: 30px;height: 30px;line-height: 30px;}
+.igk-table .subHeader.ssc .igk-content .right span{text-align: center;font-style: normal;}
+.igk-table .subHeader.ssc.all .igk-content .right span{margin:0 3px;}
+
+
+
+/*六合彩*/
+.LHC .text span{color: #333;font-style: normal;font-weight: normal;}
+.LHC .hidden{visibility: hidden;}
+.LHC{padding-bottom: 0;}
+
+.game-table .right.tm thead tr td span{width: 50%;line-height: 35px;}
+.game-table .right.tm tbody tr td span.lhc-bgRed,.game-table .right.tm tbody tr td span.lhc-bgBlue,.game-table .right.tm tbody tr td span.lhc-bgGreen{display: inline-block;width: 26px;height: 26px;line-height: 26px;margin-right:0px;}
+.game-table .right.tm {position: relative;}
+.game-table .right.tm .select-box{position: absolute;left: 1px;top: 36px;width: 100%;}
+.game-table .right.tm .select-box *{width: 100%;display: block;background: #fff;color: #d83547;}
+.game-table .right.tm .select-box tr{border-top: 1px solid #ddd;margin-bottom: 1px;line-height: 35px;height: 35px;}
+
+.game-table .br.right tr td.no-select{background: #ffabb4;color: #fff;}
+.game-table .br.right tr.tit td{line-height: 35px;}
+.game-table .br.right tr td{line-height: 30px;}
+.game-table .br.right tr td p{margin:0;}
+.game-table .br.right tbody .bg-white{background: #fff!important;color: #d83547!important;}
+
+
+/*六合彩半波*/
+.game-table .banbo-table tbody tr{height: 60px;}
+.game-table .banbo-table tbody tr .fl{width: 40%;text-align: center;line-height: 60px;font-size: 14px;}
+.game-table .banbo-table tbody tr .fr{width: 60%;text-align: right;}
+.game-table .banbo-table tr{line-height: 0;}
+.game-table .banbo-table tbody tr .rec {padding: 10px 15px 10px 0;}
+.game-table .banbo-table tbody tr .rec span{ font-style: normal;color:#333;text-indent:-2px;font-weight: normal;width: 25px;height: 25px;font-size: 14px;line-height: 25px;border-radius: 100%;}
+.game-table .banbo-table tbody tr .rec span.lhc-bgRed,.ssc .game-table .banbo-table tbody tr .rec span.lhc-bgBlue,.ssc .game-table .banbo-table tbody tr .rec span.lhc-bgGreen{background-color: #fff;}
+.game-table .banbo-table tbody tr td{font-size: 12px;}
+.game-table .banbo-table tr td span:last-child{padding: 0;}
+.game-table .banbo-table tr td .fl span:last-child{padding-left: 5px;}
+
+
+/*时时彩*/
+.ssc .bj-data-num{padding-bottom: 5px;}
+
+
+/*番摊*/
+.mt12{margin-top: 14px;}
+.mb12{margin-bottom: 14px;}
+.ft-content{background: #eee;}
+.ft .ft-circle{display: inline-block;width: 25px;height: 25px;border:1px solid #d83547;background: #fdf5f6;border-radius: 100%;float: left;margin-left: 10px;}
+.ft .ft-header .fl{font-size: 16px;}
+.ft .ft-header td{border:1px solid red;}
+.ft .ft-header td span{width: 20px;height: 20px;}
+.ft .rec{margin-top: 10px;}
+.ft .rec span{width: 20px;height: 20px;line-height: 22px;font-size: 14px;}
+.ft .rec .tan{width: auto;height: auto;color: #333;font-weight: bold;font-style: normal;border:1px solid #9a9a9a;padding: 0 6px;margin-left: 5px;}
+.ft .ssc .bj-data-num{border:none;}
+.ft .height5{height: 5px; background: #eee;}
+.ft-table{padding:  15px;background: #fff;}
+.ft-table .w100{width: 100%!important;display: block!important;}
+.ft-table .bgR{background: #d83547;width: 14px;height: 14px;border-radius: 100%;display: inline-block;text-align: center;line-height: 14px;font-size: 12px;color: #fff;}
+.ft-table .bgB{background: #0656cb;width: 14px;height: 14px;border-radius: 100%;display: inline-block;text-align: center;line-height: 14px;font-size: 12px;color: #fff;}
+.ft-box td{width: 5%;border:1px solid #c9c9c9;text-align: center;background: #fff;}
+.ft-box{margin-bottom: 14px;}
+.ft .ft-table-header{width: 100%;height: 35px;background: #ffabb4;text-align: center;line-height: 35px;color: #fff;}
+.ft .rec span.bgY{background: #f3742d;}
+.mt50{margin-top: 50px;}
+.bjft .game-tabs .tabs{top: 20px;padding:0 15px;background: #fff;}
+.bjft .game-tabs .tab-item{background: #ffabb4;color: #fff;}
+.bjft .game-tabs .tab-item.activated,.bjft .game-tabs .tab-item.tab-item-active{background: #d83547;}

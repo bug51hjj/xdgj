@@ -1,0 +1,76 @@
+<ion-menu type="overlay" [content]="Menu" side="right">
+	<ion-content class="gameSideMenu">
+    <game-side-menu [pageName]="'重庆时时彩'"></game-side-menu>
+  </ion-content>
+</ion-menu>
+
+<ion-header>
+  <ion-toolbar color="primary" #Menu>
+     <ion-buttons>
+      <button ion-button (click)="goHome()">
+        <span style="font-size: 13px;margin-left: 8px;"><切换彩种</span>
+      </button>
+    </ion-buttons>
+    <ion-title (click)="presentActionSheet()">
+      <span style="font-size: 14px;font-weight: normal;">重庆时时彩-A盘</span>
+      <ion-icon name="arrow-dropdown" style="font-size: 16px"></ion-icon>
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only menuToggle>
+        <span style="font-size: 13px;margin-right: 8px;">451.45</span>
+        <ion-icon name="menu"></ion-icon>
+      </button>
+    </ion-buttons>
+
+  </ion-toolbar>
+</ion-header>
+<ion-content  scrollY="true">
+  <div class="gamePageContainer">
+    <div class="cont1">
+        <ul class="gameTabCont">
+            <li class="active">投注区</li>
+            <li>混合过关</li>
+            <li>聊天室</li>
+        </ul>
+        <div class="bj-data-num clearfix">
+            <div class="number num clearfix">
+              <time>1206026期</time>
+                <span class="ball-color-yellow">9</span>
+                <span class="ball-color-yellow">3</span>
+                <span class="ball-color-yellow">8</span>
+                <span class="ball-color-yellow">7</span>
+                <span class="ball-color-yellow">3</span>
+            </div>
+        </div>
+        <div class="data-content">
+            <span>1206026期</span>
+            <span>封盘：<time>05:20</time></span>
+            <span class="active assertive">开奖：<time>05:20</time></span>
+        </div>
+    </div>
+    <div class="cont2">
+      <div class="gameLeftView" style="">
+        <ion-scroll  style="height:100%;width:100%" scrollY="true" scrollbar-y="false">
+            <a class="gameKey" *ngFor="let item of cqsscDatas.type" [ngClass]="{'active':item.gameType===activeGameType}" (click)="gameKeyClickEvent(item.gameType)"
+            >{{item.name}}</a>
+        </ion-scroll>
+      </div>
+      <div class="gameMainView">
+        <ion-scroll  style="height:100%;width:100%" scrollY="true" scrollbar-y="false">
+          <game-select-01 (changeSelectedList)="changeSelectedList($event)" [gamekey]="cqsscDatas.gamekey" [gameType]="activeGameType" [gamePan]="activeGamePan" #gameSelect01></game-select-01>
+        </ion-scroll>
+      </div>
+    </div>
+  </div>
+</ion-content>
+
+<ion-footer>
+  <div class="gameFooter">
+    <input class="col_1" type="number" placeholder="输入金额">
+    <div class="col_2">
+        <p>已经选中 <span>{{selectedList.length}}</span> 注</p>
+        <a (click)="gameSelect01.cencelSelected()">重置</a>
+    </div>
+    <div class="col_3"><button ion-button (click)="checkOrder()">下注</button></div>
+  </div>
+</ion-footer>

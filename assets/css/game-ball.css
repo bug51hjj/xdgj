@@ -1,0 +1,103 @@
+@charset "UTF-8";
+
+
+@font-face {font-family: "iconfont";
+  src: url('../fonts/iconfont.eot?t=1470638339'); /* IE9*/
+  src: url('../fonts/iconfont.svg?t=1470638339#iconfont') format('svg'), /* iOS 4.1- */
+  url('../fonts/iconfont.eot?t=1470638339#iefix') format('embedded-opentype'), /* IE6-IE8 */
+  url('../fonts/iconfont.woff?t=1470638339') format('woff'), /* chrome, firefox */
+  url('../fonts/iconfont.ttf?t=1470638339') format('truetype'); /* chrome, firefox, opera, Safari, Android, iOS 4.2+*/
+}
+
+
+[class^="icon-"],
+[class*=" icon-"]{font-family:'iconfont' !important;font-style:normal;font-weight:normal;font-variant:normal;text-transform:none;line-height:1;-webkit-font-smoothing:antialiased-moz-osx-font-smoothing:grayscale;}
+.icon-check-outline:before{content:"\e685"}
+.icon-yonghuming:before{content:"\e664"}
+.icon-laba:before{content:"\e658"}
+.icon-message_full:before{content:"\e61a"}
+.icon-guize:before{content:"\e66c"}
+.icon-ren:before{content:"\e647"}
+.icon-qian1:before{content:"\e662"}
+.icon-yinxingqiajiaoyihuoyuedujiancha:before{content:"\e617"}
+.icon-geren9:before{content:"\e62a"}
+.icon-guanbi-copy:before{content:"\e604"}
+.icon-xinfeng:before{content:"\e609"}
+.icon-mima:before{content:"\e637"}
+.icon-ren2:before{content:"\e622"}
+.icon-dianhua:before{content:"\e69a"}
+.icon-jiantou-left:before{content:"\e683"}
+.icon-baobiao:before{content:"\e602"}
+.icon-qq:before{content:"\e68e"}
+.icon-xinxi:before{content:"\e888"}
+.icon-money:before{content:"\e607"}
+.icon-chongzhi:before{content:"\e6e1"}
+.icon-tixian:before{content:"\e6e2"}
+.icon-qiehuanzuhu:before{content:"\e652"}
+.icon-line-chart:before{content:"\e608"}
+.icon-zhuanhuan-:before{content:"\e606"}
+.icon-caidan:before{content:"\e67c"}
+.icon-jiantou-:before{content:"\e6f5"}
+.icon-zhuanhuan:before{content:"\e605"}
+.icon-kefu:before{content:"\e611"}
+.icon-pengyouquan:before{content:"\e600"}
+.icon-suo:before{content:"\e639"}
+.icon-jiangbeixianxing:before{content:"\e60d"}
+.icon-weixin:before{content:"\e601"}
+.icon-suo1:before{content:"\e60a"}
+.icon-qian:before{content:"\e61d"}
+.icon-refresh:before{content:"\e603"}
+.icon-quick:before{content:"\e693"}
+.icon-guanbi:before{content:"\e849"}
+.icon-yinhangqia-copy:before{content:"\e60b"}
+.icon-fenxiang:before{content:"\e614"}
+
+
+
+/*北京pk*/
+.rec time{line-height: 28px;margin-right:2px;}
+.rec span{ display:inline-block;width: 28px;height: 28px;margin-right:2px;border-radius: 4px;text-align: center;color: #fff;font-size: 16px;line-height: 28px;font-weight:bold;font-style:italic;}
+.rec span.number01{background:#61e5e4;}
+.rec span.number02{background:#8b8b8b;}
+.rec span.number03{background:#ed6e11;}
+.rec span.number04{background:#6b0206;}
+.rec span.number05{background:#ffd014;}
+.rec span.number06{background:#2983f7;}
+.rec span.number07{background:#34c119;}
+.rec span.number08{background:#f8020f;}
+.rec span.number09{background:#e3de57;}
+.rec span.number10{background:#4312fe;}
+
+
+
+/*六合彩数字背景样式*/
+.lhc-bgRed{ background: url(../img/lhc-bg02.png) no-repeat center center;background-size: cover;color: #333!important;font-style: normal!important;font-weight: 600!important;background-color: #fff;border-radius: 100%;}
+.lhc-bgBlue{ background: url(../img/lhc-bg01.png) no-repeat center center;background-size: cover;color: #333!important;font-style: normal!important;font-weight: 600!important;background-color: #fff;border-radius: 100%;}
+.lhc-bgGreen{ background: url(../img/lhc-bg03.png) no-repeat center center;background-size: cover;color: #333!important;font-style: normal!important;font-weight: 600!important;background-color: #fff;border-radius: 100%;}
+.rec .and{color: #666!important;font-style: normal!important;font-weight: 600!important;font-size: 22px;}
+.rec .and i{font-size: 16px;vertical-align: middle;margin-top: 8px;margin-left: 5px;}
+
+
+/*大小/单双*/
+span.recBlue{background:#f8020f; display:inline-block;width: 28px;height: 28px;margin-right:2px;border-radius: 4px;text-align: center;color: #fff;font-size: 16px;line-height: 28px;font-weight:bold;font-style:normal;}
+span.recRed{background: #2983f7; display:inline-block;width: 28px;height: 28px;margin-right:2px;border-radius: 4px;text-align: center;color: #fff;font-size: 16px;line-height: 28px;font-weight:bold;font-style:normal;}
+.fontR{color:#2983f7!important;}
+.fontY{color:#ff7e00!important;}
+.fontD{color:#333!important;}
+
+/*时时彩*/
+.ball-color{
+	font-size: 14px;display: inline-block;width: 25px;height: 25px;line-height: 25px;text-align: center;background: #ee3b4f;border-radius: 100%;color:#fff;
+	background: -webkit-radial-gradient(circle, #fa8491, #f04154, #cf051a); /* Safari 5.1 - 6.0 */
+	background: -o-radial-gradient(circle, #fa8491, #f04154, #cf051a); /* Opera 11.6 - 12.0 */
+	background: -moz-radial-gradient(circle, #fa8491, #f04154, #cf051a); /* Firefox 3.6 - 15 */
+	background: radial-gradient(circle, #fa8491, #f04154, #cf051a); /* 标准的语法 */
+}
+.ball-color-yellow,.recYellow{
+	font-size: 14px;display: inline-block;width: 25px;height: 25px;line-height: 25px;text-align: center;background: #ee3b4f;border-radius: 100%;color:#fff;margin:0 2px;
+	background: -webkit-radial-gradient(circle, #f9ba98, #f37b38, #db580f); /* Safari 5.1 - 6.0 */
+	background: -o-radial-gradient(circle, #f9ba98, #f37b38, #db580f); /* Opera 11.6 - 12.0 */
+	background: -moz-radial-gradient(circle, #f9ba98, #f37b38, #db580f); /* Firefox 3.6 - 15 */
+	background: radial-gradient(circle, #f9ba98, #f37b38, #db580f); /* 标准的语法 */
+}
+.num time{line-height: 28px;margin-right:2px;margin-right: 20px;}

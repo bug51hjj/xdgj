@@ -1,0 +1,200 @@
+<!--
+  Generated template for the BankDealPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>银行交易</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<div class="member-page page">
+        <div class="m-center-top clearfix" style="border-radius:0;">
+            <img class="fl" src="./assets/img/tx-img.png">
+            <div class="r-content font20">
+                <div class="list hello font28">早上好！ test001</div>
+                <div class="list">我的钱包：<span class="font24" id="price">58558.15</span>RMB <i class="icon-refresh"></i></div>
+                <div class="list">真实姓名：test[虚]</div>
+            </div>
+        </div>
+        <div class="m-bank-tab font24">
+            <ul>
+                <li class="active">充值</li>
+                <li class="">提现</li>
+                <li class="">交易记录</li>
+            </ul>
+        </div>
+        <!--存款-->
+        <div class="m-bank-tab-con m-draw m-deposit font24" style="display: block;">
+            <div class="list m-deposit-list clearfix m-deposit-selectPay">
+                <div class="img active"><img src="./assets/img/deposit-img01.png"></div>
+                <div class="img"><img src="./assets/img/deposit-img02.png"></div>
+                <div class="img"><img src="./assets/img/deposit-img03.png"></div>
+                <div class="img"><img src="./assets/img/deposit-img04.png"></div>
+            </div>
+            <div class="m-deposit-selectPay-con" style="display:block;">
+                <div class="list m-deposit-list clearfix">
+                    <div class="tit">付款银行卡号前6位和后4位</div>
+                    <div class="input-box input-box06 clearfix fl">
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                    </div>
+                    <span class="fl">****</span>
+                    <div class="input-box input-box04 fl clearfix">
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+                    </div>
+                </div>
+                <div class="list"><input type="text" placeholder="开户姓名" name=""></div>
+                <div class="list">
+                    <input type="text" placeholder="入款金额" name="">
+                    <div class="deposit-p font20">单笔下限100，单笔上限49999 <span style="color:#d83547">跨行需选择“ 实时/加急 ”</span></div>
+                </div>
+                <div class="list"><input type="button" value="开始充值" name=""></div>
+            </div>
+            <div class="m-deposit-selectPay-con">
+                <div class="sale-txt font20">京东扫码入款金额将自动随机调整0-5元。</div>
+                <div class="list">
+                    <input type="text" placeholder="入款金额" name="">
+                    <div class="deposit-p font20">单笔下限100,单笔上限2000(通道1 5000)</div>
+                </div>
+                <div class="list"><input type="button" value="开始充值" name=""></div>
+            </div>
+            <div class="m-deposit-selectPay-con">
+                <div class="sale-txt font20">微信扫码入款金额将自动随机调整0-5元。</div>
+                <div class="list">
+                    <input type="text" placeholder="入款金额" name="">
+                    <div class="deposit-p font20">单笔下限100,单笔上限2000(通道2/4/5 8000)</div>
+                </div>
+                <div class="list m-deposit-list font24">
+                    <select>
+                        <option>请选择银行</option>
+                        <option>农业</option>
+                        <option>招商</option>
+                    </select>
+                </div>
+                <div class="list"><input type="button" value="开始充值" name=""></div>
+            </div>
+            <div class="m-deposit-selectPay-con">
+                <div class="sale-txt font20">支付宝扫码入款金额将自动随机调整0-5元。</div>
+                <div class="list">
+                    <input type="text" placeholder="入款金额" name="">
+                    <div class="deposit-p font20">单笔下限100,单笔上限2000(通道2/4/5 8000)</div>
+                </div>
+                <div class="list"><input type="button" value="开始充值" name=""></div>
+            </div>
+        </div>
+        <!--取款-->
+        <div class="m-bank-tab-con font24 m-draw" style="display: none;">
+            <div class="server-time font20">服务时间：  09:00 - 04:00</div>
+            <div class="list"><input type="text" placeholder="出款金额" name=""></div>
+            <div class="list font20">
+                <p>单笔下限100，上限500000</p>
+                <div class="txt">请核对收款银行</div>
+                <span class="font24 other">其他银行-6461*********6577-null</span>
+            </div>
+            <div class="list"><input type="password" placeholder="取款密码" name=""></div>
+            <div class="list"><input type="button" value="确认提交" name=""></div>
+        </div>
+        <!--交易记录-->
+        <div class="m-bank-tab-con m-bank-record font24" style="display: none;">
+            <div class="m-record-tab clearfix">
+                <ul>
+                    <li class="active">取款</li>
+                    <li class="">额度转换</li>
+                    <li class="">入款</li>
+                </ul>
+            </div>
+            <div class="m-record-tab-con" style="display: block;">
+                <div class="box-list">
+                    <div class="date">2017-18-29</div>
+                    <div class="list">
+                        <div class="order-number">订单号：4654619</div>
+                        <div class="con clearfix">
+                            <div class="fl" style="color:#999;">取款</div>
+                            <div class="fr" style="color:#999;">00:56</div>
+                            <div class="clear" style="margin:0;"></div>
+                            <div class="fl" style="color:#333;">100.00</div>
+                            <div class="fr" style="color:#333;"><i class="icon-check-outline font30"></i>出款成功</div>
+                        </div>
+                    </div>
+                    <!--不知道有没有出款失败，设计稿没有-->
+                    <div class="list">
+                        <div class="order-number">订单号：4654619</div>
+                        <div class="con clearfix">
+                            <div class="fl" style="color:#999;">取款</div>
+                            <div class="fr" style="color:#999;">00:56</div>
+                            <div class="clear" style="margin:0;"></div>
+                            <div class="fl" style="color:#333;">100.00</div>
+                            <div class="fr" style="color:#333;"><i class="icon-guanbi-copy font30"></i>出款失败</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-record-tab-con" style="display: none;">
+                <div class="box-list">
+                    <div class="date">2017-18-29</div>
+                    <div class="list">
+                        <div class="order-number">订单号：4654619</div>
+                        <div class="con clearfix">
+                            <div class="fl" style="color:#999;">取款</div>
+                            <div class="fr" style="color:#999;">00:56</div>
+                            <div class="clear" style="margin:0;"></div>
+                            <div class="fl" style="color:#333;">100.00</div>
+                            <div class="fr" style="color:#333;"><i class="icon-check-outline font30"></i>出款成功</div>
+                        </div>
+                    </div>
+                    <!--不知道有没有出款失败，设计稿没有-->
+                    <div class="list">
+                        <div class="order-number">订单号：4654619</div>
+                        <div class="con clearfix">
+                            <div class="fl" style="color:#999;">取款</div>
+                            <div class="fr" style="color:#999;">00:56</div>
+                            <div class="clear" style="margin:0;"></div>
+                            <div class="fl" style="color:#333;">100.00</div>
+                            <div class="fr" style="color:#333;"><i class="icon-guanbi-copy font30"></i>出款失败</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="m-record-tab-con" style="display: none;">
+                <div class="box-list">
+                    <div class="date">2017-18-29</div>
+                    <div class="list">
+                        <div class="order-number">订单号：4654619</div>
+                        <div class="con clearfix">
+                            <div class="fl" style="color:#999;">取款</div>
+                            <div class="fr" style="color:#999;">00:56</div>
+                            <div class="clear" style="margin:0;"></div>
+                            <div class="fl" style="color:#333;">100.00</div>
+                            <div class="fr" style="color:#333;"><i class="icon-check-outline font30"></i>出款成功</div>
+                        </div>
+                    </div>
+                    <!--不知道有没有出款失败，设计稿没有-->
+                    <div class="list">
+                        <div class="order-number">订单号：4654619</div>
+                        <div class="con clearfix">
+                            <div class="fl" style="color:#999;">取款</div>
+                            <div class="fr" style="color:#999;">00:56</div>
+                            <div class="clear" style="margin:0;"></div>
+                            <div class="fl" style="color:#333;">100.00</div>
+                            <div class="fr" style="color:#333;"><i class="icon-guanbi-copy font30"></i>出款失败</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</ion-content>

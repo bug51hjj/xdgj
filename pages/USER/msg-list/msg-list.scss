@@ -1,0 +1,21 @@
+page-msg-list {
+
+}
+/*信息中心*/
+.m-msn-detalis{padding:15px;}
+/*.m-msn-detalis .title{color:#333;}*/
+.m-msn-detalis .date{color:#999;padding-bottom:15px;border-bottom:1px solid #999;}
+.m-msn-detalis .contxt{padding:12.5px 0;line-height:21px;color:#333;}
+
+/*信息中心列表*/
+.m-msn-tab{padding:15px;background-color:#fff}
+.m-msn-tab ul{border:1px solid #d83547;border-right:none;border-radius:5px;overflow:hidden;}
+.m-msn-tab ul li{width:50%;float:left;text-align:center;border-right:1px solid #d83547;height:30px;line-height:30px;color:#d83547;}
+.m-msn-tab ul li.active{background:#d83547;color:#fff;}
+
+.m-msn-tab-con{}
+.m-msn-tab-con .list{background:#fff;border-bottom:1px solid #e6e6e6;padding:12.5px 15px;padding-left:27.5px;position:relative;}
+.m-msn-tab-con .list i{width:6px;height:6px;border-radius:100%;display:block;position:absolute;left:15px;top:16px;}
+.m-msn-tab-con .list a{display:block;color:#333;}
+.m-msn-tab-con .list .date{color:#999;margin-top:5px;}
+.m-msn-tab-con .list.no-read i{background:#d83547;}

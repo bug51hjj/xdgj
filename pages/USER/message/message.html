@@ -1,0 +1,19 @@
+<!--
+  Generated template for the MessagePage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>信息内容</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<div style="color: #999;padding-bottom: 15px;border-bottom: 1px solid #999;">{{datas.time}}</div>
+	<div style="padding: 12.5px 0;line-height: 21px;color: #333;" [innerHtml]="datas.content"></div>
+</ion-content>

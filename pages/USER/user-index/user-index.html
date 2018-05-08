@@ -1,0 +1,81 @@
+<!--
+  Generated template for the UserIndexPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar color="primary">
+    <ion-title>用户中心</ion-title>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<div class="member-page page">
+	    <div class="m-center-top clearfix">
+	        <img class="fl" src="./assets/img/tx-img.png">
+	        <div class="r-content font20">
+	            <div class="list hello font28">您好!  {{userInformation.username}} <img src="./assets/img/vip.png" alt=""></div>
+	            <div class="list">我的钱包：<span class="font24" id="price">{{userInformation.amount}} </span> RMB <i (click)="getUserData()" class="iconfont icon-refresh"></i></div>
+	            <div class="list">真实姓名：{{userInformation.realname}}</div>
+	        </div>
+	    </div>
+	    <div class="m-center-list font24">
+	        <a (click)="goPage(AccountPage)">
+	            <i class="icon01" style="background-image:url(./assets/img/m-list-icon01.png);"></i>
+	            <span>我的账户</span>
+	        </a>
+	    </div>
+	    <div class="m-center-list font24">
+	        <a (click)="goPage(PasswordPage)">
+	            <i class="icon02" style="background-image:url(./assets/img/m-list-icon02.png);"></i>
+	            <span>修改密码</span>
+	        </a>
+	    </div>
+	    <div class="m-center-list font24">
+	        <a (click)="goPage(MsgListPage)">
+	            <i class="icon03" style="background-image:url(./assets/img/m-list-icon03.png);"></i>
+	            <span>信息中心</span>
+	        </a>
+	    </div>
+	    <div class="m-center-list font24">
+	        <a (click)="goPage(BankDealPage)">
+	            <i class="icon04" style="background-image:url(./assets/img/m-list-icon04.png);"></i>
+	            <span>银行交易</span>
+	        </a>
+	    </div>
+	    <div class="m-center-list font24">
+	        <a (click)="goPage(BankInfoPage)">
+	            <i class="icon06" style="background-image:url(./assets/img/m-list-icon06.png);"></i>
+	            <span>银行资料</span>
+	        </a>
+	    </div>
+	    <div class="m-center-list font24">
+	        <a (click)="goPage(ReportPage)">
+	            <i class="icon07" style="background-image:url(./assets/img/m-list-icon07.png);"></i>
+	            <span>投注报表</span>
+	        </a>
+	    </div>
+	    <div class="m-center-list font24">
+	        <a (click)="goPage(CustomeSePage)">
+	            <i class="icon08" style="background-image:url(./assets/img/m-list-icon08.png);"></i>
+	            <span>客服</span>
+	        </a>
+	    </div>
+	    <div class="m-center-list font24" ng-click="showSharePopup()">
+	        <a href="javascript:">
+	            <i class="icon09" style="background-image:url(./assets/img/m-list-icon09.png);"></i>
+	            <span>分享</span>
+	        </a>
+	    </div>
+	    <div class="m-center-list font24" ng-click="showSharePopup()">
+	        <a (click)="logout()">
+	            <i class="icon09" style="background-image:url(./assets/img/m-list-icon06.png);"></i>
+	            <span>退出登录</span>
+	        </a>
+	    </div>
+	</div>
+</ion-content>
