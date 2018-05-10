@@ -16,35 +16,13 @@
 <ion-content class="member-page">
 	<div class="member-page page">
 	    <div class="m-bank-data-con font24">
-	        <div class="m-bank-data-list">
+			<p *ngIf="bankInfo.loading" >银行卡加载中...</p>
+			<p *ngIf="!bankInfo.status" style="padding:15px;color:#333">无银行卡信息,如有疑问请联系客服!</p>
+	        <div class="m-bank-data-list" *ngIf="bankInfo.status">
 	            <ul>
-	                <li>银行名称：其他银行</li>
-	                <li>银行卡号：64************6587</li>
-	                <li>开户姓名：奥利给</li>
-	                <li>修改请先联系客服解锁</li>
-	            </ul>
-	        </div>
-	        <div class="m-bank-data-list">
-	            <ul>
-	                <li>银行名称：其他银行</li>
-	                <li>银行卡号：64************6587</li>
-	                <li>开户姓名：奥利给</li>
-	                <li>修改请先联系客服解锁</li>
-	            </ul>
-	        </div>
-	        <div class="m-bank-data-list">
-	            <ul>
-	                <li>银行名称：其他银行</li>
-	                <li>银行卡号：64************6587</li>
-	                <li>开户姓名：奥利给</li>
-	                <li>修改请先联系客服解锁</li>
-	            </ul>
-	        </div>
-	        <div class="m-bank-data-list">
-	            <ul>
-	                <li>银行名称：其他银行</li>
-	                <li>银行卡号：64************6587</li>
-	                <li>开户姓名：奥利给</li>
+	                <li>银行名称：{{bankInfo.data.bank_name}}</li>
+	                <li>银行卡号：{{bankInfo.data.bank_account}}</li>
+	                <li>开户姓名：{{bankInfo.data.bank_user}}</li>
 	                <li>修改请先联系客服解锁</li>
 	            </ul>
 	        </div>

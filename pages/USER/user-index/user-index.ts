@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams } from 'ionic-angular';
+import { IonicPage, NavController, NavParams,AlertController } from 'ionic-angular';
 import { HttpServiceProvider } from '../../../providers/http-service/http-service';
 
 import { AccountPage } from '../../../pages/USER/account/account';
@@ -37,7 +37,10 @@ export class UserIndexPage {
       amount:'加载中...',
       realname:'加载中...'
   }
-  constructor(public navCtrl: NavController, public navParams: NavParams,public HttpService:HttpServiceProvider) {
+  constructor(public navCtrl: NavController, 
+    public navParams: NavParams,
+    public HttpService:HttpServiceProvider,
+    public alertCtrl: AlertController,) {
   }
 
   ionViewDidLoad() {
@@ -62,5 +65,15 @@ export class UserIndexPage {
   logout(){
      window.localStorage.removeItem('token');
      this.navCtrl.push(LoginPage);
+  }
+  shareEvent(){
+      var shareLink = document.getElementById('shareLink');
+      shareLink['select']();
+      document.execCommand("Copy"); 
+      let alert = this.alertCtrl.create({
+          subTitle: '分享链接已经复制到您的剪贴板！',
+          buttons: ['确认']
+      });
+      alert.present();
   }
 }

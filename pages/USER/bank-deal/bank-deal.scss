@@ -5,14 +5,14 @@ page-bank-deal {
 .m-bank-tab ul{overflow:hidden;}
 .m-bank-tab ul li{width:33.33%;float:left;text-align:center;border-bottom:1px solid #e6e6e6;height:45px;line-height:45px;background:#fff;}
 .m-bank-tab ul li.active{color:#d83547;border-bottom:2px solid #d83547;}
-.m-bank-tab-con{display:none;padding:0px 15px;}
+.m-bank-tab-con{padding:0px 15px;}
 
 .m-bank-record .m-record-tab{margin:22.5px 0;}
 .m-bank-record .m-record-tab ul{border:1px solid #d83547;border-right:none;border-radius:5px;overflow:hidden;}
 .m-bank-record .m-record-tab ul li{width:33.33%;float:left;text-align:center;border-right:1px solid #d83547;height:29px;line-height:29px;color:#d83547;}
 .m-bank-record .m-record-tab ul li.active{background:#d83547;color:#fff;}
 
-.m-record-tab-con{display:none;}
+.m-record-tab-con{}
 
 .m-bank-record .box-list{margin-bottom:15px;}
 .m-bank-record .box-list .date{}
@@ -26,11 +26,11 @@ page-bank-deal {
 
 .m-deposit{padding-top:15px;}
 .m-deposit .m-deposit-selectPay{border-radius:5px;border:1px solid #ccc;border-right:none;overflow:hidden;}
-.m-deposit .m-deposit-selectPay .img{position:relative;height:44px;float:left;border-right:1px solid #ccc;width:25%;}
+.m-deposit .m-deposit-selectPay .img{position:relative;height:44px;float:left;border-right:1px solid #ccc;width:20%;}
 .m-deposit .m-deposit-selectPay .img img{position:absolute;left:0;top:0;right:0;bottom:0;max-height:34px;display:block;margin:auto;}
 .m-deposit .m-deposit-selectPay .img.active{background:#e6e6e6;}
 
-.m-deposit-selectPay-con{display:none;}
+.m-deposit-selectPay-con{}
 .m-deposit-selectPay-con .sale-txt{margin-bottom:.100px;text-align:center;}
 
 .m-deposit .m-deposit-list .tit{margin-bottom:.100px;}
@@ -69,9 +69,41 @@ page-bank-deal {
 .m-draw .server-time{text-align:center;padding:10px 0;color:#999;}
 .m-draw .list{margin-bottom:12.5px;}
 .m-draw .list input{height:40px;border-radius:5px;padding:0px 10px;width:100%;border:none;}
-.m-draw .list input[type="text"],.m-draw .list input[type="password"]{border:1px solid #ccc;}
+.m-draw .list input[type="text"],.m-draw .list input[type="password"],.m-draw .list input[type="number"]{border:1px solid #ccc;}
 .m-draw .list p{color:#999;margin-bottom:7.5px;}
 .m-draw .list .txt{color:#d83547;}
 .m-draw .list span.other{background:#f7f7f7;height:20px;line-height:19px;border:1px solid #ccc;width:100%;display:block;margin-top:5px;padding:0px 5px;}
 .m-draw .list input[type="button"]{background:#d83547;color:#fff;}
-.m-draw .list .deposit-p{margin-top:.500px;}
+.m-draw .list .deposit-p{margin-top:15px;color:#666;font-size:13px;}
+.m-draw .list select{height:40px;border-radius:5px;padding:0px 10px;width:100%;border:none;border:1px solid #ccc;}
+.rechargeWayCont .label.label-ios{font-size:15px;text-indent: 40px;}
+.rechargeWayCont .label.label-ios img{height:20px;position:absolute;top:12px;left:15px;}
+.rechargeWayCont .item-ios{color:#333}
+
+.bankListContainer{
+    width: 100%;
+    overflow: hidden;
+    .bankItem{
+        width:calc(50% - 5px);
+        height: 4.4rem;
+        float: left;
+        display: flex;
+        border: 1px solid #ccc;
+        justify-content: center;
+        align-items: center;
+        border-radius: 3px;
+        color: #333;
+        margin-bottom: 10px;
+        img{height:20px;margin-right: 8px;}
+        span{color: inherit}
+        &.active{
+            border: 1.5px solid #d93446;
+            background: no-repeat url("../assets/img/bank-select-mark.png");
+            background-position:right bottom;
+            background-size: 20px auto;
+        }
+    }
+    .bankItem:nth-child(2n){
+        margin-left: 10px;
+    }
+}

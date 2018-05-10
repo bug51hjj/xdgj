@@ -1,0 +1,16 @@
+.page{
+	background-color:#ecf4f9;
+}
+/*修改密码*/
+.m-update-pwd-tab ul{overflow:hidden;}
+.m-update-pwd-tab ul li{width:50%;float:left;text-align:center;border-bottom:2px solid #e6e6e6;height:45px;line-height:45px;background:#fff;}
+.m-update-pwd-tab ul li.active{color:#d83547;border-bottom:2px solid #d83547;}
+
+.m-update-pwd-tab-con{}
+.m-update-pwd-tab-con .list{padding:0px 15px;margin-top:15px;}
+.m-update-pwd-tab-con .list input{border-radius:5px;background:#fff;padding:0px 15px;height:45px;width:100%;outline: none;border:none;}
+.m-update-pwd-tab-con .list input[type="text"]{border:1px solid #e6e6e6;}
+.m-update-pwd-tab-con .list input[type="button"]{background:#d83547;color:#fff;}
+.bankSelect.list-ios{margin: -1px 0 0px;}
+.bankSelect.list-ios > .item-block:last-child, .list-ios > .item-wrapper:last-child .item-block{border: none;border-radius: 5px;}
+.bankSelect.list-ios .label.label-ios{font-size: 14px;color:#444;}

@@ -76,7 +76,28 @@ export class PasswordPage {
 	            alert.present();
 			}
 		}else{
-			console.log(this[formType])
+			let {pwdOld,pwdNew,pwdLogin,pwdNewRepeat} = this[formType];
+			if(pwdOld.length>0&&pwdNew.length>0&&pwdLogin.length&&pwdNew===pwdNewRepeat){
+				let url = `/member/transfer_pwd_update?tk=${token}`;
+				let params = `transfer_pwd_old=${pwdOld}&transfer_pwd_new=${pwdNew}&password=${pwdLogin}`;
+				this.HttpService.post(url,params).subscribe((res: Response) => {
+					if(res['errorcode']==''){
+						toast.present();
+					}else{
+						let alert = this.alertCtrl.create({
+			                subTitle: res['errormsg'],
+			                buttons: ['确认']
+			            });
+			            alert.present();
+					}
+				})
+			}else{
+				let alert = this.alertCtrl.create({
+	                subTitle: '密码均不能为空、新密码需和重复密码一致',
+	                buttons: ['确认']
+	            });
+	            alert.present();
+			}
 		}
 		
 	}

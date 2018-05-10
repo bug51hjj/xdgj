@@ -6,7 +6,6 @@ import { BankDealPage } from '../../pages/USER/bank-deal/bank-deal';
 import { ReportPage } from '../../pages/USER/report/report';
 import { MsgListPage } from '../../pages/USER/msg-list/msg-list';
 import { CustomeSePage } from '../../pages/USER/custome-se/custome-se';
-
 import { HttpServiceProvider } from '../../providers/http-service/http-service'; 
 
 import { GameCenterPage } from '../../pages/GAME/game-center/game-center'; //游戏
@@ -46,7 +45,7 @@ export class HomePage {
   }
   ionViewDidLoad() {
   	let token = window.localStorage.getItem('token');
-    let url = `/event/game?tk=${token}`;
+    let url = `/event/game?tk=${token}1`;
     let loader = this.loadingCtrl.create({content: "加载中..."});
     loader.present();
     //加载游戏列表
@@ -55,12 +54,8 @@ export class HomePage {
 	          res['game'].map(item=>{
 	          	this.gameList_online[item.gamekey.toString()] = "gamename";
 	          })
-	    }else{
-	        let alert = this.alertCtrl.create({
-	            subTitle: res['errormsg'],
-	            buttons: ['确认']
-	        });
-	        alert.present();
+			}else{
+					this.httpErrorHandle(res)
 	    }
 	    loader.dismiss();
 	});
@@ -73,6 +68,29 @@ export class HomePage {
   		refresher.complete();
   	},1000)
   		
-  }
+	}
+	httpErrorHandle(result){
+			let errorcode = result.errorcode;
+			let errormsg = result.errormsg;
+			let alert;
+			if(result==100){
+					alert = this.alertCtrl.create({
+							subTitle: '登录超时请重新登录!',
+							buttons: [{
+									text:'确定',
+									handler: () => {
+											this.navCtrl.push(LoginPage)
+									}
+							}]
+					});
+					
+			}else{
+					alert = this.alertCtrl.create({
+							subTitle: errormsg,
+							buttons: ['确认']
+					});
+			}
+			alert.present();
+	}
 
 }

@@ -14,11 +14,19 @@
 
 
 <ion-content>
-  <div class="member-page page">
+    <ion-refresher (ionRefresh)="doRefresh($event)"> 
+        <ion-refresher-content
+            pullingIcon="arrow-dropdown"
+            pullingText="下拉刷新"
+            refreshingSpinner="circles"
+            refreshingText="刷新..."> 
+        </ion-refresher-content>
+    </ion-refresher>
+  <div class="msgListPage">
         <div class="m-msn-tab">
             <ul class="clearfix font24">
-                <li [ngClass]="{'active':messageType=='notice'}" (click)="changeMessageType('notice')">公告（4）</li>
-                <li [ngClass]="{'active':messageType=='news'}" (click)="changeMessageType('news')">站内信（8）</li>
+                <li [ngClass]="{'active':messageType=='notice'}" (click)="changeMessageType('notice')">公告（{{noticeData.count}}）</li>
+                <li [ngClass]="{'active':messageType=='news'}" (click)="changeMessageType('news')">站内信（{{newsData.count}}）</li>
             </ul>
         </div>
 
@@ -29,6 +37,7 @@
                     <a class="font24 textHidden" ui-sref="user_header.message"><i></i>{{item.title}}</a>
                     <div class="date font22">{{item.time}}</div>
                 </div>
+                <div style="text-align: center;margin-top: 20px;" *ngIf="noticeData.page==noticeData.total_page">没有更多公告了</div>
                 <!-- <div class="list" *ngFor="noticeData.notice" (click)="goPage(0)">
                     <a class="font24 textHidden" ui-sref="user_header.message"><i></i>鼎鑫国际公告：鼎鑫国际公告：</a>
                     <div class="date font22">2017-11-11 12:50:20</div>
@@ -42,6 +51,7 @@
                     <a class="font24 textHidden" ui-sref="user_header.message"><i></i>{{item.title}}</a>
                     <div class="date font22">{{item.time}}</div>
                 </div>
+                <div style="text-align: center;margin-top: 20px;" *ngIf="newsData.page==newsData.total_page">没有更多站内信了</div>
                 <!-- <div class="list" *ngFor="noticeData.notice" (click)="goPage(0)">
                     <a class="font24 textHidden" ui-sref="user_header.message"><i></i>鼎鑫国际公告：鼎鑫国际公告：</a>
                     <div class="date font22">2017-11-11 12:50:20</div>
@@ -49,4 +59,10 @@
             </div>
         </div>
     </div>
+    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
+    <ion-infinite-scroll-content
+    loadingSpinner="bubbles"
+    loadingText="Loading more data...">
+    </ion-infinite-scroll-content>
+    </ion-infinite-scroll>
 </ion-content>

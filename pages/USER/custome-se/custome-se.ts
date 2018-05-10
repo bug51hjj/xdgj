@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams } from 'ionic-angular';
-
 /**
  * Generated class for the CustomeSePage page.
  *
@@ -14,12 +13,11 @@ import { IonicPage, NavController, NavParams } from 'ionic-angular';
   templateUrl: 'custome-se.html',
 })
 export class CustomeSePage {
+	constructor(public navCtrl: NavController, public navParams: NavParams) {
+	}
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CustomeSePage');
-  }
+	ionViewDidLoad() {
+	console.log('ionViewDidLoad CustomeSePage');
+	}
 
 }

@@ -12,58 +12,104 @@
 
 </ion-header>
 
-
 <ion-content class="member-page page">
 	<div class="member-page page">
 	    <div class="m-betting-tab">
 	        <ul class="clearfix font24">
-	            <li ui-sref="user_header.user_bet_report.report_today">今天</li>
-	            <li ui-sref="user_header.user_bet_report.report_yestoday">昨天</li>
-	            <li ui-sref="user_header.user_bet_report.report_week">本周</li>
-	            <li ui-sref="user_header.user_bet_report.report_lastweek">上周</li>
+	            <li [ngClass]="{'active':tabActive=='today'}" (click)="changeTab('today')">今天</li>
+	            <li [ngClass]="{'active':tabActive=='yesterday'}" (click)="changeTab('yesterday')">昨天</li>
+	            <li [ngClass]="{'active':tabActive=='week'}" (click)="changeTab('week')">本周</li>
+	            <li [ngClass]="{'active':tabActive=='lastWeek'}" (click)="changeTab('lastWeek')">上周</li>
 	        </ul>
-	    </div>
-	    <table class="m-betting-tab-conTable" cellspacing="0" cellpadding="0" border="0" width="100%">
-		    <thead class="font24">
-		        <tr>
-		            <td>游戏</td>
-		            <td>笔数</td>
-		            <td>总投注</td>
-		            <td>有效投注</td>
-		            <td>输赢</td>
-		        </tr>
-		    </thead>
-		    <tbody class="font22">
-		        <tr>
-		            <td>BBIN视讯1</td>
-		            <td>20</td>
-		            <td>12856.00</td>
-		            <td>12865.00</td>
-		            <td class="red">+12856.00</td>
-		        </tr>
-		        <tr>
-		            <td>BBIN视讯</td>
-		            <td>20</td>
-		            <td>12856.00</td>
-		            <td>12865.00</td>
-		            <td>+12856.00</td>
-		        </tr>
-		        <tr>
-		            <td>BBIN视讯</td>
-		            <td>20</td>
-		            <td>12856.00</td>
-		            <td>12865.00</td>
-		            <td>+12856.00</td>
-		        </tr>
-		        <tr>
-		            <td>BBIN视讯</td>
-		            <td>20</td>
-		            <td>12856.00</td>
-		            <td>12865.00</td>
-		            <td>+12856.00</td>
-		        </tr>
-		    </tbody>
-		</table>
+		</div>
+		<div *ngIf="tabActive=='today'">
+			<div *ngIf="report.loading">数据加载中...</div>
+			<div *ngIf="!report.status">数据加载失败,请稍后再试!</div>
+			<table *ngIf="report.status" class="m-betting-tab-conTable" cellspacing="0" cellpadding="0" border="0" width="100%">
+				<thead class="font24">
+					<tr>
+						<td>日期</td>
+						<td>有效金额</td>
+						<td>佣金</td>
+						<td>盈亏</td>
+					</tr>
+				</thead>
+				<tbody class="font22">
+					<tr *ngFor="let item of report.list" >
+						<td>{{item.date}}</td>
+						<td>{{item.valid_buy}}</td>
+						<td>{{item.commission}}</td>
+						<td class="red">{{item.profit}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div *ngIf="tabActive=='yesterday'" >
+			<div *ngIf="report.loading">数据加载中...</div>
+			<div *ngIf="!report.status">数据加载失败,请稍后再试!</div>
+			<table *ngIf="report.status" class="m-betting-tab-conTable" cellspacing="0" cellpadding="0" border="0" width="100%">
+				<thead class="font24">
+					<tr>
+						<td>日期</td>
+						<td>有效金额</td>
+						<td>佣金</td>
+						<td>盈亏</td>
+					</tr>
+				</thead>
+				<tbody class="font22">
+					<tr *ngFor="let item of report.list" >
+						<td>{{item.date}}</td>
+						<td>{{item.valid_buy}}</td>
+						<td>{{item.commission}}</td>
+						<td class="red">{{item.profit}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div *ngIf="tabActive=='week'">
+			<div *ngIf="report.loading">数据加载中...</div>
+			<div *ngIf="!report.status">数据加载失败,请稍后再试!</div>
+			<table *ngIf="report.status" class="m-betting-tab-conTable" cellspacing="0" cellpadding="0" border="0" width="100%">
+				<thead class="font24">
+					<tr>
+						<td>日期</td>
+						<td>有效金额</td>
+						<td>佣金</td>
+						<td>盈亏</td>
+					</tr>
+				</thead>
+				<tbody class="font22">
+					<tr *ngFor="let item of report.list" >
+						<td>{{item.date}}</td>
+						<td>{{item.valid_buy}}</td>
+						<td>{{item.commission}}</td>
+						<td class="red">{{item.profit}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+		<div *ngIf="tabActive=='lastWeek'" >
+			<div *ngIf="report.loading">数据加载中...</div>
+			<div *ngIf="!report.status">数据加载失败,请稍后再试!</div>
+			<table *ngIf="report.status" class="m-betting-tab-conTable" cellspacing="0" cellpadding="0" border="0" width="100%">
+				<thead class="font24">
+					<tr>
+						<td>日期</td>
+						<td>有效金额</td>
+						<td>佣金</td>
+						<td>盈亏</td>
+					</tr>
+				</thead>
+				<tbody class="font22">
+					<tr *ngFor="let item of report.list" >
+						<td>{{item.date}}</td>
+						<td>{{item.valid_buy}}</td>
+						<td>{{item.commission}}</td>
+						<td class="red">{{item.profit}}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
 	</div>
 	
 </ion-content>

@@ -14,68 +14,66 @@
 
 
 <ion-content>
-	<div class="member-page page">
+	<div>
         <div class="m-center-top clearfix" style="border-radius:0;">
             <img class="fl" src="./assets/img/tx-img.png">
             <div class="r-content font20">
-                <div class="list hello font28">早上好！ test001</div>
-                <div class="list">我的钱包：<span class="font24" id="price">58558.15</span>RMB <i class="icon-refresh"></i></div>
-                <div class="list">真实姓名：test[虚]</div>
+                <div class="list hello font28">您好! {{userInformation.username}}</div>
+                <div class="list">
+                    我的钱包：<span class="font24" id="price">{{userInformation.amount}}</span>
+                    RMB <i class="iconfont icon-refresh" (click)="getUserData()"></i>
+                </div>
+                <div class="list">真实姓名：{{userInformation.realname}}</div>
             </div>
         </div>
         <div class="m-bank-tab font24">
             <ul>
-                <li class="active">充值</li>
-                <li class="">提现</li>
-                <li class="">交易记录</li>
+                <li (click)="bankDealTabChange('recharge')" [ngClass]="{'active':bankDealTabActive=='recharge'}">充值</li>
+                <li (click)="bankDealTabChange('withdraw')" [ngClass]="{'active':bankDealTabActive=='withdraw'}">提现</li>
+                <li (click)="bankDealTabChange('record')" [ngClass]="{'active':bankDealTabActive=='record'}">交易记录</li>
             </ul>
         </div>
         <!--存款-->
-        <div class="m-bank-tab-con m-draw m-deposit font24" style="display: block;">
-            <div class="list m-deposit-list clearfix m-deposit-selectPay">
-                <div class="img active"><img src="./assets/img/deposit-img01.png"></div>
-                <div class="img"><img src="./assets/img/deposit-img02.png"></div>
-                <div class="img"><img src="./assets/img/deposit-img03.png"></div>
-                <div class="img"><img src="./assets/img/deposit-img04.png"></div>
+        <div class="m-bank-tab-con m-draw m-deposit font24" *ngIf="bankDealTabActive=='recharge'">
+            <div class="rechargeWayCont">
+                <div style="color:#444;margin-bottom: 15px;font-size: 14px;">请选择充值渠道</div>
+                
+                <ion-list radio-group [(ngModel)]="rechargeChannel.selected" (ionChange)="rechargeWayChange()">
+                    <ion-item *ngFor="let item of rechargeChannel.channel" >
+                        <ion-label><img src="./assets/img/banklogo/{{item.image}}.png" alt="">{{item.bank_name}}</ion-label>
+                        <ion-radio value="{{item.bank_id}}"></ion-radio>
+                    </ion-item>
+                </ion-list>
             </div>
-            <div class="m-deposit-selectPay-con" style="display:block;">
-                <div class="list m-deposit-list clearfix">
-                    <div class="tit">付款银行卡号前6位和后4位</div>
-                    <div class="input-box input-box06 clearfix fl">
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
-                    </div>
-                    <span class="fl">****</span>
-                    <div class="input-box input-box04 fl clearfix">
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
-                        <div class="input"><input type="text" maxlength="1" name="" onkeyup="value=value.replace(/[^\d]/g,'')" onbeforepaste="clipboardData.setData('text',clipboardData.getData('text').replace(/[^\d]/g,''))"></div>
+            <div>
+                <div class="list">
+                    <input type="text" placeholder="付款账号" [ngModel]="rechargeChannel.form.account" (ngModelChange)="changeRechargeForm($event,'account')">
+                </div>
+                <div class="list">
+                    <input type="number" placeholder="充值金额" [ngModel]="rechargeChannel.form.amount" (ngModelChange)="changeRechargeForm($event,'amount')">
+                    <div class="deposit-p font20">
+                        单笔下限 <span style="color:#df2d40">{{rechargeChannel.single_min}}</span>，
+                        单笔上限<span style="color:#df2d40">{{rechargeChannel.single_max}}</span>
                     </div>
                 </div>
-                <div class="list"><input type="text" placeholder="开户姓名" name=""></div>
-                <div class="list">
-                    <input type="text" placeholder="入款金额" name="">
-                    <div class="deposit-p font20">单笔下限100，单笔上限49999 <span style="color:#d83547">跨行需选择“ 实时/加急 ”</span></div>
-                </div>
-                <div class="list"><input type="button" value="开始充值" name=""></div>
+
+                <div class="list" *ngIf="rechargeChannel.channel.length>0" ><input type="button" value="开始充值" (click)="rechargeClickEvent()"></div>
+                <ng-template #elseBlock>
+                    <p>获取充值渠道失败，请联系管理员</p>
+                </ng-template>
             </div>
-            <div class="m-deposit-selectPay-con">
-                <div class="sale-txt font20">京东扫码入款金额将自动随机调整0-5元。</div>
+            <!-- <div class="m-deposit-selectPay-con" *ngIf="rechargeChannel=='jingdong'">
+                <div class="sale-txt font20">京东扫码充值金额将自动随机调整0-5元。</div>
                 <div class="list">
-                    <input type="text" placeholder="入款金额" name="">
+                    <input type="text" placeholder="充值金额" name="">
                     <div class="deposit-p font20">单笔下限100,单笔上限2000(通道1 5000)</div>
                 </div>
                 <div class="list"><input type="button" value="开始充值" name=""></div>
             </div>
-            <div class="m-deposit-selectPay-con">
-                <div class="sale-txt font20">微信扫码入款金额将自动随机调整0-5元。</div>
+            <div class="m-deposit-selectPay-con" *ngIf="rechargeChannel=='weixin'">
+                <div class="sale-txt font20">微信扫码充值金额将自动随机调整0-5元。</div>
                 <div class="list">
-                    <input type="text" placeholder="入款金额" name="">
+                    <input type="text" placeholder="充值金额" name="">
                     <div class="deposit-p font20">单笔下限100,单笔上限2000(通道2/4/5 8000)</div>
                 </div>
                 <div class="list m-deposit-list font24">
@@ -87,112 +85,101 @@
                 </div>
                 <div class="list"><input type="button" value="开始充值" name=""></div>
             </div>
-            <div class="m-deposit-selectPay-con">
-                <div class="sale-txt font20">支付宝扫码入款金额将自动随机调整0-5元。</div>
+            <div class="m-deposit-selectPay-con"  *ngIf="rechargeChannel=='zhifubao'">
+                <div class="sale-txt font20">支付宝扫码充值金额将自动随机调整0-5元。</div>
                 <div class="list">
-                    <input type="text" placeholder="入款金额" name="">
+                    <input type="text" placeholder="充值金额" name="">
                     <div class="deposit-p font20">单笔下限100,单笔上限2000(通道2/4/5 8000)</div>
                 </div>
                 <div class="list"><input type="button" value="开始充值" name=""></div>
+            </div> -->
+        </div>
+
+
+        <!--提现-->
+        <div class="m-bank-tab-con font24 m-draw"  *ngIf="bankDealTabActive=='withdraw'">
+            <div class="server-time font20" *ngIf="withDrawDatas.loading" >加载中...</div>
+            <div class="server-time font20" *ngIf="!withDrawDatas.status">未绑定银行卡</div>
+            <div *ngIf="withDrawDatas.status" >
+                <div class="server-time font20">服务时间：  09:00 - 04:00</div>
+                <div class="list">
+                    <input type="number" placeholder="提现金额" [ngModel]="withDrawDatas.form.amount" (ngModelChange)="changewithDrawForm($event,'amount')">
+                </div>
+                <!-- <div class="list">
+                    <input type="number" placeholder="收款银行账号" [ngModel]="withDrawDatas.form.amount" (ngModelChange)="changewithDrawForm($event,'amount')">
+                </div> -->
+                <div class="list font20">
+                    <p>单笔下限100，上限500000</p>
+                </div>
+                <div class="list font20">
+                    <div class="txt" style="margin-bottom: 8px">请核对收款银行账号</div>
+                    <span class="txt" style="font-size: 20px">{{withDrawDatas.form.account}}</span>
+                </div>
+                <div class="list">
+                    <input type="password" placeholder="提现密码" [ngModel]="withDrawDatas.form.payPwd" (ngModelChange)="changewithDrawForm($event,'payPwd')">
+                </div>
+                <div class="list"><input type="button" value="确认提交" (click)="withdrawClickEvent()"></div>
             </div>
         </div>
-        <!--取款-->
-        <div class="m-bank-tab-con font24 m-draw" style="display: none;">
-            <div class="server-time font20">服务时间：  09:00 - 04:00</div>
-            <div class="list"><input type="text" placeholder="出款金额" name=""></div>
-            <div class="list font20">
-                <p>单笔下限100，上限500000</p>
-                <div class="txt">请核对收款银行</div>
-                <span class="font24 other">其他银行-6461*********6577-null</span>
-            </div>
-            <div class="list"><input type="password" placeholder="取款密码" name=""></div>
-            <div class="list"><input type="button" value="确认提交" name=""></div>
-        </div>
+
+
+
         <!--交易记录-->
-        <div class="m-bank-tab-con m-bank-record font24" style="display: none;">
+        <div class="m-bank-tab-con m-bank-record font24"  *ngIf="bankDealTabActive=='record'" (click)="bankDealTabChange('record')">
             <div class="m-record-tab clearfix">
                 <ul>
-                    <li class="active">取款</li>
-                    <li class="">额度转换</li>
-                    <li class="">入款</li>
+                    <li (click)="recordTypeChange('recharge')" [ngClass]="{'active':recordDatas.recordType=='recharge'}">充值</li>
+                    <li (click)="recordTypeChange('withdraw')" [ngClass]="{'active':recordDatas.recordType=='withdraw'}">提现</li>
+                    <li  (click)="recordTypeChange('gameGift')" [ngClass]="{'active':recordDatas.recordType=='gameGift'}">游戏返点</li>
                 </ul>
             </div>
-            <div class="m-record-tab-con" style="display: block;">
-                <div class="box-list">
-                    <div class="date">2017-18-29</div>
-                    <div class="list">
-                        <div class="order-number">订单号：4654619</div>
-                        <div class="con clearfix">
-                            <div class="fl" style="color:#999;">取款</div>
-                            <div class="fr" style="color:#999;">00:56</div>
-                            <div class="clear" style="margin:0;"></div>
-                            <div class="fl" style="color:#333;">100.00</div>
-                            <div class="fr" style="color:#333;"><i class="icon-check-outline font30"></i>出款成功</div>
-                        </div>
-                    </div>
-                    <!--不知道有没有出款失败，设计稿没有-->
-                    <div class="list">
-                        <div class="order-number">订单号：4654619</div>
-                        <div class="con clearfix">
-                            <div class="fl" style="color:#999;">取款</div>
-                            <div class="fr" style="color:#999;">00:56</div>
-                            <div class="clear" style="margin:0;"></div>
-                            <div class="fl" style="color:#333;">100.00</div>
-                            <div class="fr" style="color:#333;"><i class="icon-guanbi-copy font30"></i>出款失败</div>
+            <div class="m-record-tab-con" *ngIf="recordDatas.recordType=='recharge'">
+                <div *ngIf="recordDatas.rechargeTrade.loading" class="date">数据加载中...</div>
+                <div *ngIf="!recordDatas.rechargeTrade.loading">
+                    <div class="box-list">
+                        <div class="date" *ngIf="recordDatas.rechargeTrade.trade.length===0">无充值记录</div>
+
+                        <div class="list" *ngFor="let item of recordDatas.rechargeTrade.trade">
+                            <div class="order-number">{{item.type}}</div>
+                            <div class="con clearfix">
+                                <div class="fl" style="color:#999;">充值</div>
+                                <div class="fr" style="color:#999;">{{item.tradetime}}</div>
+                                <div class="clear" style="margin:0;"></div>
+                                <div class="fl" style="color:#333;">{{item.recharge_amount}}</div>
+                                <div class="fr" style="color:#333;">
+                                    <i class="iconfont font30" [ngClass]="{'icon-check-outline':item.status=='已确认'}"></i>
+                                    {{item.status}}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="m-record-tab-con" style="display: none;">
-                <div class="box-list">
-                    <div class="date">2017-18-29</div>
-                    <div class="list">
-                        <div class="order-number">订单号：4654619</div>
-                        <div class="con clearfix">
-                            <div class="fl" style="color:#999;">取款</div>
-                            <div class="fr" style="color:#999;">00:56</div>
-                            <div class="clear" style="margin:0;"></div>
-                            <div class="fl" style="color:#333;">100.00</div>
-                            <div class="fr" style="color:#333;"><i class="icon-check-outline font30"></i>出款成功</div>
-                        </div>
-                    </div>
-                    <!--不知道有没有出款失败，设计稿没有-->
-                    <div class="list">
-                        <div class="order-number">订单号：4654619</div>
-                        <div class="con clearfix">
-                            <div class="fl" style="color:#999;">取款</div>
-                            <div class="fr" style="color:#999;">00:56</div>
-                            <div class="clear" style="margin:0;"></div>
-                            <div class="fl" style="color:#333;">100.00</div>
-                            <div class="fr" style="color:#333;"><i class="icon-guanbi-copy font30"></i>出款失败</div>
+            <div class="m-record-tab-con"  *ngIf="recordDatas.recordType=='withdraw'">
+                <div *ngIf="recordDatas.withdrawTrade.loading" class="date">数据加载中...</div>
+                <div *ngIf="!recordDatas.withdrawTrade.loading">
+                    <div class="box-list">
+                        <div class="date" *ngIf="recordDatas.withdrawTrade.trade.length===0">无提现记录</div>
+
+                        <div class="list" *ngFor="let item of recordDatas.withdrawTrade.trade">
+                            <div class="order-number">{{item.type}}</div>
+                            <div class="con clearfix">
+                                <div class="fl" style="color:#999;">充值</div>
+                                <div class="fr" style="color:#999;">{{item.tradetime}}</div>
+                                <div class="clear" style="margin:0;"></div>
+                                <div class="fl" style="color:#333;">{{item.recharge_amount}}</div>
+                                <div class="fr" style="color:#333;">
+                                    <i class="iconfont font30" [ngClass]="{'icon-check-outline':item.status=='已确认'}"></i>
+                                    {{item.status}}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
             </div>
-            <div class="m-record-tab-con" style="display: none;">
+            <div class="m-record-tab-con" *ngIf="recordDatas.recordType=='gameGift'">
                 <div class="box-list">
-                    <div class="date">2017-18-29</div>
-                    <div class="list">
-                        <div class="order-number">订单号：4654619</div>
-                        <div class="con clearfix">
-                            <div class="fl" style="color:#999;">取款</div>
-                            <div class="fr" style="color:#999;">00:56</div>
-                            <div class="clear" style="margin:0;"></div>
-                            <div class="fl" style="color:#333;">100.00</div>
-                            <div class="fr" style="color:#333;"><i class="icon-check-outline font30"></i>出款成功</div>
-                        </div>
-                    </div>
-                    <!--不知道有没有出款失败，设计稿没有-->
-                    <div class="list">
-                        <div class="order-number">订单号：4654619</div>
-                        <div class="con clearfix">
-                            <div class="fl" style="color:#999;">取款</div>
-                            <div class="fr" style="color:#999;">00:56</div>
-                            <div class="clear" style="margin:0;"></div>
-                            <div class="fl" style="color:#333;">100.00</div>
-                            <div class="fr" style="color:#333;"><i class="icon-guanbi-copy font30"></i>出款失败</div>
-                        </div>
-                    </div>
+                    <div class="date">无游戏返点记录</div>
                 </div>
             </div>
         </div>

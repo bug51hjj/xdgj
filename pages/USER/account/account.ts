@@ -26,10 +26,10 @@ export class AccountPage {
 	}
 
 	ionViewDidLoad() {
-		
+		this.getUserData()
 	}
 	ngOnChanges(){
-		this.getUserData()
+		
 	}
 	getUserData(){
 	    let token = window.localStorage.getItem('token');
@@ -43,9 +43,9 @@ export class AccountPage {
 	    });
 	    this.HttpService.get(url2).subscribe((res: Response) => {
 	    	if(res['errorcode']==""){
-	    		this.accountData.realname = res['realname'].length==0?'未填写':this.accountData.realname = res['realname'];
-		        this.accountData.qq = res['qq'].length==0?'未填写':this.accountData.qq = res['qq'];
-		        this.accountData.phone = res['phone'].length==0?'未填写':this.accountData.phone = res['phone'];
+	    		this.accountData.realname = res['realname']==""?'未填写':this.accountData.realname = res['realname'];
+		        this.accountData.qq = res['qq']==""?'未填写':this.accountData.qq = res['qq'];
+				this.accountData.phone = res['phone']==""?'未填写':this.accountData.phone = res['phone'];
 	    	}else{
 	    		
 	    	}

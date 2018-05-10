@@ -66,10 +66,11 @@
 	        </a>
 	    </div>
 	    <div class="m-center-list font24" ng-click="showSharePopup()">
-	        <a href="javascript:">
+	        <a (click)="shareEvent()">
 	            <i class="icon09" style="background-image:url(./assets/img/m-list-icon09.png);"></i>
 	            <span>分享</span>
 	        </a>
+	        <textarea id="shareLink" style="width:0;height:0;opacity: 0;font-size: 0">http://www.baidu.com</textarea>
 	    </div>
 	    <div class="m-center-list font24" ng-click="showSharePopup()">
 	        <a (click)="logout()">
