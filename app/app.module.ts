@@ -44,6 +44,7 @@ import { GetDateProvider } from '../providers/get-date/get-date';
 import { OpencodeProvider } from '../providers/opencode/opencode';
 import { IssueProvider } from '../providers/issue/issue';
 import { PlaysProvider } from '../providers/plays/plays';
+import { GamesProvider } from '../providers/games/games';
 
 // import 
 
@@ -130,6 +131,7 @@ import { PlaysProvider } from '../providers/plays/plays';
     OpencodeProvider,
     IssueProvider,
     PlaysProvider,
+    GamesProvider,
   ]
 })
 export class AppModule {}
