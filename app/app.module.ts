@@ -41,9 +41,6 @@ import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { DealPriceListProvider } from '../providers/deal-price-list/deal-price-list';
 import { UuidProvider } from '../providers/uuid/uuid';
 import { GetDateProvider } from '../providers/get-date/get-date';
-import { OpencodeProvider } from '../providers/opencode/opencode';
-import { IssueProvider } from '../providers/issue/issue';
-import { PlaysProvider } from '../providers/plays/plays';
 import { GamesProvider } from '../providers/games/games';
 
 // import 
@@ -128,9 +125,6 @@ import { GamesProvider } from '../providers/games/games';
     DealPriceListProvider,
     UuidProvider,
     GetDateProvider,
-    OpencodeProvider,
-    IssueProvider,
-    PlaysProvider,
     GamesProvider,
   ]
 })

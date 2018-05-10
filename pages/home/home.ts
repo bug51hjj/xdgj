@@ -45,7 +45,7 @@ export class HomePage {
   }
   ionViewDidLoad() {
   	let token = window.localStorage.getItem('token');
-    let url = `/event/game?tk=${token}1`;
+    let url = `/event/game?tk=${token}`;
     let loader = this.loadingCtrl.create({content: "加载中..."});
     loader.present();
     //加载游戏列表
