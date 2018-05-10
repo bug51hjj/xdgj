@@ -162,7 +162,7 @@ export default {
 			"gameType": "bjpk101to10",
 			"name": "1-10",
 			"priceList": [],
-			"combination": true
+			"combination": false
 		}]
 	},
 	"xyft": {
