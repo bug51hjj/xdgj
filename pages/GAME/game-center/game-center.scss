@@ -3,41 +3,53 @@ page-ssc-game {
 }
 //footer
 .gameFooter{
-	background-color:#444;
-	display:flex;
-	text-align:center;
+	background-color:#2c2c3e;
 	padding:5px;
-	align-items:center;
-	height:62px;
-	.col_1{
-		width:100px;
-		height:36px;
-		background:none;
-		border:1px solid #fff;
-		border-radius:2px;
+	height:72px;
+	.row1{
+		text-align: center;
 		color:#fff;
-		text-indent:10px;
-		font-size:13px;
+		font-size: 13px;
+		span{color:#d93446}
 	}
-	.col_2{
-		flex:1;
-		display:flex;
-		flex-direction:column;
-		justify-content:center;
-		align-items:center;
-		color:#fff;
-		p{
-			font-size:13px;
-			span{color:#d83547;font-weight:700;}
-		}
-		a{
+	.row2{
+		padding: 0 10px;
+		display: flex;
+		justify-content: space-between;
+		margin-top: 10px;
+		.textInput{
+			width:25%;
+			height:28px;
+			background-color:transparent;
+			outline: navajowhite;
+			border:1px solid #fff;
+			border-radius: 3px;
+			font-size: 13px;
 			color:#fff;
-			font-size:12px;
-			padding:2px 10px;
-			margin-top:5px;
-			border-radius:5px;
-			background-color:#fff;
-			color:#333;
+			margin:0;padding: 0;
+			text-align: center;
+		}
+		.btnSubmit{
+			width:25%;
+			height:28px;
+			background-color:#d93446;
+			outline: navajowhite;
+			border:1px solid #d93446;
+			border-radius: 3px;
+			font-size: 13px;
+			color:#fff;
+			margin:0;padding: 0;
+		}
+		.btnReset{
+			width:25%;
+			height:28px;
+			background-color:#b3b3b3;
+			outline: navajowhite;
+			border:1px solid #b3b3b3;
+			border-radius: 3px;
+			font-size: 13px;
+			color:#fff;
+			margin:0;padding: 0;
 		}
 	}
 }

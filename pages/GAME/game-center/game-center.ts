@@ -12,12 +12,15 @@ import gameDatas from '../../../assets/data/gameData.js';
 export class GameCenterPage {
   public ReportPage:any = ReportPage;
   public gameName:string;  //游戏名称
+  public gameKey:string;
   public gameStructure:any;  //游戏基本数据结构
   public activeGameType:any;  //当前选择的游戏类型 默认第一个
   public activeGamePan:any = 'A';  //当前选择的游戏盘区 默认A
   public selectedList:any=[];  //选中的游戏项目
   constructor(public navCtrl: NavController, public navParams: NavParams,public actionSheetCtrl: ActionSheetController){
-      this.gameStructure = gameDatas[this.navParams.get('gameName')];
+      this.gameKey = this.navParams.get('gameKey');
+      console.log(this.gameKey)
+      this.gameStructure = gameDatas[this.navParams.get('gameKey')];
       this.activeGameType=this.gameStructure.type[0].gameType;
   }
   ionViewDidLoad() {

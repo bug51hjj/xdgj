@@ -1,6 +1,6 @@
 <ion-menu type="overlay" [content]="Menu" side="right">
 	<ion-content class="gameSideMenu">
-    <game-side-menu [pageName]="'重庆时时彩'"></game-side-menu>
+    <game-side-menu [gameKey]="gameKey" [panName]="activeGamePan"></game-side-menu>
   </ion-content>
 </ion-menu>
 
@@ -68,11 +68,11 @@
 
 <ion-footer>
   <div class="gameFooter">
-    <input class="col_1" type="number" placeholder="输入金额">
-    <div class="col_2">
-        <p>已经选中 <span>{{selectedList.length}}</span> 注</p>
-        <a (click)="gameSelect01.cencelSelected()">重置</a>
+    <div class="row1">已经选中 <span>{{selectedList.length}}</span> 注</div>
+    <div class="row2">
+        <input class="textInput" type="number" placeholder="输入金额">
+        <input class="btnSubmit" ion-button (click)="checkOrder()" value="下注" type="submit">
+        <input class="btnReset" ion-button (click)="gameSelect01.cencelSelected()" value="重置" type="submit">
     </div>
-    <div class="col_3"><button ion-button (click)="checkOrder()">下注</button></div>
   </div>
 </ion-footer>
