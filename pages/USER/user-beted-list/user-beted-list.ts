@@ -2,14 +2,13 @@ import { Component } from '@angular/core';
 import { NavController, AlertController, LoadingController, NavParams } from 'ionic-angular';
 import { HttpServiceProvider } from '../../../providers/http-service/http-service';
 import { LoginPage } from '../../../pages/login/login';
-
+import { UserBetDetailsPage } from '../../../pages/USER/user-bet-details/user-bet-details'; //用户中心-订单详情
 @Component({
-	selector: 'page-user-bet-list',
-	templateUrl: 'user-bet-list.html',
+	selector: 'page-user-beted-list',
+	templateUrl: 'user-beted-list.html',
 })
-export class UserBetListPage {
-	public gamekey: string;
-	public panName: string;
+export class UserBetedListPage {
+	public queryDate: string;
 	public orderStatus: any = false;
 	public orderDatas: any = [];
 	constructor(public navCtrl: NavController,
@@ -17,25 +16,25 @@ export class UserBetListPage {
 		public alertCtrl: AlertController,
 		public HttpService: HttpServiceProvider,
 		public navParams: NavParams) {
-		this.gamekey = this.navParams.get('gameKey');
-		this.panName = this.navParams.get('panName');
+		this.queryDate = this.navParams.get('date');
 	}
 
 	ionViewDidLoad() {
-		this.getOrderPending()
+		this.getOrderOutcome()
 	}
-	getOrderPending() {
+	getOrderOutcome() {
 		let token = window.localStorage.getItem('token');
-		let url = `/order/pending?tk=${token}&gamekey=${this.gamekey}&pan=${this.panName}`;
+		let url = `/order/outcome?tk=${token}&date=${this.queryDate}`;
 		let loader = this.loadingCtrl.create({ content: "加载中..." });
 		loader.present();
 		this.orderStatus = true;
 		this.HttpService.get(url).subscribe((res: Response) => {
-			if (res['errorcode'] == 0) {
+			if (res['errorcode'] == '') {
+				console.log(res)
 				this.orderDatas = res['order'];
 				if (res['order'].length === 0) {
 					let alert = this.alertCtrl.create({
-						subTitle: "您未在该期下单!",
+						subTitle: "无订单记录",
 						buttons: [{
 							text: '返回',
 							handler: () => {
@@ -51,34 +50,6 @@ export class UserBetListPage {
 				this.httpErrorHandle(res)
 			}
 			loader.dismiss();
-		})
-	}
-	orderCancelConfirm(order) {
-		console.log(order)
-		let confirm = this.alertCtrl.create({
-			title: '是否撤单?',
-			buttons: [
-				{text: '取消'},
-				{
-					text: '确定',
-					handler: () => {
-						this.orderCancelEvent(order.id)
-					}
-				}
-			]
-		});
-		confirm.present();
-	}
-	orderCancelEvent(order_id){
-		let token = window.localStorage.getItem("token");
-		let url = `/order/cancel?tk=${token}`;
-		let params = `orderid=${order_id}`
-		this.HttpService.post(url,params).subscribe((res: Response) => {
-			if(res['errorcode']==0){
-				this.getOrderPending()
-			}else{
-				this.httpErrorHandle(res)
-			}
 		})
 	}
 	httpErrorHandle(result) {
@@ -102,5 +73,8 @@ export class UserBetListPage {
 			});
 		}
 		alert.present();
+	}
+	queryOrderDetails(order){
+		this.navCtrl.push(UserBetDetailsPage,{order_id:order.id,buy_details:order.buy_details})
 	}
 }

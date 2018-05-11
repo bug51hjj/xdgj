@@ -4,12 +4,12 @@ import { HttpServiceProvider } from '../../../providers/http-service/http-servic
 import { LoginPage } from '../../../pages/login/login';
 
 @Component({
-	selector: 'page-user-bet-list',
-	templateUrl: 'user-bet-list.html',
+	selector: 'page-user-bet-details',
+	templateUrl: 'user-bet-details.html',
 })
-export class UserBetListPage {
-	public gamekey: string;
-	public panName: string;
+export class UserBetDetailsPage {
+	public order_id: string;
+	public buy_details:string;
 	public orderStatus: any = false;
 	public orderDatas: any = [];
 	constructor(public navCtrl: NavController,
@@ -17,8 +17,7 @@ export class UserBetListPage {
 		public alertCtrl: AlertController,
 		public HttpService: HttpServiceProvider,
 		public navParams: NavParams) {
-		this.gamekey = this.navParams.get('gameKey');
-		this.panName = this.navParams.get('panName');
+		this.order_id = this.navParams.get('order_id');
 	}
 
 	ionViewDidLoad() {
@@ -26,59 +25,19 @@ export class UserBetListPage {
 	}
 	getOrderPending() {
 		let token = window.localStorage.getItem('token');
-		let url = `/order/pending?tk=${token}&gamekey=${this.gamekey}&pan=${this.panName}`;
+		let url = `/order/details?tk=${token}&orderid=${this.order_id}`;
 		let loader = this.loadingCtrl.create({ content: "加载中..." });
 		loader.present();
 		this.orderStatus = true;
 		this.HttpService.get(url).subscribe((res: Response) => {
 			if (res['errorcode'] == 0) {
+				console.log(res)
 				this.orderDatas = res['order'];
-				if (res['order'].length === 0) {
-					let alert = this.alertCtrl.create({
-						subTitle: "您未在该期下单!",
-						buttons: [{
-							text: '返回',
-							handler: () => {
-								this.navCtrl.pop()
-							}
-						}]
-					});
-					alert.present();
-				} else {
-					this.orderStatus = true;
-				}
+				this.buy_details = this.navParams.get('buy_details');
 			} else {
 				this.httpErrorHandle(res)
 			}
 			loader.dismiss();
-		})
-	}
-	orderCancelConfirm(order) {
-		console.log(order)
-		let confirm = this.alertCtrl.create({
-			title: '是否撤单?',
-			buttons: [
-				{text: '取消'},
-				{
-					text: '确定',
-					handler: () => {
-						this.orderCancelEvent(order.id)
-					}
-				}
-			]
-		});
-		confirm.present();
-	}
-	orderCancelEvent(order_id){
-		let token = window.localStorage.getItem("token");
-		let url = `/order/cancel?tk=${token}`;
-		let params = `orderid=${order_id}`
-		this.HttpService.post(url,params).subscribe((res: Response) => {
-			if(res['errorcode']==0){
-				this.getOrderPending()
-			}else{
-				this.httpErrorHandle(res)
-			}
 		})
 	}
 	httpErrorHandle(result) {

@@ -1,0 +1,36 @@
+<ion-header>
+
+	<ion-navbar color="primary">
+		<ion-title>{{queryDate}}订单列表</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content>
+	<div class="detailInfo-tab">
+		<table cellpadding="0" cellspacing="0" border="0">
+			<thead class="font24">
+				<tr>
+					<td>期号</td>
+					<td>下注明细</td>
+					<td>下注金额</td>
+					<td>状态</td>
+					<td>操作</td>
+				</tr>
+			</thead>
+			<tbody class="font20">
+				<tr *ngFor="let item of orderDatas">
+					<td>{{item.expect}}</td>
+					<td>{{item.buy_details}}</td>
+					<td>{{item.price}}</td>
+					<td>{{item.status}}</td>
+					<td>
+						<a (click)="queryOrderDetails(item)">详情</a>
+					</td>
+				</tr>
+
+			</tbody>
+		</table>
+	</div>
+</ion-content>

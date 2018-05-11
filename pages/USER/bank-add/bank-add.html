@@ -21,20 +21,23 @@
         <div *ngIf="bankcardForm.bank_type.status">
             <ion-list class="bankSelect">
                 <ion-item>
-                    <ion-label>选择绑定方式</ion-label>
+                    <ion-label>银行</ion-label>
                     <ion-select [(ngModel)]="bankcardForm.bank_type.selected">
                     <ion-option *ngFor="let item of bankcardForm.bank_type.list"  value="{{item.bank_id}}">{{item.bank_name}}</ion-option>
                     </ion-select>
                 </ion-item>
             </ion-list>
             <div class="list">
-                <input type="text" placeholder="金额" [ngModel]="bankcardForm.bank_of_deposit" (ngModelChange)="changeInput($event,'bank_of_deposit')">
+                <input type="text" placeholder="银行名称" [ngModel]="bankcardForm.bank_name" (ngModelChange)="changeInput($event,'bank_name')">
             </div>
             <div class="list">
                 <input type="text" placeholder="银行账号" [ngModel]="bankcardForm.bank_account" (ngModelChange)="changeInput($event,'bank_account')">
             </div>
             <div class="list">
-                <input type="text" placeholder="开户人姓名" [ngModel]="bankcardForm.bank_account_name" (ngModelChange)="changeInput($event,'bank_account_name')">
+                <input type="text" placeholder="户主姓名" [ngModel]="bankcardForm.bank_account_name" (ngModelChange)="changeInput($event,'bank_account_name')">
+            </div>
+            <div class="list">
+                <input type="text" placeholder="开户行" [ngModel]="bankcardForm.bank_of_deposit" (ngModelChange)="changeInput($event,'bank_of_deposit')">
             </div>
             <div class="list"><input type="button" value="提交绑定" (click)="submitEvent()" ></div>
         </div>
