@@ -1,0 +1,20 @@
+<ion-header>
+	<ion-navbar color="primary">
+		<ion-title>订单详情</ion-title>
+	</ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+	<ul class="orderDetailsList">
+		<li><span>用户名</span><span class="value">{{orderDatas.username}}</span></li>
+		<li><span>下单时间</span><span class="value">{{orderDatas.buytime}}</span></li>
+		<li><span>购买内容</span><span class="value">{{buy_details}}</span></li>
+		<li><span>期号</span><span class="value">{{orderDatas.expect}}</span></li>
+		<li><span>价格</span><span class="value">{{orderDatas.price}}</span></li>
+		<li><span>结算号码</span><span class="value">{{orderDatas.outcome_number}}</span></li>
+		<li><span>状态</span><span class="value">{{orderDatas.status}}</span></li>
+		<li><span>盈亏</span><span class="value">{{orderDatas.winlose_amount}}</span></li>
+	</ul>
+</ion-content>
