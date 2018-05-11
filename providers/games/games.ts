@@ -127,7 +127,7 @@ export class GamesProvider {
 
     plays['pk10'] = [
       {
-        'name': '1~10', 'tmpl': 'list', 'units': [
+        'name': '1~10', 'tmpl': 'column', 'units': [
           {'name': '冠军', 'func': 'idx', 'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_1', 'a', 1)},
           {'name': '亚军', 'func': 'idx', 'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_2', 'b', 1)},
           {'name': '季军', 'func': 'idx', 'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_3', 'c', 1)},
@@ -140,7 +140,7 @@ export class GamesProvider {
           {'name': '第10名', 'func': 'idx', 'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_10', 'j', 1)},
         ],
       }, {
-        'name': '两面', 'tmpl': 'list', 'units': [
+        'name': '两面', 'tmpl': 'column', 'units': [
           {
             'name': '冠军', 'func': 'idx', 'nums': {
               '大': {'type': 'ball_1', 'play_method': 'a11'},
@@ -365,7 +365,7 @@ export class GamesProvider {
         ]
       },
       {
-        'name': '正码特', 'tmpl': 'list', 'units': [
+        'name': '正码特', 'tmpl': 'ddl', 'units': [
           {
             'name': '正1特',
             'func': 'idx',
@@ -505,7 +505,7 @@ export class GamesProvider {
         ]
       },
       {
-        'name': '过关', 'tmpl': 'list', 'units': [
+        'name': '过关', 'tmpl': 'enum_lhc_gg', 'units': [
           {
             'name': '正码1', 'func': 'idx', 'nums': {
               '大': {'type': 'guoguan', 'play_method': 'guoguan1_da'},
@@ -574,14 +574,472 @@ export class GamesProvider {
           },
         ]
       },
-      {'name': '半波', 'tmpl': 'list', 'units': []},
-      {'name': '一肖/尾数', 'tmpl': 'list', 'units': []},
-      {'name': '特码生肖', 'tmpl': 'list', 'units': []},
-      {'name': '合肖', 'tmpl': 'list', 'units': []},
-      {'name': '连肖中', 'tmpl': 'list', 'units': []},
-      {'name': '连肖不中', 'tmpl': 'list', 'units': []},
-      {'name': '连尾中', 'tmpl': 'list', 'units': []},
-      {'name': '连尾不中', 'tmpl': 'list', 'units': []},
+      {
+        'name': '连码', 'tmpl': 'ddl', 'units': [
+          {
+            'name': '二中全',
+            'func': 'comb_2_2',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'lianma2', 'lianma2_', 1)
+          },
+          {
+            'name': '二中特',
+            'func': 'comb_2_2',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'lianma2te', 'lianma2te_', 1)
+          },
+          {
+            'name': '特串',
+            'func': 'comb_2_2',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'lianma_techuan', 'lianma_techuan_', 1)
+          },
+          {
+            'name': '三中全',
+            'func': 'comb_3_3',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'lianma3', 'lianma3_', 1)
+          },
+          {
+            'name': '三中二',
+            'func': 'comb_3_2',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'lianma3z2', 'lianma3z2_', 1)
+          },
+          {
+            'name': '四中全',
+            'func': 'comb_4_4',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'lianma4', 'lianma4_', 1)
+          },
+        ]
+      },
+      {
+        'name': '半波', 'tmpl': 'list', 'units': [
+          {
+            'name': '半波', 'func': 'idx', 'nums': {
+              '红大': {'type': 'halfball', 'play_method': 'halfball_redda'},
+              '红小': {'type': 'halfball', 'play_method': 'halfball_redxiao'},
+              '红单': {'type': 'halfball', 'play_method': 'halfball_reddan'},
+              '红双': {'type': 'halfball', 'play_method': 'halfball_redshuang'},
+              '蓝大': {'type': 'halfball', 'play_method': 'halfball_blueda'},
+              '蓝小': {'type': 'halfball', 'play_method': 'halfball_bluexiao'},
+              '蓝单': {'type': 'halfball', 'play_method': 'halfball_bluedan'},
+              '蓝双': {'type': 'halfball', 'play_method': 'halfball_blueshuang'},
+              '绿大': {'type': 'halfball', 'play_method': 'halfball_greenda'},
+              '绿小': {'type': 'halfball', 'play_method': 'halfball_greenxiao'},
+              '绿单': {'type': 'halfball', 'play_method': 'halfball_greendan'},
+              '绿双': {'type': 'halfball', 'play_method': 'halfball_greenshuang'},
+
+              '红合单': {'type': 'halfball', 'play_method': 'halfball_redhedan'},
+              '红合双': {'type': 'halfball', 'play_method': 'halfball_redheshuang'},
+              '蓝合单': {'type': 'halfball', 'play_method': 'halfball_bluehedan'},
+              '蓝合双': {'type': 'halfball', 'play_method': 'halfball_blueheshuang'},
+              '绿合单': {'type': 'halfball', 'play_method': 'halfball_greenhedan'},
+              '绿合双': {'type': 'halfball', 'play_method': 'halfball_greenheshuang'},
+            }
+          },
+        ],
+      },
+      {
+        'name': '一肖/尾数', 'tmpl': 'ddl', 'units': [
+          {
+            'name': '一肖', 'func': 'idx', 'nums': {
+              '鼠': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_shu'},
+              '牛': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_niu'},
+              '虎': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_hu'},
+              '兔': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_tu'},
+              '龙': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_long'},
+              '蛇': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_she'},
+              '马': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_ma'},
+              '羊': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_yang'},
+              '猴': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_hou'},
+              '鸡': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_ji'},
+              '狗': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_gou'},
+              '猪': {'type': 'one_zoudiac', 'play_method': 'one_zoudiac_zhu'},
+            }
+          },
+          {
+            'name': '尾数', 'func': 'idx',
+            'nums': this.getPlayUnitByStr('0尾,1尾,2尾,3尾,4尾,5尾,6尾,7尾,8尾,9尾', 'ballend', 'ballend_', 0)
+          },
+        ],
+      },
+      {
+        'name': '特码生肖', 'tmpl': 'list', 'units': [
+          {
+            'name': '特码生肖', 'func': 'idx', 'nums': {
+              '鼠': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_shu'},
+              '牛': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_niu'},
+              '虎': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_hu'},
+              '兔': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_tu'},
+              '龙': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_long'},
+              '蛇': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_she'},
+              '马': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_ma'},
+              '羊': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_yang'},
+              '猴': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_hou'},
+              '鸡': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_ji'},
+              '狗': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_gou'},
+              '猪': {'type': 'tema_zoudiac', 'play_method': 'tema_zoudiac_zhu'},
+            }
+          },
+        ]
+      },
+      {
+        'name': '合肖', 'tmpl': 'ddl', 'units': [
+          {
+            'name': '合肖二肖', 'func': 'limit_2', 'nums': {
+              '鼠': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_shu'},
+              '牛': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_niu'},
+              '虎': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_hu'},
+              '兔': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_tu'},
+              '龙': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_long'},
+              '蛇': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_she'},
+              '马': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_ma'},
+              '羊': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_yang'},
+              '猴': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_hou'},
+              '鸡': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_ji'},
+              '狗': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_gou'},
+              '猪': {'type': 'he_zoudiac2', 'play_method': 'he_zoudiac2_zhu'},
+            }
+          },
+          {
+            'name': '合肖三肖', 'func': 'limit_3', 'nums': {
+              '鼠': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_shu'},
+              '牛': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_niu'},
+              '虎': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_hu'},
+              '兔': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_tu'},
+              '龙': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_long'},
+              '蛇': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_she'},
+              '马': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_ma'},
+              '羊': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_yang'},
+              '猴': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_hou'},
+              '鸡': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_ji'},
+              '狗': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_gou'},
+              '猪': {'type': 'he_zoudiac3', 'play_method': 'he_zoudiac3_zhu'},
+            }
+          },
+          {
+            'name': '合肖四肖', 'func': 'limit_4', 'nums': {
+              '鼠': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_shu'},
+              '牛': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_niu'},
+              '虎': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_hu'},
+              '兔': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_tu'},
+              '龙': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_long'},
+              '蛇': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_she'},
+              '马': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_ma'},
+              '羊': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_yang'},
+              '猴': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_hou'},
+              '鸡': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_ji'},
+              '狗': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_gou'},
+              '猪': {'type': 'he_zoudiac4', 'play_method': 'he_zoudiac4_zhu'},
+            }
+          },
+          {
+            'name': '合肖五肖', 'func': 'limit_5', 'nums': {
+              '鼠': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_shu'},
+              '牛': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_niu'},
+              '虎': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_hu'},
+              '兔': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_tu'},
+              '龙': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_long'},
+              '蛇': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_she'},
+              '马': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_ma'},
+              '羊': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_yang'},
+              '猴': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_hou'},
+              '鸡': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_ji'},
+              '狗': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_gou'},
+              '猪': {'type': 'he_zoudiac5', 'play_method': 'he_zoudiac5_zhu'},
+            }
+          },
+          {
+            'name': '合肖六肖', 'func': 'limit_6', 'nums': {
+              '鼠': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_shu'},
+              '牛': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_niu'},
+              '虎': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_hu'},
+              '兔': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_tu'},
+              '龙': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_long'},
+              '蛇': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_she'},
+              '马': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_ma'},
+              '羊': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_yang'},
+              '猴': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_hou'},
+              '鸡': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_ji'},
+              '狗': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_gou'},
+              '猪': {'type': 'he_zoudiac6', 'play_method': 'he_zoudiac6_zhu'},
+            }
+          },
+          {
+            'name': '合肖七肖', 'func': 'limit_7', 'nums': {
+              '鼠': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_shu'},
+              '牛': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_niu'},
+              '虎': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_hu'},
+              '兔': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_tu'},
+              '龙': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_long'},
+              '蛇': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_she'},
+              '马': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_ma'},
+              '羊': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_yang'},
+              '猴': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_hou'},
+              '鸡': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_ji'},
+              '狗': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_gou'},
+              '猪': {'type': 'he_zoudiac7', 'play_method': 'he_zoudiac7_zhu'},
+            }
+          },
+          {
+            'name': '合肖八肖', 'func': 'limit_8', 'nums': {
+              '鼠': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_shu'},
+              '牛': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_niu'},
+              '虎': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_hu'},
+              '兔': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_tu'},
+              '龙': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_long'},
+              '蛇': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_she'},
+              '马': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_ma'},
+              '羊': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_yang'},
+              '猴': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_hou'},
+              '鸡': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_ji'},
+              '狗': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_gou'},
+              '猪': {'type': 'he_zoudiac8', 'play_method': 'he_zoudiac8_zhu'},
+            }
+          },
+          {
+            'name': '合肖九肖', 'func': 'limit_9', 'nums': {
+              '鼠': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_shu'},
+              '牛': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_niu'},
+              '虎': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_hu'},
+              '兔': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_tu'},
+              '龙': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_long'},
+              '蛇': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_she'},
+              '马': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_ma'},
+              '羊': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_yang'},
+              '猴': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_hou'},
+              '鸡': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_ji'},
+              '狗': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_gou'},
+              '猪': {'type': 'he_zoudiac9', 'play_method': 'he_zoudiac9_zhu'},
+            }
+          },
+          {
+            'name': '合肖十肖', 'func': 'limit_10', 'nums': {
+              '鼠': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_shu'},
+              '牛': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_niu'},
+              '虎': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_hu'},
+              '兔': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_tu'},
+              '龙': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_long'},
+              '蛇': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_she'},
+              '马': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_ma'},
+              '羊': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_yang'},
+              '猴': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_hou'},
+              '鸡': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_ji'},
+              '狗': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_gou'},
+              '猪': {'type': 'he_zoudiac10', 'play_method': 'he_zoudiac10_zhu'},
+            }
+          },
+          {
+            'name': '合肖十一肖', 'func': 'limit_11', 'nums': {
+              '鼠': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_shu'},
+              '牛': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_niu'},
+              '虎': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_hu'},
+              '兔': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_tu'},
+              '龙': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_long'},
+              '蛇': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_she'},
+              '马': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_ma'},
+              '羊': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_yang'},
+              '猴': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_hou'},
+              '鸡': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_ji'},
+              '狗': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_gou'},
+              '猪': {'type': 'he_zoudiac11', 'play_method': 'he_zoudiac11_zhu'},
+            }
+          },
+        ]
+      },
+      {
+        'name': '连肖中', 'tmpl': 'list', 'units': [
+
+          {
+            'name': '二肖连中', 'func': 'comb_2_2', 'nums': {
+              '鼠': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_shu'},
+              '牛': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_niu'},
+              '虎': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_hu'},
+              '兔': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_tu'},
+              '龙': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_long'},
+              '蛇': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_she'},
+              '马': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_ma'},
+              '羊': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_yang'},
+              '猴': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_hou'},
+              '鸡': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_ji'},
+              '狗': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_gou'},
+              '猪': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_zhu'},
+            }
+          },
+          {
+            'name': '三肖连中', 'func': 'comb_3_3', 'nums': {
+              '鼠': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_shu'},
+              '牛': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_niu'},
+              '虎': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_hu'},
+              '兔': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_tu'},
+              '龙': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_long'},
+              '蛇': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_she'},
+              '马': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_ma'},
+              '羊': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_yang'},
+              '猴': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_hou'},
+              '鸡': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_ji'},
+              '狗': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_gou'},
+              '猪': {'type': 'lian_zoudiac3', 'play_method': 'lian_zoudiac3_zhu'},
+            }
+          },
+          {
+            'name': '四肖连中', 'func': 'comb_4_4', 'nums': {
+              '鼠': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_shu'},
+              '牛': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_niu'},
+              '虎': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_hu'},
+              '兔': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_tu'},
+              '龙': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_long'},
+              '蛇': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_she'},
+              '马': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_ma'},
+              '羊': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_yang'},
+              '猴': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_hou'},
+              '鸡': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_ji'},
+              '狗': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_gou'},
+              '猪': {'type': 'lian_zoudiac4', 'play_method': 'lian_zoudiac4_zhu'},
+            }
+          },
+          {
+            'name': '五肖连中', 'func': 'comb_5_5', 'nums': {
+              '鼠': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_shu'},
+              '牛': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_niu'},
+              '虎': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_hu'},
+              '兔': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_tu'},
+              '龙': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_long'},
+              '蛇': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_she'},
+              '马': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_ma'},
+              '羊': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_yang'},
+              '猴': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_hou'},
+              '鸡': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_ji'},
+              '狗': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_gou'},
+              '猪': {'type': 'lian_zoudiac5', 'play_method': 'lian_zoudiac5_zhu'},
+            }
+          },
+        ]
+      },
+      {
+        'name': '连肖不中', 'tmpl': 'list', 'units': [
+          {
+            'name': '二肖连不中', 'func': 'comb_2_2', 'nums': {
+              '鼠': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_shu'},
+              '牛': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_niu'},
+              '虎': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_hu'},
+              '兔': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_tu'},
+              '龙': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_long'},
+              '蛇': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_she'},
+              '马': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_ma'},
+              '羊': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_yang'},
+              '猴': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_hou'},
+              '鸡': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_ji'},
+              '狗': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_gou'},
+              '猪': {'type': 'lian_zoudiac2not', 'play_method': 'lian_zoudiac2not_zhu'},
+            }
+          },
+          {
+            'name': '三肖连不中', 'func': 'comb_3_3', 'nums': {
+              '鼠': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_shu'},
+              '牛': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_niu'},
+              '虎': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_hu'},
+              '兔': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_tu'},
+              '龙': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_long'},
+              '蛇': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_she'},
+              '马': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_ma'},
+              '羊': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_yang'},
+              '猴': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_hou'},
+              '鸡': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_ji'},
+              '狗': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_gou'},
+              '猪': {'type': 'lian_zoudiac3not', 'play_method': 'lian_zoudiac3not_zhu'},
+            }
+          },
+          {
+            'name': '四肖连不中', 'func': 'comb_4_4', 'nums': {
+              '鼠': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_shu'},
+              '牛': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_niu'},
+              '虎': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_hu'},
+              '兔': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_tu'},
+              '龙': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_long'},
+              '蛇': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_she'},
+              '马': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_ma'},
+              '羊': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_yang'},
+              '猴': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_hou'},
+              '鸡': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_ji'},
+              '狗': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_gou'},
+              '猪': {'type': 'lian_zoudiac4not', 'play_method': 'lian_zoudiac4not_zhu'},
+            }
+          },
+        ]
+      },
+      {
+        'name': '连尾中', 'tmpl': 'ddl', 'units': [
+          {
+            'name': '二尾连中', 'func': 'comb_2_2',
+            'nums': this.getPlayUnitByStr('0尾,1尾,2尾,3尾,4尾,5尾,6尾,7尾,8尾,9尾', 'lian_wei2', 'lian_wei2_', 0)
+          },
+          {
+            'name': '三尾连中', 'func': 'comb_3_3',
+            'nums': this.getPlayUnitByStr('0尾,1尾,2尾,3尾,4尾,5尾,6尾,7尾,8尾,9尾', 'lian_wei3', 'lian_wei3_', 0)
+          },
+          {
+            'name': '四尾连中', 'func': 'comb_4_4',
+            'nums': this.getPlayUnitByStr('0尾,1尾,2尾,3尾,4尾,5尾,6尾,7尾,8尾,9尾', 'lian_wei4', 'lian_wei4_', 0)
+          },
+        ]
+      },
+      {
+        'name': '连尾不中', 'tmpl': 'ddl', 'units': [
+          {
+            'name': '二尾连不中', 'func': 'comb_2_2',
+            'nums': this.getPlayUnitByStr('0尾,1尾,2尾,3尾,4尾,5尾,6尾,7尾,8尾,9尾', 'lian_wei2not', 'lian_wei2not_', 0)
+          },
+          {
+            'name': '三尾连不中', 'func': 'comb_3_3',
+            'nums': this.getPlayUnitByStr('0尾,1尾,2尾,3尾,4尾,5尾,6尾,7尾,8尾,9尾', 'lian_wei3not', 'lian_wei3not_', 0)
+          },
+          {
+            'name': '四尾连不中', 'func': 'comb_4_4',
+            'nums': this.getPlayUnitByStr('0尾,1尾,2尾,3尾,4尾,5尾,6尾,7尾,8尾,9尾', 'lian_wei4not', 'lian_wei4not_', 0)
+          },
+        ]
+      },
+      {
+        'name': '全不中', 'tmpl': 'ddl', 'units': [
+          {
+            'name': '五不中',
+            'func': 'comb_5_5',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'quanbuzhong5', 'quanbuzhong5_', 1)
+          },
+          {
+            'name': '六不中',
+            'func': 'comb_6_6',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'quanbuzhong6', 'quanbuzhong6_', 1)
+          },
+          {
+            'name': '七不中',
+            'func': 'comb_7_7',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'quanbuzhong7', 'quanbuzhong7_', 1)
+          },
+          {
+            'name': '八不中',
+            'func': 'comb_8_8',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'quanbuzhong8', 'quanbuzhong8_', 1)
+          },
+          {
+            'name': '九不中',
+            'func': 'comb_9_9',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'quanbuzhong9', 'quanbuzhong9_', 1)
+          },
+          {
+            'name': '十不中',
+            'func': 'comb_10_10',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'quanbuzhong10', 'quanbuzhong10_', 1)
+          },
+          {
+            'name': '十一不中',
+            'func': 'comb_11_11',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'quanbuzhong11', 'quanbuzhong11_', 1)
+          },
+          {
+            'name': '十二不中',
+            'func': 'comb_12_12',
+            'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'quanbuzhong12', 'quanbuzhong12_', 1)
+          },
+        ]
+      },
     ];
 
     return plays;
@@ -594,5 +1052,23 @@ export class GamesProvider {
       playNums[nums[i]] = {'type': unit, 'play_method': pre + (parseInt(i) + parseInt(i1))}
     }
     return playNums;
+  }
+
+  getPlayPrizes(prizes, gameKey) {
+    var prizes1 = this.getLotteryPrizes(prizes);
+    var lotteryCategory = this.getLotteryCategory(gameKey);
+    var plays = this.getLotteryPlays()[lotteryCategory];
+    var lotteryPrizes = {};
+    for (var i in plays) {
+      lotteryPrizes[i] = plays[i];
+      for (var j in plays[i].units) {
+        for (var k in plays[i].units[j]) {
+          var num = plays[i].units[j].nums[k];
+          num['price'] = prizes1[num['type']][num['play_method']];
+          lotteryPrizes[i].units[j].nums[k] = num;
+        }
+      }
+    }
+    return lotteryPrizes;
   }
 }
