@@ -31,7 +31,8 @@ export class UserBetListPage {
 		loader.present();
 		this.orderStatus = true;
 		this.HttpService.get(url).subscribe((res: Response) => {
-			if (res['errorcode'] == 0) {
+			if (res['errorcode'] == '') {
+				console.log(res)
 				this.orderDatas = res['order'];
 				if (res['order'].length === 0) {
 					let alert = this.alertCtrl.create({
@@ -74,11 +75,7 @@ export class UserBetListPage {
 		let url = `/order/cancel?tk=${token}`;
 		let params = `orderid=${order_id}`
 		this.HttpService.post(url,params).subscribe((res: Response) => {
-			if(res['errorcode']==0){
-				this.getOrderPending()
-			}else{
-				this.httpErrorHandle(res)
-			}
+			console.log(res)
 		})
 	}
 	httpErrorHandle(result) {

@@ -23,7 +23,6 @@ export class BankAddPage {
           selected:'',
           list:[]
       },
-      bank_name:'',
       bank_of_deposit:'',
       bank_account:'',
       bank_account_name:''
@@ -57,9 +56,15 @@ export class BankAddPage {
     }
     submitEvent(){
         let token = window.localStorage.getItem('token');
-        let {bank_of_deposit,bank_account,bank_account_name,bank_name} = this.bankcardForm;
-        let bank_id = this.bankcardForm.bank_type;
+        let {bank_of_deposit,bank_account,bank_account_name} = this.bankcardForm;
+        let bank_id,bank_name;
         let bankType = this.bankcardForm.bank_type;
+        bankType.list.map(item=>{
+            if(item.bank_id==bankType.selected){
+              bank_id = item.bank_id;
+              bank_name = item.bank_name;
+            }
+        })
         if(bank_id&&bank_name&&bank_of_deposit&&bank_account_name&&bank_account){
             let url = `/member/bank_account_set?tk=${token}`;
             let params = `bank_id=${bank_id}&bank_name=${bank_name}&bank_of_deposit=${bank_of_deposit}&bank_account_name=${bank_account_name}&bank_account=${bank_account}`

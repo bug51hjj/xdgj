@@ -125,7 +125,7 @@
 
 
         <!--交易记录-->
-        <div class="m-bank-tab-con m-bank-record font24"  *ngIf="bankDealTabActive=='record'">
+        <div class="m-bank-tab-con m-bank-record font24"  *ngIf="bankDealTabActive=='record'" (click)="bankDealTabChange('record')">
             <div class="m-record-tab clearfix">
                 <ul>
                     <li (click)="recordTypeChange('recharge')" [ngClass]="{'active':recordDatas.recordType=='recharge'}">充值</li>
