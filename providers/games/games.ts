@@ -14,6 +14,11 @@ export class GamesProvider {
     console.log('Hello GamesProvider Provider');
   }
 
+  /**
+   * 根据彩种获得彩种类型
+   * @param gameKey
+   * @returns {string}
+   */
   getLotteryCategory(gameKey) {
     switch (gameKey) {
       case 'cqssc':
@@ -55,6 +60,10 @@ export class GamesProvider {
     return datas;
   }
 
+  /**
+   * 获得玩法数据
+   * @returns {{}}
+   */
   getLotteryPlays() {
 
     var plays = {};
@@ -1045,6 +1054,14 @@ export class GamesProvider {
     return plays;
   }
 
+  /**
+   * 【私有】快速转换玩法号码
+   * @param numsStr
+   * @param unit
+   * @param pre
+   * @param i1
+   * @returns {{}}
+   */
   getPlayUnitByStr(numsStr, unit, pre, i1) {
     var nums = numsStr.split(',');
     var playNums = {};
@@ -1054,6 +1071,12 @@ export class GamesProvider {
     return playNums;
   }
 
+  /**
+   * 获得玩法赔率
+   * @param prizes
+   * @param gameKey
+   * @returns {{}}
+   */
   getPlayPrizes(prizes, gameKey) {
     var prizes1 = this.getLotteryPrizes(prizes);
     var lotteryCategory = this.getLotteryCategory(gameKey);
@@ -1070,5 +1093,547 @@ export class GamesProvider {
       }
     }
     return lotteryPrizes;
+  }
+
+  /**
+   * 将开奖号码解析对应的号码类型
+   * @param gameKey
+   * @param opencode 格式： 1,2,3,4,5
+   */
+  getOpencodeNums(gameKey, opencode) {
+    var lotteryCategory = this.getLotteryCategory(gameKey);
+    var nums = {};
+    nums['opencode'] = opencode;
+    nums['nums'] = opencode.split(',');
+    switch (lotteryCategory) {
+      case 'ssc':
+        nums['codes'] = this.ssc(nums['nums']);
+        break;
+      case 'pk10':
+        nums['codes'] = this.ssc(nums['nums']);
+        break;
+      case 'lhc':
+        nums['codes'] = this.lhc(nums['nums']);
+        break;
+    }
+    return nums;
+  }
+
+
+  // private kl8($nums)
+  // {
+  //   var $idxs = [
+  //     '第1球',
+  //     '第2球',
+  //     '第3球',
+  //     '第4球',
+  //     '第5球',
+  //     '第6球',
+  //     '第7球',
+  //     '第8球',
+  //     '第9球',
+  //     '第10球',
+  //     '第11球',
+  //     '第12球',
+  //     '第13球',
+  //     '第14球',
+  //     '第15球',
+  //     '第16球',
+  //     '第17球',
+  //     '第18球',
+  //     '第19球',
+  //     '第20球',
+  //   ];
+  //   var $codes = [];
+  //   var $countSing = 0;
+  //   var $countDouble = 0;
+  //   var $countPre = 0;
+  //   var $countSuff = 0;
+  //   for(var $i in $nums){
+  //     var $num=parseInt($nums[$i]);
+  //     $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+  //     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 40); // 定位-大小
+  //     $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+  //     $codes[$idxs[$i]]['大小'] == '大' ? $countSuff++ : $countPre++;
+  //     $codes[$idxs[$i]]['单双'] == '单' ? $countSing++ : $countDouble++;
+  //   }
+  //
+  //   $allSum = array_sum($nums);
+  //   $codes['总和']['总和'] = $allSum; // 总和-数字
+  //
+  //   if ($allSum == 810) {
+  //     $codes['总和']['单双'] = '810';
+  //     $codes['总和']['大小'] = '810';
+  //   } else {
+  //     $codes['总和']['单双'] = this.getSingOrDoub($allSum, Array(810)); // 总和-大小
+  //     $codes['总和']['大小'] = this.getBigOrSmall($allSum, 810); // 总和-大小
+  //   }
+  //
+  //   if ($countSing > $countDouble) {
+  //     $codes['多少']['单双'] = '单多';
+  //   } elseif ($countSing < $countDouble) {
+  //   $codes['多少']['单双'] = '双多';
+  // } else {
+  //   $codes['多少']['单双'] = '和';
+  // }
+  //
+  //   if ($countPre > $countSuff) {
+  //     $codes['多少']['大小'] = '前多';
+  //   } elseif ($countPre < $countSuff) {
+  //   $codes['多少']['大小'] = '后多';
+  // } else {
+  //   $codes['多少']['大小'] = '和';
+  // }
+  //
+  //   $codes['总和']['五行'] = this.getKl8WX($allSum);
+  //
+  //   return $codes;
+  // }
+
+  // private pc28($nums)
+  // {
+  //   unset($nums[3]);
+  //   $idxs = Array(
+  //     '第1球',
+  //     '第2球',
+  //     '第3球',
+  //   );
+  //   $codes = Array();
+  //   foreach ($nums as $i => $num) {
+  //   $num = intval($num);
+  //   $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+  //   $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
+  //   $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+  // }
+  //   $allSum = array_sum($nums);
+  //   $codes['总和'] = this.getPc28Type(Array($nums[0], $nums[1], $nums[2])); // 总和-数字、极值
+  //   $codes['总和']['大小'] = this.getBigOrSmall($allSum, 13); // 总和-大小
+  //   $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-单双
+  //   $codes['总和']['和'] = in_array($codes['总和']['总和'], Array(13, 14));
+  //   return $codes;
+  // }
+
+  // private k3($nums)
+  // {
+  //   $idxs = Array(
+  //     '第1球',
+  //     '第2球',
+  //     '第3球',
+  //   );
+  //   $codes = Array();
+  //   foreach ($nums as $i => $num) {
+  //   $num = intval($num);
+  //   $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+  //   $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
+  //   $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+  // }
+  //   $allSum = array_sum($nums);
+  //   $codes['总和'] = this.getK3Mult($nums);
+  //   $codes['总和']['总和'] = $allSum; // 总和-数字
+  //   $codes['总和']['大小'] = this.getBigOrSmall($allSum, 10, array(3, 18)); // 总和，小：4~10；大11~17（豹子全和）
+  //   $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
+  //
+  //   return $codes;
+  // }
+
+//   private kl10($nums)
+//   {
+//     $idxs = Array(
+//       '第1球',
+//       '第2球',
+//       '第3球',
+//       '第4球',
+//       '第5球',
+//       '第6球',
+//       '第7球',
+//       '第8球',
+//     );
+//     $codes = Array();
+//     foreach ($nums as $i => $num) {
+//     $num = intval($num);
+//     $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+//     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小，>10大；<=10小
+//     $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+//
+//     if ($num % 10 > 4) {
+//       $codes[$idxs[$i]]['尾数大小'] = '尾大';
+//     } else {
+//       $codes[$idxs[$i]]['尾数大小'] = '尾小';
+//     }
+//
+//     if ($num <= 7) {
+//       $codes[$idxs[$i]]['中发白'] = '中';
+//     } elseif ($num > 7 && $num <= 14) {
+//       $codes[$idxs[$i]]['中发白'] = '发';
+//     } else {
+//       $codes[$idxs[$i]]['中发白'] = '白';
+//     }
+//
+//     switch ($num % 4) {
+//       case 0:
+//         $codes[$idxs[$i]]['方位'] = '北';
+//         break;
+//       case 1:
+//         $codes[$idxs[$i]]['方位'] = '东';
+//         break;
+//       case 2:
+//         $codes[$idxs[$i]]['方位'] = '南';
+//         break;
+//       case 3:
+//         $codes[$idxs[$i]]['方位'] = '西';
+//         break;
+//     }
+//   }
+//     $allSum = array_sum($nums);
+//     $codes['总和']['总和'] = $allSum; // 总和-数字
+//     $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
+//     $codes['总和']['大小'] = this.getBigOrSmall($allSum, 83, Array(84)); // 总和-大小
+//
+//     if ($allSum % 10 > 4) {
+//       $codes['总和']['尾数大小'] = '尾大';
+//     } else {
+//       $codes['总和']['尾数大小'] = '尾小';
+//     }
+// //        if ($allSum % 10 % 2 == 0) {
+// //            $codes['总和']['尾数单双'] = '尾双';
+// //        } else {
+// //            $codes['总和']['尾数单双'] = '尾单';
+// //        }
+//     $codes['龙虎']['龙虎'] = this.getVingtEtUn($nums[0], $nums[7]); // 总和-龙虎
+//     return $codes;
+//   }
+
+//   private xync($nums)
+//   {
+//     $idxs = Array(
+//       '第1球',
+//       '第2球',
+//       '第3球',
+//       '第4球',
+//       '第5球',
+//       '第6球',
+//       '第7球',
+//       '第8球',
+//     );
+//     $codes = Array();
+//     foreach ($nums as $i => $num) {
+//     $num = intval($num);
+//     $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+//     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小，>10大；<=10小
+//     $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+//
+//     if ($num % 10 > 4) {
+//       $codes[$idxs[$i]]['尾数大小'] = '尾大';
+//     } else {
+//       $codes[$idxs[$i]]['尾数大小'] = '尾小';
+//     }
+//
+//     if ($num <= 7) {
+//       $codes[$idxs[$i]]['中发白'] = '中';
+//     } elseif ($num > 7 && $num <= 14) {
+//       $codes[$idxs[$i]]['中发白'] = '发';
+//     } else {
+//       $codes[$idxs[$i]]['中发白'] = '白';
+//     }
+//
+//     switch ($num % 4) {
+//       case 0:
+//         $codes[$idxs[$i]]['梅兰竹菊'] = '北';
+//         break;
+//       case 1:
+//         $codes[$idxs[$i]]['梅兰竹菊'] = '东';
+//         break;
+//       case 2:
+//         $codes[$idxs[$i]]['梅兰竹菊'] = '南';
+//         break;
+//       case 3:
+//         $codes[$idxs[$i]]['梅兰竹菊'] = '西';
+//         break;
+//     }
+//   }
+//     $allSum = array_sum($nums);
+//     $codes['总和']['总和'] = $allSum; // 总和-数字
+//     $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
+//     $codes['总和']['大小'] = this.getBigOrSmall($allSum, 83, Array(84)); // 总和-大小
+//
+//     if ($allSum % 10 > 4) {
+//       $codes['总和']['尾数大小'] = '尾大';
+//     } else {
+//       $codes['总和']['尾数大小'] = '尾小';
+//     }
+// //        if ($allSum % 10 % 2 == 0) {
+// //            $codes['总和']['尾数单双'] = '尾双';
+// //        } else {
+// //            $codes['总和']['尾数单双'] = '尾单';
+// //        }
+//     if ($nums[0] > $nums[7]) {
+//       $codes['家禽野兽']['家禽野兽'] = '家禽';
+//     } else {
+//       $codes['家禽野兽']['家禽野兽'] = '野兽';
+//     }
+// //        $codes['家禽野兽']['家禽野兽'] = this.getVingtEtUn($nums[0], $nums[7]); // 总和-龙虎
+//     return $codes;
+//   }
+
+  private ssc($nums) {
+    var $idxs = [
+      '第1球',
+      '第2球',
+      '第3球',
+      '第4球',
+      '第5球',
+    ];
+    var $codes = [];
+    for (var $i in $nums) {
+      var $num = parseInt($nums[$i]);
+      $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+      $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
+      $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+    }
+
+    var $allSum = this.getArrayCount($nums);
+    $codes['总和']['总和'] = $allSum; // 总和-数字
+    $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
+    $codes['总和']['大小'] = this.getBigOrSmall($allSum, 22); // 总和-大小
+    $codes['龙虎']['龙虎'] = this.getVingtEtUn($nums[0], $nums[4]); // 总和-龙虎
+    $codes['总和']['龙虎'] = this.getVingtEtUn($nums[0], $nums[4]); // 总和-龙虎
+    $codes['前三'] = this.getSscType([$nums[0], $nums[1], $nums[2]]);
+    $codes['中三'] = this.getSscType([$nums[1], $nums[2], $nums[3]]);
+    $codes['后三'] = this.getSscType([$nums[2], $nums[3], $nums[4]]);
+    return $codes;
+  }
+
+  private pk10($nums) {
+    var $idxs = [
+      '冠军',
+      '亚军',
+      '第3名',
+      '第4名',
+      '第5名',
+      '第6名',
+      '第7名',
+      '第8名',
+      '第9名',
+      '第10名',
+    ];
+    var $codes = [];
+    for (var $i in $nums) {
+      var $num = parseInt($nums[$i]);
+      $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+      $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
+      $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+    }
+
+    $codes['冠军']['龙虎'] = this.getVingtEtUn($nums[0], $nums[9]); // 定位1-龙虎
+    $codes['亚军']['龙虎'] = this.getVingtEtUn($nums[1], $nums[8]); // 定位2-龙虎
+    $codes['第3名']['龙虎'] = this.getVingtEtUn($nums[2], $nums[7]); // 定位3-龙虎
+    $codes['第4名']['龙虎'] = this.getVingtEtUn($nums[3], $nums[6]); // 定位4-龙虎
+    $codes['第5名']['龙虎'] = this.getVingtEtUn($nums[4], $nums[5]); // 定位5-龙虎
+    var $count_gyh = $nums[0] + $nums[1];
+    $codes['冠亚和']['总和'] = $count_gyh; // 冠亚和-数字
+    $codes['冠亚和']['大小'] = this.getBigOrSmall($count_gyh, 11); // 冠亚和-大小
+    $codes['冠亚和']['单双'] = this.getSingOrDoub($count_gyh); // 冠亚和-单双
+    return $codes;
+  }
+
+  private lhc($nums) {
+    var $idxs = [
+      '正码1',
+      '正码2',
+      '正码3',
+      '正码4',
+      '正码5',
+      '正码6',
+      '特码',
+    ];
+    var $codes = [];
+    for (var $i in $nums) {
+      var $num = parseInt($nums[$i]);
+      $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+      $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 23); // 定位-大小
+      $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+      $codes[$idxs[$i]]['波色'] = this.getLhcColor($num); // 定位-波色
+      $codes[$idxs[$i]]['生肖'] = this.getLhcZodiac($num); // 定位-生肖
+    }
+
+    $codes['冠军']['龙虎'] = this.getVingtEtUn($nums[0], $nums[9]); // 定位1-龙虎
+    $codes['亚军']['龙虎'] = this.getVingtEtUn($nums[1], $nums[8]); // 定位2-龙虎
+    $codes['第3名']['龙虎'] = this.getVingtEtUn($nums[2], $nums[7]); // 定位3-龙虎
+    $codes['第4名']['龙虎'] = this.getVingtEtUn($nums[3], $nums[6]); // 定位4-龙虎
+    $codes['第5名']['龙虎'] = this.getVingtEtUn($nums[4], $nums[5]); // 定位5-龙虎
+    var $count_gyh = $nums[0] + $nums[1];
+    $codes['冠亚和']['总和'] = $count_gyh; // 冠亚和-数字
+    $codes['冠亚和']['大小'] = this.getBigOrSmall($count_gyh, 11); // 冠亚和-大小
+    $codes['冠亚和']['单双'] = this.getSingOrDoub($count_gyh); // 冠亚和-单双
+    return $codes;
+  }
+
+  private getSscType($nums) {
+    $nums = $nums.sort();
+    var $type = '杂六';
+    if (($nums[0] == $nums[1]) && ($nums[0] == $nums[2])) {
+      $type = '豹子';
+    } else if ((($nums[1] - $nums[0]) == ($nums[2] - $nums[1])) && (($nums[1] - $nums[0]) == 1) || ($nums == Array(0, 8, 9) || $nums == Array(0, 1, 9))) {
+      $type = '顺子';
+    } else if ($nums[0] == $nums[1] || $nums[1] == $nums[2]) {
+      $type = '对子';
+    } else if (($nums[1] - $nums[0]) == 1 || ($nums[2] - $nums[1]) == 1) {
+      $type = '半顺';
+    }
+    var $data = {};
+    $data['总和'] = this.getArrayCount($nums);
+    $data['类型'] = $type;
+    return $data;
+  }
+
+  // private getPc28Type($nums)
+  // {
+  //   $nums = array_values(array_sort($nums));
+  //   if (($nums[0] == $nums[1]) && ($nums[0] == $nums[2])) {
+  //     $type = '豹子';
+  //   } elseif ((($nums[1] - $nums[0]) == ($nums[2] - $nums[1])) && (($nums[1] - $nums[0]) == 1)) {
+  //   $type = '顺子';
+  // } elseif ($nums[0] == $nums[1] || $nums[1] == $nums[2]) {
+  //   $type = '对子';
+  // } else {
+  //   $type = '';
+  // }
+  //   $count = array_sum($nums);
+  //   if ($count <= 5) {
+  //     $limit = '极小'; // 极小
+  //   } elseif ($count >= 22) {
+  //   $limit = '极大'; // 极大
+  // } else {
+  //   $limit = '';
+  // }
+  //   $data = Array();
+  //   $data['总和'] = $count; // 定位
+  //   $data['类型'] = $type;
+  //   $data['极值'] = $limit; // 极值
+  //   return $data;
+  //
+  // }
+
+  // private getKl8WX($num)
+  // {
+  //   if ($num >= 210 && $num <= 695) {
+  //     return '金';
+  //   } elseif ($num >= 696 && $num <= 763) {
+  //   return '木';
+  // } elseif ($num >= 764 && $num <= 855) {
+  //   return '水';
+  // } elseif ($num >= 856 && $num <= 923) {
+  //   return '火';
+  // } elseif ($num >= 924 && $num <= 1410) {
+  //   return '土';
+  // } else {
+  //   return '和';
+  // }
+  // }
+
+  // private getK3Mult($nums)
+  // {
+  //   $nums = array_values(array_sort($nums));
+  //   if ($nums[0] == $nums[1] && $nums[1] == $nums[2]) {
+  //     return Array(
+  //       '豹子' => $nums[0] . $nums[0] . $nums[0],
+  //   );
+  //   } else if ($nums[0] == $nums[1] || $nums[1] == $nums[2]) {
+  //   return Array(
+  //     '对子' => $nums[1] . $nums[1],
+  // );
+  // } else if ($nums[0] == $nums[2]) {
+  //   return Array(
+  //     '对子' => $nums[0] . $nums[0],
+  // );
+  // } else {
+  //   return Array();
+  // }
+  // }
+
+  private getVingtEtUn($num1, $num2) {
+    if ($num1 > $num2) {
+      return '龙'; // 龙
+    } else if ($num1 < $num2) {
+      return '虎'; // 虎
+    } else {
+      return '和'; // 合
+    }
+  }
+
+  private getSingOrDoub($num, $kills = []) {
+    if ($kills.indexOf($num) > -1) {
+      return '和';
+    }
+
+    if ($num % 2 == 0) {
+      return '双'; // 双
+    } else {
+      return '单'; // 单
+    }
+  }
+
+  private getBigOrSmall($num, $half, $kills = []) {
+    if ($kills.indexOf($num) > -1) {
+      return '和';
+    }
+
+    if ($num > $half) {
+      return '大'; // 大
+    } else {
+      return '小'; // 小
+    }
+  }
+
+  private getLhcColor($num) {
+    var $redNum = ("1,2,7,8,12,13,18,19,23,24,29,30,34,35,40,45,46").split(',');
+    var $blueNum = ("3,4,9,10,14,15,20,25,26,31,36,37,41,42,47,48").split(',');
+    var $greenNum = ("5,6,11,16,17,21,22,27,28,32,33,38,39,43,44,49").split(',');
+    if ($redNum.indexOf($num) > -1) {
+      return '红';
+    } else if ($blueNum.indexOf($num) > -1) {
+      return '蓝';
+    } else if ($greenNum.indexOf($num) > -1) {
+      return '绿';
+    } else {
+      return '';
+    }
+  }
+
+  private getLhcZodiac($num) {
+    switch ($num % 12) {
+      case 1:
+        return '狗';
+      case 2:
+        return '鸡';
+      case 3:
+        return '猴';
+      case 4:
+        return '羊';
+      case 5:
+        return '马';
+      case 6:
+        return '蛇';
+      case 7:
+        return '龙';
+      case 8:
+        return '兔';
+      case 9:
+        return '虎';
+      case 10:
+        return '牛';
+      case 11:
+        return '鼠';
+      case 0:
+        return '猪';
+    }
+  }
+
+  private getArrayCount($array) {
+    var $count = 0;
+    for (var $i in $array) {
+      $count += $array[$i];
+    }
+    return $count;
   }
 }
