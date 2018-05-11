@@ -583,6 +583,8 @@ export class GamesProvider {
       {'name': '连尾中', 'tmpl': 'list', 'units': []},
       {'name': '连尾不中', 'tmpl': 'list', 'units': []},
     ];
+
+    return plays;
   }
 
   getPlayUnitByStr(numsStr, unit, pre, i1) {
