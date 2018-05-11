@@ -16,8 +16,9 @@ export class GameCenterPage {
 	public gameName: string = '游戏名称';  //游戏名称
 	public gameKey: string = '游戏ID';
 	public gameStructure: any;  //游戏基本数据结构
-	public activeGameType: any = 'ball_1';  //当前选择的游戏类型 默认第一个
+	public activeGameType: number = 0;  //当前选择的游戏类型 默认第一个
 	public activeGamePan: any = 'A';  //当前选择的游戏盘区 默认A
+	public unitsData:any;
 	public selectedList: any = [];  //选中的游戏项目
 	constructor(public navCtrl: NavController, 
 		public navParams: NavParams, 
@@ -26,16 +27,19 @@ export class GameCenterPage {
         public HttpService: HttpServiceProvider,
         public alertCtrl: AlertController,
         public loadingCtrl: LoadingController) {
-		console.log(this.navParams.get('gameParams'))
 		this.gameName = this.navParams.get('gameParams').gamename;
 		this.gameKey = this.navParams.get('gameParams').gamekey;
 	}
 	ionViewDidLoad() {
+		this.getGamePrizes()
+	}
+	getGamePrizes(){
 		let token = window.localStorage.getItem('token');
 		let {gameKey,activeGamePan} = this;
 		let url = `/event/price_list?tk=${token}&gamekey=${gameKey}&pan=${activeGamePan}`;
 		this.HttpService.get(url).subscribe((res: Response) => {
-			console.log()
+			this.gameStructure = this.gamesProvider.getPlayPrizes(res,this.gameKey);
+			this.unitsData = this.gameStructure[this.activeGameType];
 		})
 	}
 	changeSelectedList(e) {
@@ -47,8 +51,9 @@ export class GameCenterPage {
 	goHome() {
 		this.navCtrl.pop()
 	}
-	gameKeyClickEvent(gameType) {
-		this.activeGameType = gameType;
+	gameKeyClickEvent(index) {
+		this.activeGameType = index;
+		this.unitsData = this.gameStructure[index];
 	}
 	checkOrder() {
 		console.log(this.selectedList)
@@ -60,19 +65,13 @@ export class GameCenterPage {
 				{
 					text: 'A盘',
 					handler: () => {
-						console.log('Archive clicked');
+						this.activeGamePan = 'A';
 					}
 				},
 				{
 					text: 'B盘',
 					handler: () => {
-						console.log('Archive clicked');
-					}
-				},
-				{
-					text: 'C盘',
-					handler: () => {
-						console.log('Archive clicked');
+						this.activeGamePan = 'B';
 					}
 				},
 				{
