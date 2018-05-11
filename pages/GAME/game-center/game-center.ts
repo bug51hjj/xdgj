@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController,AlertController,LoadingController } from 'ionic-angular';
+import { HttpServiceProvider } from '../../../providers/http-service/http-service';
 import { ReportPage } from '../../../pages/USER/report/report'; //投注报表
 
 import gameDatas from '../../../assets/data/gameData.js';
+import { GamesProvider } from '../../../providers/games/games';
 
 @IonicPage()
 @Component({
@@ -17,12 +19,24 @@ export class GameCenterPage {
 	public activeGameType: any = 'ball_1';  //当前选择的游戏类型 默认第一个
 	public activeGamePan: any = 'A';  //当前选择的游戏盘区 默认A
 	public selectedList: any = [];  //选中的游戏项目
-	constructor(public navCtrl: NavController, public navParams: NavParams, public actionSheetCtrl: ActionSheetController) {
+	constructor(public navCtrl: NavController, 
+		public navParams: NavParams, 
+		public actionSheetCtrl: ActionSheetController,
+		public gamesProvider:GamesProvider,
+        public HttpService: HttpServiceProvider,
+        public alertCtrl: AlertController,
+        public loadingCtrl: LoadingController) {
 		console.log(this.navParams.get('gameParams'))
 		this.gameName = this.navParams.get('gameParams').gamename;
 		this.gameKey = this.navParams.get('gameParams').gamekey;
 	}
 	ionViewDidLoad() {
+		let token = window.localStorage.getItem('token');
+		let {gameKey,activeGamePan} = this;
+		let url = `/event/price_list?tk=${token}&gamekey=${gameKey}&pan=${activeGamePan}`;
+		this.HttpService.get(url).subscribe((res: Response) => {
+			console.log()
+		})
 	}
 	changeSelectedList(e) {
 		this.selectedList = e;
