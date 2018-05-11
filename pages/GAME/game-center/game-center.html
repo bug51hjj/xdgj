@@ -11,7 +11,8 @@
       </button>
     </ion-buttons>
     <ion-title (click)="presentActionSheet()">
-      <span style="font-size: 14px;font-weight: normal;">{{gameStructure.gamename}}-{{activeGamePan}}盘</span>
+      游戏名称
+      <!-- <span style="font-size: 14px;font-weight: normal;">{{gameStructure.gamename}}-{{activeGamePan}}盘</span> -->
       <ion-icon name="arrow-dropdown" style="font-size: 16px"></ion-icon>
     </ion-title>
     <ion-buttons end>
@@ -50,15 +51,15 @@
     <div class="cont2">
       <div class="gameLeftView" style="">
         <ion-scroll  style="height:100%;width:100%" scrollY="true" scrollbar-y="false">
-            <div *ngFor="let item of gameStructure.type">
+            <!-- <div *ngFor="let item of gameStructure.type">
                 <a class="gameKey" *ngIf="!item.combination" [ngClass]="{'active':item.gameType===activeGameType}" (click)="gameKeyClickEvent(item.gameType)"
                 >{{item.name}}</a>
-            </div>
+            </div> -->
         </ion-scroll>
       </div>
       <div class="gameMainView">
         <ion-scroll  style="height:100%;width:100%" scrollY="true" scrollbar-y="false">
-          <game-select-01 (changeSelectedList)="changeSelectedList($event)" [gamekey]="gameStructure.gamekey" [gameType]="activeGameType" [gamePan]="activeGamePan" #gameSelect01></game-select-01>
+          <!-- <game-select-01 (changeSelectedList)="changeSelectedList($event)" [gamekey]="gameStructure.gamekey" [gameType]="activeGameType" [gamePan]="activeGamePan" #gameSelect01></game-select-01> -->
         </ion-scroll>
       </div>
     </div>
@@ -67,7 +68,8 @@
 
 <ion-footer>
   <div class="gameFooter">
-    <div class="row1">已经选中 <span>{{selectedList.length}}</span> 注</div>
+      <div class="row1">已经选中 <span>0</span> 注</div>
+    <!-- <div class="row1">已经选中 <span>{{selectedList.length}}</span> 注</div> -->
     <div class="row2">
         <input class="textInput" type="number" placeholder="输入金额">
         <input class="btnSubmit" ion-button (click)="checkOrder()" value="下注" type="submit">
