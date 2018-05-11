@@ -51,8 +51,7 @@
     <div class="cont2">
       <div class="gameLeftView" style="">
         <ion-scroll  style="height:100%;width:100%" scrollY="true" scrollbar-y="false">
-            <a class="gameKey" *ngFor="let item of cqsscDatas.type" [ngClass]="{'active':item.gameType===activeGameType}" (click)="gameKeyClickEvent(item.gameType)"
-            >{{item.name}}</a>
+            <a class="gameKey" *ngFor="let item of cqsscDatas.type" [ngClass]="{'active':item.gameType===activeGameType}" (click)="gameKeyClickEvent(item.gameType)">{{item.name}}</a>
         </ion-scroll>
       </div>
       <div class="gameMainView">
