@@ -24,6 +24,8 @@ import { BankInfoPage } from '../pages/USER/bank-info/bank-info'; //用户中心
 import { ReportPage } from '../pages/USER/report/report'; //用户中心-投注报表
 import { CustomeSePage } from '../pages/USER/custome-se/custome-se'; //用户中心-客服
 import { UserBetListPage } from '../pages/USER/user-bet-list/user-bet-list'; //用户中心-即时投注
+import { UserBetedListPage } from '../pages/USER/user-beted-list/user-beted-list'; //用户中心-已结算货单
+import { UserBetDetailsPage } from '../pages/USER/user-bet-details/user-bet-details'; //用户中心-订单详情
 
 import { GameCenterPage } from '../pages/GAME/game-center/game-center'; //游戏
 import { ResultPage } from '../pages/GAME/result/result'; //游戏-开奖结果
@@ -54,6 +56,8 @@ import { GamesProvider } from '../providers/games/games';
     ReportPage,
     CustomeSePage,
     UserBetListPage,
+    UserBetedListPage,
+    UserBetDetailsPage,
     ResultPage,
     RulesPage,
     GameCenterPage
@@ -65,6 +69,7 @@ import { GamesProvider } from '../providers/games/games';
     IonicModule.forRoot(MyApp,{
        mode:'ios',
         tabsHideOnSubPages:true,
+        backButtonText: '返回',
         platforms:{
           ios:{
             menuType:'overlay'
@@ -89,6 +94,8 @@ import { GamesProvider } from '../providers/games/games';
     ReportPage,
     CustomeSePage,
     UserBetListPage,
+    UserBetedListPage,
+    UserBetDetailsPage,
     ResultPage,
     RulesPage,
     GameCenterPage
