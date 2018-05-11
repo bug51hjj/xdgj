@@ -41,10 +41,10 @@ export class BankInfoPage {
         this.HttpService.get(url).subscribe((res: Response) => {
             loader.dismiss();
             this.bankInfo.loading = false;
-            if (res['errorcode'] == '' && res['bank_id'] == "") {
+            if (res['errorcode'] == 0 && res['bank_id'] == "") {
                 this.bankInfo.status = false;
                 this.bankInfo.data = res;
-            } else if (res['errorcode'] == '' && res['bank_id'] != "") {
+            } else if (res['errorcode'] == 0 && res['bank_id'] != "") {
                 this.bankInfo.status = true;
                 this.bankInfo.data = res;
             } else {
@@ -56,9 +56,9 @@ export class BankInfoPage {
         let errorcode = result.errorcode;
         let errormsg = result.errormsg;
         let alert;
-        if (result == 100) {
+        if (errorcode == 103) {
             alert = this.alertCtrl.create({
-                subTitle: '登录超时请重新登录!',
+                subTitle: '登录信息已过期，请重新登录!',
                 buttons: [{
                     text: '确定',
                     handler: () => {

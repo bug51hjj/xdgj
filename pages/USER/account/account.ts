@@ -65,7 +65,7 @@ export class AccountPage {
 		let errorcode = result.errorcode;
 		let errormsg = result.errormsg;
 		let alert;
-		if (result == 100) {
+		if (errorcode == 103) {
 			alert = this.alertCtrl.create({
 				subTitle: '登录超时请重新登录!',
 				buttons: [{

@@ -60,17 +60,20 @@ export class UserIndexPage {
                 loader.dismiss();
                 result.map(item => {
                     let res = item['json']();
-                    if(res.errorcode==0){
+                    if (res.errorcode == 0) {
                         if ('amount' in res) { this.userInformation.amount = res.amount }
                         if ('username' in res) { this.userInformation.username = res.username }
                         if ('realname' in res) { this.userInformation.realname = res.realname }
-                    }else{
+                    } else {
                         this.httpErrorHandle(res)
                     }
-                    
+
                 })
             }
         );
+    }
+    customer() {
+        window.location.href = 'https://chat.livechatvalue.com/chat/chatClient/chatbox.jsp?companyID=888676&configID=52793&jid=8386799701&skillId=3159&s=1'
     }
     logout() {
         let confirm = this.alertCtrl.create({
@@ -80,8 +83,14 @@ export class UserIndexPage {
                 {
                     text: '确定',
                     handler: () => {
-                        window.localStorage.removeItem('token');
-                        this.navCtrl.push(LoginPage);
+                        let token = window.localStorage.getItem('token');
+                        this.HttpService.get(`/member/logout?tk=${token}`).subscribe((res: Response) => {
+                            console.log(res)
+                            if (res['errorcode'] == 0) {
+                                window.localStorage.removeItem('token');
+                                this.navCtrl.push(LoginPage);
+                            }else{this.httpErrorHandle(res)}
+                        })
                     }
                 }
             ]
@@ -102,9 +111,9 @@ export class UserIndexPage {
         let errorcode = result.errorcode;
         let errormsg = result.errormsg;
         let alert;
-        if (result == 100) {
+        if (errorcode == 103) {
             alert = this.alertCtrl.create({
-                subTitle: '登录超时请重新登录!',
+                subTitle: '登录信息已过期，请重新登录!',
                 buttons: [{
                     text: '确定',
                     handler: () => {

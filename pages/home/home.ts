@@ -10,6 +10,7 @@ import { HttpServiceProvider } from '../../providers/http-service/http-service';
 
 import { GamesProvider } from "../../providers/games/games";
 import { GameCenterPage } from '../../pages/GAME/game-center/game-center'; //游戏
+import { MessagePage } from '../../pages/USER/message/message'; //用户中心-信息内容
 @Component({
 	selector: 'page-home',
 	templateUrl: 'home.html'
@@ -23,11 +24,15 @@ export class HomePage {
 	public CustomeSePage: any = CustomeSePage;
 	public GameCenterPage: any = GameCenterPage;
 
+	public username:string;
+	public gamesList :any;
+	public newsData:any = {title:1};
 	constructor(public navCtrl: NavController,
 	public loadingCtrl: LoadingController,
 	public alertCtrl: AlertController,
 	public HttpService: HttpServiceProvider,
 	public GamesProvider: GamesProvider) {
+		this.username = window.localStorage.getItem('username');
 	}
 
 	ionViewDidLoad() {
@@ -39,18 +44,29 @@ export class HomePage {
 		//加载游戏列表
 		this.HttpService.get(url).subscribe((res: Response) => {
 			if (res['errorcode'] == 0) {
-				console.log(res)
+				this.gamesList = res['game'];
 			} else {
 				this.httpErrorHandle(res)
 			}
 			loader.dismiss();
 		});
+
+		//加载新闻
+		let url2 = `/system/news?tk=${token}`
+		this.HttpService.get(url2).subscribe((res: Response) => {
+			this.newsData = res['new'][0];
+		})
 	}
 
-	goPage(pageName, gameName) {
-		this.navCtrl.push(pageName, { gameName: gameName })
+	goPage(pageName, gameParams) {
+		this.navCtrl.push(pageName, { gameParams: gameParams })
 	}
-
+	goMsgPage(){
+		this.navCtrl.push(MessagePage,{datas:this.newsData})
+	}
+	customer(){
+        window.location.href = 'https://chat.livechatvalue.com/chat/chatClient/chatbox.jsp?companyID=888676&configID=52793&jid=8386799701&skillId=3159&s=1'
+    }
 	httpErrorHandle(result) {
         let errorcode = result.errorcode;
         let errormsg = result.errormsg;
