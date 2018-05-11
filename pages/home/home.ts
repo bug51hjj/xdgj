@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 import {Component} from '@angular/core';
 import {NavController, AlertController, LoadingController} from 'ionic-angular';
 import {LoginPage} from '../../pages/login/login';
@@ -17,11 +18,25 @@ import {LhcGamePage} from '../../pages/GAME/lhc-game/lhc-game';  //游戏-重庆
 import {BjftGamePage} from '../../pages/GAME/bjft-game/bjft-game'; //游戏-北京翻摊
 import {CqftGamePage} from '../../pages/GAME/cqft-game/cqft-game'; //游戏-重庆翻摊
 import {Jnd28GamePage} from '../../pages/GAME/jnd28-game/jnd28-game'; //游戏-加拿大28
+=======
+import { Component } from '@angular/core';
+import { NavController,AlertController,LoadingController,NavParams } from 'ionic-angular';
+import { LoginPage } from '../../pages/login/login';
+import { UserIndexPage } from '../../pages/USER/user-index/user-index';
+import { BankDealPage } from '../../pages/USER/bank-deal/bank-deal';
+import { ReportPage } from '../../pages/USER/report/report';
+import { MsgListPage } from '../../pages/USER/msg-list/msg-list';
+import { CustomeSePage } from '../../pages/USER/custome-se/custome-se';
+import { HttpServiceProvider } from '../../providers/http-service/http-service'; 
+
+import { GameCenterPage } from '../../pages/GAME/game-center/game-center'; //游戏
+>>>>>>> 7015d3044b8439c7c36bd36f2ff683ce483e0c87
 @Component({
   selector: 'page-home',
   templateUrl: 'home.html'
 })
 export class HomePage {
+<<<<<<< HEAD
   public LoginPage: any = LoginPage;
   public UserIndexPage: any = UserIndexPage;
   public BankDealPage: any = BankDealPage;
@@ -35,6 +50,15 @@ export class HomePage {
   public GameCenterPage: any = GameCenterPage;
 
   public gameList_online: any = {};
+=======
+	public LoginPage:any = LoginPage;
+	public UserIndexPage:any = UserIndexPage;
+	public BankDealPage:any = BankDealPage;
+	public ReportPage:any = ReportPage;
+	public MsgListPage:any = MsgListPage;
+	public CustomeSePage:any = CustomeSePage;
+	public GameCenterPage:any = GameCenterPage;
+>>>>>>> 7015d3044b8439c7c36bd36f2ff683ce483e0c87
 
   constructor(public navCtrl: NavController,
               public loadingCtrl: LoadingController,
@@ -48,9 +72,15 @@ export class HomePage {
   }
 
   ionViewDidLoad() {
+<<<<<<< HEAD
     this.GamesProvider.getLotteries();
     let token = window.localStorage.getItem('token');
     let url = `/event/game?tk=${token}1`;
+=======
+		let token = window.localStorage.getItem('token');
+
+    let url = `/event/game?tk=${token}`;
+>>>>>>> 7015d3044b8439c7c36bd36f2ff683ce483e0c87
     let loader = this.loadingCtrl.create({content: "加载中..."});
     loader.present();
     //加载游戏列表
@@ -69,6 +99,7 @@ export class HomePage {
   goPage(pageName, gameName) {
     this.navCtrl.push(pageName, {gameName: gameName})
   }
+<<<<<<< HEAD
 
   doRefresh(refresher) {
     setInterval(() => {
@@ -99,6 +130,10 @@ export class HomePage {
       });
     }
     alert.present();
+=======
+  goPage(pageName,gameName){
+  	this.navCtrl.push(pageName,{gameKey:gameName})
+>>>>>>> 7015d3044b8439c7c36bd36f2ff683ce483e0c87
   }
 
 }

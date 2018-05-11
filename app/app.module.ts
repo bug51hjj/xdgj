@@ -26,13 +26,6 @@ import { CustomeSePage } from '../pages/USER/custome-se/custome-se'; //用户中
 import { UserBetListPage } from '../pages/USER/user-bet-list/user-bet-list'; //用户中心-即时投注
 
 import { GameCenterPage } from '../pages/GAME/game-center/game-center'; //游戏
-import { SscGamePage } from '../pages/GAME/ssc-game/ssc-game'; //游戏-重庆时时彩
-import { BjpkGamePage } from '../pages/GAME/bjpk-game/bjpk-game'; //游戏-北京PK拾
-import { FtGamePage } from '../pages/GAME/ft-game/ft-game'; //游戏-幸运飞艇
-import { LhcGamePage } from '../pages/GAME/lhc-game/lhc-game'; //游戏-重庆时时彩
-import { BjftGamePage } from '../pages/GAME/bjft-game/bjft-game'; //游戏-北京翻摊
-import { CqftGamePage } from '../pages/GAME/cqft-game/cqft-game'; //游戏-重庆翻摊
-import { Jnd28GamePage } from '../pages/GAME/jnd28-game/jnd28-game'; //游戏-加拿大28
 import { ResultPage } from '../pages/GAME/result/result'; //游戏-开奖结果
 import { RulesPage } from '../pages/GAME/rules/rules';//游戏-游戏规则   
 
@@ -41,9 +34,6 @@ import { HttpServiceProvider } from '../providers/http-service/http-service';
 import { DealPriceListProvider } from '../providers/deal-price-list/deal-price-list';
 import { UuidProvider } from '../providers/uuid/uuid';
 import { GetDateProvider } from '../providers/get-date/get-date';
-import { OpencodeProvider } from '../providers/opencode/opencode';
-import { IssueProvider } from '../providers/issue/issue';
-import { PlaysProvider } from '../providers/plays/plays';
 import { GamesProvider } from '../providers/games/games';
 
 // import 
@@ -63,16 +53,9 @@ import { GamesProvider } from '../providers/games/games';
     BankInfoPage,
     ReportPage,
     CustomeSePage,
-    SscGamePage,
-    BjpkGamePage,
-    FtGamePage,
-    LhcGamePage,
     UserBetListPage,
     ResultPage,
     RulesPage,
-    BjftGamePage,
-    CqftGamePage,
-    Jnd28GamePage,
     GameCenterPage
   ],
   imports: [
@@ -105,16 +88,9 @@ import { GamesProvider } from '../providers/games/games';
     BankInfoPage,
     ReportPage,
     CustomeSePage,
-    SscGamePage,
-    BjpkGamePage,
-    FtGamePage,
-    LhcGamePage,
     UserBetListPage,
     ResultPage,
     RulesPage,
-    BjftGamePage,
-    CqftGamePage,
-    Jnd28GamePage,
     GameCenterPage
   ],
   providers: [
@@ -128,9 +104,6 @@ import { GamesProvider } from '../providers/games/games';
     DealPriceListProvider,
     UuidProvider,
     GetDateProvider,
-    OpencodeProvider,
-    IssueProvider,
-    PlaysProvider,
     GamesProvider,
   ]
 })

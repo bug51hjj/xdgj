@@ -1,5 +1,5 @@
 import { Component ,Input } from '@angular/core';
-import { NavController,PopoverController  } from 'ionic-angular';
+import { NavController,PopoverController,NavParams  } from 'ionic-angular';
 
 import { ReportPage } from '../../pages/USER/report/report'; //投注报表
 import { UserBetListPage } from '../../pages/USER/user-bet-list/user-bet-list';//即时投注
@@ -17,19 +17,17 @@ export class GameSideMenuComponent {
   public ResultPage:any = ResultPage;
   public BankDealPage:any = BankDealPage;
   public RulesPage:any = RulesPage;
-  @Input() pageName:any;
-  constructor(public navCtrl: NavController,public popoverCtrl: PopoverController) {
-    
-    // this.text = this.cont;
+  @Input() gameKey:any;
+  @Input() panName:any;
+  constructor(public navCtrl: NavController,
+    public popoverCtrl: PopoverController,
+    public navParams: NavParams,) {
   }
-  ngOnInit(){
-  	console.log("游戏类型:"+this.pageName);
+  ngOnChanges(){
   }
   goPage(pageName){
-  	this.navCtrl.push(pageName,{gameType:this.pageName})
+  	this.navCtrl.push(pageName,{"gameKey":this.gameKey,"panName":this.panName})
   }
   presentPopover() {
-    // let popover = this.popoverCtrl.create(MyPopOverPage);
-    // popover.present();
   }
 }
