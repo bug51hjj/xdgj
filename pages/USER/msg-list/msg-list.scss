@@ -19,3 +19,8 @@ page-msg-list {
 .m-msn-tab-con .list a{display:block;color:#333;}
 .m-msn-tab-con .list .date{color:#999;margin-top:5px;}
 .m-msn-tab-con .list.no-read i{background:#d83547;}
+.paging{
+    display: flex;justify-content: center;align-items: center;height:30px;margin-top: 40px;
+    input{height:30px;padding:0 15px;border: 1px solid #ddd;background-color: #fff;box-sizing: border-box;color:#666;}
+    label{padding:0 15px;color:#666;}
+}

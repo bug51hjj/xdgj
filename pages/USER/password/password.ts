@@ -54,18 +54,13 @@ export class PasswordPage {
 			if(pwdOld.length>0&&pwdNew.length>0&&pwdNew===pwdNewRepeat){
 				let url = `/member/password_update?tk=${token}`;
 				let params = `pwd_old=${pwdOld}&pwd_new=${pwdNew}`;
-				console.log(params)
 				this.HttpService.post(url,params).subscribe((res: Response) => {
-					if(res['errorcode']==''){
+					if(res['errorcode']==0){
 						toast.present();
 						window.localStorage.removeItem('token');
 						this.navCtrl.push(LoginPage)
 					}else{
-						let alert = this.alertCtrl.create({
-			                subTitle: res['errormsg'],
-			                buttons: ['确认']
-			            });
-			            alert.present();
+						this.httpErrorHandle(res)
 					}
 				})
 			}else{
@@ -81,14 +76,10 @@ export class PasswordPage {
 				let url = `/member/transfer_pwd_update?tk=${token}`;
 				let params = `transfer_pwd_old=${pwdOld}&transfer_pwd_new=${pwdNew}&password=${pwdLogin}`;
 				this.HttpService.post(url,params).subscribe((res: Response) => {
-					if(res['errorcode']==''){
+					if(res['errorcode']==0){
 						toast.present();
 					}else{
-						let alert = this.alertCtrl.create({
-			                subTitle: res['errormsg'],
-			                buttons: ['确认']
-			            });
-			            alert.present();
+						this.httpErrorHandle(res)
 					}
 				})
 			}else{
@@ -101,5 +92,29 @@ export class PasswordPage {
 		}
 		
 	}
+
+	httpErrorHandle(result) {
+        let errorcode = result.errorcode;
+        let errormsg = result.errormsg;
+        let alert;
+        if (errorcode == 103) {
+            alert = this.alertCtrl.create({
+                subTitle: '登录信息已过期，请重新登录!',
+                buttons: [{
+                    text: '确定',
+                    handler: () => {
+                        this.navCtrl.push(LoginPage)
+                    }
+                }]
+            });
+
+        } else {
+            alert = this.alertCtrl.create({
+                subTitle: errormsg,
+                buttons: ['确认']
+            });
+        }
+        alert.present();
+    }
 
 }

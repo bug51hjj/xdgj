@@ -25,44 +25,39 @@
   <div class="msgListPage">
         <div class="m-msn-tab">
             <ul class="clearfix font24">
-                <li [ngClass]="{'active':messageType=='notice'}" (click)="changeMessageType('notice')">公告（{{noticeData.count}}）</li>
-                <li [ngClass]="{'active':messageType=='news'}" (click)="changeMessageType('news')">站内信（{{newsData.count}}）</li>
+                <li [ngClass]="{'active':messageType=='notice'}" (click)="changeMessageType('notice')">公告</li>
+                <li [ngClass]="{'active':messageType=='news'}" (click)="changeMessageType('news')">站内信</li>
             </ul>
         </div>
 
         <div class="m-msn-tab-con" *ngIf="messageType=='notice'">
-            <div *ngIf="noticeData.init">公告加载中...</div>
-            <div *ngIf="!noticeData.init">
-                <div class="list" *ngFor="let item of noticeData.notice" (click)="goPage(item)">
+            <div class="list" *ngIf="noticeData.total_page === 0" >无公告</div>
+            <div>
+                
+                <div class="list"  *ngFor="let item of noticeData.notice" (click)="goPage(item)">
                     <a class="font24 textHidden" ui-sref="user_header.message"><i></i>{{item.title}}</a>
                     <div class="date font22">{{item.time}}</div>
                 </div>
-                <div style="text-align: center;margin-top: 20px;" *ngIf="noticeData.page==noticeData.total_page">没有更多公告了</div>
-                <!-- <div class="list" *ngFor="noticeData.notice" (click)="goPage(0)">
-                    <a class="font24 textHidden" ui-sref="user_header.message"><i></i>鼎鑫国际公告：鼎鑫国际公告：</a>
-                    <div class="date font22">2017-11-11 12:50:20</div>
-                </div>  -->
+                <div class="paging" *ngIf="noticeData.total_page>1" >
+                    <input type="button" value="上一页" (click)="getNoticeData('prev')">
+                    <label>{{noticeData.page}}/{{noticeData.total_page}}</label>
+                    <input type="button" value="下一页" (click)="getNoticeData('next')">
+                </div>
             </div>
         </div>
         <div class="m-msn-tab-con"*ngIf="messageType=='news'">
-            <div *ngIf="newsData.init">新闻加载中...</div>
-            <div *ngIf="!newsData.init">
-                <div class="list" *ngFor="let item of newsData.new" (click)="goPage(item)">
+            <div class="list" *ngIf="mailData.total_page === 0" >无站内信</div>
+            <div>
+                <div class="list" [ngClass]="{'no-read':item.status==0}" *ngFor="let item of mailData.pm" (click)="goPage(item)">
                     <a class="font24 textHidden" ui-sref="user_header.message"><i></i>{{item.title}}</a>
                     <div class="date font22">{{item.time}}</div>
                 </div>
-                <div style="text-align: center;margin-top: 20px;" *ngIf="newsData.page==newsData.total_page">没有更多站内信了</div>
-                <!-- <div class="list" *ngFor="noticeData.notice" (click)="goPage(0)">
-                    <a class="font24 textHidden" ui-sref="user_header.message"><i></i>鼎鑫国际公告：鼎鑫国际公告：</a>
-                    <div class="date font22">2017-11-11 12:50:20</div>
-                </div>  -->
+                <div class="paging" *ngIf="noticeData.total_page>1">
+                    <input type="button" value="上一页" (click)="getMailData('prev')">
+                    <label>{{mailData.page}}/{{mailData.total_page}}</label>
+                    <input type="button" value="下一页" (click)="getMailData('next')">
+                </div>
             </div>
         </div>
     </div>
-    <ion-infinite-scroll (ionInfinite)="doInfinite($event)" threshold="100px">
-    <ion-infinite-scroll-content
-    loadingSpinner="bubbles"
-    loadingText="Loading more data...">
-    </ion-infinite-scroll-content>
-    </ion-infinite-scroll>
 </ion-content>

@@ -1,13 +1,16 @@
 <ion-header>
-  <ion-toolbar color="primary">
-    <div class="homeHeader">
-    	<img src="./assets/img/index-logo.png">
-    	<a (click)="goPage(UserIndexPage)"><i class="iconfont icon-ren"></i><!-- username --></a>
-    </div>
-  </ion-toolbar>
+	<ion-toolbar color="primary">
+		<div class="homeHeader">
+			<img src="./assets/img/index-logo.png">
+			<a (click)="goPage(UserIndexPage)">
+				<i class="iconfont icon-ren"></i>
+				{{username}}
+			</a>
+		</div>
+	</ion-toolbar>
 </ion-header>
 <ion-content>
-<!-- <ion-refresher (ionRefresh)="doRefresh($event)"> 
+	<!-- <ion-refresher (ionRefresh)="doRefresh($event)"> 
 	<ion-refresher-content
     	pullingIcon="arrow-dropdown"
         pullingText="下拉刷新"
@@ -17,69 +20,64 @@
 </ion-refresher>
 
 </ion-content> -->
-<ion-content class="index-content">
-	<div class="banner"><img class="full-image" src="./assets/img/index-banner.jpg" alt=""></div>
+	<ion-content class="index-content">
+		<div class="banner">
+			<ion-slides pager loop="true" autoplay="3000" #slides>
+				<ion-slide>
+					<img src="./assets/img/index-banner-2.png" alt="">
+				</ion-slide>
+				<ion-slide>
+						<img src="./assets/img/index-banner-1.png" alt="">
+				</ion-slide>
+				<ion-slide>
+						<img src="./assets/img/index-banner-3.png" alt="">
+				</ion-slide>
+			</ion-slides>
+			<!-- <img class="full-image" src="./assets/img/index-banner.jpg" alt=""> -->
+		</div>
 
-	<div class="message-move">
-		<div class="box">
-			<i class="iconfont icon-laba assertive font28"></i>
+		<div class="message-move">
+			<div class="box">
+				<i class="iconfont icon-laba assertive font28"></i>
+			</div>
+			<div class="move">
+				<p class="info" (click)="goMsgPage()" >{{newsData.title}}</p>
+			</div>
 		</div>
-		<div class="move">
-			<p class="info">尊敬的会员您好！在线第三方扫码充值系统维护升级，期间请咨询在线客服索取最新人工支付宝转账充值。给您带来不便敬请谅解，祝您游戏愉快~  </p>
-		</div>
-	</div>
 
-	<div class="game-class">
-		<!-- <div class="noGame">服务器加载游戏错误...</div> -->
-		<div class="row-game">
-			<a class="col-game" (click)="goPage(GameCenterPage,'cqssc')" >
-				<img src="./assets/uploads/shishicai-img.png" alt="">
-				<p>重庆时时彩</p>
+		<div class="game-class">
+			<!-- <div class="noGame">服务器加载游戏错误...</div> -->
+			<div class="row-game">
+				<a class="col-game" *ngFor="let item of gamesList" (click)="goPage(GameCenterPage,item)">
+					<img src="./assets/uploads/shishicai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='cqssc'">
+					<img src="./assets/uploads/pk-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='bjpk10'">
+					<img src="./assets/uploads/lucky-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='xyft'">
+					<img src="./assets/uploads/liuhecai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='hklhc'">
+					<img src="./assets/uploads/shishicai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='bjft'">
+					<img src="./assets/uploads/shishicai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='cqft'">
+					<img src="./assets/uploads/shishicai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='jnd28'">
+					<p>{{item.gamename}}</p>
+				</a>
+			</div>
+		</div>
+	</ion-content>
+	<ion-footer>
+		<div class="tabs tabs-icon-top tabs-assertive">
+			<a class="tab-item" (click)="goPage(BankDealPage)">
+				<i class="iconfont icon-yinxingqiajiaoyihuoyuedujiancha"></i>
+				银行交易
 			</a>
-			<a class="col-game" (click)="goPage(GameCenterPage,'bjpk10')" >
-				<img src="./assets/uploads/pk-img.png" alt="">
-				<p>北京PK10</p>
+			<a class="tab-item" (click)="goPage(ReportPage)">
+				<i class="iconfont icon-zhuanhuan"></i>
+				投注报表
 			</a>
-			<a class="col-game" (click)="goPage(GameCenterPage,'xyft')" >
-				<img src="./assets/uploads/lucky-img.png" alt="">
-				<p>幸运飞艇</p>
+			<a class="tab-item" (click)="goPage(MsgListPage)">
+				<i class="iconfont icon-xinxi"></i>
+				信息中心
 			</a>
-			<a class="col-game" (click)="goPage(GameCenterPage,'hklhc')" >
-				<img src="./assets/uploads/liuhecai-img.png" alt="">
-				<p>香港六合彩</p>
-			</a>
-			<a class="col-game" (click)="goPage(GameCenterPage,'bjft')" >
-				<img src="./assets/uploads/shishicai-img.png" alt="">
-				<p>番摊(北京)</p>
-			</a>
-			<a class="col-game" (click)="goPage(GameCenterPage,'cqft')" >
-				<img src="./assets/uploads/shishicai-img.png" alt="">
-				<p>番摊(重庆)</p>
-			</a>
-			<a class="col-game" (click)="goPage(GameCenterPage,'jnd28')" >
-				<img src="./assets/uploads/shishicai-img.png" alt="">
-				<p>加拿大28</p>
+			<a class="tab-item" (click)="customer()">
+				<i class="iconfont icon-kefu"></i>
+				客服
 			</a>
 		</div>
-	</div>
-</ion-content>
-<ion-footer>
-  <div class="tabs tabs-icon-top tabs-assertive">
-		<a class="tab-item" (click)="goPage(BankDealPage)">
-			<i class="iconfont icon-yinxingqiajiaoyihuoyuedujiancha"></i>
-			银行交易
-		</a>
-		<a class="tab-item" (click)="goPage(ReportPage)">
-			<i class="iconfont icon-zhuanhuan"></i>
-			投注报表
-		</a>
-		<a class="tab-item" (click)="goPage(MsgListPage)">
-			<i class="iconfont icon-xinxi"></i>
-			信息中心
-		</a>
-		<a class="tab-item" (click)="goPage(CustomeSePage)">
-			<i class="iconfont icon-kefu"></i>
-			客服
-		</a>
-	</div>
-</ion-footer>
+	</ion-footer>

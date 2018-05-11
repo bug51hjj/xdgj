@@ -3,6 +3,7 @@ import { IonicPage, NavController, NavParams, AlertController, LoadingController
 import { HttpServiceProvider } from '../../../providers/http-service/http-service';
 import { GetDateProvider } from '../../../providers/get-date/get-date';
 import { UserBetedListPage } from '../../../pages/USER/user-beted-list/user-beted-list'; //用户中心-已结算货单
+import { LoginPage } from '../../../pages/login/login';
 @IonicPage()
 @Component({
     selector: 'page-report',
@@ -65,12 +66,31 @@ export class ReportPage {
                     this.report.status = false;
                 }
             } else {
-                let alert = this.alertCtrl.create({
-                    subTitle: res['errormsg'],
-                    buttons: ['确认']
-                });
-                alert.present();
+                this.httpErrorHandle(res)
             }
         })
+    }
+    httpErrorHandle(result) {
+        let errorcode = result.errorcode;
+        let errormsg = result.errormsg;
+        let alert;
+        if (errorcode == 103) {
+            alert = this.alertCtrl.create({
+                subTitle: '登录信息已过期，请重新登录!',
+                buttons: [{
+                    text: '确定',
+                    handler: () => {
+                        this.navCtrl.push(LoginPage)
+                    }
+                }]
+            });
+
+        } else {
+            alert = this.alertCtrl.create({
+                subTitle: errormsg,
+                buttons: ['确认']
+            });
+        }
+        alert.present();
     }
 }
