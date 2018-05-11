@@ -1,8 +1,9 @@
 <!-- Generated template for the GameSelect_01Component component -->
 <div>
-	<!-- 游戏玩法一 【第一列为位置1-9、第二列为第一个球赔率 ... 第六列为第五个球赔率】 -->
-	<div class="gameType1Container">
-		<!-- <div *ngFor="let row of gameDataList.priceList;index as index1;">
+	<!-- 【结构一】 unitsDatas.tmpl=='column' -->
+	<div *ngIf="unitsDatas.tmpl=='column'">
+		<!--时时彩1-5特殊处理 -->
+		<div *ngIf="gameKey=='cqssc'">
 			<div class="titleView">
 				<span class="publicTitle">位置</span>
 				<span class="publicTitle">第一</span>
@@ -11,17 +12,30 @@
 				<span class="publicTitle">第四</span>
 				<span class="publicTitle">第五</span>
 			</div>
-			<div class="mainView">
-				<div class="row" *ngFor="let row2 of row.line;index as index2;">
-					<div class="col">
-						<span class="ball-color">{{index2}}</span>
+			<div class="colView">
+				<div class="colBox">
+					<div class="row" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]">
+						<span class="ball-color">{{number}}</span>
 					</div>
-					<div class="col" *ngFor="let col of row2;index as index3;" (click)="selectItem2(col,index1,index2,index3)" [ngClass]="{'active':col.checked}">
-						<span>{{col.price}}</span>
+				</div>
+				<div class="colBox" *ngFor="let row of unitsDatas.units;index as index1;">
+					<div class="row" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]" (click)="selectItem(row.nums[number],index1,number)" [ngClass]="{'active':row.nums[number].checked}">
+						<span>
+							{{row.nums[number].price}}
+						</span>
 					</div>
 				</div>
 			</div>
-		</div> -->
+		</div>
+	</div>
+
+	<!-- 【结构二】 unitsDatas.tmpl=='list' -->
+	<div *ngIf="unitsDatas.tmpl=='list'">
+		<div>
+			<div class="titleView" *ngFor="let row of unitsDatas.units;index as index1;">
+				<span class="publicTitle">{{row.name}}</span>
+			</div>
+		</div>
 	</div>
 	<!-- 游戏玩法二 【固定两列显示 游戏类型+游戏赔率】 -->
 	<!-- <div class="gameType2Container" *ngIf="gameDataList.viewType==2">

@@ -29,28 +29,9 @@
 		<div class="cont1">
 			<ul class="gameTabCont">
 				<li class="active">投注区</li>
-				<li>混合过关</li>
 				<li>聊天室</li>
 			</ul>
-			<div class="bj-data-num clearfix">
-				<div class="number num clearfix">
-					<time>1206026期</time>
-					<span class="ball-color-yellow">9</span>
-					<span class="ball-color-yellow">3</span>
-					<span class="ball-color-yellow">8</span>
-					<span class="ball-color-yellow">7</span>
-					<span class="ball-color-yellow">3</span>
-				</div>
-			</div>
-			<div class="data-content">
-				<span>1206026期</span>
-				<span>封盘：
-					<time>05:20</time>
-				</span>
-				<span class="active assertive">开奖：
-					<time>05:20</time>
-				</span>
-			</div>
+			<opencode1></opencode1>
 		</div>
 		<div class="cont2">
 			<div class="gameLeftView" style="">
@@ -62,7 +43,7 @@
 			</div>
 			<div class="gameMainView">
 				<ion-scroll style="height:100%;width:100%" scrollY="true" scrollbar-y="false">
-					<game-select-01 (changeSelectedList)="changeSelectedList($event)" [units]="unitsData" #gameSelect01></game-select-01>
+					<game-select-01 (changeSelectedList)="changeSelectedList($event)" [units]="unitsData" [gameKey]="gameKey" #gameSelect01></game-select-01>
 				</ion-scroll>
 			</div>
 		</div>

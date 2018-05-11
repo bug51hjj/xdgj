@@ -14,7 +14,29 @@ game-select-01 {
     border-right: 1px solid #fff;
     line-height: 35px!important;
 }
+.colView{
+	width:100%;
+	display: flex;
+	.colBox{
+		flex: 1;
+		text-align:center;
+		.row{
+			width:100%;
+			display: flex;
+			text-align:center;
+			height:40px;
+			margin:0;
+			padding:0;
+			border-bottom: 1px solid #fff;
+			border-right: 1px solid #fff;
+			justify-content: center;
+			align-items: center;
+		}
+		.row.active{background-color:#b7e2ff;}
+	}
+}
 .mainView{
+	
 	.row{
 		display:flex;
 		height:40px;
@@ -26,7 +48,7 @@ game-select-01 {
 			padding:0;
 		    border-bottom: 1px solid #fff;
 		    border-right: 1px solid #fff;
-		    line-height: 40px!important;
+			line-height: 40px!important;
 		}
 	}
 	.row-fixed-2{

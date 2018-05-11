@@ -61,8 +61,9 @@ page-ssc-game {
 		line-height:35px;
 		text-align:center;
 		color:#7a7a7a;
+		background-color: #f5f5f5;
 	}
-	.active{color:#444444}
+	li.active{color:#444444;background-color: #fff;}
 }
 /*时时彩*/
 .bj-data-num{padding-bottom: 5px;

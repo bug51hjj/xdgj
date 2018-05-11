@@ -16,8 +16,10 @@ import { GamesProvider } from '../../providers/games/games';
 })
 export class GameSelect_01Component {
     @Input() units:any;
-    
     @Output() changeSelectedList: EventEmitter<any> = new EventEmitter();
+    @Input() gameKey:any;
+
+    public unitsDatas:any = {tmpl:'',units:[]};
     public gameDataList: any;
     public loadingMark: any = true;
     public selectedList: any = [];
@@ -28,7 +30,15 @@ export class GameSelect_01Component {
         public games:GamesProvider) {
     }
     ngOnChanges() {
-        console.log(this.units)
+        if(this.units){
+            this.units.units.map(item=>{
+                if('nums' in item){
+                    item.nums = Object['values'](item.nums);
+                }
+            })
+            this.unitsDatas = this.units;
+        }
+        console.log(this.unitsDatas)
         //根据传递进来的 gamekey、gameType 初始化当前显示结构
         // for (let i = 0; i < gameDatas[this.gamekey].type.length; i++) {
         //     if (gameDatas[this.gamekey].type[i].gameType == this.gameType) {
@@ -57,19 +67,19 @@ export class GameSelect_01Component {
         // });
 
     }
-    selectItem(itemAry, index1, index2) {
-        // let tempArray = new Array();
-        // itemAry['checked'] = !itemAry['checked']; //选中/取消
-
+    selectItem(itemAry,index1,index2) {
+        // this.unitsDatas.units[index1].nums[index2].checked = !this.unitsDatas.units[index1].nums[index2].checked;
+        let tempArray = new Array();
+        itemAry['checked'] = !itemAry['checked']; //选中/取消
         // //筛选选中的数据返回给调用组件的页面
-        // for (let i = 0; i < this.gameDataList.priceList.length; i++) {
-        //     for (let j = 0; j < this.gameDataList.priceList[i].line.length; j++) {
-        //         if (this.gameDataList.priceList[i].line[j]['checked']) {
-        //             tempArray.push(this.gameDataList.priceList[i].line[j])
-        //         }
-        //     }
-        // }
-        // this.changeSelectedList.emit(tempArray);
+        for (let i = 0; i < this.unitsDatas.units.length; i++) {
+            for(let j in this.unitsDatas.units[i].nums){
+                if (this.unitsDatas.units[i].nums[j]['checked']) {
+                    tempArray.push(this.unitsDatas.units[i].nums[j])
+                }
+            }
+        }
+        this.changeSelectedList.emit(tempArray);
     }
     selectItem2(itemAry, index1, index2, index3) {
         console.log(itemAry, index1, index2, index3)

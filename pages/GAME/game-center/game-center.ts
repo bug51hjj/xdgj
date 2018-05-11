@@ -44,6 +44,7 @@ export class GameCenterPage {
 	}
 	changeSelectedList(e) {
 		this.selectedList = e;
+		console.log(this.selectedList)
 	}
 	goPage(pageName) {
 		this.navCtrl.push(pageName)
