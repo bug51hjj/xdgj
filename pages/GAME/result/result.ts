@@ -31,7 +31,12 @@ export class ResultPage {
 		let url = `/event/history_expect?tk=${token}&gamekey=${gamekey}&date=${date}`;
 		this.HttpService.get(url).subscribe((res: Response) => {
 			if(res['errorcode']==0){
-				this.historyData = this.gamesProvider.getOpencodeNums(gamekey,res['history']);
+				let _history = [];
+				res['history'].map(item=>{
+					_history.push(this.gamesProvider.getOpencodeNums(gamekey,item.opencode));
+				})
+				this.historyData = _history;
+				// this.historyData = this.gamesProvider.getOpencodeNums(gamekey,res['history']);
 				console.log(this.historyData)
 			}else{
 				this.httpErrorHandle(res)
