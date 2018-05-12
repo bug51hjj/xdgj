@@ -1,11 +1,13 @@
 import { Component } from '@angular/core';
-import { IonicPage, NavController, NavParams, ActionSheetController,AlertController,LoadingController } from 'ionic-angular';
+import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, LoadingController, ModalController } from 'ionic-angular';
 import { HttpServiceProvider } from '../../../providers/http-service/http-service';
+import { UuidProvider } from '../../../providers/uuid/uuid';
 import { ReportPage } from '../../../pages/USER/report/report'; //投注报表
-
+import { LoginPage } from '../../../pages/login/login'; 
 import gameDatas from '../../../assets/data/gameData.js';
 import { GamesProvider } from '../../../providers/games/games';
-
+import { ComponentsModule } from '../../../components/components.module';
+import { ConfirmOrderPage } from '../../../pages/GAME/confirm-order/confirm-order';
 @IonicPage()
 @Component({
 	selector: 'page-game-center',
@@ -18,37 +20,47 @@ export class GameCenterPage {
 	public gameStructure: any;  //游戏基本数据结构
 	public activeGameType: number = 0;  //当前选择的游戏类型 默认第一个
 	public activeGamePan: any = 'A';  //当前选择的游戏盘区 默认A
-	public unitsData:any;
+	public expect:any='';//游戏期数
+	public unitsData: any;
 	public selectedList: any = [];  //选中的游戏项目
-	public stop_remaining:any = {};//封盘
-	constructor(public navCtrl: NavController, 
-		public navParams: NavParams, 
-		public actionSheetCtrl: ActionSheetController,
-		public gamesProvider:GamesProvider,
-        public HttpService: HttpServiceProvider,
-        public alertCtrl: AlertController,
-        public loadingCtrl: LoadingController) {
+	public buyAmount:any; //购买金额
+	public stop_remaining: any = {};//封盘
+	constructor(public navCtrl: NavController,
+	public navParams: NavParams,
+	public actionSheetCtrl: ActionSheetController,
+	public gamesProvider: GamesProvider,
+	public HttpService: HttpServiceProvider,
+	public alertCtrl: AlertController,
+	public loadingCtrl: LoadingController,
+	public modalCtrl: ModalController,
+	public uuidProvider:UuidProvider) {
 		this.gameName = this.navParams.get('gameParams').gamename;
 		this.gameKey = this.navParams.get('gameParams').gamekey;
 	}
 	ionViewDidLoad() {
 		this.getGamePrizes()
 	}
-	getGamePrizes(){
+	getGamePrizes() {
 		let token = window.localStorage.getItem('token');
-		let {gameKey,activeGamePan} = this;
+		let { gameKey, activeGamePan } = this;
 		let url = `/event/price_list?tk=${token}&gamekey=${gameKey}&pan=${activeGamePan}`;
 		this.HttpService.get(url).subscribe((res: Response) => {
-			this.gameStructure = this.gamesProvider.getPlayPrizes(res,this.gameKey);
+			this.gameStructure = this.gamesProvider.getPlayPrizes(res, this.gameKey);
 			this.unitsData = this.gameStructure[this.activeGameType];
 		})
 	}
-	changeStop_remaining(e){
+	changeStop_remaining(e) {
 		this.stop_remaining = e;
 	}
 	changeSelectedList(e) {
 		this.selectedList = e;
 		console.log(this.selectedList)
+	}
+	changeBuyAmount(e){
+		this.buyAmount = e;
+	}
+	setExpect(e){
+		this.expect = e;
 	}
 	goPage(pageName) {
 		this.navCtrl.push(pageName)
@@ -61,7 +73,41 @@ export class GameCenterPage {
 		this.unitsData = this.gameStructure[index];
 	}
 	checkOrder() {
-		console.log(this.selectedList)
+		if(this.selectedList.length==0){
+			this.httpErrorHandle({errormsg:'您还未选择购买项目!'})
+			return false;
+		}
+		if(!this.buyAmount){
+			this.httpErrorHandle({errormsg:'请输入购买金额!'})
+			return false;
+		}
+		let profileModal = this.modalCtrl.create(ConfirmOrderPage, { selectedList: JSON.stringify(this.selectedList),buyAmount:this.buyAmount }, {
+			showBackdrop: true,
+			enableBackdropDismiss: true
+		});
+		profileModal.onDidDismiss(result => {
+			if(result){this.orderBuy()}
+		});
+		profileModal.present();
+	}
+	orderBuy(){
+		let token = window.localStorage.getItem('token');
+		let unique_requestId = this.uuidProvider.get();
+		let gamekey = this.gameKey;
+		let pan = this.activeGamePan;
+		let expect = this.expect;
+		let orders = [];
+		this.selectedList.map(item=>{
+			let temp = {
+				type:item.type,
+				play_method:item.play_method,
+				price:item.price,
+				amount:this.buyAmount
+			};
+			orders.push(temp);
+		})
+		console.log(token);console.log(unique_requestId);console.log(gamekey)
+		console.log(pan);console.log(expect);console.log(orders)
 	}
 	presentActionSheet() {
 		let actionSheet = this.actionSheetCtrl.create({
@@ -93,4 +139,27 @@ export class GameCenterPage {
 		actionSheet.present();
 	}
 
+	httpErrorHandle(result) {
+		let errorcode = result.errorcode;
+		let errormsg = result.errormsg;
+		let alert;
+		if (errorcode == 103) {
+			alert = this.alertCtrl.create({
+				subTitle: '登录信息已过期，请重新登录!',
+				buttons: [{
+					text: '确定',
+					handler: () => {
+						this.navCtrl.push(LoginPage)
+					}
+				}]
+			});
+
+		} else {
+			alert = this.alertCtrl.create({
+				subTitle: errormsg,
+				buttons: ['确认']
+			});
+		}
+		alert.present();
+	}
 }

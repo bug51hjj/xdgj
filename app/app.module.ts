@@ -7,7 +7,6 @@ import { HttpModule } from '@angular/http';
 import { HttpClientModule, HttpClient } from '@angular/common/http';
 //自定义组件
 import { ComponentsModule } from '../components/components.module';
-
 //页面
 import { MyApp } from './app.component'; //页面容器
 import { HomePage } from '../pages/home/home'; //主页
@@ -28,6 +27,7 @@ import { UserBetedListPage } from '../pages/USER/user-beted-list/user-beted-list
 import { UserBetDetailsPage } from '../pages/USER/user-bet-details/user-bet-details'; //用户中心-订单详情
 
 import { GameCenterPage } from '../pages/GAME/game-center/game-center'; //游戏
+import { ConfirmOrderPage } from '../pages/GAME/confirm-order/confirm-order'; //确认订单
 import { ResultPage } from '../pages/GAME/result/result'; //游戏-开奖结果
 import { RulesPage } from '../pages/GAME/rules/rules';//游戏-游戏规则   
 
@@ -60,7 +60,8 @@ import { GamesProvider } from '../providers/games/games';
     UserBetDetailsPage,
     ResultPage,
     RulesPage,
-    GameCenterPage
+    GameCenterPage,
+    ConfirmOrderPage
   ],
   imports: [
     BrowserModule,
@@ -98,7 +99,8 @@ import { GamesProvider } from '../providers/games/games';
     UserBetDetailsPage,
     ResultPage,
     RulesPage,
-    GameCenterPage
+    GameCenterPage,
+    ConfirmOrderPage
   ],
   providers: [
     StatusBar,

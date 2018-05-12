@@ -31,7 +31,7 @@
 				<li class="active">投注区</li>
 				<li>聊天室</li>
 			</ul>
-			<opencode1 [gameKey]="gameKey" (changeStop_remaining)="changeStop_remaining($event)"></opencode1>
+			<opencode1 [gameKey]="gameKey" (changeStop_remaining)="changeStop_remaining($event)" (setExpect)="setExpect($event)"></opencode1>
 		</div>
 		<div class="cont2">
 			<div class="gameLeftView" style="">
@@ -54,7 +54,7 @@
 	<div class="gameFooter">
 		<div class="row1">已经选中 <span>{{selectedList.length}}</span> 注</div>
 		<div class="row2">
-			<input class="textInput" type="number" placeholder="输入金额">
+			<input class="textInput" [ngModel]="buyAmount" (ngModelChange)="changeBuyAmount($event)" type="number" placeholder="输入金额">
 			<input class="btnSubmit" ion-button (click)="checkOrder()" value="下注" type="submit">
 			<input class="btnReset" ion-button (click)="gameSelect01.cencelSelected()" value="重置" type="submit">
 		</div>

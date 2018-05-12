@@ -19,6 +19,7 @@ export class Opencode1Component {
 	private viewType:number = 1;
 	@Input() gameKey:any;
 	@Output() changeStop_remaining: EventEmitter<any> = new EventEmitter();
+	@Output() setExpect: EventEmitter<any> = new EventEmitter();
 	constructor(public navCtrl: NavController,
 	public navParams: NavParams,
 	public HttpService: HttpServiceProvider,
@@ -55,6 +56,7 @@ export class Opencode1Component {
 				this.converTime.opentime_remaining = this.getDate.s_to_hs(res['present'].opentime_remaining);
 				this.converTime.stop_remaining = this.getDate.s_to_hs(res['present'].stop_remaining);
 				this.changeStop_remaining.emit(res['present'].stop_remaining);
+				this.setExpect.emit(this.present.expect);
 				this.present = res['present'];
 				this.last_opencode = res['last_opencode'];
 			}else{
