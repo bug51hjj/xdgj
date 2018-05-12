@@ -1711,7 +1711,7 @@ export class GamesProvider {
     private getArrayCount($array) {
         var $count = 0;
         for (var $i in $array) {
-            $count += $array[$i];
+            $count += parseInt($array[$i]);
         }
         return $count;
     }
