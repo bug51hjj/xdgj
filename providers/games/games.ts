@@ -1452,9 +1452,10 @@ export class GamesProvider {
             '第4球',
             '第5球',
         ];
-        var $codes = [];
+        var $codes = {};
         for (var $i in $nums) {
             var $num = parseInt($nums[$i]);
+            $codes[$idxs[$i]]={};
             $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
             $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
             $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
@@ -1485,9 +1486,10 @@ export class GamesProvider {
             '第9名',
             '第10名',
         ];
-        var $codes = [];
+        var $codes = {};
         for (var $i in $nums) {
             var $num = parseInt($nums[$i]);
+            $codes[$idxs[$i]]={};
             $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
             $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
             $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
@@ -1515,9 +1517,10 @@ export class GamesProvider {
             '正码6',
             '特码',
         ];
-        var $codes = [];
+        var $codes = {};
         for (var $i in $nums) {
             var $num = parseInt($nums[$i]);
+            $codes[$idxs[$i]]={};
             $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
             $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 23); // 定位-大小
             $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
