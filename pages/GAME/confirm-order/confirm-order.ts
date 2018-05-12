@@ -10,8 +10,10 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 	<div style="width:88%; min-height:200px; background-color:#fff; border-radius:3px;">
 		<div style="padding: 15px 10px; border-bottom: 1px solid #eee; text-align: center;">下注清单</div>
 		<div style="min-height:100px;max-height:260px; overflow-y:scroll;">
-			<ul>
-				<li style="color:#555;line-height:24px;" *ngFor="let item of selectedList">{{item}}x{{buyAmount}}</li>
+			<ul style="padding:10px;">
+				<li style="color:#555;line-height:24px;" *ngFor="let item of selectedList">
+				{{item.unit}} {{item.name}} @ {{item.price}}x{{buyAmount}}
+				</li>
 			</ul>
 		</div>
 		<div style="display:flex; justify-content:center; align-items:center; padding: 10px; min-height: 65px;">

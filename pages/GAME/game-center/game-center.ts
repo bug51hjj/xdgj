@@ -106,8 +106,20 @@ export class GameCenterPage {
 			};
 			orders.push(temp);
 		})
-		console.log(token);console.log(unique_requestId);console.log(gamekey)
-		console.log(pan);console.log(expect);console.log(orders)
+		let url = `/order/buy?tk=${token}`;
+		let params = `unique_requestId=${unique_requestId}&gamekey=${gamekey}&expect=${expect}&pan=${pan}&orders=${JSON.stringify(orders)}`
+		// console.log(token);console.log(unique_requestId);console.log(gamekey)
+		// console.log(pan);console.log(expect);console.log(orders)
+		let loader = this.loadingCtrl.create({content: "加载中..."});
+		loader.present();
+		this.HttpService.post(url,params).subscribe((res: Response) => {
+			loader.dismiss();
+			if(res['errorcode']==0){
+				this.httpErrorHandle({errormsg:'下单成功!'})
+			}else{
+				this.httpErrorHandle(res)
+			}
+		})
 	}
 	presentActionSheet() {
 		let actionSheet = this.actionSheetCtrl.create({
