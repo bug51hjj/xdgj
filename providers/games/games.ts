@@ -1453,15 +1453,18 @@ export class GamesProvider {
             '第4球',
             '第5球',
         ];
-        var $codes = [];
+        var $codes = {};
         for (var $i in $nums) {
             var $num = parseInt($nums[$i]);
+            $codes[$idxs[$i]]={};
             $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
             $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
             $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
         }
 
         var $allSum = this.getArrayCount($nums);
+        $codes['总和']={};
+        $codes['龙虎']={};
         $codes['总和']['总和'] = $allSum; // 总和-数字
         $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
         $codes['总和']['大小'] = this.getBigOrSmall($allSum, 22); // 总和-大小
@@ -1486,9 +1489,10 @@ export class GamesProvider {
             '第9名',
             '第10名',
         ];
-        var $codes = [];
+        var $codes = {};
         for (var $i in $nums) {
             var $num = parseInt($nums[$i]);
+            $codes[$idxs[$i]]={};
             $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
             $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
             $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
@@ -1500,6 +1504,7 @@ export class GamesProvider {
         $codes['第4名']['龙虎'] = this.getVingtEtUn($nums[3], $nums[6]); // 定位4-龙虎
         $codes['第5名']['龙虎'] = this.getVingtEtUn($nums[4], $nums[5]); // 定位5-龙虎
         var $count_gyh = $nums[0] + $nums[1];
+        $codes['冠亚和']={};
         $codes['冠亚和']['总和'] = $count_gyh; // 冠亚和-数字
         $codes['冠亚和']['大小'] = this.getBigOrSmall($count_gyh, 11); // 冠亚和-大小
         $codes['冠亚和']['单双'] = this.getSingOrDoub($count_gyh); // 冠亚和-单双
@@ -1516,9 +1521,10 @@ export class GamesProvider {
             '正码6',
             '特码',
         ];
-        var $codes = [];
+        var $codes = {};
         for (var $i in $nums) {
             var $num = parseInt($nums[$i]);
+            $codes[$idxs[$i]]={};
             $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
             $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 23); // 定位-大小
             $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
@@ -1526,15 +1532,15 @@ export class GamesProvider {
             $codes[$idxs[$i]]['生肖'] = this.getLhcZodiac($num); // 定位-生肖
         }
 
-        $codes['冠军']['龙虎'] = this.getVingtEtUn($nums[0], $nums[9]); // 定位1-龙虎
-        $codes['亚军']['龙虎'] = this.getVingtEtUn($nums[1], $nums[8]); // 定位2-龙虎
-        $codes['第3名']['龙虎'] = this.getVingtEtUn($nums[2], $nums[7]); // 定位3-龙虎
-        $codes['第4名']['龙虎'] = this.getVingtEtUn($nums[3], $nums[6]); // 定位4-龙虎
-        $codes['第5名']['龙虎'] = this.getVingtEtUn($nums[4], $nums[5]); // 定位5-龙虎
-        var $count_gyh = $nums[0] + $nums[1];
-        $codes['冠亚和']['总和'] = $count_gyh; // 冠亚和-数字
-        $codes['冠亚和']['大小'] = this.getBigOrSmall($count_gyh, 11); // 冠亚和-大小
-        $codes['冠亚和']['单双'] = this.getSingOrDoub($count_gyh); // 冠亚和-单双
+        // $codes['冠军']['龙虎'] = this.getVingtEtUn($nums[0], $nums[9]); // 定位1-龙虎
+        // $codes['亚军']['龙虎'] = this.getVingtEtUn($nums[1], $nums[8]); // 定位2-龙虎
+        // $codes['第3名']['龙虎'] = this.getVingtEtUn($nums[2], $nums[7]); // 定位3-龙虎
+        // $codes['第4名']['龙虎'] = this.getVingtEtUn($nums[3], $nums[6]); // 定位4-龙虎
+        // $codes['第5名']['龙虎'] = this.getVingtEtUn($nums[4], $nums[5]); // 定位5-龙虎
+        // var $count_gyh = $nums[0] + $nums[1];
+        // $codes['冠亚和']['总和'] = $count_gyh; // 冠亚和-数字
+        // $codes['冠亚和']['大小'] = this.getBigOrSmall($count_gyh, 11); // 冠亚和-大小
+        // $codes['冠亚和']['单双'] = this.getSingOrDoub($count_gyh); // 冠亚和-单双
         return $codes;
     }
 

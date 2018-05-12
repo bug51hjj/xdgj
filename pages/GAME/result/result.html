@@ -13,69 +13,53 @@
 </ion-header>
 
 
-<ion-content class="subHeader ssc all">
-    <div class="list">
-        <div class="item row igk-header 消失">
-            <div class="left col-25 fl">
+<ion-content>
+    <div class="selectBox">
+        <select>
+            <option value="0">00000000</option>
+            <option value="0">00000000</option>
+            <option value="0">00000000</option>
+            <option value="0">00000000</option>
+            <option value="0">00000000</option>
+            <option value="0">00000000</option>
+            <option value="0">00000000</option>
+        </select>
+        <input type="date">
+    </div>
+    <div class="dataTable">
+        <div class="titCont">
+            <div class="col1">
                 <span>期数</span>
+            </div>
+            <div class="col2">
                 <span>时间</span>
             </div>
-            <div class="right col-75 fr">
+            <div class="col3 active">
                 <span>号码</span>
+            </div>
+            <div class="col3">
                 <span>大小</span>
+            </div>
+            <div class="col3">
                 <span>单双</span>
-                <span class="active">总和</span>
+            </div>
+            <div class="col3">
+                <span>总和</span>
             </div>
         </div>
-        <div class="igk-content">
-            <div class="row item">
-                <div class="left col-25 fl">
-                    1206026 20:52
-                </div>
-                <div class="right fr col-75 clearfix">
-                    <div class="number fr rec clearfix">
-                        <span class="fontR">33</span>
-                        <span class="recRed">单</span>
-                        <span class="recBlue">大</span>
-                        <span class="recRed">龙</span>
-                        <span class="fontR">对子</span>
-                        <span class="fontD">顺子</span>
-                        <span class="fontY">半顺</span>
-                    </div>
+        <div class="mainCont row" *ngFor="let item of historyData">
+            <div class="col1">
+                <span>0000000</span>
+            </div>
+            <div class="col2">
+                <span>10:10</span>
+            </div>
+            <div class="col3">
+                <div class="item" *ngFor="let item2 of item.nums">
+                    <span>{{item2}}</span>
                 </div>
             </div>
-            <div class="row item">
-                <div class="left col-25 fl">
-                    1206026 20:52
-                </div>
-                <div class="right fr col-75 clearfix">
-                    <div class="number fr rec clearfix">
-                        <span class="fontR">33</span>
-                        <span class="recRed">单</span>
-                        <span class="recBlue">大</span>
-                        <span class="recRed">龙</span>
-                        <span class="fontR">对子</span>
-                        <span class="fontD">顺子</span>
-                        <span class="fontY">半顺</span>
-                    </div>
-                </div>
-            </div>
-            <div class="row item">
-                <div class="left col-25 fl">
-                    1206026 20:52
-                </div>
-                <div class="right fr col-75 clearfix">
-                    <div class="number fr rec clearfix">
-                        <span class="fontR">33</span>
-                        <span class="recRed">单</span>
-                        <span class="recBlue">大</span>
-                        <span class="recRed">龙</span>
-                        <span class="fontR">对子</span>
-                        <span class="fontD">顺子</span>
-                        <span class="fontY">半顺</span>
-                    </div>
-                </div>
-            </div>
+
         </div>
     </div>
 </ion-content>
