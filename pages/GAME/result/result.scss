@@ -25,7 +25,28 @@ page-result {
 .igk-table .igk-header .right span{margin:0 2px; background-color: #ccc;color: #fff;border-radius: 20px;display: inline-block;padding: 2px 10px;}
 .igk-table .igk-header .right span.active{background-color: #d83547;}
 
-
+.list:last-child {
+    margin-bottom: 0;
+}
+.list {
+    position: relative;
+    padding-top: 1px;
+    padding-bottom: 1px;
+    padding-left: 0;
+    margin-bottom: 20px;
+}
+.igk-table .igk-header {
+    font-size: 14px;
+}
+.igk-table .item {
+    margin: 0;
+    margin-top: -1px;
+    border-right: none;
+    border-left: none;
+    padding: 10px 5px;
+    min-height: 50px;
+}
+.消失{display:none;}
 /*六合彩开奖结果*/
 .liuhecai-result .game-result-content .result-list{border-bottom: 1px solid #ddd;}
 .liuhecai-result .game-result-content .result-list time{padding-right: 10px;}

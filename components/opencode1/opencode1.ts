@@ -30,7 +30,6 @@ export class Opencode1Component {
 	}
 	ngOnInit(){
 		this.getExpect(true);
-		console.log(this.gameKey)
 		if(this.gameKey=='cqssc'){
 			this.viewType = 1;
 		}else if(this.gameKey=='bjpk10'||this.gameKey=='xyft'){

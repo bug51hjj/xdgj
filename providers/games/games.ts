@@ -1157,6 +1157,7 @@ export class GamesProvider {
                     var numPrice = prizes1[num['type']][num['play_method']];
                     num['price'] = numPrice.price;
                     num['name'] = k;
+                    num['unit'] = plays[i].units[j]['name'];
                     lotteryPrizes[i].units[j].nums[k] = num;
                 }
             }

@@ -38,16 +38,6 @@ export class GameSelect_01Component {
             })
             this.unitsDatas = this.units;
         }
-        console.log(this.unitsDatas)
-        //根据传递进来的 gamekey、gameType 初始化当前显示结构
-        // for (let i = 0; i < gameDatas[this.gamekey].type.length; i++) {
-        //     if (gameDatas[this.gamekey].type[i].gameType == this.gameType) {
-        //         this.gameDataList = gameDatas[this.gamekey].type[i];
-        //     }
-        // }
-        // this.changeSelectedList.emit([]);
-        // this.getGamePrice_list();
-
     }
     getGamePrice_list() {
         // let { gamekey, gameType, gamePan } = this;
@@ -83,7 +73,7 @@ export class GameSelect_01Component {
     }
 
     cencelSelected() {  //取消所有选中项
-        
+
         let confirm = this.alertCtrl.create({
             title: '确定取消所有选中项?',
             buttons: [
