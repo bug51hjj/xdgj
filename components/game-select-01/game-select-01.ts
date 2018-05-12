@@ -15,24 +15,24 @@ import { GamesProvider } from '../../providers/games/games';
     templateUrl: 'game-select-01.html'
 })
 export class GameSelect_01Component {
-    @Input() units:any;
+    @Input() units: any;
     @Output() changeSelectedList: EventEmitter<any> = new EventEmitter();
-    @Input() gameKey:any;
+    @Input() gameKey: any;
 
-    public unitsDatas:any = {tmpl:'',units:[]};
+    public unitsDatas: any = { tmpl: '', units: [] };
     public gameDataList: any;
     public loadingMark: any = true;
     public selectedList: any = [];
     constructor(
-        public HttpService: HttpServiceProvider, 
-        public alertCtrl: AlertController, 
+        public HttpService: HttpServiceProvider,
+        public alertCtrl: AlertController,
         public dealPriceList: DealPriceListProvider,
-        public games:GamesProvider) {
+        public games: GamesProvider) {
     }
     ngOnChanges() {
-        if(this.units){
-            this.units.units.map(item=>{
-                if('nums' in item){
+        if (this.units) {
+            this.units.units.map(item => {
+                if ('nums' in item) {
                     item.nums = Object['values'](item.nums);
                 }
             })
@@ -67,13 +67,13 @@ export class GameSelect_01Component {
         // });
 
     }
-    selectItem(itemAry,index1,index2) {
+    selectItem(itemAry, index1, index2) {
         // this.unitsDatas.units[index1].nums[index2].checked = !this.unitsDatas.units[index1].nums[index2].checked;
         let tempArray = new Array();
         itemAry['checked'] = !itemAry['checked']; //选中/取消
         // //筛选选中的数据返回给调用组件的页面
         for (let i = 0; i < this.unitsDatas.units.length; i++) {
-            for(let j in this.unitsDatas.units[i].nums){
+            for (let j in this.unitsDatas.units[i].nums) {
                 if (this.unitsDatas.units[i].nums[j]['checked']) {
                     tempArray.push(this.unitsDatas.units[i].nums[j])
                 }
@@ -81,30 +81,26 @@ export class GameSelect_01Component {
         }
         this.changeSelectedList.emit(tempArray);
     }
-    selectItem2(itemAry, index1, index2, index3) {
-        console.log(itemAry, index1, index2, index3)
-        // let tempArray = new Array();
-        itemAry['checked'] = !itemAry['checked']; //选中/取消
 
-        //   //筛选选中的数据返回给调用组件的页面
-        //   for(let i=0;i<this.gameDataList.priceList.length;i++){
-        //       for(let j=0;j<this.gameDataList.priceList[i].line.length;j++){
-        //           for(let k=0;k<this.gameDataList.priceList[i].line[j].length;k++){
-        //               if(this.gameDataList.priceList[i].line[j][k]['checked']){
-        //                   tempArray.push(this.gameDataList.priceList[i].line[j])
-        //               }
-        //           }
-        //       }
-        //   }
-        //   console.log(this.gameDataList)
-        //   this.changeSelectedList.emit(tempArray);
-    }
     cencelSelected() {  //取消所有选中项
-        for (let i = 0; i < this.gameDataList.priceList.length; i++) {
-            for (let j = 0; j < this.gameDataList.priceList[i].line.length; j++) {
-                this.gameDataList.priceList[i].line[j]['checked'] = false;
-            }
-        }
-        this.changeSelectedList.emit([]);
+        
+        let confirm = this.alertCtrl.create({
+            title: '确定取消所有选中项?',
+            buttons: [
+                { text: '取消' },
+                {
+                    text: '确定',
+                    handler: () => {
+                        for (let i = 0; i < this.unitsDatas.units.length; i++) {
+                            for (let j in this.unitsDatas.units[i].nums) {
+                                this.unitsDatas.units[i].nums[j]['checked'] = false;
+                            }
+                        }
+                        this.changeSelectedList.emit([]);
+                    }
+                }
+            ]
+        });
+        confirm.present();
     }
 }

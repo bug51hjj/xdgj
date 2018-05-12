@@ -20,6 +20,7 @@ export class GameCenterPage {
 	public activeGamePan: any = 'A';  //当前选择的游戏盘区 默认A
 	public unitsData:any;
 	public selectedList: any = [];  //选中的游戏项目
+	public stop_remaining:any = {};//封盘
 	constructor(public navCtrl: NavController, 
 		public navParams: NavParams, 
 		public actionSheetCtrl: ActionSheetController,
@@ -41,6 +42,9 @@ export class GameCenterPage {
 			this.gameStructure = this.gamesProvider.getPlayPrizes(res,this.gameKey);
 			this.unitsData = this.gameStructure[this.activeGameType];
 		})
+	}
+	changeStop_remaining(e){
+		this.stop_remaining = e;
 	}
 	changeSelectedList(e) {
 		this.selectedList = e;
@@ -67,12 +71,14 @@ export class GameCenterPage {
 					text: 'A盘',
 					handler: () => {
 						this.activeGamePan = 'A';
+						this.getGamePrizes()
 					}
 				},
 				{
 					text: 'B盘',
 					handler: () => {
 						this.activeGamePan = 'B';
+						this.getGamePrizes()
 					}
 				},
 				{

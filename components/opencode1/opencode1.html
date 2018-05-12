@@ -1,19 +1,34 @@
-<div class="bj-data-num clearfix">
-	<div class="number num clearfix">
-		<time>1206026期</time>
-		<span class="ball-color-yellow">9</span>
-		<span class="ball-color-yellow">3</span>
-		<span class="ball-color-yellow">8</span>
-		<span class="ball-color-yellow">7</span>
-		<span class="ball-color-yellow">3</span>
+ <div *ngIf="viewType==1" > <!--视图类型一 用于时时彩 -->
+	<div class="bj-data-num clearfix">
+		<div class="number num clearfix">
+			<time>{{last_opencode.expect}}期</time>
+			<span class="ball-color-yellow" *ngFor="let item of last_opencode.opencode" >{{item}}</span>
+		</div>
+	</div>
+	<div class="data-content">
+		<span>{{present.expect}}期</span>
+		<span>封盘：
+			<time>{{converTime.stop_remaining}}</time>
+		</span>
+		<span class="active assertive">开奖：
+			<time>{{converTime.opentime_remaining}}</time>
+		</span>
 	</div>
 </div>
-<div class="data-content">
-	<span>1206026期</span>
-	<span>封盘：
-		<time>05:20</time>
-	</span>
-	<span class="active assertive">开奖：
-		<time>05:20</time>
-	</span>
+<div *ngIf="viewType==2" > <!--视图类型一 用于 pk10 幸运飞艇 -->
+	<div class="bj-data-num clearfix">
+		<div class="number num clearfix pk10">
+			<time>{{last_opencode.expect}}期</time>
+			<span class="number{{item}}" *ngFor="let item of last_opencode.opencode" >{{item}}</span>
+		</div>
+	</div>
+	<div class="data-content">
+		<span>{{present.expect}}期</span>
+		<span>封盘：
+			<time>{{converTime.stop_remaining}}</time>
+		</span>
+		<span class="active assertive">开奖：
+			<time>{{converTime.opentime_remaining}}</time>
+		</span>
+	</div>
 </div>

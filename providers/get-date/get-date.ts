@@ -62,5 +62,17 @@ export class GetDateProvider {
 	    var weekEndDate = new Date(this.nowYear, this.nowMonth, this.nowDay - this.nowDayOfWeek - 1);
 	    return this.formatDate(weekEndDate);
 	}
+	//秒数转分秒
+	s_to_hs(s){
+		if(s<=0){return '00:00'}
+		var h;
+		h  =   Math.floor(s/60);
+		s  =   s%60;
+		h    +=    '';
+		s    +=    '';
+		h  =   (h.length==1)?'0'+h:h;
+		s  =   (s.length==1)?'0'+s:s;
+		return h+':'+s;
+	}
 
 }
