@@ -1539,15 +1539,18 @@ export class GamesProvider {
 
     private getSscType($nums) {
         $nums = $nums.sort();
-        var $type = '杂六';
+        // var $type = '杂六';
+        var $type = {};
         if (($nums[0] == $nums[1]) && ($nums[0] == $nums[2])) {
-            $type = '豹子';
+            $type = {'name': '豹子', 'class': 'red', 'key': 'z6'};
         } else if ((($nums[1] - $nums[0]) == ($nums[2] - $nums[1])) && (($nums[1] - $nums[0]) == 1) || ($nums == Array(0, 8, 9) || $nums == Array(0, 1, 9))) {
-            $type = '顺子';
+            $type = {'name': '顺子', 'class': 'red', 'key': 'z6'};
         } else if ($nums[0] == $nums[1] || $nums[1] == $nums[2]) {
-            $type = '对子';
+            $type = {'name': '对子', 'class': 'blue', 'key': 'z6'};
         } else if (($nums[1] - $nums[0]) == 1 || ($nums[2] - $nums[1]) == 1) {
-            $type = '半顺';
+            $type = {'name': '半顺', 'class': 'blue', 'key': 'z6'};
+        } else {
+            $type = {'name': '杂六', 'class': 'green', 'key': 'z6'};
         }
         var $data = {};
         $data['总和'] = this.getArrayCount($nums);
@@ -1622,35 +1625,35 @@ export class GamesProvider {
 
     private getVingtEtUn($num1, $num2) {
         if ($num1 > $num2) {
-            return '龙'; // 龙
+            return {'name': '龙', 'class': 'red', 'key': 'dragon'};
         } else if ($num1 < $num2) {
-            return '虎'; // 虎
+            return {'name': '虎', 'class': 'blue', 'key': 'tiger'};
         } else {
-            return '和'; // 合
+            return {'name': '和', 'class': 'green', 'key': 'middle'};
         }
     }
 
     private getSingOrDoub($num, $kills = []) {
         if ($kills.indexOf($num) > -1) {
-            return '和';
+            return {'name': '和', 'class': 'green', 'key': 'middle'};
         }
 
         if ($num % 2 == 0) {
-            return '双'; // 双
+            return {'name': '双', 'class': 'blue', 'key': 'double'};
         } else {
-            return '单'; // 单
+            return {'name': '单', 'class': 'red', 'key': 'single'};
         }
     }
 
     private getBigOrSmall($num, $half, $kills = []) {
         if ($kills.indexOf($num) > -1) {
-            return '和';
+            return {'name': '和', 'class': 'green', 'key': 'middle'};
         }
 
         if ($num > $half) {
-            return '大'; // 大
+            return {'name': '大', 'class': 'red', 'key': 'big'}; // 大
         } else {
-            return '小'; // 小
+            return {'name': '小', 'class': 'blue', 'key': 'small'}; // 小
         }
     }
 
@@ -1659,11 +1662,11 @@ export class GamesProvider {
         var $blueNum = ("3,4,9,10,14,15,20,25,26,31,36,37,41,42,47,48").split(',');
         var $greenNum = ("5,6,11,16,17,21,22,27,28,32,33,38,39,43,44,49").split(',');
         if ($redNum.indexOf($num) > -1) {
-            return '红';
+            return {'name': '红', 'class': 'red', 'key': 'red'};
         } else if ($blueNum.indexOf($num) > -1) {
-            return '蓝';
+            return {'name': '蓝', 'class': 'blue', 'key': 'blue'};
         } else if ($greenNum.indexOf($num) > -1) {
-            return '绿';
+            return {'name': '绿', 'class': 'green', 'key': 'green'};
         } else {
             return '';
         }
@@ -1672,29 +1675,29 @@ export class GamesProvider {
     private getLhcZodiac($num) {
         switch ($num % 12) {
             case 1:
-                return '狗';
+                return {'name': '狗', 'class': '', 'key': ''};
             case 2:
-                return '鸡';
+                return {'name': '鸡', 'class': '', 'key': ''};
             case 3:
-                return '猴';
+                return {'name': '猴', 'class': '', 'key': ''};
             case 4:
-                return '羊';
+                return {'name': '羊', 'class': '', 'key': ''};
             case 5:
-                return '马';
+                return {'name': '马', 'class': '', 'key': ''};
             case 6:
-                return '蛇';
+                return {'name': '蛇', 'class': '', 'key': ''};
             case 7:
-                return '龙';
+                return {'name': '龙', 'class': '', 'key': ''};
             case 8:
-                return '兔';
+                return {'name': '兔', 'class': '', 'key': ''};
             case 9:
-                return '虎';
+                return {'name': '虎', 'class': '', 'key': ''};
             case 10:
-                return '牛';
+                return {'name': '牛', 'class': '', 'key': ''};
             case 11:
-                return '鼠';
+                return {'name': '鼠', 'class': '', 'key': ''};
             case 0:
-                return '猪';
+                return {'name': '猪', 'class': '', 'key': ''};
         }
     }
 
