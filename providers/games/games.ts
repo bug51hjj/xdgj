@@ -1,6 +1,5 @@
 import {HttpClient} from '@angular/common/http';
 import {Injectable} from '@angular/core';
-
 /*
  Generated class for the GamesProvider provider.
 
@@ -9,7 +8,6 @@ import {Injectable} from '@angular/core';
  */
 @Injectable()
 export class GamesProvider {
-
     constructor(public http: HttpClient) {
         console.log('Hello GamesProvider Provider');
     }
@@ -51,7 +49,6 @@ export class GamesProvider {
                 'type_name': priceItem['type_name'],
                 'line': {},
             };
-
             for (var j = 0; j < priceItem.line.length; j++) {
                 var priceLine = priceItem.line[j];
                 datas[priceItem['type']][priceLine['play_method']] = priceLine;
@@ -66,6 +63,102 @@ export class GamesProvider {
      */
     private getLotteryPlays() {
         var plays = {};
+        plays['ssctf'] = [
+            {
+                'name': '番摊', 'tmpl': 'column', 'units': [
+                {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_1', 'a', 1)},
+                {'name': '正', 'func': 'idx', 'nums': this.getPlayUnitByStr("1正,2正,3正,4正", 'ball_2', 'b', 1)},
+                {'name': '番', 'func': 'idx', 'nums': this.getPlayUnitByStr("1番,2番,3番,4番", 'ball_3', 'c', 1)},
+                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,4-1角", 'ball_4', 'd', 1)},
+                {
+                    'name': '念',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_5', 'e', 1)
+                },
+                {'name': '三门', 'func': 'idx', 'nums': this.getPlayUnitByStr("123门,124门,234门,134门", 'ball_6', 'f', 1)},
+                {
+                    'name': '通',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("23一通,24一通,34一通,13二通,14二通,34二通,12三通,14三通,24三通,12四通,13四通,23四通", 'ball_7', 'g', 1)
+                },
+            ]
+            },
+        ];
+        plays['pk10ft'] = [
+            {
+                'name': '前三', 'tmpl': 'column', 'units': [
+                {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_1', 'a', 1)},
+                {'name': '正', 'func': 'idx', 'nums': this.getPlayUnitByStr("1正,2正,3正,4正", 'ball_2', 'b', 1)},
+                {'name': '番', 'func': 'idx', 'nums': this.getPlayUnitByStr("1番,2番,3番,4番", 'ball_3', 'c', 1)},
+                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,4-1角", 'ball_4', 'd', 1)},
+                {
+                    'name': '念',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_5', 'e', 1)
+                },
+                {'name': '三门', 'func': 'idx', 'nums': this.getPlayUnitByStr("123门,124门,234门,134门", 'ball_6', 'f', 1)},
+                {
+                    'name': '通',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("23一通,24一通,34一通,13二通,14二通,34二通,12三通,14三通,24三通,12四通,13四通,23四通", 'ball_7', 'g', 1)
+                },]
+            },
+            {
+                'name': '中三', 'tmpl': 'column', 'units': [
+                {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_8', 'i', 1)},
+                {'name': '正', 'func': 'idx', 'nums': this.getPlayUnitByStr("1正,2正,3正,4正", 'ball_9', 'j', 1)},
+                {'name': '番', 'func': 'idx', 'nums': this.getPlayUnitByStr("1番,2番,3番,4番", 'ball_10', 'k', 1)},
+                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,4-1角", 'ball_11', 'l', 1)},
+                {
+                    'name': '念',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_12', 'm', 1)
+                },
+                {'name': '三门', 'func': 'idx', 'nums': this.getPlayUnitByStr("123门,124门,234门,134门", 'ball_13', 'n', 1)},
+                {
+                    'name': '通',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("23一通,24一通,34一通,13二通,14二通,34二通,12三通,14三通,24三通,12四通,13四通,23四通", 'ball_14', 'o', 1)
+                },]
+            },
+            {
+                'name': '后三', 'tmpl': 'column', 'units': [
+                {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_15', 'p', 1)},
+                {'name': '正', 'func': 'idx', 'nums': this.getPlayUnitByStr("1正,2正,3正,4正", 'ball_16', 'q', 1)},
+                {'name': '番', 'func': 'idx', 'nums': this.getPlayUnitByStr("1番,2番,3番,4番", 'ball_17', 'r', 1)},
+                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,4-1角", 'ball_18', 's', 1)},
+                {
+                    'name': '念',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_19', 't', 1)
+                },
+                {'name': '三门', 'func': 'idx', 'nums': this.getPlayUnitByStr("123门,124门,234门,134门", 'ball_20', 'u', 1)},
+                {
+                    'name': '通',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("23一通,24一通,34一通,13二通,14二通,34二通,12三通,14三通,24三通,12四通,13四通,23四通", 'ball_21', 'v', 1)
+                },]
+            },
+            {
+                'name': '综合过关', 'tmpl': 'column', 'units': [
+                {
+                    'name': '前三',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("1番,2番,3番,4番,1正,2正,3正,4正,1-2角,2-3角,3-4角,1-4角,1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'guoguan', 'gg1_', 1)
+                },
+                {
+                    'name': '中三',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("1番,2番,3番,4番,1正,2正,3正,4正,1-2角,2-3角,3-4角,1-4角,1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'guoguan', 'gg2_', 1)
+                },
+                {
+                    'name': '后三',
+                    'func': 'idx',
+                    'nums': this.getPlayUnitByStr("1番,2番,3番,4番,1正,2正,3正,4正,1-2角,2-3角,3-4角,1-4角,1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'guoguan', 'gg3_', 1)
+                },
+            ]
+            },
+        ];
         plays['ssc'] = [
             {
                 'name': '1~5', 'tmpl': 'column', 'units': [
@@ -156,7 +249,6 @@ export class GamesProvider {
                 ],
             },
         ];
-
         plays['pk10'] = [
             {
                 'name': '1~10', 'tmpl': 'column', 'units': [
@@ -339,7 +431,6 @@ export class GamesProvider {
                 ],
             },
         ];
-
         plays['lhc'] = [
             {
                 'name': '特码', 'tmpl': 'list', 'units': [
@@ -584,68 +675,68 @@ export class GamesProvider {
                 'name': '过关', 'tmpl': 'enum_lhc_gg', 'units': [
                 {
                     'name': '正码1', 'func': 'idx', 'nums': {
-                    '大': {'type': 'guoguan', 'play_method': 'guoguan1_da','seGroup':1},
-                    '小': {'type': 'guoguan', 'play_method': 'guoguan1_xiao','seGroup':1},
-                    '单': {'type': 'guoguan', 'play_method': 'guoguan1_dan','seGroup':2},
-                    '双': {'type': 'guoguan', 'play_method': 'guoguan1_shuang','seGroup':2},
-                    '红波': {'type': 'guoguan', 'play_method': 'guoguan1_red','seGroup':3},
-                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan1_green','seGroup':3},
-                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan1_blue','seGroup':3},
+                    '大': {'type': 'guoguan', 'play_method': 'guoguan1_da', 'seGroup': 1},
+                    '小': {'type': 'guoguan', 'play_method': 'guoguan1_xiao', 'seGroup': 1},
+                    '单': {'type': 'guoguan', 'play_method': 'guoguan1_dan', 'seGroup': 2},
+                    '双': {'type': 'guoguan', 'play_method': 'guoguan1_shuang', 'seGroup': 2},
+                    '红波': {'type': 'guoguan', 'play_method': 'guoguan1_red', 'seGroup': 3},
+                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan1_green', 'seGroup': 3},
+                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan1_blue', 'seGroup': 3},
                 }
                 },
                 {
                     'name': '正码2', 'func': 'idx', 'nums': {
-                    '大': {'type': 'guoguan', 'play_method': 'guoguan2_da','seGroup':1},
-                    '小': {'type': 'guoguan', 'play_method': 'guoguan2_xiao','seGroup':1},
-                    '单': {'type': 'guoguan', 'play_method': 'guoguan2_dan','seGroup':2},
-                    '双': {'type': 'guoguan', 'play_method': 'guoguan2_shuang','seGroup':2},
-                    '红波': {'type': 'guoguan', 'play_method': 'guoguan2_red','seGroup':3},
-                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan2_green','seGroup':3},
-                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan2_blue','seGroup':3},
+                    '大': {'type': 'guoguan', 'play_method': 'guoguan2_da', 'seGroup': 1},
+                    '小': {'type': 'guoguan', 'play_method': 'guoguan2_xiao', 'seGroup': 1},
+                    '单': {'type': 'guoguan', 'play_method': 'guoguan2_dan', 'seGroup': 2},
+                    '双': {'type': 'guoguan', 'play_method': 'guoguan2_shuang', 'seGroup': 2},
+                    '红波': {'type': 'guoguan', 'play_method': 'guoguan2_red', 'seGroup': 3},
+                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan2_green', 'seGroup': 3},
+                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan2_blue', 'seGroup': 3},
                 }
                 },
                 {
                     'name': '正码3', 'func': 'idx', 'nums': {
-                    '大': {'type': 'guoguan', 'play_method': 'guoguan3_da','seGroup':1},
-                    '小': {'type': 'guoguan', 'play_method': 'guoguan3_xiao','seGroup':1},
-                    '单': {'type': 'guoguan', 'play_method': 'guoguan3_dan','seGroup':2},
-                    '双': {'type': 'guoguan', 'play_method': 'guoguan3_shuang','seGroup':2},
-                    '红波': {'type': 'guoguan', 'play_method': 'guoguan3_red','seGroup':3},
-                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan3_green','seGroup':3},
-                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan3_blue','seGroup':3},
+                    '大': {'type': 'guoguan', 'play_method': 'guoguan3_da', 'seGroup': 1},
+                    '小': {'type': 'guoguan', 'play_method': 'guoguan3_xiao', 'seGroup': 1},
+                    '单': {'type': 'guoguan', 'play_method': 'guoguan3_dan', 'seGroup': 2},
+                    '双': {'type': 'guoguan', 'play_method': 'guoguan3_shuang', 'seGroup': 2},
+                    '红波': {'type': 'guoguan', 'play_method': 'guoguan3_red', 'seGroup': 3},
+                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan3_green', 'seGroup': 3},
+                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan3_blue', 'seGroup': 3},
                 }
                 },
                 {
                     'name': '正码4', 'func': 'idx', 'nums': {
-                    '大': {'type': 'guoguan', 'play_method': 'guoguan4_da','seGroup':1},
-                    '小': {'type': 'guoguan', 'play_method': 'guoguan4_xiao','seGroup':1},
-                    '单': {'type': 'guoguan', 'play_method': 'guoguan4_dan','seGroup':2},
-                    '双': {'type': 'guoguan', 'play_method': 'guoguan4_shuang','seGroup':2},
-                    '红波': {'type': 'guoguan', 'play_method': 'guoguan4_red','seGroup':3},
-                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan4_green','seGroup':3},
-                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan4_blue','seGroup':3},
+                    '大': {'type': 'guoguan', 'play_method': 'guoguan4_da', 'seGroup': 1},
+                    '小': {'type': 'guoguan', 'play_method': 'guoguan4_xiao', 'seGroup': 1},
+                    '单': {'type': 'guoguan', 'play_method': 'guoguan4_dan', 'seGroup': 2},
+                    '双': {'type': 'guoguan', 'play_method': 'guoguan4_shuang', 'seGroup': 2},
+                    '红波': {'type': 'guoguan', 'play_method': 'guoguan4_red', 'seGroup': 3},
+                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan4_green', 'seGroup': 3},
+                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan4_blue', 'seGroup': 3},
                 }
                 },
                 {
                     'name': '正码5', 'func': 'idx', 'nums': {
-                    '大': {'type': 'guoguan', 'play_method': 'guoguan5_da','seGroup':1},
-                    '小': {'type': 'guoguan', 'play_method': 'guoguan5_xiao','seGroup':1},
-                    '单': {'type': 'guoguan', 'play_method': 'guoguan5_dan','seGroup':2},
-                    '双': {'type': 'guoguan', 'play_method': 'guoguan5_shuang','seGroup':2},
-                    '红波': {'type': 'guoguan', 'play_method': 'guoguan5_red','seGroup':3},
-                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan5_green','seGroup':3},
-                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan5_blue','seGroup':3},
+                    '大': {'type': 'guoguan', 'play_method': 'guoguan5_da', 'seGroup': 1},
+                    '小': {'type': 'guoguan', 'play_method': 'guoguan5_xiao', 'seGroup': 1},
+                    '单': {'type': 'guoguan', 'play_method': 'guoguan5_dan', 'seGroup': 2},
+                    '双': {'type': 'guoguan', 'play_method': 'guoguan5_shuang', 'seGroup': 2},
+                    '红波': {'type': 'guoguan', 'play_method': 'guoguan5_red', 'seGroup': 3},
+                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan5_green', 'seGroup': 3},
+                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan5_blue', 'seGroup': 3},
                 }
                 },
                 {
                     'name': '正码6', 'func': 'idx', 'nums': {
-                    '大': {'type': 'guoguan', 'play_method': 'guoguan6_da','seGroup':1},
-                    '小': {'type': 'guoguan', 'play_method': 'guoguan6_xiao','seGroup':1},
-                    '单': {'type': 'guoguan', 'play_method': 'guoguan6_dan','seGroup':2},
-                    '双': {'type': 'guoguan', 'play_method': 'guoguan6_shuang','seGroup':2},
-                    '红波': {'type': 'guoguan', 'play_method': 'guoguan6_red','seGroup':3},
-                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan6_green','seGroup':3},
-                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan6_blue','seGroup':3},
+                    '大': {'type': 'guoguan', 'play_method': 'guoguan6_da', 'seGroup': 1},
+                    '小': {'type': 'guoguan', 'play_method': 'guoguan6_xiao', 'seGroup': 1},
+                    '单': {'type': 'guoguan', 'play_method': 'guoguan6_dan', 'seGroup': 2},
+                    '双': {'type': 'guoguan', 'play_method': 'guoguan6_shuang', 'seGroup': 2},
+                    '红波': {'type': 'guoguan', 'play_method': 'guoguan6_red', 'seGroup': 3},
+                    '绿波': {'type': 'guoguan', 'play_method': 'guoguan6_green', 'seGroup': 3},
+                    '蓝波': {'type': 'guoguan', 'play_method': 'guoguan6_blue', 'seGroup': 3},
                 }
                 },
             ]
@@ -700,7 +791,6 @@ export class GamesProvider {
                     '绿小': {'type': 'halfball', 'play_method': 'halfball_greenxiao'},
                     '绿单': {'type': 'halfball', 'play_method': 'halfball_greendan'},
                     '绿双': {'type': 'halfball', 'play_method': 'halfball_greenshuang'},
-
                     '红合单': {'type': 'halfball', 'play_method': 'halfball_redhedan'},
                     '红合双': {'type': 'halfball', 'play_method': 'halfball_redheshuang'},
                     '蓝合单': {'type': 'halfball', 'play_method': 'halfball_bluehedan'},
@@ -921,7 +1011,6 @@ export class GamesProvider {
             },
             {
                 'name': '连肖中', 'tmpl': 'list', 'units': [
-
                 {
                     'name': '二肖连中', 'func': 'comb_2_2', 'nums': {
                     '鼠': {'type': 'lian_zoudiac2', 'play_method': 'lian_zoudiac2_shu'},
@@ -1117,7 +1206,6 @@ export class GamesProvider {
             ]
             },
         ];
-
         return plays;
     }
 
@@ -1189,7 +1277,6 @@ export class GamesProvider {
         return nums;
     }
 
-
     // private kl8($nums)
     // {
     //   var $idxs = [
@@ -1259,7 +1346,6 @@ export class GamesProvider {
     //
     //   return $codes;
     // }
-
     // private pc28($nums)
     // {
     //   unset($nums[3]);
@@ -1282,7 +1368,6 @@ export class GamesProvider {
     //   $codes['总和']['和'] = in_array($codes['总和']['总和'], Array(13, 14));
     //   return $codes;
     // }
-
     // private k3($nums)
     // {
     //   $idxs = Array(
@@ -1305,146 +1390,143 @@ export class GamesProvider {
     //
     //   return $codes;
     // }
-
-//   private kl10($nums)
-//   {
-//     $idxs = Array(
-//       '第1球',
-//       '第2球',
-//       '第3球',
-//       '第4球',
-//       '第5球',
-//       '第6球',
-//       '第7球',
-//       '第8球',
-//     );
-//     $codes = Array();
-//     foreach ($nums as $i => $num) {
-//     $num = intval($num);
-//     $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
-//     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小，>10大；<=10小
-//     $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
-//
-//     if ($num % 10 > 4) {
-//       $codes[$idxs[$i]]['尾数大小'] = '尾大';
-//     } else {
-//       $codes[$idxs[$i]]['尾数大小'] = '尾小';
-//     }
-//
-//     if ($num <= 7) {
-//       $codes[$idxs[$i]]['中发白'] = '中';
-//     } elseif ($num > 7 && $num <= 14) {
-//       $codes[$idxs[$i]]['中发白'] = '发';
-//     } else {
-//       $codes[$idxs[$i]]['中发白'] = '白';
-//     }
-//
-//     switch ($num % 4) {
-//       case 0:
-//         $codes[$idxs[$i]]['方位'] = '北';
-//         break;
-//       case 1:
-//         $codes[$idxs[$i]]['方位'] = '东';
-//         break;
-//       case 2:
-//         $codes[$idxs[$i]]['方位'] = '南';
-//         break;
-//       case 3:
-//         $codes[$idxs[$i]]['方位'] = '西';
-//         break;
-//     }
-//   }
-//     $allSum = array_sum($nums);
-//     $codes['总和']['总和'] = $allSum; // 总和-数字
-//     $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
-//     $codes['总和']['大小'] = this.getBigOrSmall($allSum, 83, Array(84)); // 总和-大小
-//
-//     if ($allSum % 10 > 4) {
-//       $codes['总和']['尾数大小'] = '尾大';
-//     } else {
-//       $codes['总和']['尾数大小'] = '尾小';
-//     }
-// //        if ($allSum % 10 % 2 == 0) {
-// //            $codes['总和']['尾数单双'] = '尾双';
-// //        } else {
-// //            $codes['总和']['尾数单双'] = '尾单';
-// //        }
-//     $codes['龙虎']['龙虎'] = this.getVingtEtUn($nums[0], $nums[7]); // 总和-龙虎
-//     return $codes;
-//   }
-
-//   private xync($nums)
-//   {
-//     $idxs = Array(
-//       '第1球',
-//       '第2球',
-//       '第3球',
-//       '第4球',
-//       '第5球',
-//       '第6球',
-//       '第7球',
-//       '第8球',
-//     );
-//     $codes = Array();
-//     foreach ($nums as $i => $num) {
-//     $num = intval($num);
-//     $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
-//     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小，>10大；<=10小
-//     $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
-//
-//     if ($num % 10 > 4) {
-//       $codes[$idxs[$i]]['尾数大小'] = '尾大';
-//     } else {
-//       $codes[$idxs[$i]]['尾数大小'] = '尾小';
-//     }
-//
-//     if ($num <= 7) {
-//       $codes[$idxs[$i]]['中发白'] = '中';
-//     } elseif ($num > 7 && $num <= 14) {
-//       $codes[$idxs[$i]]['中发白'] = '发';
-//     } else {
-//       $codes[$idxs[$i]]['中发白'] = '白';
-//     }
-//
-//     switch ($num % 4) {
-//       case 0:
-//         $codes[$idxs[$i]]['梅兰竹菊'] = '北';
-//         break;
-//       case 1:
-//         $codes[$idxs[$i]]['梅兰竹菊'] = '东';
-//         break;
-//       case 2:
-//         $codes[$idxs[$i]]['梅兰竹菊'] = '南';
-//         break;
-//       case 3:
-//         $codes[$idxs[$i]]['梅兰竹菊'] = '西';
-//         break;
-//     }
-//   }
-//     $allSum = array_sum($nums);
-//     $codes['总和']['总和'] = $allSum; // 总和-数字
-//     $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
-//     $codes['总和']['大小'] = this.getBigOrSmall($allSum, 83, Array(84)); // 总和-大小
-//
-//     if ($allSum % 10 > 4) {
-//       $codes['总和']['尾数大小'] = '尾大';
-//     } else {
-//       $codes['总和']['尾数大小'] = '尾小';
-//     }
-// //        if ($allSum % 10 % 2 == 0) {
-// //            $codes['总和']['尾数单双'] = '尾双';
-// //        } else {
-// //            $codes['总和']['尾数单双'] = '尾单';
-// //        }
-//     if ($nums[0] > $nums[7]) {
-//       $codes['家禽野兽']['家禽野兽'] = '家禽';
-//     } else {
-//       $codes['家禽野兽']['家禽野兽'] = '野兽';
-//     }
-// //        $codes['家禽野兽']['家禽野兽'] = this.getVingtEtUn($nums[0], $nums[7]); // 总和-龙虎
-//     return $codes;
-//   }
-
+    //   private kl10($nums)
+    //   {
+    //     $idxs = Array(
+    //       '第1球',
+    //       '第2球',
+    //       '第3球',
+    //       '第4球',
+    //       '第5球',
+    //       '第6球',
+    //       '第7球',
+    //       '第8球',
+    //     );
+    //     $codes = Array();
+    //     foreach ($nums as $i => $num) {
+    //     $num = intval($num);
+    //     $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+    //     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小，>10大；<=10小
+    //     $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+    //
+    //     if ($num % 10 > 4) {
+    //       $codes[$idxs[$i]]['尾数大小'] = '尾大';
+    //     } else {
+    //       $codes[$idxs[$i]]['尾数大小'] = '尾小';
+    //     }
+    //
+    //     if ($num <= 7) {
+    //       $codes[$idxs[$i]]['中发白'] = '中';
+    //     } elseif ($num > 7 && $num <= 14) {
+    //       $codes[$idxs[$i]]['中发白'] = '发';
+    //     } else {
+    //       $codes[$idxs[$i]]['中发白'] = '白';
+    //     }
+    //
+    //     switch ($num % 4) {
+    //       case 0:
+    //         $codes[$idxs[$i]]['方位'] = '北';
+    //         break;
+    //       case 1:
+    //         $codes[$idxs[$i]]['方位'] = '东';
+    //         break;
+    //       case 2:
+    //         $codes[$idxs[$i]]['方位'] = '南';
+    //         break;
+    //       case 3:
+    //         $codes[$idxs[$i]]['方位'] = '西';
+    //         break;
+    //     }
+    //   }
+    //     $allSum = array_sum($nums);
+    //     $codes['总和']['总和'] = $allSum; // 总和-数字
+    //     $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
+    //     $codes['总和']['大小'] = this.getBigOrSmall($allSum, 83, Array(84)); // 总和-大小
+    //
+    //     if ($allSum % 10 > 4) {
+    //       $codes['总和']['尾数大小'] = '尾大';
+    //     } else {
+    //       $codes['总和']['尾数大小'] = '尾小';
+    //     }
+    // //        if ($allSum % 10 % 2 == 0) {
+    // //            $codes['总和']['尾数单双'] = '尾双';
+    // //        } else {
+    // //            $codes['总和']['尾数单双'] = '尾单';
+    // //        }
+    //     $codes['龙虎']['龙虎'] = this.getVingtEtUn($nums[0], $nums[7]); // 总和-龙虎
+    //     return $codes;
+    //   }
+    //   private xync($nums)
+    //   {
+    //     $idxs = Array(
+    //       '第1球',
+    //       '第2球',
+    //       '第3球',
+    //       '第4球',
+    //       '第5球',
+    //       '第6球',
+    //       '第7球',
+    //       '第8球',
+    //     );
+    //     $codes = Array();
+    //     foreach ($nums as $i => $num) {
+    //     $num = intval($num);
+    //     $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
+    //     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小，>10大；<=10小
+    //     $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
+    //
+    //     if ($num % 10 > 4) {
+    //       $codes[$idxs[$i]]['尾数大小'] = '尾大';
+    //     } else {
+    //       $codes[$idxs[$i]]['尾数大小'] = '尾小';
+    //     }
+    //
+    //     if ($num <= 7) {
+    //       $codes[$idxs[$i]]['中发白'] = '中';
+    //     } elseif ($num > 7 && $num <= 14) {
+    //       $codes[$idxs[$i]]['中发白'] = '发';
+    //     } else {
+    //       $codes[$idxs[$i]]['中发白'] = '白';
+    //     }
+    //
+    //     switch ($num % 4) {
+    //       case 0:
+    //         $codes[$idxs[$i]]['梅兰竹菊'] = '北';
+    //         break;
+    //       case 1:
+    //         $codes[$idxs[$i]]['梅兰竹菊'] = '东';
+    //         break;
+    //       case 2:
+    //         $codes[$idxs[$i]]['梅兰竹菊'] = '南';
+    //         break;
+    //       case 3:
+    //         $codes[$idxs[$i]]['梅兰竹菊'] = '西';
+    //         break;
+    //     }
+    //   }
+    //     $allSum = array_sum($nums);
+    //     $codes['总和']['总和'] = $allSum; // 总和-数字
+    //     $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
+    //     $codes['总和']['大小'] = this.getBigOrSmall($allSum, 83, Array(84)); // 总和-大小
+    //
+    //     if ($allSum % 10 > 4) {
+    //       $codes['总和']['尾数大小'] = '尾大';
+    //     } else {
+    //       $codes['总和']['尾数大小'] = '尾小';
+    //     }
+    // //        if ($allSum % 10 % 2 == 0) {
+    // //            $codes['总和']['尾数单双'] = '尾双';
+    // //        } else {
+    // //            $codes['总和']['尾数单双'] = '尾单';
+    // //        }
+    //     if ($nums[0] > $nums[7]) {
+    //       $codes['家禽野兽']['家禽野兽'] = '家禽';
+    //     } else {
+    //       $codes['家禽野兽']['家禽野兽'] = '野兽';
+    //     }
+    // //        $codes['家禽野兽']['家禽野兽'] = this.getVingtEtUn($nums[0], $nums[7]); // 总和-龙虎
+    //     return $codes;
+    //   }
     private ssc($nums) {
         var $idxs = [
             '第1球',
@@ -1456,15 +1538,14 @@ export class GamesProvider {
         var $codes = {};
         for (var $i in $nums) {
             var $num = parseInt($nums[$i]);
-            $codes[$idxs[$i]]={};
+            $codes[$idxs[$i]] = {};
             $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
             $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
             $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
         }
-
         var $allSum = this.getArrayCount($nums);
-        $codes['总和']={};
-        $codes['龙虎']={};
+        $codes['总和'] = {};
+        $codes['龙虎'] = {};
         $codes['总和']['总和'] = $allSum; // 总和-数字
         $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
         $codes['总和']['大小'] = this.getBigOrSmall($allSum, 22); // 总和-大小
@@ -1492,19 +1573,18 @@ export class GamesProvider {
         var $codes = {};
         for (var $i in $nums) {
             var $num = parseInt($nums[$i]);
-            $codes[$idxs[$i]]={};
+            $codes[$idxs[$i]] = {};
             $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
             $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 4); // 定位-大小
             $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
         }
-
         $codes['冠军']['龙虎'] = this.getVingtEtUn($nums[0], $nums[9]); // 定位1-龙虎
         $codes['亚军']['龙虎'] = this.getVingtEtUn($nums[1], $nums[8]); // 定位2-龙虎
         $codes['第3名']['龙虎'] = this.getVingtEtUn($nums[2], $nums[7]); // 定位3-龙虎
         $codes['第4名']['龙虎'] = this.getVingtEtUn($nums[3], $nums[6]); // 定位4-龙虎
         $codes['第5名']['龙虎'] = this.getVingtEtUn($nums[4], $nums[5]); // 定位5-龙虎
         var $count_gyh = $nums[0] + $nums[1];
-        $codes['冠亚和']={};
+        $codes['冠亚和'] = {};
         $codes['冠亚和']['总和'] = $count_gyh; // 冠亚和-数字
         $codes['冠亚和']['大小'] = this.getBigOrSmall($count_gyh, 11); // 冠亚和-大小
         $codes['冠亚和']['单双'] = this.getSingOrDoub($count_gyh); // 冠亚和-单双
@@ -1524,14 +1604,13 @@ export class GamesProvider {
         var $codes = {};
         for (var $i in $nums) {
             var $num = parseInt($nums[$i]);
-            $codes[$idxs[$i]]={};
+            $codes[$idxs[$i]] = {};
             $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
             $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 23); // 定位-大小
             $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
             $codes[$idxs[$i]]['波色'] = this.getLhcColor($num); // 定位-波色
             $codes[$idxs[$i]]['生肖'] = this.getLhcZodiac($num); // 定位-生肖
         }
-
         // $codes['冠军']['龙虎'] = this.getVingtEtUn($nums[0], $nums[9]); // 定位1-龙虎
         // $codes['亚军']['龙虎'] = this.getVingtEtUn($nums[1], $nums[8]); // 定位2-龙虎
         // $codes['第3名']['龙虎'] = this.getVingtEtUn($nums[2], $nums[7]); // 定位3-龙虎
@@ -1592,7 +1671,6 @@ export class GamesProvider {
     //   return $data;
     //
     // }
-
     // private getKl8WX($num)
     // {
     //   if ($num >= 210 && $num <= 695) {
@@ -1609,7 +1687,6 @@ export class GamesProvider {
     //   return '和';
     // }
     // }
-
     // private getK3Mult($nums)
     // {
     //   $nums = array_values(array_sort($nums));
@@ -1629,7 +1706,6 @@ export class GamesProvider {
     //   return Array();
     // }
     // }
-
     private getVingtEtUn($num1, $num2) {
         if ($num1 > $num2) {
             return {'name': '龙', 'class': 'red', 'key': 'dragon'};
@@ -1644,7 +1720,6 @@ export class GamesProvider {
         if ($kills.indexOf($num) > -1) {
             return {'name': '和', 'class': 'green', 'key': 'middle'};
         }
-
         if ($num % 2 == 0) {
             return {'name': '双', 'class': 'blue', 'key': 'double'};
         } else {
@@ -1656,12 +1731,35 @@ export class GamesProvider {
         if ($kills.indexOf($num) > -1) {
             return {'name': '和', 'class': 'green', 'key': 'middle'};
         }
-
         if ($num > $half) {
             return {'name': '大', 'class': 'red', 'key': 'big'}; // 大
         } else {
             return {'name': '小', 'class': 'blue', 'key': 'small'}; // 小
         }
+    }
+
+    getLhcNums($code) {
+        var codeNums = {
+            '红波': ("1,2,7,8,12,13,18,19,23,24,29,30,34,35,40,45,46").split(','),
+            '蓝波': ("3,4,9,10,14,15,20,25,26,31,36,37,41,42,47,48").split(','),
+            '绿波': ("5,6,11,16,17,21,22,27,28,32,33,38,39,43,44,49").split(','),
+
+            '红大': ("29,30,34,35,40,45,46").split(','),
+            '红小': ("1,2,7,8,12,13,18,19,23,24").split(','),
+            '红单': ("1,7,13,19,23,29,35,45").split(','),
+            '红双': ("2,8,12,18,24,30,34,40,46").split(','),
+
+            '蓝大': ("25,26,31,36,37,41,42,47,48").split(','),
+            '蓝小': ("3,4,9,10,14,15,20").split(','),
+            '蓝单': ("3,9,15,25,31,37,41,47").split(','),
+            '蓝双': ("4,10,14,20,26,36,42,48").split(','),
+
+            '绿大': ("27,28,32,33,38,39,43,44,49").split(','),
+            '绿小': ("5,6,11,16,17,21,22").split(','),
+            '绿单': ("5,11,17,21,27,33,39,43,49").split(','),
+            '绿双': ("6,16,22,28,32,38,44").split(','),
+        };
+        return codeNums[$code];
     }
 
     private getLhcColor($num) {
