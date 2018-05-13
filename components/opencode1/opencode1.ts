@@ -11,7 +11,8 @@ export class Opencode1Component {
 	private LoginPage:any = LoginPage;
 	private timer;
 	public present:any = {"expect": "","now": "","opentime": "","opentime_remaining": "","opentimestamp": "","start_buytime": "","start_buytimestamp": "","start_remaining": "stop_buytime","":"","stop_buytimestamp":"","stop_remaining":""};
-	public last_opencode:any = {expect:'',opencode:'',opentime:'',opentimestamp:''};
+	public last_opencode:any = {expect:'',opencode:'',opentime:'',opentimestamp:'',zodiac:[]};
+	public last_opencode_way:any = true;
 	public converTime:any = {
 		opentime_remaining:'',
 		stop_remaining:''
@@ -34,14 +35,15 @@ export class Opencode1Component {
 			this.viewType = 1;
 		}else if(this.gameKey=='bjpk10'||this.gameKey=='xyft'){
 			this.viewType = 2;
-		}else{
-			this.viewType = 1;
+		}else if(this.gameKey=='hklhc'){
+			this.viewType = 3;
 		}
 	}
 	ngAfterViewInit(){
 		this.timer = setInterval(() => {
 			this.getExpect(false);
 		}, 1000);
+		// console.log(this.getDate.s_to_dhms(1147))
 	}
 	getExpect(init){
 		let token = window.localStorage.getItem('token');
@@ -51,13 +53,24 @@ export class Opencode1Component {
 		this.HttpService.get(url).subscribe((res: Response) => {
 			if(init){loader.dismiss()}
 			if(res['errorcode']==0){
-				res['last_opencode'].opencode = res['last_opencode'].opencode.split(',');
-				this.converTime.opentime_remaining = this.getDate.s_to_hs(res['present'].opentime_remaining);
-				this.converTime.stop_remaining = this.getDate.s_to_hs(res['present'].stop_remaining);
-				this.changeStop_remaining.emit(res['present'].stop_remaining);
-				this.setExpect.emit(this.present.expect);
-				this.present = res['present'];
-				this.last_opencode = res['last_opencode'];
+				if(this.gameKey=="cqssc"||this.gameKey=="bjpk10"||this.gameKey=="xyft"){
+					res['last_opencode'].opencode = res['last_opencode'].opencode.split(',');
+					this.converTime.opentime_remaining = this.getDate.s_to_hs(res['present'].opentime_remaining);
+					this.converTime.stop_remaining = this.getDate.s_to_hs(res['present'].stop_remaining);
+					this.changeStop_remaining.emit(res['present'].stop_remaining);
+					this.setExpect.emit(this.present.expect);
+					this.present = res['present'];
+					this.last_opencode = res['last_opencode'];
+				}else if(this.gameKey=='hklhc'){
+					res['last_opencode'].opencode = res['last_opencode'].opencode.split(',');
+					res['last_opencode'].zodiac = res['last_opencode'].zodiac.split(',');
+					this.converTime.opentime_remaining = this.getDate.s_to_dhms(res['present'].opentime_remaining);
+					this.converTime.stop_remaining = this.getDate.s_to_dhms(res['present'].stop_remaining);
+					this.changeStop_remaining.emit(res['present'].stop_remaining);
+					this.setExpect.emit(this.present.expect);
+					this.present = res['present'];
+					this.last_opencode = res['last_opencode'];
+				}
 			}else{
 				clearInterval(this.timer);
 				this.httpErrorHandle(res);
@@ -68,6 +81,9 @@ export class Opencode1Component {
 		if (this.timer) {
 		 	clearInterval(this.timer);
 		}
+	}
+	changeLast_opencode_way(){
+		this.last_opencode_way = !this.last_opencode_way;
 	}
 	httpErrorHandle(result) {
 		let errorcode = result.errorcode;

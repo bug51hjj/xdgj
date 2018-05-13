@@ -14,16 +14,20 @@ page-result {
     background-color: #fff;
     input{
         flex: 1;
+        padding: 0 10px;
         height: 36px;
         border-radius: 3px;
         border: 1px solid #ccc;
+        background-color: #fff;
     }
     select{
         flex: 1;
+        padding: 0 10px;
         height: 36px;
         margin-right: 20px;
         border-radius: 3px;
         border: 1px solid #ccc; 
+        background-color: #fff;
     }
 }
 .dataTable{
@@ -36,12 +40,12 @@ page-result {
         border-bottom: 1px solid #ededed;
         font-size: 13px;
         .col1{
-            width: 70px;
+            width: 100px;
             padding-left: 10px;
             color: #666;
         }
         .col2{
-            width: 70px;
+            width: 55px;
             padding-left: 5px;
             color: #666;
         }
@@ -65,12 +69,12 @@ page-result {
         align-items: center;
         border-bottom: 1px solid #ededed;
         .col1{
-            width: 70px;
+            width: 100px;
             padding-left: 10px;
             color: #666;
         }
         .col2{
-            width: 70px;
+            width: 55px;
             padding-left: 5px;
             color: #666;
         }
@@ -143,3 +147,48 @@ page-result {
 .igk-table .subHeader.ssc .rec span{border-radius: 100%;margin:0 5px;width: 30px;height: 30px;line-height: 30px;}
 .igk-table .subHeader.ssc .igk-content .right span{text-align: center;font-style: normal;}
 .igk-table .subHeader.ssc.all .igk-content .right span{margin:0 3px;}
+.cir.blue{
+    width:30px;
+    height:30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 100px;
+    display: inline-block;
+    color: #fff;
+    background-color: #4185ff;
+}
+.cir.red{
+    width:30px;
+    height:30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 100px;
+    display: inline-block;
+    color: #fff;
+    background-color: #d83547;
+}
+.cir.green{
+    width:30px;
+    height:30px;
+    line-height: 30px;
+    text-align: center;
+    border-radius: 100px;
+    display: inline-block;
+    color: #fff;
+    background-color: #34c119;
+}
+.font.blue{
+    font-weight: bold;
+    line-height: 30px;
+    color: #4185ff;
+}
+.font.red{
+    font-weight: bold;
+    line-height: 30px;
+    color: #d83547;
+}
+.font.green{
+    font-weight: bold;
+    line-height: 30px;
+    color: #34c119;
+}

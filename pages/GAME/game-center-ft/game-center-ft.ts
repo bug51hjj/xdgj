@@ -3,44 +3,44 @@ import { IonicPage, NavController, NavParams, ActionSheetController, AlertContro
 import { HttpServiceProvider } from '../../../providers/http-service/http-service';
 import { UuidProvider } from '../../../providers/uuid/uuid';
 import { ReportPage } from '../../../pages/USER/report/report'; //投注报表
-import { LoginPage } from '../../../pages/login/login'; 
+import { LoginPage } from '../../../pages/login/login';
 import gameDatas from '../../../assets/data/gameData.js';
 import { GamesProvider } from '../../../providers/games/games';
 import { ComponentsModule } from '../../../components/components.module';
 import { ConfirmOrderPage } from '../../../pages/GAME/confirm-order/confirm-order';
 @IonicPage()
 @Component({
-	selector: 'page-game-center',
-	templateUrl: 'game-center.html',
+	selector: 'page-game-center-ft',
+	templateUrl: 'game-center-ft.html',
 })
-export class GameCenterPage {
-	public ReportPage: any = ReportPage;
+export class GameCenterFtPage {
 	public gameName: string = '游戏名称';  //游戏名称
 	public gameKey: string = '游戏ID';
 	public gameStructure: any;  //游戏基本数据结构
-	public activeGameType: number = 0;  //当前选择的游戏类型 默认第一个
 	public activeGamePan: any = 'A';  //当前选择的游戏盘区 默认A
+	public activeGameType: number = 0;  //当前选择的游戏类型 默认第一个
 	public expect:any='';//游戏期数
 	public unitsData: any;
 	public selectedList: any = [];  //选中的游戏项目
 	public buyAmount:any; //购买金额
 	public stop_remaining: any = {};//封盘
-	public memberAmount:any = 0;
+	public memberAmount:any = 0; //余额
 	constructor(public navCtrl: NavController,
-	public navParams: NavParams,
-	public actionSheetCtrl: ActionSheetController,
-	public gamesProvider: GamesProvider,
-	public HttpService: HttpServiceProvider,
-	public alertCtrl: AlertController,
-	public loadingCtrl: LoadingController,
-	public modalCtrl: ModalController,
-	public uuidProvider:UuidProvider) {
+		public navParams: NavParams,
+		public actionSheetCtrl: ActionSheetController,
+		public gamesProvider: GamesProvider,
+		public HttpService: HttpServiceProvider,
+		public alertCtrl: AlertController,
+		public loadingCtrl: LoadingController,
+		public modalCtrl: ModalController,
+		public uuidProvider:UuidProvider) {
 		this.gameName = this.navParams.get('gameParams').gamename;
 		this.gameKey = this.navParams.get('gameParams').gamekey;
 	}
+
 	ionViewDidLoad() {
-		this.getGamePrizes();
 		this.getMemberAmount();
+		this.getGamePrizes();
 	}
 	getGamePrizes() {
 		let token = window.localStorage.getItem('token');
@@ -50,6 +50,8 @@ export class GameCenterPage {
 			if(res['errorcode']==0){
 				this.gameStructure = this.gamesProvider.getPlayPrizes(res, this.gameKey);
 				this.unitsData = this.gameStructure[this.activeGameType];
+				console.log(res);
+				console.log(this.gameStructure)
 			}else{
 				this.httpErrorHandle(res)
 			}
@@ -67,77 +69,15 @@ export class GameCenterPage {
 			}
 		})
 	}
-	changeStop_remaining(e) {
-		this.stop_remaining = e;
-	}
-	changeSelectedList(e) {
-		this.selectedList = e;
-		console.log(this.selectedList)
-	}
 	changeBuyAmount(e){
 		this.buyAmount = e;
-	}
-	setExpect(e){
-		this.expect = e;
+		console.log(e)
 	}
 	goPage(pageName) {
 		this.navCtrl.push(pageName)
 	}
 	goHome() {
 		this.navCtrl.pop()
-	}
-	gameKeyClickEvent(index) {
-		this.activeGameType = index;
-		this.unitsData = this.gameStructure[index];
-	}
-	checkOrder() {
-		if(this.selectedList.length==0){
-			this.httpErrorHandle({errormsg:'您还未选择购买项目!'})
-			return false;
-		}
-		if(!this.buyAmount){
-			this.httpErrorHandle({errormsg:'请输入购买金额!'})
-			return false;
-		}
-		let profileModal = this.modalCtrl.create(ConfirmOrderPage, { selectedList: JSON.stringify(this.selectedList),buyAmount:this.buyAmount }, {
-			showBackdrop: true,
-			enableBackdropDismiss: true
-		});
-		profileModal.onDidDismiss(result => {
-			if(result){this.orderBuy()}
-		});
-		profileModal.present();
-	}
-	orderBuy(){
-		let token = window.localStorage.getItem('token');
-		let unique_requestId = this.uuidProvider.get();
-		let gamekey = this.gameKey;
-		let pan = this.activeGamePan;
-		let expect = this.expect;
-		let orders = [];
-		this.selectedList.map(item=>{
-			let temp = {
-				type:item.type,
-				play_method:item.play_method,
-				price:item.price,
-				amount:this.buyAmount
-			};
-			orders.push(temp);
-		})
-		let url = `/order/buy?tk=${token}`;
-		let params = `unique_requestId=${unique_requestId}&gamekey=${gamekey}&expect=${expect}&pan=${pan}&orders=${JSON.stringify(orders)}`
-		// console.log(token);console.log(unique_requestId);console.log(gamekey)
-		// console.log(pan);console.log(expect);console.log(orders)
-		let loader = this.loadingCtrl.create({content: "加载中..."});
-		loader.present();
-		this.HttpService.post(url,params).subscribe((res: Response) => {
-			loader.dismiss();
-			if(res['errorcode']==0){
-				this.httpErrorHandle({errormsg:'下单成功!'})
-			}else{
-				this.httpErrorHandle(res)
-			}
-		})
 	}
 	presentActionSheet() {
 		let actionSheet = this.actionSheetCtrl.create({
@@ -192,4 +132,5 @@ export class GameCenterPage {
 		}
 		alert.present();
 	}
+
 }

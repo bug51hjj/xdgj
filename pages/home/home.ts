@@ -10,6 +10,7 @@ import { HttpServiceProvider } from '../../providers/http-service/http-service';
 
 import { GamesProvider } from "../../providers/games/games";
 import { GameCenterPage } from '../../pages/GAME/game-center/game-center'; //游戏
+import { GameCenterFtPage } from '../../pages/GAME/game-center-ft/game-center-ft'; //游戏中心 翻摊
 import { MessagePage } from '../../pages/USER/message/message'; //用户中心-信息内容
 @Component({
 	selector: 'page-home',
@@ -54,10 +55,19 @@ export class HomePage {
 		//加载新闻
 		let url2 = `/system/news?tk=${token}`
 		this.HttpService.get(url2).subscribe((res: Response) => {
-			this.newsData = res['new'][0];
+			let temp = res['new'][0];
+			temp.title = decodeURIComponent(temp.title);
+			this.newsData = temp;
 		})
 	}
-
+	gameCenter(gameParams){
+		if(gameParams.gamekey=='bjft'||gameParams.gamekey=='cqft'||gameParams.gamekey=='jnd28'){
+			this.navCtrl.push(GameCenterFtPage, { gameParams: gameParams })
+		}else{
+			this.navCtrl.push(GameCenterPage, { gameParams: gameParams })
+		}
+		
+	}
 	goPage(pageName, gameParams) {
 		this.navCtrl.push(pageName, { gameParams: gameParams })
 	}

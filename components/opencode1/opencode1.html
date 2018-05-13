@@ -1,8 +1,9 @@
- <div *ngIf="viewType==1" > <!--视图类型一 用于时时彩 -->
+<div *ngIf="viewType==1">
+	<!--视图类型一 用于时时彩 -->
 	<div class="bj-data-num clearfix">
 		<div class="number num clearfix">
 			<time>{{last_opencode.expect}}期</time>
-			<span class="ball-color-yellow" *ngFor="let item of last_opencode.opencode" >{{item}}</span>
+			<span class="ball-color-yellow" *ngFor="let item of last_opencode.opencode">{{item}}</span>
 		</div>
 	</div>
 	<div class="data-content">
@@ -15,11 +16,12 @@
 		</span>
 	</div>
 </div>
-<div *ngIf="viewType==2" > <!--视图类型一 用于 pk10 幸运飞艇 -->
+<div *ngIf="viewType==2">
+	<!--视图类型二 用于 pk10 幸运飞艇 -->
 	<div class="bj-data-num clearfix">
 		<div class="number num clearfix pk10">
 			<time>{{last_opencode.expect}}期</time>
-			<span class="number{{item}}" *ngFor="let item of last_opencode.opencode" >{{item}}</span>
+			<span class="number{{item}}" *ngFor="let item of last_opencode.opencode">{{item}}</span>
 		</div>
 	</div>
 	<div class="data-content">
@@ -30,5 +32,30 @@
 		<span class="active assertive">开奖：
 			<time>{{converTime.opentime_remaining}}</time>
 		</span>
+	</div>
+</div>
+<div *ngIf="viewType==3">
+	<!--视图类型三 六合彩 -->
+	<div class="bj-data-num clearfix">
+		<div class="number num clearfix" *ngIf="last_opencode_way">
+			<time>{{last_opencode.expect}}期</time>
+			<span class="hklhc_bgColor lhc-bgRed" *ngFor="let item of [0,1,2,3,4,5]">{{last_opencode.opencode[item]}}</span>
+			<span>+</span>
+			<span class="hklhc_bgColor lhc-bgRed">{{last_opencode.opencode[6]}}</span>
+			<span class="iconfont icon-zhuanhuan2" style="color:#666666" (click)="changeLast_opencode_way()"></span>
+		</div>
+		<div class="number num clearfix" *ngIf="!last_opencode_way">
+			<time>{{last_opencode.expect}}期</time>
+			<span class="hklhc_bgColor bold" *ngFor="let item of [0,1,2,3,4,5]">{{last_opencode.zodiac[item]}}</span>
+			<span>+</span>
+			<span class="hklhc_bgColor bold">{{last_opencode.zodiac[6]}}</span>
+			<span class="iconfont icon-zhuanhuan2" style="color:#666666" (click)="changeLast_opencode_way()"></span>
+		</div>
+		<div class="data-content">
+			<span>{{present.expect}}期</span>
+			<span>封盘：
+					<time>{{converTime.stop_remaining}}</time>
+				</span>
+		</div>
 	</div>
 </div>
