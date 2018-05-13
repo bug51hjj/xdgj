@@ -24,7 +24,7 @@
 
 	</ion-toolbar>
 </ion-header>
-<ion-content scrollY="false">
+<ion-content>
 	<div class="gamePageContainer">
 		<div class="cont1">
 			<ul class="gameTabCont">
@@ -34,11 +34,11 @@
 			<opencode1 [gameKey]="gameKey" (changeStop_remaining)="changeStop_remaining($event)" (setExpect)="setExpect($event)"></opencode1>
 		</div>
 		<div class="cont2">
-			<div class="gameLeftView" style="">
+			<div class="gameLeftView">
 				<ion-scroll style="height:100%;width:100%" scrollY="true" scrollbar-y="false">
 					<div *ngFor="let item of gameStructure;let _index = index;">
 						<a class="gameKey" [ngClass]="{'active':_index===activeGameType}" (click)="gameKeyClickEvent(_index)">{{item.name}}</a>
-					</div>
+					</div>	
 				</ion-scroll>
 			</div>
 			<div class="gameMainView">
@@ -56,7 +56,7 @@
 		<div class="row2">
 			<input class="textInput" [ngModel]="buyAmount" (ngModelChange)="changeBuyAmount($event)" type="number" placeholder="输入金额">
 			<input class="btnSubmit" ion-button (click)="checkOrder()" value="下注" type="submit">
-			<input class="btnReset" ion-button (click)="gameSelect01.cencelSelected()" value="重置" type="submit">
+			<input class="btnReset" ion-button (click)="gameSelect01.cencelSelected(true)" value="重置" type="submit">
 		</div>
 		<div class="prohibit" *ngIf="stop_remaining<=0" >
 			<span>已封盘</span>

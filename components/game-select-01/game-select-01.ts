@@ -23,6 +23,7 @@ export class GameSelect_01Component {
     public gameDataList: any;
     public loadingMark: any = true;
     public selectedList: any = [];
+    public hklhcDdlActive:any;
     constructor(
         public HttpService: HttpServiceProvider,
         public alertCtrl: AlertController,
@@ -31,12 +32,38 @@ export class GameSelect_01Component {
     }
     ngOnChanges() {
         if (this.units) {
+            this.cencelSelected(false)
             this.units.units.map(item => {
                 if ('nums' in item) {
                     item.nums = Object['values'](item.nums);
                 }
             })
+            if (this.gameKey == 'hklhc') {
+                if(this.units.tmpl=='ddl'){  //六合彩 ddl 类型
+                    this.hklhcDdlActive = this.units.units[0].name;
+                }
+                let $redNum = ("1,2,7,8,12,13,18,19,23,24,29,30,34,35,40,45,46").split(',');
+                let $blueNum = ("3,4,9,10,14,15,20,25,26,31,36,37,41,42,47,48").split(',');
+                let $greenNum = ("5,6,11,16,17,21,22,27,28,32,33,38,39,43,44,49").split(',');
+                this.units.units.map(_units => {  //六合彩 添加颜色标志
+                    _units.nums.map(_nums => {
+                        if ($redNum['includes'](_nums.name)) {
+                            _nums['color'] = 'lhc-bgRed'
+                        } else if ($blueNum['includes'](_nums.name)) {
+                            _nums['color'] = 'lhc-bgBlue'
+                        } else if ($greenNum['includes'](_nums.name)) {
+                            _nums['color'] = 'lhc-bgGreen'
+                        }else{
+                            _nums['color'] = 'boldFont'
+                        }
+
+
+                    })
+                })
+
+            }
             this.unitsDatas = this.units;
+            console.log(this.unitsDatas)
         }
     }
     getGamePrice_list() {
@@ -57,7 +84,7 @@ export class GameSelect_01Component {
         // });
 
     }
-    selectItem(itemAry, index1, index2) {
+    selectItem(itemAry) {
         // this.unitsDatas.units[index1].nums[index2].checked = !this.unitsDatas.units[index1].nums[index2].checked;
         let tempArray = new Array();
         itemAry['checked'] = !itemAry['checked']; //选中/取消
@@ -71,26 +98,52 @@ export class GameSelect_01Component {
         }
         this.changeSelectedList.emit(tempArray);
     }
-
-    cencelSelected() {  //取消所有选中项
-
-        let confirm = this.alertCtrl.create({
-            title: '确定取消所有选中项?',
-            buttons: [
-                { text: '取消' },
-                {
-                    text: '确定',
-                    handler: () => {
-                        for (let i = 0; i < this.unitsDatas.units.length; i++) {
-                            for (let j in this.unitsDatas.units[i].nums) {
-                                this.unitsDatas.units[i].nums[j]['checked'] = false;
-                            }
-                        }
-                        this.changeSelectedList.emit([]);
-                    }
+    selectItem_enum_lhc_gg(itemAry,_group,index1){
+        //选中、取消
+        this.unitsDatas.units[index1].nums.map(item=>{
+            if(item.seGroup==_group){
+                item['checked'] = false;
+            }
+        })
+        let tempArray = new Array();
+        itemAry['checked'] = true;
+        for (let i = 0; i < this.unitsDatas.units.length; i++) {
+            for (let j in this.unitsDatas.units[i].nums) {
+                if (this.unitsDatas.units[i].nums[j]['checked']) {
+                    tempArray.push(this.unitsDatas.units[i].nums[j])
                 }
-            ]
-        });
-        confirm.present();
+            }
+        }
+        this.changeSelectedList.emit(tempArray);
+    }
+    cencelSelected(isConfirm) {  //取消所有选中项
+        if (isConfirm) {
+            let confirm = this.alertCtrl.create({
+                title: '确定取消所有选中项?',
+                buttons: [
+                    { text: '取消' },
+                    {
+                        text: '确定',
+                        handler: () => {
+                            for (let i = 0; i < this.unitsDatas.units.length; i++) {
+                                for (let j in this.unitsDatas.units[i].nums) {
+                                    this.unitsDatas.units[i].nums[j]['checked'] = false;
+                                }
+                            }
+                            this.changeSelectedList.emit([]);
+                        }
+                    }
+                ]
+            });
+            confirm.present();
+        } else {
+            for (let i = 0; i < this.unitsDatas.units.length; i++) {
+                for (let j in this.unitsDatas.units[i].nums) {
+                    this.unitsDatas.units[i].nums[j]['checked'] = false;
+                }
+            }
+            this.changeSelectedList.emit([]);
+        }
+
     }
 }
