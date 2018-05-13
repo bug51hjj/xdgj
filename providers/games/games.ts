@@ -1268,7 +1268,7 @@ export class GamesProvider {
                 nums['codes'] = this.ssc(nums['nums']);
                 break;
             case 'pk10':
-                nums['codes'] = this.ssc(nums['nums']);
+                nums['codes'] = this.pk10(nums['nums']);
                 break;
             case 'lhc':
                 nums['codes'] = this.lhc(nums['nums']);
