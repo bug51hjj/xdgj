@@ -21,7 +21,7 @@ export class GameCenterFtPage {
 	public activeGameType: number = 0;  //当前选择的游戏类型 默认第一个
 	public expect:any='';//游戏期数
 	public unitsData: any;
-	public selectedList: any = [];  //选中的游戏项目
+	public selectedDatas: any = {list:[],count:0};  //选中的游戏项目
 	public buyAmount:any; //购买金额
 	public stop_remaining: any = {};//封盘
 	public memberAmount:any = 0; //余额
@@ -46,11 +46,13 @@ export class GameCenterFtPage {
 		let token = window.localStorage.getItem('token');
 		let { gameKey, activeGamePan } = this;
 		let url = `/event/price_list?tk=${token}&gamekey=${gameKey}&pan=${activeGamePan}`;
+		let loader = this.loadingCtrl.create({content: "加载中..."});
+		loader.present();
 		this.HttpService.get(url).subscribe((res: Response) => {
+			loader.dismiss();
 			if(res['errorcode']==0){
 				this.gameStructure = this.gamesProvider.getPlayPrizes(res, this.gameKey);
 				this.unitsData = this.gameStructure[this.activeGameType];
-				console.log(this.gameStructure)
 			}else{
 				this.httpErrorHandle(res)
 			}
@@ -68,6 +70,10 @@ export class GameCenterFtPage {
 			}
 		})
 	}
+	changeActiveGameType(type){
+		this.activeGameType = type;
+		this.cencelSelected(false);
+	}
 	changeStop_remaining(e) {
 		this.stop_remaining = e;
 	}
@@ -76,13 +82,126 @@ export class GameCenterFtPage {
 	}
 	changeBuyAmount(e){
 		this.buyAmount = e;
-		console.log(e)
 	}
 	goPage(pageName) {
 		this.navCtrl.push(pageName)
 	}
 	goHome() {
 		this.navCtrl.pop()
+	}
+	selectItem(itemAry){
+		itemAry['checked'] = !itemAry['checked'];
+		this.changeSelectedList();
+	}
+	selectItem_gg(itemAry,index){
+		let currentUnist = this.gameStructure[this.activeGameType].units[index];
+		let tempItemChecked = itemAry['checked'];
+		for(let key in currentUnist.nums){
+			currentUnist.nums[key]['checked'] = false;
+		}
+		itemAry['checked'] = !tempItemChecked;
+		this.changeSelectedList_gg();
+	}
+	checkOrder(){
+		if(!this.buyAmount){this.httpErrorHandle({errormsg:'请输入购买金额'});return false;}
+		if(this.selectedDatas.count==0){this.httpErrorHandle({errormsg:'无下注项目'});return false;}
+		let profileModal = this.modalCtrl.create(ConfirmOrderPage, { selectedDatas: JSON.stringify(this.selectedDatas),buyAmount:this.buyAmount }, {
+			showBackdrop: true,
+			enableBackdropDismiss: true
+		});
+		profileModal.onDidDismiss(result => {
+			if(result){this.orderBuy()}
+		});
+		profileModal.present();
+	}
+	changeSelectedList(){
+		this.selectedDatas = {list:[],count:0};
+		let tempAry = []
+		this.gameStructure.map(_gameStructure=>{
+			_gameStructure.units.map(_nunits=>{
+				for(let key in _nunits.nums){
+					if(_nunits.nums[key]['checked']){
+						tempAry.push(_nunits.nums[key])
+					}
+				}
+			})
+		})
+		this.selectedDatas = {list:tempAry,count:tempAry.length}
+	}
+	changeSelectedList_gg(){
+		this.selectedDatas = {list:[],count:0};
+		let tempAry = []
+		this.gameStructure.map(_gameStructure=>{
+			_gameStructure.units.map(_nunits=>{
+				for(let key in _nunits.nums){
+					if(_nunits.nums[key]['checked']){
+						tempAry.push(_nunits.nums[key])
+					}
+				}
+			})
+		})
+
+		this.selectedDatas = {list:tempAry,count:tempAry.length>1?1:0}
+	}
+	cencelSelected(neddTips){
+		if(neddTips){
+			let alert = this.alertCtrl.create({
+				subTitle: '确定取消所有选中项?',
+				buttons: [{text:'取消'},{
+					text: '确定',
+					handler: () => {
+						this.gameStructure.map(_gameStructure=>{
+							_gameStructure.units.map(_nunits=>{
+								for(let key in _nunits.nums){
+									_nunits.nums[key]['checked'] = false;
+								}
+							})
+						})
+						this.selectedDatas = {list:[],count:0};
+					}
+				}]
+			});
+			alert.present()
+		}else{
+			this.gameStructure.map(_gameStructure=>{
+				_gameStructure.units.map(_nunits=>{
+					for(let key in _nunits.nums){
+						_nunits.nums[key]['checked'] = false;
+					}
+				})
+			})
+			this.selectedDatas = {list:[],count:0};
+		}
+	}
+	orderBuy(){
+		let token = window.localStorage.getItem('token');
+		let unique_requestId = this.uuidProvider.get();
+		let gamekey = this.gameKey;
+		let pan = this.activeGamePan;
+		let expect = this.expect;
+		let orders = [];
+		this.selectedDatas.list.map(item=>{
+			let temp = {
+				type:item.type,
+				play_method:item.play_method,
+				price:item.price,
+				amount:this.buyAmount
+			};
+			orders.push(temp);
+		})
+		
+		let url = `/order/buy?tk=${token}`;
+		let params = `unique_requestId=${unique_requestId}&gamekey=${gamekey}&expect=${expect}&pan=${pan}&orders=${JSON.stringify(orders)}`
+		let loader = this.loadingCtrl.create({content: "加载中..."});
+		loader.present();
+		this.HttpService.post(url,params).subscribe((res: Response) => {
+			loader.dismiss();
+			if(res['errorcode']==0){
+				this.httpErrorHandle({errormsg:'下单成功!'})
+			}else{
+				this.httpErrorHandle(res)
+			}
+		})
 	}
 	presentActionSheet() {
 		let actionSheet = this.actionSheetCtrl.create({

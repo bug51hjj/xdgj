@@ -73,10 +73,24 @@ export class Opencode1Component {
 					this.setExpect.emit(this.present.expect);
 					this.present = res['present'];
 					this.last_opencode = res['last_opencode'];
-				}else if(this.gameKey=='bjft'||this.gameKey=='cqft'){
+				}else if(this.gameKey=='bjft'){
 					let opencodeAry = res['last_opencode'].opencode.split(',');
 					res['last_opencode'].opencode = opencodeAry;
 					let last_opencode_ft_num = (opencodeAry[0]+opencodeAry[1]+opencodeAry[2]+opencodeAry[3])%4;
+					this.last_opencode_ft_cir = [];
+					for(let i=0;i<last_opencode_ft_num;i++){
+						this.last_opencode_ft_cir.push(i)
+					}
+					this.converTime.opentime_remaining = this.getDate.s_to_hs(res['present'].opentime_remaining);
+					this.converTime.stop_remaining = this.getDate.s_to_hs(res['present'].stop_remaining);
+					this.changeStop_remaining.emit(res['present'].stop_remaining);
+					this.setExpect.emit(this.present.expect);
+					this.present = res['present'];
+					this.last_opencode = res['last_opencode'];
+				}else if(this.gameKey=='cqft'){
+					let opencodeAry = res['last_opencode'].opencode.split(',');
+					res['last_opencode'].opencode = opencodeAry;
+					let last_opencode_ft_num = (opencodeAry[0]+opencodeAry[1]+opencodeAry[2]+opencodeAry[3]+opencodeAry[4])%4;
 					this.last_opencode_ft_cir = [];
 					for(let i=0;i<last_opencode_ft_num;i++){
 						this.last_opencode_ft_cir.push(i)

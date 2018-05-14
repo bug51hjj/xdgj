@@ -46,7 +46,10 @@ export class GameCenterPage {
 		let token = window.localStorage.getItem('token');
 		let { gameKey, activeGamePan } = this;
 		let url = `/event/price_list?tk=${token}&gamekey=${gameKey}&pan=${activeGamePan}`;
+		let loader = this.loadingCtrl.create({content: "加载中..."});
+		loader.present();
 		this.HttpService.get(url).subscribe((res: Response) => {
+			loader.dismiss();
 			if(res['errorcode']==0){
 				this.gameStructure = this.gamesProvider.getPlayPrizes(res, this.gameKey);
 				this.unitsData = this.gameStructure[this.activeGameType];

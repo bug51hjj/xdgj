@@ -57,6 +57,7 @@ export class HomePage {
 		this.HttpService.get(url2).subscribe((res: Response) => {
 			let temp = res['new'][0];
 			temp.title = decodeURIComponent(temp.title);
+			temp.content = decodeURIComponent(temp.content);
 			this.newsData = temp;
 		})
 	}
