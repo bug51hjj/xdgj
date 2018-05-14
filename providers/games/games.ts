@@ -69,11 +69,11 @@ export class GamesProvider {
                 {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_1', 'a', 1)},
                 {'name': '正', 'func': 'idx', 'nums': this.getPlayUnitByStr("1正,2正,3正,4正", 'ball_2', 'b', 1)},
                 {'name': '番', 'func': 'idx', 'nums': this.getPlayUnitByStr("1番,2番,3番,4番", 'ball_3', 'c', 1)},
-                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,4-1角", 'ball_4', 'd', 1)},
+                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,1-4角", 'ball_4', 'd', 1)},
                 {
                     'name': '念',
                     'func': 'idx',
-                    'nums': this.getPlayUnitByStr("1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_5', 'e', 1)
+                    'nums': this.getPlayUnitByStr("1念2,1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_5', 'e', 1)
                 },
                 {'name': '三门', 'func': 'idx', 'nums': this.getPlayUnitByStr("123门,124门,234门,134门", 'ball_6', 'f', 1)},
                 {
@@ -90,11 +90,11 @@ export class GamesProvider {
                 {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_1', 'a', 1)},
                 {'name': '正', 'func': 'idx', 'nums': this.getPlayUnitByStr("1正,2正,3正,4正", 'ball_2', 'b', 1)},
                 {'name': '番', 'func': 'idx', 'nums': this.getPlayUnitByStr("1番,2番,3番,4番", 'ball_3', 'c', 1)},
-                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,4-1角", 'ball_4', 'd', 1)},
+                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,1-4角", 'ball_4', 'd', 1)},
                 {
                     'name': '念',
                     'func': 'idx',
-                    'nums': this.getPlayUnitByStr("1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_5', 'e', 1)
+                    'nums': this.getPlayUnitByStr("1念2,1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_5', 'e', 1)
                 },
                 {'name': '三门', 'func': 'idx', 'nums': this.getPlayUnitByStr("123门,124门,234门,134门", 'ball_6', 'f', 1)},
                 {
@@ -108,11 +108,11 @@ export class GamesProvider {
                 {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_8', 'i', 1)},
                 {'name': '正', 'func': 'idx', 'nums': this.getPlayUnitByStr("1正,2正,3正,4正", 'ball_9', 'j', 1)},
                 {'name': '番', 'func': 'idx', 'nums': this.getPlayUnitByStr("1番,2番,3番,4番", 'ball_10', 'k', 1)},
-                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,4-1角", 'ball_11', 'l', 1)},
+                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,1-4角", 'ball_11', 'l', 1)},
                 {
                     'name': '念',
                     'func': 'idx',
-                    'nums': this.getPlayUnitByStr("1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_12', 'm', 1)
+                    'nums': this.getPlayUnitByStr("1念2,1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_12', 'm', 1)
                 },
                 {'name': '三门', 'func': 'idx', 'nums': this.getPlayUnitByStr("123门,124门,234门,134门", 'ball_13', 'n', 1)},
                 {
@@ -126,11 +126,11 @@ export class GamesProvider {
                 {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_15', 'p', 1)},
                 {'name': '正', 'func': 'idx', 'nums': this.getPlayUnitByStr("1正,2正,3正,4正", 'ball_16', 'q', 1)},
                 {'name': '番', 'func': 'idx', 'nums': this.getPlayUnitByStr("1番,2番,3番,4番", 'ball_17', 'r', 1)},
-                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,4-1角", 'ball_18', 's', 1)},
+                {'name': '角', 'func': 'idx', 'nums': this.getPlayUnitByStr("1-2角,2-3角,3-4角,1-4角", 'ball_18', 's', 1)},
                 {
                     'name': '念',
                     'func': 'idx',
-                    'nums': this.getPlayUnitByStr("1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_19', 't', 1)
+                    'nums': this.getPlayUnitByStr("1念2,1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'ball_19', 't', 1)
                 },
                 {'name': '三门', 'func': 'idx', 'nums': this.getPlayUnitByStr("123门,124门,234门,134门", 'ball_20', 'u', 1)},
                 {
@@ -144,17 +144,17 @@ export class GamesProvider {
                 {
                     'name': '前三',
                     'func': 'idx',
-                    'nums': this.getPlayUnitByStr("1番,2番,3番,4番,1正,2正,3正,4正,1-2角,2-3角,3-4角,1-4角,1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'guoguan', 'gg1_', 1)
+                    'nums': this.getPlayUnitByStr("1番,2番,3番,4番,1正,2正,3正,4正,1-2角,2-3角,3-4角,1-4角,1念2,1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'guoguan', 'gg1_', 1)
                 },
                 {
                     'name': '中三',
                     'func': 'idx',
-                    'nums': this.getPlayUnitByStr("1番,2番,3番,4番,1正,2正,3正,4正,1-2角,2-3角,3-4角,1-4角,1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'guoguan', 'gg2_', 1)
+                    'nums': this.getPlayUnitByStr("1番,2番,3番,4番,1正,2正,3正,4正,1-2角,2-3角,3-4角,1-4角,1念2,1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'guoguan', 'gg2_', 1)
                 },
                 {
                     'name': '后三',
                     'func': 'idx',
-                    'nums': this.getPlayUnitByStr("1番,2番,3番,4番,1正,2正,3正,4正,1-2角,2-3角,3-4角,1-4角,1念2，1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'guoguan', 'gg3_', 1)
+                    'nums': this.getPlayUnitByStr("1番,2番,3番,4番,1正,2正,3正,4正,1-2角,2-3角,3-4角,1-4角,1念2,1念3,1念4,2念1,2念3,2念4,3念1,3念2,3念4,4念1,4念2,4念3", 'guoguan', 'gg3_', 1)
                 },
             ]
             },
@@ -1385,7 +1385,7 @@ export class GamesProvider {
     //   $allSum = array_sum($nums);
     //   $codes['总和'] = this.getK3Mult($nums);
     //   $codes['总和']['总和'] = $allSum; // 总和-数字
-    //   $codes['总和']['大小'] = this.getBigOrSmall($allSum, 10, array(3, 18)); // 总和，小：4~10；大11~17（豹子全和）
+    //   $codes['总和']['大小'] = this.getBigOrSmall($allSum, 10, array(3, 18)); // 总和,小：4~10；大11~17（豹子全和）
     //   $codes['总和']['单双'] = this.getSingOrDoub($allSum); // 总和-大小
     //
     //   return $codes;
@@ -1406,7 +1406,7 @@ export class GamesProvider {
     //     foreach ($nums as $i => $num) {
     //     $num = intval($num);
     //     $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
-    //     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小，>10大；<=10小
+    //     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小,>10大；<=10小
     //     $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
     //
     //     if ($num % 10 > 4) {
@@ -1472,7 +1472,7 @@ export class GamesProvider {
     //     foreach ($nums as $i => $num) {
     //     $num = intval($num);
     //     $codes[$idxs[$i]]['号码'] = $num; // 定位-数字
-    //     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小，>10大；<=10小
+    //     $codes[$idxs[$i]]['大小'] = this.getBigOrSmall($num, 10); // 定位-大小,>10大；<=10小
     //     $codes[$idxs[$i]]['单双'] = this.getSingOrDoub($num); // 定位-单双
     //
     //     if ($num % 10 > 4) {
@@ -1841,22 +1841,22 @@ export class GamesProvider {
 
     //自定义组合函数(就是数学排列组合里的C)
     getCombCount(m, n) {
-        return this.getFactCount(m, n) / this.getFactCount(n, n);//就是Cmn(上面是n，下面是m) = Amn(上面是n，下面是m)/Ann(上下都是n)
+        return this.getFactCount(m, n) / this.getFactCount(n, n);//就是Cmn(上面是n,下面是m) = Amn(上面是n,下面是m)/Ann(上下都是n)
     }
 
     //自定义排列函数(就是数学排列组合里的A)
     getPermCount(m, n) {
-        return this.getFactCount(m, n);//就是数学里的Amn,上面是n，下面是m
+        return this.getFactCount(m, n);//就是数学里的Amn,上面是n,下面是m
     }
 
-    //自定义一个阶乘函数，就是有n个数相乘，从m开始，每个数减1，如factorial(5,4)就是5*(5-1)*(5-2)*(5-3),相乘的数有4个
+    //自定义一个阶乘函数,就是有n个数相乘,从m开始,每个数减1,如factorial(5,4)就是5*(5-1)*(5-2)*(5-3),相乘的数有4个
     getFactCount(m, n) {
         m = parseInt(m);
         n = parseInt(n);
         var num = 1;
         var count = 0;
         for (var i = m; i > 0; i--) {
-            if (count == n) {//当循环次数等于指定的相乘个数时，即跳出for循环
+            if (count == n) {//当循环次数等于指定的相乘个数时,即跳出for循环
                 break;
             }
             num = num * i;
