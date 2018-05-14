@@ -192,3 +192,53 @@ page-result {
     line-height: 30px;
     color: #34c119;
 }
+.rec{
+    width:20px;
+    height: 20px;
+    display: inline-block;
+    text-align: center;
+    line-height: 24px;
+    font-size: 12px;
+    font-weight: bold;
+    color: #fff;
+    text-shadow: #333;
+}
+.rec.number1{background-color: #ffff3a;}
+.rec.number2{background-color: #188bfe;}
+.rec.number3{background-color: #504c4b;}
+.rec.number4{background-color: #fd721f;}
+.rec.number5{background-color: #8afefe;}
+.rec.number6{background-color: #5025f9;}
+.rec.number7{background-color: #e3e3e3;}
+.rec.number8{background-color: #fb0d1d;}
+.rec.number9{background-color: #750207;}
+.rec.number10{background-color: #34c125;}
+.rec.red{background-color: #d83547;}
+.rec.blue{background-color: #4185ff;}
+.rec.green{background-color: #34c119;}
+
+
+.hklhcView{
+    border-bottom: 1px solid #ddd;
+    width: 100%;
+    padding:10px 20px;
+    dt{width:100%;display: flex;justify-content: space-between}
+    dd{
+        display: flex;
+        margin-top: 15px;
+        .item{
+            flex: 1;display: flex;flex-direction: column;justify-content: center;align-items: center;
+            span:first-of-type{
+                width:25px;
+                height: 25px;
+                line-height: 25px;
+                text-align: center;
+                display: inline-block;
+                margin-bottom: 5px;
+            }
+        }
+        .item:last-of-type{
+            margin-left: 15px;
+        }
+    }
+}

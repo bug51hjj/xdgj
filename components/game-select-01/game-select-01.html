@@ -159,7 +159,7 @@
 					<div class="listView">
 						<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
 							<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
-							<span>{{col.price}}</span>
+							<span> {{col.price}}</span>
 						</div>
 					</div>
 				</div>
@@ -175,14 +175,7 @@
 							<span>{{row.price}}</span>
 						</div>
 						<div class="col">
-							<span class="hklhc_bgColor lhc-bgRed">1</span>
-							<span class="hklhc_bgColor lhc-bgRed">1</span>
-							<span class="hklhc_bgColor lhc-bgRed">1</span>
-							<span class="hklhc_bgColor lhc-bgRed">1</span>
-							<span class="hklhc_bgColor lhc-bgRed">1</span>
-							<span class="hklhc_bgColor lhc-bgRed">1</span>
-							<span class="hklhc_bgColor lhc-bgRed">1</span>
-							<span class="hklhc_bgColor lhc-bgRed">1</span>
+							<span *ngFor="let col of row.numbers"  class="{{col.classColor}}">{{col.text}}</span>
 						</div>
 					</div>
 				</div>
@@ -239,14 +232,6 @@
 					</div>
 				</div>
 				<div *ngFor="let item of unitsDatas.units;index as index1;">
-					<!-- <div *ngFor="let item of unitsDatas.units">
-						<div class="listView" *ngIf="item.name == hklhcDdlActive">
-							<div class="col" *ngFor="let col of item.nums;" (click)="selectItem(col)" [ngClass]="{'active':col.checked}">
-								<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
-								<span>{{col.price}}</span>
-							</div>
-						</div>
-					</div> -->
 					<div *ngFor="let row of item.nums">
 						<div class="rowView" *ngIf="item.name == hklhcDdlActive">
 							<div class="fixCol">
@@ -254,14 +239,7 @@
 								<span>{{row.price}}</span>
 							</div>
 							<div class="col">
-								<span class="hklhc_bgColor lhc-bgRed">1</span>
-								<span class="hklhc_bgColor lhc-bgRed">1</span>
-								<span class="hklhc_bgColor lhc-bgRed">1</span>
-								<span class="hklhc_bgColor lhc-bgRed">1</span>
-								<span class="hklhc_bgColor lhc-bgRed">1</span>
-								<span class="hklhc_bgColor lhc-bgRed">1</span>
-								<span class="hklhc_bgColor lhc-bgRed">1</span>
-								<span class="hklhc_bgColor lhc-bgRed">1</span>
+								<span *ngFor="let col of row.numbers"  class="{{col.classColor}}">{{col.text}}</span>
 							</div>
 						</div>
 					</div>

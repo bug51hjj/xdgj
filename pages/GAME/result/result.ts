@@ -16,6 +16,8 @@ export class ResultPage {
 	public gamekey:any;
 	public hisDate:any;
 	public cqsscActiveType:any = 'nums';
+	public pk10ActiveType:any = 'nums';
+	public todayNoHistoryData:any;
 	constructor(public navCtrl: NavController, 
 		public navParams: NavParams,
 		public HttpService:HttpServiceProvider,
@@ -39,6 +41,9 @@ export class ResultPage {
 		let loader = this.loadingCtrl.create({content: "正在登录."});
 		loader.present();
 		this.HttpService.get(url).subscribe((res: Response) => {
+			if(res['history'].length==0){
+				this.todayNoHistoryData = true;
+			}else{this.todayNoHistoryData=false}
 			loader.dismiss();
 			let _history = [];
 			if(res['errorcode']==0){
@@ -47,7 +52,9 @@ export class ResultPage {
 					if(res['gamekey']=='cqssc'){
 						res['history'][i]['composeHistory']=this.compose(gamekey,res['history'][i].opencode);
 					}else if(res['gamekey']=='bjpk10'||res['gamekey']=='xyft'){
-						res['history'][i]['composeHistory']=this.gamesProvider.getOpencodeNums(gamekey,res['history'][i].opencode);
+						res['history'][i]['composeHistory']=this.compose2(gamekey,res['history'][i].opencode);
+					}else if(res['gamekey']=='hklhc'){
+						res['history'][i]['opencode_ary'] = this.compose3(res['history'][i]['opencode'],res['history'][i]['zodiac']);
 					}
 				}
 				this.historyData = res['history'];
@@ -85,16 +92,77 @@ export class ResultPage {
 		]
 		return _history
 	}
+	compose2(gamekey,opencode){
+		let _history = this.gamesProvider.getOpencodeNums(gamekey,opencode);
+		_history['bigSamll'] = [
+			_history['codes']['冠军']['大小'],
+			_history['codes']['亚军']['大小'],
+			_history['codes']['第3名']['大小'],
+			_history['codes']['第4名']['大小'],
+			_history['codes']['第5名']['大小'],
+			_history['codes']['第6名']['大小'],
+			_history['codes']['第7名']['大小'],
+			_history['codes']['第8名']['大小'],
+			_history['codes']['第9名']['大小'],
+			_history['codes']['第10名']['大小']
+		]
+		_history['singleDouble'] = [
+			_history['codes']['冠军']['单双'],
+			_history['codes']['亚军']['单双'],
+			_history['codes']['第3名']['单双'],
+			_history['codes']['第4名']['单双'],
+			_history['codes']['第5名']['单双'],
+			_history['codes']['第6名']['单双'],
+			_history['codes']['第7名']['单双'],
+			_history['codes']['第8名']['单双'],
+			_history['codes']['第9名']['单双'],
+			_history['codes']['第10名']['单双']
+		]
+		_history['count'] = [
+			_history['codes']['冠亚和']['总和'],
+			_history['codes']['冠亚和']['大小'],
+			_history['codes']['冠亚和']['单双'],
+			_history['codes']['冠军']['龙虎'],
+			_history['codes']['亚军']['龙虎'],
+			_history['codes']['第3名']['龙虎'],
+			_history['codes']['第4名']['龙虎'],
+			_history['codes']['第5名']['龙虎'],
+		]
+		return _history
+	}
+	compose3(opencode:string,zodiac:string){
+		let _opencode = opencode.split(',');
+		let _zodiac = zodiac.split(',');
+		let _array = [];
+		let $redNum = ("1,2,7,8,12,13,18,19,23,24,29,30,34,35,40,45,46").split(',');
+        let $blueNum = ("3,4,9,10,14,15,20,25,26,31,36,37,41,42,47,48").split(',');
+        let $greenNum = ("5,6,11,16,17,21,22,27,28,32,33,38,39,43,44,49").split(',');
+		for(let i=0;i<_opencode.length;i++){
+			let colorr;
+			if( $redNum['includes'](_opencode[i])){
+				colorr = 'lhc-bgRed'
+			}else if($blueNum['includes'](_opencode[i])){
+				colorr = 'lhc-bgBlue'
+			}else if($greenNum['includes'](_opencode[i])){
+				colorr = 'lhc-bgGreen'
+			}else{
+				colorr = ''
+			}
+			_array.push({text:_zodiac[i],num:_opencode[i],class:colorr})
+		}
+		return _array;
+	}
 	changeGamekey(e){
-		this.gamekey = e;
 		this.getHistory_expect();
 	}
 	changeHisDate(e){
-		// this.cqsscActiveType = e;
 		this.getHistory_expect();
 	}
 	changeCqsscActiveType(type){
 		this.cqsscActiveType = type;
+	}
+	changePk10ActiveType(type){
+		this.pk10ActiveType = type;
 	}
 	getHM(timeStr:string){
 		return timeStr.substr(9,5);
