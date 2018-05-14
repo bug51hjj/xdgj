@@ -16,7 +16,7 @@ import { ConfirmOrderPage } from '../../../pages/GAME/confirm-order/confirm-orde
 export class GameCenterFtPage {
 	public gameName: string = '游戏名称';  //游戏名称
 	public gameKey: string = '游戏ID';
-	public gameStructure: any;  //游戏基本数据结构
+	public gameStructure: any = [{},{},{},{}];  //游戏基本数据结构
 	public activeGamePan: any = 'A';  //当前选择的游戏盘区 默认A
 	public activeGameType: number = 0;  //当前选择的游戏类型 默认第一个
 	public expect:any='';//游戏期数
@@ -50,7 +50,6 @@ export class GameCenterFtPage {
 			if(res['errorcode']==0){
 				this.gameStructure = this.gamesProvider.getPlayPrizes(res, this.gameKey);
 				this.unitsData = this.gameStructure[this.activeGameType];
-				console.log(res);
 				console.log(this.gameStructure)
 			}else{
 				this.httpErrorHandle(res)
@@ -68,6 +67,12 @@ export class GameCenterFtPage {
 				this.httpErrorHandle(res)
 			}
 		})
+	}
+	changeStop_remaining(e) {
+		this.stop_remaining = e;
+	}
+	setExpect(e){
+		this.expect = e;
 	}
 	changeBuyAmount(e){
 		this.buyAmount = e;

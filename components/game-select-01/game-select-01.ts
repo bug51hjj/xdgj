@@ -46,7 +46,7 @@ export class GameSelect_01Component {
                 let $blueNum = ("3,4,9,10,14,15,20,25,26,31,36,37,41,42,47,48").split(',');
                 let $greenNum = ("5,6,11,16,17,21,22,27,28,32,33,38,39,43,44,49").split(',');
                 let $needColorMark = ['特码','正码','正码特','连码','全不中'];
-                let $needColorNumber = ['半波','特码生肖','连肖中','一肖/尾数','合肖','连肖中','连尾中','连尾不中']
+                let $needColorNumber = ['半波','特码生肖','连肖中','一肖/尾数','合肖','连肖中','连肖不中','连尾中','连尾不中']
                 if($needColorMark['includes'](this.units.name)){  //['特码','正码','正码特','连码','全不中'] 添加颜色标志 
                     this.units.units.map(_units => {
                         _units.nums.map(_nums => {
@@ -122,9 +122,10 @@ export class GameSelect_01Component {
                 }
             }
         }
-        this.changeSelectedList.emit(tempArray);
+        this.changeSelectedList.emit({list:tempArray,type:'public',count:tempArray.length});
     }
-    selectItem_enum_lhc_gg(itemAry,_group,index1){
+    selectItem_enum_lhc_gg(itemAry,_group,index1){ //过关 选中取消 多选一
+        let tempChecked = itemAry['checked'];
         //选中、取消
         this.unitsDatas.units[index1].nums.map(item=>{
             if(item.seGroup==_group){
@@ -132,7 +133,7 @@ export class GameSelect_01Component {
             }
         })
         let tempArray = new Array();
-        itemAry['checked'] = true;
+        itemAry['checked'] = !tempChecked;
         for (let i = 0; i < this.unitsDatas.units.length; i++) {
             for (let j in this.unitsDatas.units[i].nums) {
                 if (this.unitsDatas.units[i].nums[j]['checked']) {
@@ -140,7 +141,52 @@ export class GameSelect_01Component {
                 }
             }
         }
-        this.changeSelectedList.emit(tempArray);
+        this.changeSelectedList.emit({list:tempArray,type:'hklhcgg',count:1});
+    }
+    selectItem_limit(itemAry,target_index){  //合肖选中取消 限制数量
+        let limitLength = Number(itemAry.func.substring(6,itemAry.func.length));
+        let trueNum = 0;
+        itemAry.nums.map(item=>{if(item['checked']){trueNum++}});
+        if(trueNum>=limitLength){
+            if(!itemAry.nums[target_index]['checked']){
+                let alert = this.alertCtrl.create({
+                    subTitle: `选择数量应该为${limitLength}个`,
+                    buttons: ['OK']
+                  });
+                  alert.present();
+                return false;
+            }
+        }
+        itemAry.nums[target_index]['checked'] = !itemAry.nums[target_index]['checked'];
+        // //筛选选中的数据返回给调用组件的页面
+        let tempArray = new Array();
+        itemAry.nums.map(item=>{
+            if(item['checked']){
+                tempArray.push(item)
+            }
+        });
+        this.changeSelectedList.emit({list:tempArray,type:'hklhchx',limit:limitLength,count:1});
+
+    }
+    selectItem_comb(itemAry,parentAry){ //六合彩选中取消 排列组合
+        let tempArray = new Array();
+        let comb = Number(parentAry.func.substring(5,6));
+        itemAry['checked'] = !itemAry['checked']; //选中/取消
+        parentAry.nums.map(item=>{
+            if(item['checked']){
+                tempArray.push(item)
+            }
+        })
+        let combResult = this.games.getCombCount(tempArray.length,comb);      
+        // //筛选选中的数据返回给调用组件的页面
+        // for (let i = 0; i < this.unitsDatas.units.length; i++) {
+        //     for (let j in this.unitsDatas.units[i].nums) {
+        //         if (this.unitsDatas.units[i].nums[j]['checked']) {
+        //             tempArray.push(this.unitsDatas.units[i].nums[j])
+        //         }
+        //     }
+        // }
+        this.changeSelectedList.emit({list:tempArray,type:'hklhccomb',comb:comb,count:combResult<1?0:combResult});
     }
     cencelSelected(isConfirm) {  //取消所有选中项
         if (isConfirm) {
@@ -156,7 +202,7 @@ export class GameSelect_01Component {
                                     this.unitsDatas.units[i].nums[j]['checked'] = false;
                                 }
                             }
-                            this.changeSelectedList.emit([]);
+                            this.changeSelectedList.emit({list:[],type:'public',count:0});
                         }
                     }
                 ]
@@ -168,7 +214,7 @@ export class GameSelect_01Component {
                     this.unitsDatas.units[i].nums[j]['checked'] = false;
                 }
             }
-            this.changeSelectedList.emit([]);
+            this.changeSelectedList.emit({list:[],type:'public',count:0});
         }
 
     }

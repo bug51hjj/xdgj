@@ -1,245 +1,330 @@
-<!-- Generated template for the GameSelect_01Component component -->
-<div>
-	<!--======================== 【结构一】 unitsDatas.tmpl=='column'======================== -->
-	<div *ngIf="unitsDatas.tmpl=='column'">
-		<!--时时彩1-5特殊处理 -->
-		<div *ngIf="gameKey=='cqssc'">
+<!--======================== 【结构一】 unitsDatas.tmpl=='column'======================== -->
+<div *ngIf="unitsDatas.tmpl=='column'">
+	<!--时时彩1-5特殊处理 -->
+	<div *ngIf="gameKey=='cqssc'">
+		<div class="titleView">
+			<span class="publicTitle">位置</span>
+			<span class="publicTitle">第一</span>
+			<span class="publicTitle">第二</span>
+			<span class="publicTitle">第三</span>
+			<span class="publicTitle">第四</span>
+			<span class="publicTitle">第五</span>
+		</div>
+		<div class="colView">
+			<div class="colBox">
+				<div class="row" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]">
+					<span class="ball-color">{{number}}</span>
+				</div>
+			</div>
+			<div class="colBox" *ngFor="let row of unitsDatas.units;index as index1;">
+				<div class="row" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]" (click)="selectItem(row.nums[number])" [ngClass]="{'active':row.nums[number].checked}">
+					<span>
+						{{row.nums[number].price}}
+					</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- 北京PK10、飞艇 1-10 特殊处理 -->
+	<div *ngIf="gameKey=='bjpk10'||gameKey=='xyft'">
+		<div *ngIf=" unitsDatas.name=='1~10'">
 			<div class="titleView">
-				<span class="publicTitle">位置</span>
-				<span class="publicTitle">第一</span>
-				<span class="publicTitle">第二</span>
-				<span class="publicTitle">第三</span>
+				<span class="publicTitle">名次</span>
+				<span class="publicTitle">冠军</span>
+				<span class="publicTitle">亚军</span>
+				<span class="publicTitle">季军</span>
 				<span class="publicTitle">第四</span>
 				<span class="publicTitle">第五</span>
 			</div>
 			<div class="colView">
 				<div class="colBox">
-					<div class="row" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]">
-						<span class="ball-color">{{number}}</span>
+					<div class="row pk10" *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]">
+						<span class="number{{number}}">{{number}}</span>
 					</div>
 				</div>
-				<div class="colBox" *ngFor="let row of unitsDatas.units;index as index1;">
-					<div class="row" *ngFor="let number of [0,1,2,3,4,5,6,7,8,9]" (click)="selectItem(row.nums[number])" [ngClass]="{'active':row.nums[number].checked}">
-						<span>
-							{{row.nums[number].price}}
-						</span>
-					</div>
-				</div>
-			</div>
-		</div>
-		<!-- 北京PK10、飞艇 1-10 特殊处理 -->
-		<div *ngIf="gameKey=='bjpk10'||gameKey=='xyft'">
-			<div *ngIf=" unitsDatas.name=='1~10'">
-				<div class="titleView">
-					<span class="publicTitle">名次</span>
-					<span class="publicTitle">冠军</span>
-					<span class="publicTitle">亚军</span>
-					<span class="publicTitle">季军</span>
-					<span class="publicTitle">第四</span>
-					<span class="publicTitle">第五</span>
-				</div>
-				<div class="colView">
-					<div class="colBox">
-						<div class="row pk10" *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]">
-							<span class="number{{number}}">{{number}}</span>
-						</div>
-					</div>
-					<div class="colBox" *ngFor="let col of [0,1,2,3,4];index as index1;">
-						<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem(item)" [ngClass]="{'active':item.checked}">
-							<span>{{item.price}}</span>
-						</div>
-					</div>
-				</div>
-				<div class="titleView">
-					<span class="publicTitle">名次</span>
-					<span class="publicTitle">第六</span>
-					<span class="publicTitle">第七</span>
-					<span class="publicTitle">第八</span>
-					<span class="publicTitle">第九</span>
-					<span class="publicTitle">第十</span>
-				</div>
-				<div class="colView">
-					<div class="colBox">
-						<div class="row pk10" *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]">
-							<span class="number{{number}}">{{number}}</span>
-						</div>
-					</div>
-					<div class="colBox" *ngFor="let col of [5,6,7,8,9];index as index1;">
-						<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem(item)" [ngClass]="{'active':item.checked}">
-							<span>{{item.price}}</span>
-						</div>
+				<div class="colBox" *ngFor="let col of [0,1,2,3,4];index as index1;">
+					<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem(item)" [ngClass]="{'active':item.checked}">
+						<span>{{item.price}}</span>
 					</div>
 				</div>
 			</div>
-		</div>
-
-		<!-- 北京PK10、飞艇 两面 特殊处理 -->
-		<div *ngIf="gameKey=='bjpk10'||gameKey=='xyft'">
-			<div *ngIf=" unitsDatas.name=='两面'">
-				<div class="titleView">
-					<span class="publicTitle">冠军</span>
-					<span class="publicTitle">亚军</span>
-					<span class="publicTitle">季军</span>
-					<span class="publicTitle">第四</span>
-					<span class="publicTitle">第五</span>
-				</div>
-				<div class="colView">
-					<div class="colBox" *ngFor="let col of [0,1,2,3,4];index as index1;">
-						<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem(item)" [ngClass]="{'active':item.checked}">
-							<span style="font-weight: bold">{{item.name}}</span>
-							<span>{{item.price}}</span>
-						</div>
+			<div class="titleView">
+				<span class="publicTitle">名次</span>
+				<span class="publicTitle">第六</span>
+				<span class="publicTitle">第七</span>
+				<span class="publicTitle">第八</span>
+				<span class="publicTitle">第九</span>
+				<span class="publicTitle">第十</span>
+			</div>
+			<div class="colView">
+				<div class="colBox">
+					<div class="row pk10" *ngFor="let number of [1,2,3,4,5,6,7,8,9,10]">
+						<span class="number{{number}}">{{number}}</span>
 					</div>
 				</div>
-				<div class="titleView">
-					<span class="publicTitle">第六</span>
-					<span class="publicTitle">第七</span>
-					<span class="publicTitle">第八</span>
-					<span class="publicTitle">第九</span>
-					<span class="publicTitle">第十</span>
-				</div>
-				<div class="colView">
-					<div class="colBox" *ngFor="let col of [5,6,7,8,9];index as index1;">
-						<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem(item)" [ngClass]="{'active':item.checked}">
-							<span style="font-weight: bold">{{item.name}}</span>
-							<span>{{item.price}}</span>
-						</div>
+				<div class="colBox" *ngFor="let col of [5,6,7,8,9];index as index1;">
+					<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem(item)" [ngClass]="{'active':item.checked}">
+						<span>{{item.price}}</span>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
 
-	<!-- ======================== 【结构二】 unitsDatas.tmpl=='list'======================== -->
-	<div *ngIf="unitsDatas.tmpl=='list'">
-		<!--时时彩1-5特殊处理 -->
-		<div *ngIf="gameKey=='cqssc'">
-			<div *ngFor="let row of unitsDatas.units;index as index1;">
-				<div class="titleView">
-					<span class="publicTitle">{{row.name}}</span>
+	<!-- 北京PK10、飞艇 两面 特殊处理 -->
+	<div *ngIf="gameKey=='bjpk10'||gameKey=='xyft'">
+		<div *ngIf=" unitsDatas.name=='两面'">
+			<div class="titleView">
+				<span class="publicTitle">冠军</span>
+				<span class="publicTitle">亚军</span>
+				<span class="publicTitle">季军</span>
+				<span class="publicTitle">第四</span>
+				<span class="publicTitle">第五</span>
+			</div>
+			<div class="colView">
+				<div class="colBox" *ngFor="let col of [0,1,2,3,4];index as index1;">
+					<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem(item)" [ngClass]="{'active':item.checked}">
+						<span style="font-weight: bold">{{item.name}}</span>
+						<span>{{item.price}}</span>
+					</div>
 				</div>
-				<div class="listView">
-					<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
-						<span *ngIf="col.name==index2; else elseBlock" class="ball-color">{{col.name}}</span>
-						<ng-template #elseBlock>
-							<span style="font-weight: bold">{{col.name}}</span>
-						</ng-template>
-						<span>{{col.price}}</span>
+			</div>
+			<div class="titleView">
+				<span class="publicTitle">第六</span>
+				<span class="publicTitle">第七</span>
+				<span class="publicTitle">第八</span>
+				<span class="publicTitle">第九</span>
+				<span class="publicTitle">第十</span>
+			</div>
+			<div class="colView">
+				<div class="colBox" *ngFor="let col of [5,6,7,8,9];index as index1;">
+					<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem(item)" [ngClass]="{'active':item.checked}">
+						<span style="font-weight: bold">{{item.name}}</span>
+						<span>{{item.price}}</span>
 					</div>
 				</div>
 			</div>
 		</div>
-		<!--pk10 飞艇特殊处理 -->
-		<div *ngIf="gameKey=='bjpk10'||gameKey=='xyft'">
-			<div *ngFor="let row of unitsDatas.units;index as index1;">
-				<div class="titleView">
-					<span class="publicTitle">{{row.name}}</span>
-				</div>
-				<div class="listView">
-					<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
-						<span class="pk10" *ngIf="col.name==index2+1; else elseBlock">
-							<span class="number{{index2+1}}">{{col.name}}</span>
-						</span>
-						<ng-template #elseBlock>
-							<span style="font-weight: bold">{{col.name}}</span>
-						</ng-template>
-						<span>{{col.price}}</span>
-					</div>
-				</div>
-			</div>
-		</div>
+	</div>
+</div>
 
-		<!--pk10 六合彩特殊处理 -->
-		<div *ngIf="gameKey=='hklhc'">
-			<div *ngIf=" unitsDatas.name=='特码'||unitsDatas.name=='特码两面'||unitsDatas.name=='正码'||unitsDatas.name=='连肖不中'||unitsDatas.name=='正码1~6'">
+<!-- ======================== 【结构二】 unitsDatas.tmpl=='list'======================== -->
+<div *ngIf="unitsDatas.tmpl=='list'">
+	<!--时时彩1-5特殊处理 -->
+	<div *ngIf="gameKey=='cqssc'">
+		<div *ngFor="let row of unitsDatas.units;index as index1;">
+			<div class="titleView">
+				<span class="publicTitle">{{row.name}}</span>
+			</div>
+			<div class="listView">
+				<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
+					<span *ngIf="col.name==index2; else elseBlock" class="ball-color">{{col.name}}</span>
+					<ng-template #elseBlock>
+						<span style="font-weight: bold">{{col.name}}</span>
+					</ng-template>
+					<span>{{col.price}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!--pk10 飞艇特殊处理 -->
+	<div *ngIf="gameKey=='bjpk10'||gameKey=='xyft'">
+		<div *ngFor="let row of unitsDatas.units;index as index1;">
+			<div class="titleView">
+				<span class="publicTitle">{{row.name}}</span>
+			</div>
+			<div class="listView">
+				<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
+					<span class="pk10" *ngIf="col.name==index2+1; else elseBlock">
+						<span class="number{{index2+1}}">{{col.name}}</span>
+					</span>
+					<ng-template #elseBlock>
+						<span style="font-weight: bold">{{col.name}}</span>
+					</ng-template>
+					<span>{{col.price}}</span>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!--pk10 六合彩特殊处理 -->
+	<div *ngIf="gameKey=='hklhc'">
+		<div *ngIf=" unitsDatas.name=='特码'||unitsDatas.name=='特码两面'||unitsDatas.name=='正码'||unitsDatas.name=='正码1~6'">
+			<div *ngFor="let row of unitsDatas.units;index as index1;">
+				<div class="titleView">
+					<span class="publicTitle">{{row.name}}</span>
+				</div>
+				<div class="listView">
+					<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
+						<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
+						<span> {{col.price}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div *ngIf="unitsDatas.name=='半波'||unitsDatas.name=='特码生肖'">
+			<div *ngFor="let item of unitsDatas.units;index as index1;">
+				<div class="titleView">
+					<span class="publicTitle">{{item.name}}</span>
+				</div>
+				<div class="rowView" *ngFor="let row of item.nums" [ngClass]="{'active':row.checked}">
+					<div class="fixCol">
+						<span>{{row.name}}</span>
+						<span>{{row.price}}</span>
+					</div>
+					<div class="col" (click)="selectItem(row)">
+						<span *ngFor="let col of row.numbers" class="{{col.classColor}}">{{col.text}}</span>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+	<!-- 其他 list 类型玩法 去除所有特殊 -->
+	<!-- <div *ngIf="gameKey!='bjpk10'&&gameKey!='xyft'&&gameKey!='cqssc'">
 				<div *ngFor="let row of unitsDatas.units;index as index1;">
 					<div class="titleView">
 						<span class="publicTitle">{{row.name}}</span>
 					</div>
 					<div class="listView">
 						<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
-							<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
-							<span> {{col.price}}</span>
+							<span style="font-weight: bold">{{col.name}}</span>
+							<span>{{col.price}}</span>
 						</div>
 					</div>
 				</div>
-			</div>
-			<div *ngIf="unitsDatas.name=='半波'||unitsDatas.name=='特码生肖'||unitsDatas.name=='连肖中'">
-				<div *ngFor="let item of unitsDatas.units;index as index1;">
-					<div class="titleView">
-						<span class="publicTitle">{{item.name}}</span>
+			</div> -->
+</div>
+
+
+<!-- ========================【结构三】======================== unitsDatas.tmpl=='ddl' -->
+<div *ngIf="unitsDatas.tmpl=='ddl'">
+	<!-- 六合彩 ddl -->
+	<div *ngIf="gameKey=='hklhc'">
+		<div *ngIf=" unitsDatas.name=='正码特'||unitsDatas.name=='连码'">
+			<div>
+				<div class="titleView">
+					<div class="publicTitle">
+						<select [(ngModel)]="hklhcDdlActive" (ngModelChange)="cencelSelected(false)">
+							<option *ngFor="let item of unitsDatas.units" value="{{item.name}}">{{item.name}}</option>
+						</select>
 					</div>
-					<div class="rowView" *ngFor="let row of item.nums">
-						<div class="fixCol">
-							<span>{{row.name}}</span>
-							<span>{{row.price}}</span>
-						</div>
-						<div class="col">
-							<span *ngFor="let col of row.numbers"  class="{{col.classColor}}">{{col.text}}</span>
+				</div>
+				<div *ngFor="let item of unitsDatas.units">
+					<!-- <div class="listView" *ngIf="item.name == hklhcDdlActive"> -->
+					<div class="listView" *ngIf="item.name == hklhcDdlActive">
+						<div class="col" *ngFor="let col of item.nums;" (click)="selectItem(col)" [ngClass]="{'active':col.checked}">
+							<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
+							<span>{{col.price}}</span>
 						</div>
 					</div>
 				</div>
 			</div>
 		</div>
-
-		<!-- 其他 list 类型玩法 去除所有特殊 -->
-		<!-- <div *ngIf="gameKey!='bjpk10'&&gameKey!='xyft'&&gameKey!='cqssc'">
-			<div *ngFor="let row of unitsDatas.units;index as index1;">
+		<div *ngIf="unitsDatas.name=='全不中'">
+			<div>
 				<div class="titleView">
-					<span class="publicTitle">{{row.name}}</span>
+					<div class="publicTitle">
+						<select [(ngModel)]="hklhcDdlActive" (ngModelChange)="cencelSelected(false)">
+							<option *ngFor="let item of unitsDatas.units" value="{{item.name}}">{{item.name}}</option>
+						</select>
+					</div>
 				</div>
-				<div class="listView">
-					<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
-						<span style="font-weight: bold">{{col.name}}</span>
-						<span>{{col.price}}</span>
+				<div *ngFor="let item of unitsDatas.units">
+					<!-- <div class="listView" *ngIf="item.name == hklhcDdlActive"> -->
+					<div class="listView" *ngIf="item.name == hklhcDdlActive">
+						<div class="col" *ngFor="let col of item.nums;" (click)="selectItem_comb(col,item)" [ngClass]="{'active':col.checked}">
+							<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
+							<span>{{col.price}}</span>
+						</div>
 					</div>
 				</div>
 			</div>
-		</div> -->
-	</div>
-
-
-	<!-- ========================【结构三】======================== unitsDatas.tmpl=='ddl' -->
-	<div *ngIf="unitsDatas.tmpl=='ddl'">
-		<!-- 六合彩 ddl -->
+		</div>
 		<div *ngIf="gameKey=='hklhc'">
-			<div *ngIf=" unitsDatas.name=='正码特'||unitsDatas.name=='全不中'||unitsDatas.name=='连码'">
-				<div>
-					<div class="titleView">
-						<div class="publicTitle">
-							<select [(ngModel)]="hklhcDdlActive">
-								<option *ngFor="let item of unitsDatas.units" value="{{item.name}}">{{item.name}}</option>
-							</select>
-						</div>
+			<div *ngIf="unitsDatas.name=='连肖中'||unitsDatas.name=='连肖不中'">
+				<div class="titleView">
+					<div class="publicTitle">
+						<select [(ngModel)]="hklhcDdlActive" (ngModelChange)="cencelSelected(false)">
+							<option *ngFor="let item of unitsDatas.units" value="{{item.name}}">{{item.name}}</option>
+						</select>
 					</div>
-					<div *ngFor="let item of unitsDatas.units">
-						<!-- <div class="listView" *ngIf="item.name == hklhcDdlActive"> -->
-						<div class="listView" *ngIf="item.name == hklhcDdlActive">
-							<div class="col" *ngFor="let col of item.nums;" (click)="selectItem(col)" [ngClass]="{'active':col.checked}">
-								<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
-								<span>{{col.price}}</span>
+				</div>
+				<div *ngFor="let item of unitsDatas.units;index as index1;">
+					<div *ngFor="let row of item.nums;index as index1">
+						<div class="rowView" *ngIf="item.name == hklhcDdlActive" [ngClass]="{'active':row.checked}">
+							<div class="fixCol">
+								<span>{{row.name}}</span>
+								<span>{{row.price}}</span>
+							</div>
+							<div class="col" (click)="selectItem_comb(row,item)">
+								<span *ngFor="let col of row.numbers" class="{{col.classColor}}">{{col.text}}</span>
 							</div>
 						</div>
 					</div>
 				</div>
 			</div>
-			<div *ngIf="unitsDatas.name=='一肖/尾数'||unitsDatas.name=='合肖'||unitsDatas.name=='连尾中'||unitsDatas.name=='连尾不中'">
+			<div *ngIf="unitsDatas.name=='一肖/尾数'">
 				<div class="titleView">
 					<div class="publicTitle">
-						<select [(ngModel)]="hklhcDdlActive">
+						<select [(ngModel)]="hklhcDdlActive" (ngModelChange)="cencelSelected(false)">
 							<option *ngFor="let item of unitsDatas.units" value="{{item.name}}">{{item.name}}</option>
 						</select>
 					</div>
 				</div>
 				<div *ngFor="let item of unitsDatas.units;index as index1;">
 					<div *ngFor="let row of item.nums">
-						<div class="rowView" *ngIf="item.name == hklhcDdlActive">
+						<div class="rowView" *ngIf="item.name == hklhcDdlActive" [ngClass]="{'active':row.checked}">
 							<div class="fixCol">
 								<span>{{row.name}}</span>
 								<span>{{row.price}}</span>
 							</div>
-							<div class="col">
-								<span *ngFor="let col of row.numbers"  class="{{col.classColor}}">{{col.text}}</span>
+							<div class="col" (click)="selectItem(row)">
+								<span *ngFor="let col of row.numbers" class="{{col.classColor}}">{{col.text}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="unitsDatas.name=='合肖'">
+				<div class="titleView">
+					<div class="publicTitle">
+						<select [(ngModel)]="hklhcDdlActive" (ngModelChange)="cencelSelected(false)">
+							<option *ngFor="let item of unitsDatas.units" value="{{item.name}}">{{item.name}}</option>
+						</select>
+					</div>
+				</div>
+				<div *ngFor="let item of unitsDatas.units;index as index1;">
+					<div *ngFor="let row of item.nums;index as index1">
+						<div class="rowView" *ngIf="item.name == hklhcDdlActive" [ngClass]="{'active':row.checked}">
+							<div class="fixCol">
+								<span>{{row.name}}</span>
+								<span>{{row.price}}</span>
+							</div>
+							<div class="col" (click)="selectItem_limit(item,index1)">
+								<span *ngFor="let col of row.numbers" class="{{col.classColor}}">{{col.text}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="unitsDatas.name=='连尾中'||unitsDatas.name=='连尾不中'">
+				<div class="titleView">
+					<div class="publicTitle">
+						<select [(ngModel)]="hklhcDdlActive" (ngModelChange)="cencelSelected(false)">
+							<option *ngFor="let item of unitsDatas.units" value="{{item.name}}">{{item.name}}</option>
+						</select>
+					</div>
+				</div>
+				<div *ngFor="let item of unitsDatas.units;index as index1;">
+					<div *ngFor="let row of item.nums">
+						<div class="rowView" *ngIf="item.name == hklhcDdlActive" [ngClass]="{'active':row.checked}">
+							<div class="fixCol">
+								<span>{{row.name}}</span>
+								<span>{{row.price}}</span>
+							</div>
+							<div class="col" (click)="selectItem_comb(row,item)">
+								<span *ngFor="let col of row.numbers" class="{{col.classColor}}">{{col.text}}</span>
 							</div>
 						</div>
 					</div>
@@ -247,26 +332,26 @@
 			</div>
 		</div>
 	</div>
+</div>
 
-	<!-- ========================【结构四】======================== unitsDatas.tmpl=="enum_lhc_gg" -->
-	<div *ngIf="unitsDatas.tmpl=='enum_lhc_gg'">
-		<!-- 六合彩 过关 -->
-		<div *ngIf="gameKey=='hklhc'">
-			<div class="titleView">
-				<span class="publicTitle">过关</span>
-			</div>
-			<div *ngFor="let item of unitsDatas.units;index as index1">
-				<div class="titleView">
-					<div class="subTitle">{{item.name}}</div>
-				</div>
-				<div class="listView enum_lhc_gg">
-					<div class="col" *ngFor="let col of item.nums;" (click)="selectItem_enum_lhc_gg(col,col.seGroup,index1)" [ngClass]="{'active':col.checked}">
-						<span>{{col.name}}</span>
-						<span>{{col.price}}</span>
-					</div>
-				</div>
-			</div>
-
+<!-- ========================【结构四】======================== unitsDatas.tmpl=="enum_lhc_gg" -->
+<div *ngIf="unitsDatas.tmpl=='enum_lhc_gg'">
+	<!-- 六合彩 过关 -->
+	<div *ngIf="gameKey=='hklhc'">
+		<div class="titleView">
+			<span class="publicTitle">过关</span>
 		</div>
+		<div *ngFor="let item of unitsDatas.units;index as index1">
+			<div class="titleView">
+				<div class="subTitle">{{item.name}}</div>
+			</div>
+			<div class="listView enum_lhc_gg">
+				<div class="col" *ngFor="let col of item.nums;" (click)="selectItem_enum_lhc_gg(col,col.seGroup,index1)" [ngClass]="{'active':col.checked}">
+					<span>{{col.name}}</span>
+					<span>{{col.price}}</span>
+				</div>
+			</div>
+		</div>
+
 	</div>
 </div>

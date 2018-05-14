@@ -52,7 +52,7 @@
 
 <ion-footer>
 	<div class="gameFooter">
-		<div class="row1">已经选中 <span>{{selectedList.length}}</span> 注</div>
+		<div class="row1">已经选中 <span>{{selectedDatas.count}}</span> 注</div>
 		<div class="row2">
 			<input class="textInput" [ngModel]="buyAmount" (ngModelChange)="changeBuyAmount($event)" type="number" placeholder="输入金额">
 			<input class="btnSubmit" ion-button (click)="checkOrder()" value="下注" type="submit">

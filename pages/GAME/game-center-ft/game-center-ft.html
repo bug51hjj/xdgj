@@ -29,45 +29,12 @@
 		<div class="cont1">
 			<ul class="gameTabCont">
 				<li class="active">投注区</li>
+				<li>综合过关</li>
 				<li>聊天室</li>
 			</ul>
+			<opencode1 [gameKey]="gameKey" (changeStop_remaining)="changeStop_remaining($event)" (setExpect)="setExpect($event)"></opencode1>
 		</div>
-		<div>
-			<div class="bj-data-num clearfix">
-				<div class="ft-header clearfix" style="padding: 5px 10px;">
-					<div class="fl">
-						1206026期
-					</div>
-					<div class="fr">
-						<span class="ft-circle"></span>
-						<span class="ft-circle"></span>
-						<span class="ft-circle"></span>
-						<span class="ft-circle"></span>
-					</div>
-				</div>
-				<div class="number num clearfix pk10" style="padding: 5px 10px;">
-					<span class="number1">1</span>
-					<span class="number10">10</span>
-					<span class="number4">4</span>
-					<span class="number8">8</span>
-					<span class="number2">2</span>
-					<span class="number6">6</span>
-					<span class="number3">3</span>
-					<span class="number7">7</span>
-					<span class="number9">9</span>
-					<span class="number5">5</span>
-				</div>
-			</div>
-			<div class="data-content">
-				<span>681672期</span>
-				<span>封盘：
-					<time>04:02</time>
-				</span>
-				<span class="active assertive">开奖：
-					<time>04:32</time>
-				</span>
-			</div>
-		</div>
+
 		<div class="">
 			<div class="height5"></div>
 			<div class="ft-table" style="padding-bottom: 0">
@@ -455,92 +422,92 @@
 			</div>
 			<div class="height5"></div>
 			<div class="ft-table">
-				<table class="right guoguan-table br">
+				<table class="right guoguan-table br" *ngIf="gameStructure[activeGameType].units">
 					<tbody>
 						<tr>
 							<td>
-								<span>3-4角</span>
-								<p>1.95</p>
+								<span>{{gameStructure[activeGameType].units[3].nums['3-4角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[3].nums['3-4角'].price}}</p>
 							</td>
 							<td>
-								<span>3念4</span>
-								<p>2.9</p>
+								<span>{{gameStructure[activeGameType].units[4].nums['3念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['3念4'].price}}</p>
 							</td>
 							<td colspan="2">
-								<span>3念1</span>
-								<p>2.9</p>
+								<span>{{gameStructure[activeGameType].units[4].nums['3念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['3念1'].price}}</p>
 							</td>
 							<td>
-								<span>3念2</span>
-								<p>2.9</p>
+								<span>{{gameStructure[activeGameType].units[4].nums['3念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['3念2'].price}}</p>
 							</td>
 							<td>
-								<span>2-3角</span>
-								<p>1.95</p>
+								<span>{{gameStructure[activeGameType].units[3].nums['2-3角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[3].nums['2-3角'].price}}</p>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<span>4念3</span>
-								<p>2.9</p>
+								<span>{{gameStructure[activeGameType].units[4].nums['4念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['4念3'].price}}</p>
 							</td>
 							<td colspan="4">
-								<span>3番</span>
-								<p>3.85</p>
+								<span>{{gameStructure[activeGameType].units[2].nums['3番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['3番'].price}}</p>
 							</td>
 							<td>
-								<span>2念3</span>
-								<p>2.9</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span>4念2</span>
-								<p>2.9</p>
-							</td>
-							<td>
-								<span>4番</span>
-								<p>3.85</p>
-							</td>
-							<td>
-								<span>单</span>
-								<p>2.9</p>
-							</td>
-							<td>
-								<span>双</span>
-								<p>2.9</p>
-							</td>
-							<td>
-								<span>2番</span>
-								<p>3.85</p>
-							</td>
-							<td>
-								<span>2念4</span>
-								<p>2.9</p>
+								<span>{{gameStructure[activeGameType].units[4].nums['2念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['2念3'].price}}</p>
 							</td>
 						</tr>
 						<tr>
 							<td>
-								<span>4念1</span>
-								<p>2.9</p>
+								<span>{{gameStructure[activeGameType].units[4].nums['4念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['4念2'].price}}</p>
+							</td>
+							<td>
+								<span>{{gameStructure[activeGameType].units[2].nums['4番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['4番'].price}}</p>
+							</td>
+							<td>
+								<span>{{gameStructure[activeGameType].units[0].nums['单'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['单'].price}}</p>
+							</td>
+							<td>
+								<span>{{gameStructure[activeGameType].units[0].nums['双'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['双'].price}}</p>
+							</td>
+							<td>
+								<span>{{gameStructure[activeGameType].units[2].nums['2番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['2番'].price}}</p>
+							</td>
+							<td>
+								<span>{{gameStructure[activeGameType].units[4].nums['2念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['2念4'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td>
+								<span>{{gameStructure[activeGameType].units[4].nums['4念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['4念1'].price}}</p>
 							</td>
 							<td colspan="4">
-								<span>1番</span>
-								<p>3.85</p>
+								<span>{{gameStructure[activeGameType].units[2].nums['1番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['1番'].price}}</p>
 							</td>
 							<td>
-								<span>2念1</span>
-								<p>2.9</p>
+								<span>{{gameStructure[activeGameType].units[4].nums['2念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['2念1'].price}}</p>
 							</td>
 						</tr>
 						<tr>
 							<td>
 								<span>1-4角</span>
-								<p>1.95</p>
+								<p>000</p>
 							</td>
 							<td>
-								<span>1念4</span>
-								<p>2.9</p>
+								<span>{{gameStructure[activeGameType].units[4].nums['1念4'].name}}</span>
+									<p>{{gameStructure[activeGameType].units[4].nums['1念4'].price}}</p>
 							</td>
 							<td colspan="2">
 								<span>1念3</span>

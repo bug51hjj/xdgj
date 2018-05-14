@@ -11,7 +11,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 		<div style="padding: 15px 10px; border-bottom: 1px solid #eee; text-align: center;">下注清单</div>
 		<div style="min-height:100px;max-height:260px; overflow-y:scroll;">
 			<ul style="padding:10px;">
-				<li style="color:#555;line-height:24px;" *ngFor="let item of selectedList">
+				<li style="color:#555;line-height:24px;" *ngFor="let item of selectedDatas.list">
 				{{item.unit}} {{item.name}} @ {{item.price}}x{{buyAmount}}
 				</li>
 			</ul>
@@ -25,13 +25,13 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
   `
 })
 export class ConfirmOrderPage {
-	private selectedList;
+	private selectedDatas:any = {list:[[0]],type:''};
 	public buyAmount;
 	constructor(public navCtrl: NavController, public navParams: NavParams, public viewCtrl: ViewController) {
 	}
 
 	ionViewDidLoad() {
-		this.selectedList = JSON.parse(this.navParams.get('selectedList'));
+		this.selectedDatas = JSON.parse(this.navParams.get('selectedDatas'));
 		this.buyAmount = JSON.parse(this.navParams.get('buyAmount'));
 	}
 	dissmiss() {
