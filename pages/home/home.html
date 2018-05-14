@@ -48,7 +48,7 @@
 		<div class="game-class">
 			<!-- <div class="noGame">服务器加载游戏错误...</div> -->
 			<div class="row-game">
-				<a class="col-game" *ngFor="let item of gamesList" (click)="goPage(GameCenterPage,item)">
+				<a class="col-game" *ngFor="let item of gamesList" (click)="gameCenter(item)">
 					<img src="./assets/uploads/shishicai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='cqssc'">
 					<img src="./assets/uploads/pk-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='bjpk10'">
 					<img src="./assets/uploads/lucky-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='xyft'">

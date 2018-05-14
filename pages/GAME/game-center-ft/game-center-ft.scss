@@ -1,0 +1,64 @@
+.ft .ft-circle {
+    display: inline-block;
+    width: 25px;
+    height: 25px;
+    border: 1px solid #d83547;
+    background: #fdf5f6;
+    border-radius: 100%;
+    float: left;
+    margin-left: 10px;
+}
+.ft .height5 {
+    height: 5px;
+    background: #eee;
+}
+.ft-table {
+    padding: 15px;
+    background: #fff;
+}
+/*番摊*/
+.mt12{margin-top: 14px;}
+.mb12{margin-bottom: 14px;}
+.ft-content{background: #eee;}
+.ft .ft-circle{display: inline-block;width: 25px;height: 25px;border:1px solid #d83547;background: #fdf5f6;border-radius: 100%;float: left;margin-left: 10px;}
+.ft .ft-header .fl{font-size: 16px;}
+.ft .ft-header td{border:1px solid red;}
+.ft .ft-header td span{width: 20px;height: 20px;}
+.ft .rec{margin-top: 10px;}
+.ft .rec span{width: 20px;height: 20px;line-height: 22px;font-size: 14px;}
+.ft .rec .tan{width: auto;height: auto;color: #333;font-weight: bold;font-style: normal;border:1px solid #9a9a9a;padding: 0 6px;margin-left: 5px;}
+.ft .ssc .bj-data-num{border:none;}
+.ft .height5{height: 5px; background: #eee;}
+.ft-table{padding:  15px;background: #fff;}
+.ft-table .w100{width: 100%!important;display: block!important;}
+.ft-table .bgR{background: #d83547;width: 14px;height: 14px;border-radius: 100%;display: inline-block;text-align: center;line-height: 14px;font-size: 12px;color: #fff;}
+.ft-table .bgB{background: #0656cb;width: 14px;height: 14px;border-radius: 100%;display: inline-block;text-align: center;line-height: 14px;font-size: 12px;color: #fff;}
+.ft-box td{width: 5%;border:1px solid #c9c9c9;text-align: center;background: #fff;}
+.ft-box{margin-bottom: 14px;width:100%;}
+.ft .ft-table-header{width: 100%;height: 35px;background: #ffabb4;text-align: center;line-height: 35px;color: #fff;}
+.ft .rec span.bgY{background: #f3742d;}
+.mt50{margin-top: 50px;}
+.bjft .game-tabs .tabs{top: 20px;padding:0 15px;background: #fff;}
+.bjft .game-tabs .tab-item{background: #ffabb4;color: #fff;}
+.bjft .game-tabs .tab-item.activated,.bjft .game-tabs .tab-item.tab-item-active{background: #d83547;}
+.ft .col-34{width:33.333%;}
+.guoguan-table{
+    width: 100%;
+    background-color: #ecf4f9;
+}
+.guoguan-table.right tr {
+    line-height: 40px;
+    text-align: center;
+}
+.guoguan-table .br.right tr td {
+    line-height: 30px;
+}
+.guoguan-table td {
+    background: #ecf4f9;
+    color: #333;
+    border-right: 1px solid #fff;
+    border-bottom: 1px solid #fff;
+}
+.guoguan-table td p{
+    line-height:30px;
+}

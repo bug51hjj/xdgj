@@ -29,6 +29,19 @@ game-select-01 {
     border-right: 1px solid #fff;
 	line-height: 35px!important;
 }
+.rowView{
+	display: flex;
+	align-items: center;
+	padding: 10px 0;
+	border-bottom:1px solid #fff;
+	.fixCol{
+		margin: 0 20px;
+	}
+	.col{
+		flex: 1;
+		padding: 0;
+	}
+}
 .colView{
 	width:100%;
 	display: flex;
@@ -141,5 +154,5 @@ game-select-01 {
 
 .hklhc_bgColor.lhc-bgRed,
 .hklhc_bgColor.lhc-bgBlue,
-.hklhc_bgColor.lhc-bgGreen{width:26px;height:26px;display: inline-block;line-height:26px;margin-right: 5px;}
+.hklhc_bgColor.lhc-bgGreen{width:26px;height:26px;display: inline-block;text-align:center;line-height:26px;margin:0 5px 5px 0;}
 .hklhc_bgColor.boldFont{font-weight:bold;margin-right: 5px;}

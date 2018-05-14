@@ -26,7 +26,8 @@ import { UserBetListPage } from '../pages/USER/user-bet-list/user-bet-list'; //�
 import { UserBetedListPage } from '../pages/USER/user-beted-list/user-beted-list'; //用户中心-已结算货单
 import { UserBetDetailsPage } from '../pages/USER/user-bet-details/user-bet-details'; //用户中心-订单详情
 
-import { GameCenterPage } from '../pages/GAME/game-center/game-center'; //游戏
+import { GameCenterPage } from '../pages/GAME/game-center/game-center'; //游戏中心 一
+import { GameCenterFtPage } from '../pages/GAME/game-center-ft/game-center-ft'; //游戏中心 翻摊
 import { ConfirmOrderPage } from '../pages/GAME/confirm-order/confirm-order'; //确认订单
 import { ResultPage } from '../pages/GAME/result/result'; //游戏-开奖结果
 import { RulesPage } from '../pages/GAME/rules/rules';//游戏-游戏规则   
@@ -61,6 +62,7 @@ import { GamesProvider } from '../providers/games/games';
     ResultPage,
     RulesPage,
     GameCenterPage,
+    GameCenterFtPage,
     ConfirmOrderPage
   ],
   imports: [
@@ -100,6 +102,7 @@ import { GamesProvider } from '../providers/games/games';
     ResultPage,
     RulesPage,
     GameCenterPage,
+    GameCenterFtPage,
     ConfirmOrderPage
   ],
   providers: [

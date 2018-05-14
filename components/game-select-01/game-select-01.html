@@ -148,19 +148,40 @@
 				</div>
 			</div>
 		</div>
+
+		<!--pk10 六合彩特殊处理 -->
 		<div *ngIf="gameKey=='hklhc'">
-			<div *ngFor="let row of unitsDatas.units;index as index1;">
-				<div class="titleView">
-					<span class="publicTitle">{{row.name}}</span>
+			<div *ngIf=" unitsDatas.name=='特码'||unitsDatas.name=='特码两面'||unitsDatas.name=='正码'||unitsDatas.name=='连肖不中'||unitsDatas.name=='正码1~6'">
+				<div *ngFor="let row of unitsDatas.units;index as index1;">
+					<div class="titleView">
+						<span class="publicTitle">{{row.name}}</span>
+					</div>
+					<div class="listView">
+						<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
+							<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
+							<span> {{col.price}}</span>
+						</div>
+					</div>
 				</div>
-				<div class="listView">
-					<div class="col" *ngFor="let col of row.nums;index as index2;" (click)="selectItem(row.nums[index2])" [ngClass]="{'active':row.nums[index2].checked}">
-						<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
-						<span>{{col.price}}</span>
+			</div>
+			<div *ngIf="unitsDatas.name=='半波'||unitsDatas.name=='特码生肖'||unitsDatas.name=='连肖中'">
+				<div *ngFor="let item of unitsDatas.units;index as index1;">
+					<div class="titleView">
+						<span class="publicTitle">{{item.name}}</span>
+					</div>
+					<div class="rowView" *ngFor="let row of item.nums">
+						<div class="fixCol">
+							<span>{{row.name}}</span>
+							<span>{{row.price}}</span>
+						</div>
+						<div class="col">
+							<span *ngFor="let col of row.numbers"  class="{{col.classColor}}">{{col.text}}</span>
+						</div>
 					</div>
 				</div>
 			</div>
 		</div>
+
 		<!-- 其他 list 类型玩法 去除所有特殊 -->
 		<!-- <div *ngIf="gameKey!='bjpk10'&&gameKey!='xyft'&&gameKey!='cqssc'">
 			<div *ngFor="let row of unitsDatas.units;index as index1;">
@@ -182,7 +203,27 @@
 	<div *ngIf="unitsDatas.tmpl=='ddl'">
 		<!-- 六合彩 ddl -->
 		<div *ngIf="gameKey=='hklhc'">
-			<div>
+			<div *ngIf=" unitsDatas.name=='正码特'||unitsDatas.name=='全不中'||unitsDatas.name=='连码'">
+				<div>
+					<div class="titleView">
+						<div class="publicTitle">
+							<select [(ngModel)]="hklhcDdlActive">
+								<option *ngFor="let item of unitsDatas.units" value="{{item.name}}">{{item.name}}</option>
+							</select>
+						</div>
+					</div>
+					<div *ngFor="let item of unitsDatas.units">
+						<!-- <div class="listView" *ngIf="item.name == hklhcDdlActive"> -->
+						<div class="listView" *ngIf="item.name == hklhcDdlActive">
+							<div class="col" *ngFor="let col of item.nums;" (click)="selectItem(col)" [ngClass]="{'active':col.checked}">
+								<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
+								<span>{{col.price}}</span>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div *ngIf="unitsDatas.name=='一肖/尾数'||unitsDatas.name=='合肖'||unitsDatas.name=='连尾中'||unitsDatas.name=='连尾不中'">
 				<div class="titleView">
 					<div class="publicTitle">
 						<select [(ngModel)]="hklhcDdlActive">
@@ -190,12 +231,16 @@
 						</select>
 					</div>
 				</div>
-				<div *ngFor="let item of unitsDatas.units">
-					<!-- <div class="listView" *ngIf="item.name == hklhcDdlActive"> -->
-					<div class="listView" *ngIf="item.name == hklhcDdlActive">
-						<div class="col" *ngFor="let col of item.nums;" (click)="selectItem(col)" [ngClass]="{'active':col.checked}">
-							<span class="hklhc_bgColor {{col.color}}">{{col.name}}</span>
-							<span>{{col.price}}</span>
+				<div *ngFor="let item of unitsDatas.units;index as index1;">
+					<div *ngFor="let row of item.nums">
+						<div class="rowView" *ngIf="item.name == hklhcDdlActive">
+							<div class="fixCol">
+								<span>{{row.name}}</span>
+								<span>{{row.price}}</span>
+							</div>
+							<div class="col">
+								<span *ngFor="let col of row.numbers"  class="{{col.classColor}}">{{col.text}}</span>
+							</div>
 						</div>
 					</div>
 				</div>

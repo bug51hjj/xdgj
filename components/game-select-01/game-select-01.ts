@@ -45,26 +45,52 @@ export class GameSelect_01Component {
                 let $redNum = ("1,2,7,8,12,13,18,19,23,24,29,30,34,35,40,45,46").split(',');
                 let $blueNum = ("3,4,9,10,14,15,20,25,26,31,36,37,41,42,47,48").split(',');
                 let $greenNum = ("5,6,11,16,17,21,22,27,28,32,33,38,39,43,44,49").split(',');
-                this.units.units.map(_units => {  //六合彩 添加颜色标志
-                    _units.nums.map(_nums => {
-                        if ($redNum['includes'](_nums.name)) {
-                            _nums['color'] = 'lhc-bgRed'
-                        } else if ($blueNum['includes'](_nums.name)) {
-                            _nums['color'] = 'lhc-bgBlue'
-                        } else if ($greenNum['includes'](_nums.name)) {
-                            _nums['color'] = 'lhc-bgGreen'
-                        }else{
-                            _nums['color'] = 'boldFont'
-                        }
-
-
+                let $needColorMark = ['特码','正码','正码特','连码','全不中'];
+                let $needColorNumber = ['半波','特码生肖','连肖中','一肖/尾数','合肖','连肖中','连尾中','连尾不中']
+                if($needColorMark['includes'](this.units.name)){  //['特码','正码','正码特','连码','全不中'] 添加颜色标志 
+                    this.units.units.map(_units => {
+                        _units.nums.map(_nums => {
+                            if ($redNum['includes'](_nums.name)) {
+                                _nums['color'] = 'lhc-bgRed'
+                            } else if ($blueNum['includes'](_nums.name)) {
+                                _nums['color'] = 'lhc-bgBlue'
+                            } else if ($greenNum['includes'](_nums.name)) {
+                                _nums['color'] = 'lhc-bgGreen'
+                            }else{
+                                _nums['color'] = 'boldFont'
+                            }
+                        })
                     })
-                })
+                }
+                if($needColorNumber['includes'](this.units.name)){  //六合彩 获取类型数字
+                    this.units.units.map(_units => {
+                        _units.nums.map(_nums => {
+                            _nums['numbers'] = [];
+                            // if(_nums.name.indexOf('红')!=-1){_nums['classColor']="hklhc_bgColor lhc-bgRed"}
+                            // if(_nums.name.indexOf('绿')!=-1){_nums['classColor']="hklhc_bgColor lhc-bgGreen"}
+                            // if(_nums.name.indexOf('蓝')!=-1){_nums['classColor']="hklhc_bgColor lhc-bgBlue"}
+                            let tempNums = this.games.getLhcNums(_nums.name);
+                            if(tempNums){
+                                tempNums.map(_num=>{
+                                    if($redNum['includes'](_num)){_nums['numbers'].push({text:_num,classColor:"hklhc_bgColor lhc-bgRed"})}
+                                    if($blueNum['includes'](_num)){_nums['numbers'].push({text:_num,classColor:"hklhc_bgColor lhc-bgBlue"})}
+                                    if($greenNum['includes'](_num)){_nums['numbers'].push({text:_num,classColor:"hklhc_bgColor lhc-bgGreen"})}
+                                })
+                            }
+                            // this.units['getLhcNums']=this.games.getLhcNums(_nums.name)
+                        })
+                    })
+                }
+                
+
 
             }
             this.unitsDatas = this.units;
             console.log(this.unitsDatas)
         }
+    }
+    numbersColor(nums:any[]){
+
     }
     getGamePrice_list() {
         // let { gamekey, gameType, gamePan } = this;

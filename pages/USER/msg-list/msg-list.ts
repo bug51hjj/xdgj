@@ -49,8 +49,21 @@ export class MsgListPage {
             result.map(item=>{
                 let res = item['json']();
                 if(res.errorcode === 0){
-                    if('notice' in res){this.noticeData = res}
-                    if('pm' in res){this.mailData = res}
+                    console.log(res)
+                    if('notice' in res){
+                        res['notice'].map(noticeItem=>{
+                            noticeItem.title = decodeURIComponent(noticeItem.title);
+                            noticeItem.content = decodeURIComponent(noticeItem.content);
+                        })
+                        this.noticeData = res;
+                    }
+                    if('pm' in res){
+                        res['pm'].map(pmItem=>{
+                            pmItem.title = decodeURIComponent(pmItem.title);
+                            pmItem.content = decodeURIComponent(pmItem.content);
+                        })
+                        this.mailData = res;
+                    }
                 }else{
                     this.httpErrorHandle(res)
                 }

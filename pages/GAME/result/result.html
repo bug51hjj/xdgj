@@ -7,59 +7,232 @@
 <ion-header>
 
     <ion-navbar color="primary">
-        <ion-title>result</ion-title>
+        <ion-title>开奖结果</ion-title>
     </ion-navbar>
 
 </ion-header>
-
-
 <ion-content>
     <div class="selectBox">
-        <select>
-            <option value="0">00000000</option>
-            <option value="0">00000000</option>
-            <option value="0">00000000</option>
-            <option value="0">00000000</option>
-            <option value="0">00000000</option>
-            <option value="0">00000000</option>
-            <option value="0">00000000</option>
+        <select [(ngModel)]="gamekey" (ngModelChange)="changeGamekey($event)">
+            <option value="cqssc">重庆时时彩</option>
+            <option value="bjpk10">北京PK10</option>
+            <option value="xyft">幸运飞艇</option>
+            <option value="hklhc">香港六合彩</option>
+            <!-- <option value="bjft">北京翻摊</option>
+            <option value="cqft">重庆翻摊</option>
+            <option value="jnd28">加拿大28</option> -->
         </select>
-        <input type="date">
+        <input *ngIf="gamekey!='hklhc'"  type="date" [(ngModel)]="hisDate" (ngModelChange)="changeHisDate($event)">
     </div>
-    <div class="dataTable">
-        <div class="titCont">
-            <div class="col1">
-                <span>期数</span>
-            </div>
-            <div class="col2">
-                <span>时间</span>
-            </div>
-            <div class="col3 active">
-                <span>号码</span>
-            </div>
-            <div class="col3">
-                <span>大小</span>
-            </div>
-            <div class="col3">
-                <span>单双</span>
-            </div>
-            <div class="col3">
-                <span>总和</span>
-            </div>
-        </div>
-        <div class="mainCont row" *ngFor="let item of historyData">
-            <div class="col1">
-                <span>0000000</span>
-            </div>
-            <div class="col2">
-                <span>10:10</span>
-            </div>
-            <div class="col3">
-                <div class="item" *ngFor="let item2 of item.nums">
-                    <span>{{item2}}</span>
+    <div  class="dataTable" *ngIf="todayNoHistoryData"  padding>
+        未查询到当日数据
+    </div>
+    <div *ngIf="gamekey=='cqssc' && !todayNoHistoryData">
+        <div class="dataTable">
+            <div class="titCont">
+                <div class="col1">
+                    <span>期数</span>
+                </div>
+                <div class="col2">
+                    <span>时间</span>
+                </div>
+                <div class="col3" [ngClass]="{'active':cqsscActiveType =='nums'}" (click)="changeCqsscActiveType('nums')">
+                    <span>号码</span>
+                </div>
+                <div class="col3" [ngClass]="{'active':cqsscActiveType =='bigSamll'}" (click)="changeCqsscActiveType('bigSamll')">
+                    <span>大小</span>
+                </div>
+                <div class="col3" [ngClass]="{'active':cqsscActiveType =='singleDouble'}" (click)="changeCqsscActiveType('singleDouble')">
+                    <span>单双</span>
+                </div>
+                <div class="col3" [ngClass]="{'active':cqsscActiveType =='count'}" (click)="changeCqsscActiveType('count')">
+                    <span>总和</span>
                 </div>
             </div>
+            <div>
+                <div class="mainCont row" *ngFor="let item of historyData;index as index1">
+                    <div class="col1">
+                        <span>{{item.expect}}</span>
+                    </div>
+                    <div class="col2">
+                        <span>{{item.opentime_hm}}</span>
+                    </div>
+                    <div class="col3" *ngIf="cqsscActiveType =='nums'">
+                        <div class="item" *ngFor="let nums of item.composeHistory.nums">
+                            <span class="recYellow">{{nums}}</span>
+                        </div>
+                    </div>
+                    <div class="col3" *ngIf="cqsscActiveType =='bigSamll'">
+                        <div class="item" *ngFor="let bigSamll of item.composeHistory.bigSamll">
+                            <span class="cir {{bigSamll.class}}">{{bigSamll.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col3" *ngIf="cqsscActiveType =='singleDouble'">
+                        <div class="item" *ngFor="let singleDouble of item.composeHistory.singleDouble">
+                            <span class="cir {{singleDouble.class}}">{{singleDouble.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col3" *ngIf="cqsscActiveType =='count'">
+                        <div class="item">
+                            <span class="font red">{{item.composeHistory.count[0]}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="cir {{item.composeHistory.count[1].class}}">{{item.composeHistory.count[1].name}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="cir {{item.composeHistory.count[2].class}}">{{item.composeHistory.count[2].name}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="cir {{item.composeHistory.count[3].class}}">{{item.composeHistory.count[3].name}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="font {{item.composeHistory.count[4].class}}">{{item.composeHistory.count[4].name}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="font {{item.composeHistory.count[5].class}}">{{item.composeHistory.count[5].name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 
+
+
+    <div *ngIf="gamekey=='bjpk10'||gamekey=='xyft' && !todayNoHistoryData">
+        <div class="dataTable">
+            <div class="titCont">
+                <div class="col1" style="width:70px">
+                    <span>期数</span>
+                </div>
+                <div class="col2">
+                    <span>时间</span>
+                </div>
+                <div class="col3" [ngClass]="{'active':pk10ActiveType =='nums'}" (click)="changePk10ActiveType('nums')">
+                    <span>号码</span>
+                </div>
+                <div class="col3" [ngClass]="{'active':pk10ActiveType =='bigSamll'}" (click)="changePk10ActiveType('bigSamll')">
+                    <span>大小</span>
+                </div>
+                <div class="col3" [ngClass]="{'active':pk10ActiveType =='singleDouble'}" (click)="changePk10ActiveType('singleDouble')">
+                    <span>单双</span>
+                </div>
+                <div class="col3" [ngClass]="{'active':pk10ActiveType =='count'}" (click)="changePk10ActiveType('count')">
+                    <span>组合</span>
+                </div>
+            </div>
+            <div>
+                <div class="mainCont row" *ngFor="let item of historyData;index as index1">
+                    <div class="col1" style="width:70px">
+                        <span>{{item.expect}}</span>
+                    </div>
+                    <div class="col2">
+                        <span>{{item.opentime_hm}}</span>
+                    </div>
+                    <div class="col3" *ngIf="pk10ActiveType =='nums'&&item.composeHistory" >
+                        <div class="item" *ngFor="let nums of item.composeHistory.nums">
+                            <span class="rec number{{nums}}">{{nums}}</span>
+                        </div>
+                    </div>
+                    <div class="col3" *ngIf="pk10ActiveType =='bigSamll'">
+                        <div class="item" *ngFor="let bigSamll of item.composeHistory.bigSamll">
+                            <span class="rec {{bigSamll.class}}">{{bigSamll.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col3" *ngIf="pk10ActiveType =='singleDouble'">
+                        <div class="item" *ngFor="let singleDouble of item.composeHistory.singleDouble">
+                            <span class="rec {{singleDouble.class}}">{{singleDouble.name}}</span>
+                        </div>
+                    </div>
+                    <div class="col3" *ngIf="pk10ActiveType =='count'">
+                        <div class="item">
+                            <span class="font red" style="width:20px;line-height:20px;height:20px;">{{item.composeHistory.count[0]}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="rec {{item.composeHistory.count[1].class}}">{{item.composeHistory.count[1].name}}</span>
+                        </div>
+                        <div class="item" style="margin-right: 10px;">
+                            <span class="rec {{item.composeHistory.count[2].class}}">{{item.composeHistory.count[2].name}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="rec {{item.composeHistory.count[3].class}}">{{item.composeHistory.count[3].name}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="rec {{item.composeHistory.count[4].class}}">{{item.composeHistory.count[4].name}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="rec {{item.composeHistory.count[5].class}}">{{item.composeHistory.count[5].name}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="rec {{item.composeHistory.count[6].class}}">{{item.composeHistory.count[6].name}}</span>
+                        </div>
+                        <div class="item">
+                            <span class="rec {{item.composeHistory.count[7].class}}">{{item.composeHistory.count[7].name}}</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div *ngIf="gamekey=='hklhc'&& !todayNoHistoryData">
+        <div class="dataTable"> 
+            <dl class="hklhcView" *ngFor="let item of historyData;index as index1">
+                <dt>
+                    <span>第{{item.expect}}期</span>
+                    <span>{{item.opentime}}</span>
+                </dt>
+                <dd>
+                    <div class="item" *ngFor="let opencode of item.opencode_ary">
+                        <span class="{{opencode.class}}">{{opencode.num}}</span>
+                        <span>{{opencode.text}}</span>
+                    </div>
+                    
+                    <!-- <div class="item">
+                        <span class="lhc-bgRed">{{item.opencode_ary[0]}}</span>
+                        <span>{{item.zodiac_ary[0]}}</span>
+                    </div>
+                    <div class="item">
+                            <span class="lhc-bgRed">{{item.opencode_ary[1]}}</span>
+                            <span>{{item.zodiac_ary[1]}}</span>
+                    </div>
+                    <div class="item">
+                            <span class="lhc-bgRed">{{item.opencode_ary[2]}}</span>
+                            <span>{{item.zodiac_ary[2]}}</span>
+                    </div>
+                    <div class="item">
+                            <span class="lhc-bgRed">{{item.opencode_ary[3]}}</span>
+                            <span>{{item.zodiac_ary[3]}}</span>
+                    </div>
+                    <div class="item">
+                            <span class="lhc-bgRed">{{item.opencode_ary[4]}}</span>
+                            <span>{{item.zodiac_ary[4]}}</span>
+                    </div>
+                    <div class="item">
+                            <span class="lhc-bgRed">{{item.opencode_ary[5]}}</span>
+                            <span>{{item.zodiac_ary[5]}}</span>
+                    </div>
+                    <div class="item">
+                        <span>+</span>
+                        <span class="lhc-bgRed">{{item.opencode_ary[6]}}</span>
+                    </div>
+                    <div class="item">
+                            <span class="lhc-bgRed">{{item.opencode_ary[]}}</span>
+                            <span>{{item.zodiac_ary[6]}}</span>
+                    </div> -->
+                </dd>
+            </dl>
         </div>
     </div>
 </ion-content>
+
+<!-- <ion-content *ngIf="gamekey=='bjpk10'||gamekey=='xyft'">
+
+</ion-content>
+<ion-content *ngIf="gamekey=='hklhc'"></ion-content>
+<ion-content *ngIf="gamekey=='bjft'"></ion-content>
+<ion-content *ngIf="gamekey=='cqft
+'"></ion-content>
+<ion-content *ngIf="gamekey=='jnd28'"></ion-content> -->
