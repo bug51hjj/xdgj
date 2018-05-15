@@ -22,7 +22,7 @@ export class GameCenterPage {
 	public activeGamePan: any = 'A';  //当前选择的游戏盘区 默认A
 	public expect:any='';//游戏期数
 	public unitsData: any;
-	public selectedList: any = [];  //选中的游戏项目
+	public selectedDatas: any = {list:[],type:'',count:0};  //选中的游戏项目
 	public buyAmount:any; //购买金额
 	public stop_remaining: any = {};//封盘
 	public memberAmount:any = 0;
@@ -46,7 +46,10 @@ export class GameCenterPage {
 		let token = window.localStorage.getItem('token');
 		let { gameKey, activeGamePan } = this;
 		let url = `/event/price_list?tk=${token}&gamekey=${gameKey}&pan=${activeGamePan}`;
+		let loader = this.loadingCtrl.create({content: "加载中..."});
+		loader.present();
 		this.HttpService.get(url).subscribe((res: Response) => {
+			loader.dismiss();
 			if(res['errorcode']==0){
 				this.gameStructure = this.gamesProvider.getPlayPrizes(res, this.gameKey);
 				this.unitsData = this.gameStructure[this.activeGameType];
@@ -71,8 +74,7 @@ export class GameCenterPage {
 		this.stop_remaining = e;
 	}
 	changeSelectedList(e) {
-		this.selectedList = e;
-		console.log(this.selectedList)
+		this.selectedDatas= e;
 	}
 	changeBuyAmount(e){
 		this.buyAmount = e;
@@ -91,15 +93,23 @@ export class GameCenterPage {
 		this.unitsData = this.gameStructure[index];
 	}
 	checkOrder() {
-		if(this.selectedList.length==0){
+		if(this.selectedDatas.list.length==0){
 			this.httpErrorHandle({errormsg:'您还未选择购买项目!'})
+			return false;
+		}
+		if(this.selectedDatas.type=='hklhchx'&&this.selectedDatas.list.length!=this.selectedDatas.limit){
+			this.httpErrorHandle({errormsg:`选择数量应该为${this.selectedDatas.limit}个`});
+			return false;
+		}
+		if(this.selectedDatas.type=='hklhccomb'&&this.selectedDatas.list.length<this.selectedDatas.comb){
+			this.httpErrorHandle({errormsg:`至少选择${this.selectedDatas.comb}个`});
 			return false;
 		}
 		if(!this.buyAmount){
 			this.httpErrorHandle({errormsg:'请输入购买金额!'})
 			return false;
 		}
-		let profileModal = this.modalCtrl.create(ConfirmOrderPage, { selectedList: JSON.stringify(this.selectedList),buyAmount:this.buyAmount }, {
+		let profileModal = this.modalCtrl.create(ConfirmOrderPage, { selectedDatas: JSON.stringify(this.selectedDatas),buyAmount:this.buyAmount }, {
 			showBackdrop: true,
 			enableBackdropDismiss: true
 		});
@@ -115,7 +125,7 @@ export class GameCenterPage {
 		let pan = this.activeGamePan;
 		let expect = this.expect;
 		let orders = [];
-		this.selectedList.map(item=>{
+		this.selectedDatas.list.map(item=>{
 			let temp = {
 				type:item.type,
 				play_method:item.play_method,
@@ -124,6 +134,7 @@ export class GameCenterPage {
 			};
 			orders.push(temp);
 		})
+		
 		let url = `/order/buy?tk=${token}`;
 		let params = `unique_requestId=${unique_requestId}&gamekey=${gamekey}&expect=${expect}&pan=${pan}&orders=${JSON.stringify(orders)}`
 		// console.log(token);console.log(unique_requestId);console.log(gamekey)

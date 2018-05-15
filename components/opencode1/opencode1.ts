@@ -13,6 +13,7 @@ export class Opencode1Component {
 	public present:any = {"expect": "","now": "","opentime": "","opentime_remaining": "","opentimestamp": "","start_buytime": "","start_buytimestamp": "","start_remaining": "stop_buytime","":"","stop_buytimestamp":"","stop_remaining":""};
 	public last_opencode:any = {expect:'',opencode:'',opentime:'',opentimestamp:'',zodiac:[]};
 	public last_opencode_way:any = true;
+	public last_opencode_ft_cir:any = [];
 	public converTime:any = {
 		opentime_remaining:'',
 		stop_remaining:''
@@ -37,6 +38,8 @@ export class Opencode1Component {
 			this.viewType = 2;
 		}else if(this.gameKey=='hklhc'){
 			this.viewType = 3;
+		}else if(this.gameKey=='bjft'||this.gameKey=='cqft'){
+			this.viewType = 4;
 		}
 	}
 	ngAfterViewInit(){
@@ -66,6 +69,34 @@ export class Opencode1Component {
 					res['last_opencode'].zodiac = res['last_opencode'].zodiac.split(',');
 					this.converTime.opentime_remaining = this.getDate.s_to_dhms(res['present'].opentime_remaining);
 					this.converTime.stop_remaining = this.getDate.s_to_dhms(res['present'].stop_remaining);
+					this.changeStop_remaining.emit(res['present'].stop_remaining);
+					this.setExpect.emit(this.present.expect);
+					this.present = res['present'];
+					this.last_opencode = res['last_opencode'];
+				}else if(this.gameKey=='bjft'){
+					let opencodeAry = res['last_opencode'].opencode.split(',');
+					res['last_opencode'].opencode = opencodeAry;
+					let last_opencode_ft_num = (opencodeAry[0]+opencodeAry[1]+opencodeAry[2]+opencodeAry[3])%4;
+					this.last_opencode_ft_cir = [];
+					for(let i=0;i<last_opencode_ft_num;i++){
+						this.last_opencode_ft_cir.push(i)
+					}
+					this.converTime.opentime_remaining = this.getDate.s_to_hs(res['present'].opentime_remaining);
+					this.converTime.stop_remaining = this.getDate.s_to_hs(res['present'].stop_remaining);
+					this.changeStop_remaining.emit(res['present'].stop_remaining);
+					this.setExpect.emit(this.present.expect);
+					this.present = res['present'];
+					this.last_opencode = res['last_opencode'];
+				}else if(this.gameKey=='cqft'){
+					let opencodeAry = res['last_opencode'].opencode.split(',');
+					res['last_opencode'].opencode = opencodeAry;
+					let last_opencode_ft_num = (opencodeAry[0]+opencodeAry[1]+opencodeAry[2]+opencodeAry[3]+opencodeAry[4])%4;
+					this.last_opencode_ft_cir = [];
+					for(let i=0;i<last_opencode_ft_num;i++){
+						this.last_opencode_ft_cir.push(i)
+					}
+					this.converTime.opentime_remaining = this.getDate.s_to_hs(res['present'].opentime_remaining);
+					this.converTime.stop_remaining = this.getDate.s_to_hs(res['present'].stop_remaining);
 					this.changeStop_remaining.emit(res['present'].stop_remaining);
 					this.setExpect.emit(this.present.expect);
 					this.present = res['present'];

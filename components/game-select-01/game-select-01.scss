@@ -41,7 +41,9 @@ game-select-01 {
 		flex: 1;
 		padding: 0;
 	}
+	.col.active{background-color:#b7e2ff;}
 }
+.rowView.active{background-color:#b7e2ff;}
 .colView{
 	width:100%;
 	display: flex;

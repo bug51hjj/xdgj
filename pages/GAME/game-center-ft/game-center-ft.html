@@ -28,53 +28,23 @@
 	<div class="gamePageContainer ft">
 		<div class="cont1">
 			<ul class="gameTabCont">
-				<li class="active">投注区</li>
-				<li>聊天室</li>
+				<li *ngIf="gameKey=='bjft'" [ngClass]="{'active':activeGameType==0||activeGameType==1||activeGameType==2}" (click)="changeActiveGameType(0)">投注区</li>
+				<li *ngIf="gameKey=='bjft'" [ngClass]="{'active':activeGameType==3}" (click)="changeActiveGameType(3)">综合过关</li>
+				<li *ngIf="gameKey=='cqft'" [ngClass]="{'active':activeGameType==0}" (click)="changeActiveGameType(0)">投注区</li>
+				<li [ngClass]="{'active':activeGameType==4}" (click)="changeActiveGameType(4)">聊天室</li>
 			</ul>
-		</div>
-		<div>
-			<div class="bj-data-num clearfix">
-				<div class="ft-header clearfix" style="padding: 5px 10px;">
-					<div class="fl">
-						1206026期
-					</div>
-					<div class="fr">
-						<span class="ft-circle"></span>
-						<span class="ft-circle"></span>
-						<span class="ft-circle"></span>
-						<span class="ft-circle"></span>
-					</div>
-				</div>
-				<div class="number num clearfix pk10" style="padding: 5px 10px;">
-					<span class="number1">1</span>
-					<span class="number10">10</span>
-					<span class="number4">4</span>
-					<span class="number8">8</span>
-					<span class="number2">2</span>
-					<span class="number6">6</span>
-					<span class="number3">3</span>
-					<span class="number7">7</span>
-					<span class="number9">9</span>
-					<span class="number5">5</span>
-				</div>
-			</div>
-			<div class="data-content">
-				<span>681672期</span>
-				<span>封盘：
-					<time>04:02</time>
-				</span>
-				<span class="active assertive">开奖：
-					<time>04:32</time>
-				</span>
+			<div *ngIf="activeGameType<4">
+				<opencode1 [gameKey]="gameKey" (changeStop_remaining)="changeStop_remaining($event)" (setExpect)="setExpect($event)"></opencode1>
 			</div>
 		</div>
-		<div class="">
+
+		<div *ngIf="activeGameType==0||activeGameType==1||activeGameType==2">
 			<div class="height5"></div>
 			<div class="ft-table" style="padding-bottom: 0">
-				<div class="ft-table-header row" style="padding: 0">
-					<div class="col-34 active">前三</div>
-					<div class="col-34">中三</div>
-					<div class="col-34">后三</div>
+				<div class="ft-table-header row" style="padding: 0" *ngIf="gameKey=='bjft'">
+					<div class="col-34" [ngClass]="{'active':activeGameType==0}" (click)="changeActiveGameType(0)">前三</div>
+					<div class="col-34" [ngClass]="{'active':activeGameType==1}" (click)="changeActiveGameType(1)">中三</div>
+					<div class="col-34" [ngClass]="{'active':activeGameType==2}" (click)="changeActiveGameType(2)">后三</div>
 				</div>
 				<table class="ft-box" border="1">
 					<tbody>
@@ -453,142 +423,143 @@
 					</tbody>
 				</table>
 			</div>
-			<div class="height5"></div>
-			<div class="ft-table">
-				<table class="right guoguan-table br">
+			<div class="height5" *ngIf="activeGameType==0||activeGameType==1||activeGameType==2"></div>
+			<div class="ft-table" *ngIf="activeGameType==0||activeGameType==1||activeGameType==2">
+				<table class="right guoguan-table br" *ngIf="gameStructure[activeGameType].units">
 					<tbody>
 						<tr>
-							<td>
-								<span>3-4角</span>
-								<p>1.95</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[3].nums['3-4角'])" [ngClass]="{'active':gameStructure[activeGameType].units[3].nums['3-4角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[3].nums['3-4角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[3].nums['3-4角'].price}}</p>
 							</td>
-							<td>
-								<span>3念4</span>
-								<p>2.9</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['3念4'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['3念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['3念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['3念4'].price}}</p>
 							</td>
-							<td colspan="2">
-								<span>3念1</span>
-								<p>2.9</p>
+							<td colspan="2" (click)="selectItem(gameStructure[activeGameType].units[4].nums['3念1'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['3念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['3念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['3念1'].price}}</p>
 							</td>
-							<td>
-								<span>3念2</span>
-								<p>2.9</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['3念2'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['3念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['3念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['3念2'].price}}</p>
 							</td>
-							<td>
-								<span>2-3角</span>
-								<p>1.95</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span>4念3</span>
-								<p>2.9</p>
-							</td>
-							<td colspan="4">
-								<span>3番</span>
-								<p>3.85</p>
-							</td>
-							<td>
-								<span>2念3</span>
-								<p>2.9</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[3].nums['2-3角'])" [ngClass]="{'active':gameStructure[activeGameType].units[3].nums['2-3角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[3].nums['2-3角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[3].nums['2-3角'].price}}</p>
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<span>4念2</span>
-								<p>2.9</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['4念3'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['4念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['4念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['4念3'].price}}</p>
 							</td>
-							<td>
-								<span>4番</span>
-								<p>3.85</p>
+							<td colspan="4" (click)="selectItem(gameStructure[activeGameType].units[2].nums['3番'])" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['3番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['3番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['3番'].price}}</p>
 							</td>
-							<td>
-								<span>单</span>
-								<p>2.9</p>
-							</td>
-							<td>
-								<span>双</span>
-								<p>2.9</p>
-							</td>
-							<td>
-								<span>2番</span>
-								<p>3.85</p>
-							</td>
-							<td>
-								<span>2念4</span>
-								<p>2.9</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['2念3'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['2念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['2念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['2念3'].price}}</p>
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<span>4念1</span>
-								<p>2.9</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['4念2'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['4念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['4念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['4念2'].price}}</p>
 							</td>
-							<td colspan="4">
-								<span>1番</span>
-								<p>3.85</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[2].nums['4番'])" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['4番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['4番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['4番'].price}}</p>
 							</td>
-							<td>
-								<span>2念1</span>
-								<p>2.9</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[0].nums['单'])" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['单']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['单'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['单'].price}}</p>
+							</td>
+							<td (click)="selectItem(gameStructure[activeGameType].units[0].nums['双'])" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['双']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['双'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['双'].price}}</p>
+							</td>
+							<td (click)="selectItem(gameStructure[activeGameType].units[2].nums['2番'])" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['2番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['2番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['2番'].price}}</p>
+							</td>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['2念4'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['2念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['2念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['2念4'].price}}</p>
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<span>1-4角</span>
-								<p>1.95</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['4念1'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['4念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['4念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['4念1'].price}}</p>
 							</td>
-							<td>
-								<span>1念4</span>
-								<p>2.9</p>
+							<td colspan="4" (click)="selectItem(gameStructure[activeGameType].units[2].nums['1番'])" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['1番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['1番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['1番'].price}}</p>
 							</td>
-							<td colspan="2">
-								<span>1念3</span>
-								<p>2.9</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['2念1'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['2念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['2念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['2念1'].price}}</p>
 							</td>
-							<td>
-								<span>1念2</span>
-								<p>2.9</p>
+						</tr>
+						<tr>
+							<td (click)="selectItem(gameStructure[activeGameType].units[3].nums['1-4角'])" [ngClass]="{'active':gameStructure[activeGameType].units[3].nums['1-4角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[3].nums['1-4角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[3].nums['1-4角'].price}}</p>
 							</td>
-							<td>
-								<span>1-2角</span>
-								<p>1.95</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['1念4'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['1念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['1念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['1念4'].price}}</p>
+							</td>
+							<td colspan="2" (click)="selectItem(gameStructure[activeGameType].units[4].nums['1念3'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['1念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['1念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['1念3'].price}}</p>
+							</td>
+							<td (click)="selectItem(gameStructure[activeGameType].units[4].nums['1念2'])" [ngClass]="{'active':gameStructure[activeGameType].units[4].nums['1念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[4].nums['1念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[4].nums['1念2'].price}}</p>
+							</td>
+							<td (click)="selectItem(gameStructure[activeGameType].units[3].nums['1-2角'])" [ngClass]="{'active':gameStructure[activeGameType].units[3].nums['1-2角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[3].nums['1-2角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[3].nums['1-2角'].price}}</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="height5"></div>
-			<div class="ft-table">
+			<div class="height5" *ngIf="activeGameType==0||activeGameType==1||activeGameType==2"></div>
+			<div class="ft-table" *ngIf="activeGameType==0||activeGameType==1||activeGameType==2">
 				<div class="ft-table-header">
 					正
 				</div>
-				<table class="right guoguan-table br">
+				<table class="right guoguan-table br" *ngIf="gameStructure[activeGameType].units">
 					<tbody>
+						<!-- (click)="selectItem(00000000000)" [ngClass]="{'active':00000000000000['checked']}" -->
 						<tr>
-							<td>
-								<span>1正</span>
-								<p>1.95</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[1].nums['1正'])" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['1正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['1正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['1正'].price}}</p>
 							</td>
-							<td>
-								<span>2正</span>
-								<p>1.95</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[1].nums['2正'])" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['2正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['2正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['2正'].price}}</p>
 							</td>
-							<td>
-								<span>3正</span>
-								<p>3.85</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[1].nums['3正'])" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['3正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['3正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['3正'].price}}</p>
 							</td>
-							<td>
-								<span>4正</span>
-								<p>3.85</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[1].nums['4正'])" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['4正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['4正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['4正'].price}}</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
-			<div class="height5"></div>
-			<div class="ft-table">
-				<table class="right guoguan-table br">
+			<div class="height5" *ngIf="activeGameType==0||activeGameType==1||activeGameType==2"></div>
+			<div class="ft-table" *ngIf="activeGameType==0||activeGameType==1||activeGameType==2">
+				<table class="right guoguan-table br" *ngIf="gameStructure[activeGameType].units">
 					<thead>
 						<tr class="ft-table-header">
 							<td>三门</td>
@@ -597,91 +568,444 @@
 					</thead>
 					<tbody>
 						<tr>
-							<td>
-								<span>1 2 3</span>
-								<p>1.31</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[5].nums['123门'])" [ngClass]="{'active':gameStructure[activeGameType].units[5].nums['123门']['checked']}">
+								<span>{{gameStructure[activeGameType].units[5].nums['123门'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[5].nums['123门'].price}}</p>
 							</td>
-							<td>
-								<span>2 3 一通</span>
-								<p>1.475</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['23一通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['23一通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['23一通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['23一通'].price}}</p>
 							</td>
-							<td>
-								<span>2 4 一通</span>
-								<p>1.475</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['24一通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['24一通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['24一通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['24一通'].price}}</p>
 							</td>
-							<td>
-								<span>3 4一通</span>
-								<p>1.475</p>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span>1 2 4</span>
-								<p>1.31</p>
-							</td>
-							<td>
-								<span>2 3 二通</span>
-								<p>1.475</p>
-							</td>
-							<td>
-								<span>2 4 二通</span>
-								<p>1.475</p>
-							</td>
-							<td>
-								<span>3 4 二通</span>
-								<p>1.475</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['34一通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['34一通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['34一通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['34一通'].price}}</p>
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<span>1 3 4</span>
-								<p>1.31</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[5].nums['124门'])" [ngClass]="{'active':gameStructure[activeGameType].units[5].nums['124门']['checked']}">
+								<span>{{gameStructure[activeGameType].units[5].nums['124门'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[5].nums['124门'].price}}</p>
 							</td>
-							<td>
-								<span>1 2 三通</span>
-								<p>1.475</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['13二通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['13二通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['13二通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['13二通'].price}}</p>
 							</td>
-							<td>
-								<span>1 4 三通</span>
-								<p>1.475</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['14二通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['14二通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['14二通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['14二通'].price}}</p>
 							</td>
-							<td>
-								<span>2 4 三通</span>
-								<p>1.475</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['34二通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['34二通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['34二通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['34二通'].price}}</p>
 							</td>
 						</tr>
 						<tr>
-							<td>
-								<span>2 3 4</span>
-								<p>1.31</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[5].nums['234门'])" [ngClass]="{'active':gameStructure[activeGameType].units[5].nums['234门']['checked']}">
+								<span>{{gameStructure[activeGameType].units[5].nums['234门'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[5].nums['234门'].price}}</p>
 							</td>
-							<td>
-								<span>1 2 四通</span>
-								<p>1.475</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['12三通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['12三通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['12三通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['12三通'].price}}</p>
 							</td>
-							<td>
-								<span>1 3 四通</span>
-								<p>1.475</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['14三通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['14三通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['14三通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['14三通'].price}}</p>
 							</td>
-							<td>
-								<span>2 3 四通</span>
-								<p>1.475</p>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['24三通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['24三通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['24三通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['24三通'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem(gameStructure[activeGameType].units[5].nums['134门'])" [ngClass]="{'active':gameStructure[activeGameType].units[5].nums['134门']['checked']}">
+								<span>{{gameStructure[activeGameType].units[5].nums['134门'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[5].nums['134门'].price}}</p>
+							</td>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['12四通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['12四通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['12四通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['12四通'].price}}</p>
+							</td>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['13四通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['13四通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['13四通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['13四通'].price}}</p>
+							</td>
+							<td (click)="selectItem(gameStructure[activeGameType].units[6].nums['23四通'])" [ngClass]="{'active':gameStructure[activeGameType].units[6].nums['23四通']['checked']}">
+								<span>{{gameStructure[activeGameType].units[6].nums['23四通'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[6].nums['23四通'].price}}</p>
 							</td>
 						</tr>
 					</tbody>
 				</table>
 			</div>
 		</div>
+		<div *ngIf="activeGameType==3">
+			<div class="height5"></div>
+			<div class="ft-table">
+				<div class="ft-table-header">前三</div>
+				<table class="right guoguan-table br" *ngIf="gameStructure[activeGameType].units">
+					<tbody>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['1番'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['1番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['1番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['1番'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['2番'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['2番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['2番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['2番'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['3番'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['3番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['3番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['4番'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['4番'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['4番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['4番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['4番'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['1正'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['1正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['1正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['1正'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['2正'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['2正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['2正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['2正'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['3正'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['3正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['3正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['4正'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['4正'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['4正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['4正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['4正'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['1-2角'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['1-2角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['1-2角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['1-2角'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['2-3角'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['2-3角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['2-3角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['2-3角'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['3-4角'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['3-4角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['3-4角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['3-4角'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['1-4角'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['1-4角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['1-4角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['1-4角'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['1念2'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['1念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['1念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['1念2'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['1念3'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['1念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['1念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['1念3'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['1念4'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['1念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['1念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['1念4'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['2念1'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['2念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['2念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['2念1'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['2念3'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['2念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['2念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['2念3'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['2念4'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['2念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['2念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['2念4'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['3念1'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['3念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['3念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['3念1'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['3念2'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['3念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['3念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['3念2'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['3念4'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['3念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['3念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['3念4'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['4念1'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['4念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['4念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['4念1'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['4念2'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['4念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['4念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['4念2'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[0].nums['4念3'],0)" [ngClass]="{'active':gameStructure[activeGameType].units[0].nums['4念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[0].nums['4念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[0].nums['4念3'].price}}</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="height5"></div>
+			<div class="ft-table">
+				<div class="ft-table-header">中三</div>
+				<table class="right guoguan-table br" *ngIf="gameStructure[activeGameType].units">
+					<tbody>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['1番'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['1番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['1番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['1番'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['2番'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['2番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['2番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['2番'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['3番'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['3番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['3番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['4番'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['4番'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['4番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['4番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['4番'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['1正'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['1正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['1正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['1正'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['2正'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['2正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['2正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['2正'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['3正'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['3正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['3正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['4正'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['4正'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['4正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['4正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['4正'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['1-2角'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['1-2角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['1-2角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['1-2角'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['2-3角'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['2-3角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['2-3角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['2-3角'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['3-4角'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['3-4角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['3-4角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['3-4角'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['1-4角'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['1-4角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['1-4角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['1-4角'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['1念2'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['1念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['1念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['1念2'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['1念3'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['1念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['1念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['1念3'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['1念4'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['1念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['1念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['1念4'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['2念1'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['2念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['2念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['2念1'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['2念3'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['2念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['2念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['2念3'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['2念4'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['2念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['2念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['2念4'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['3念1'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['3念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['3念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['3念1'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['3念2'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['3念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['3念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['3念2'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['3念4'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['3念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['3念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['3念4'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['4念1'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['4念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['4念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['4念1'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['4念2'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['4念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['4念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['4念2'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[1].nums['4念3'],1)" [ngClass]="{'active':gameStructure[activeGameType].units[1].nums['4念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[1].nums['4念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[1].nums['4念3'].price}}</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+			<div class="height5"></div>
+			<div class="ft-table">
+				<div class="ft-table-header">后三</div>
+				<table class="right guoguan-table br" *ngIf="gameStructure[activeGameType].units">
+					<tbody>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['1番'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['1番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['1番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['1番'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['2番'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['2番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['2番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['2番'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['3番'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['3番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['3番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['4番'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['4番'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['4番']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['4番'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['4番'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['1正'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['1正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['1正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['1正'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['2正'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['2正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['2正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['2正'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['3正'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['3正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['3正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['4正'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['4正'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['4正']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['4正'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['4正'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['1-2角'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['1-2角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['1-2角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['1-2角'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['2-3角'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['2-3角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['2-3角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['2-3角'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['3-4角'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['3-4角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['3-4角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['3-4角'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['1-4角'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['1-4角']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['1-4角'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['1-4角'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['1念2'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['1念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['1念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['1念2'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['1念3'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['1念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['1念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['1念3'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['1念4'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['1念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['1念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['1念4'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['2念1'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['2念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['2念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['2念1'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['2念3'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['2念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['2念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['2念3'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['2念4'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['2念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['2念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['2念4'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['3念1'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['3念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['3念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['3念1'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['3念2'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['3念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['3念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['3念2'].price}}</p>
+							</td>
+						</tr>
+						<tr>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['3念4'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['3念4']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['3念4'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['3念4'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['4念1'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['4念1']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['4念1'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['4念1'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['4念2'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['4念2']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['4念2'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['4念2'].price}}</p>
+							</td>
+							<td (click)="selectItem_gg(gameStructure[activeGameType].units[2].nums['4念3'],2)" [ngClass]="{'active':gameStructure[activeGameType].units[2].nums['4念3']['checked']}">
+								<span>{{gameStructure[activeGameType].units[2].nums['4念3'].name}}</span>
+								<p>{{gameStructure[activeGameType].units[2].nums['4念3'].price}}</p>
+							</td>
+						</tr>
+					</tbody>
+				</table>
+			</div>
+		</div>
+		<div *ngIf="activeGameType==4">
+			聊天室
+		</div>
 	</div>
 </ion-content>
-<ion-footer>
+<ion-footer *ngIf="activeGameType<4">
 	<div class="gameFooter">
 		<div class="row1">已经选中
-			<span>{{selectedList.length}}</span> 注</div>
+			<span>{{selectedDatas.count}}</span> 注</div>
 		<div class="row2">
 			<input class="textInput" [ngModel]="buyAmount" (ngModelChange)="changeBuyAmount($event)" type="number" placeholder="输入金额">
 			<input class="btnSubmit" ion-button (click)="checkOrder()" value="下注" type="submit">
-			<input class="btnReset" ion-button (click)="gameSelect01.cencelSelected(true)" value="重置" type="submit">
+			<input class="btnReset" ion-button (click)="cencelSelected(true)" value="重置" type="submit">
 		</div>
 		<div class="prohibit" *ngIf="stop_remaining<=0">
 			<span>已封盘</span>
