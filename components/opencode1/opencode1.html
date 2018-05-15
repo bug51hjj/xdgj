@@ -62,9 +62,9 @@
 <div *ngIf="viewType==4">
 	<div class="bj-data-num clearfix">
 		<div class="ft-header clearfix" style="padding: 5px 10px;">
-			<div class="fl">{{last_opencode.expect}}期</div>
+			<div class="fl ft">{{last_opencode.expect}}期</div>
 			<div class="fr" *ngIf="last_opencode_ft_cir" >
-				<span class="ft-circle" *ngFor="let item of last_opencode_ft_cir" ></span>
+				<span class="ft-circle ft-circle-min" *ngFor="let item of last_opencode_ft_cir" ></span>
 			</div>
 		</div>
 		<div class="number num clearfix pk10" style="padding: 5px 10px;">

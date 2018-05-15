@@ -30,7 +30,6 @@ export class ResultPage {
 	}
 
 	ionViewDidLoad() {
-		console.log('ionViewDidLoad ResultPage');
 		this.getHistory_expect();
 	}
 	getHistory_expect(){
@@ -58,7 +57,6 @@ export class ResultPage {
 					}
 				}
 				this.historyData = res['history'];
-				console.log(this.historyData)
 				// this.compose(_history)
 			}else{
 				this.httpErrorHandle(res)

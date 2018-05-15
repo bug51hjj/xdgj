@@ -4,26 +4,25 @@
 	</ion-content>
 </ion-menu>
 <ion-header>
-	<ion-toolbar color="primary" #Menu>
-		<ion-buttons>
-			<button ion-button (click)="goHome()">
-				<span style="font-size: 13px;margin-left: 8px;">
-					<切换彩种</span>
-			</button>
-		</ion-buttons>
-		<ion-title (click)="presentActionSheet()">
-			<span style="font-size: 14px;font-weight: normal;">{{gameName}}-{{activeGamePan}}盘</span>
-			<ion-icon name="arrow-dropdown" style="font-size: 16px"></ion-icon>
-		</ion-title>
-		<ion-buttons end>
-			<button ion-button icon-only menuToggle>
-				<span style="font-size: 13px;margin-right: 8px;">{{memberAmount}}</span>
-				<ion-icon name="menu"></ion-icon>
-			</button>
-		</ion-buttons>
-
-	</ion-toolbar>
-</ion-header>
+		<ion-toolbar color="primary" #Menu>
+			<ion-buttons>
+				<button ion-button (click)="goHome()">
+					<span class="gct-header-left"><切换彩种</span>
+				</button>
+			</ion-buttons>
+			<ion-title (click)="presentActionSheet()">
+				<span class="gct-header-tit">{{gameName}}-{{activeGamePan}}盘</span>
+				<ion-icon class="gct-header-tit-icon" name="arrow-dropdown"></ion-icon>
+			</ion-title>
+			<ion-buttons end>
+				<button ion-button icon-only menuToggle>
+					<span class="gct-header-right">{{memberAmount}}</span>
+					<ion-icon class="gct-header-right-icon" name="menu"></ion-icon>
+				</button>
+			</ion-buttons>
+	
+		</ion-toolbar>
+	</ion-header>
 <ion-content>
 	<div class="gamePageContainer ft">
 		<div class="cont1">
@@ -641,6 +640,7 @@
 						</tr>
 					</tbody>
 				</table>
+				<div style="height:80px;width:100%;"></div>
 			</div>
 		</div>
 		<div *ngIf="activeGameType==3">
@@ -991,14 +991,28 @@
 						</tr>
 					</tbody>
 				</table>
+				<div style="height:80px;width:100%;"></div>
 			</div>
 		</div>
-		<div *ngIf="activeGameType==4">
-			聊天室
+		<div *ngIf="activeGameType==4" style="width:100%;height:100%">
+			<iframe src="https://www.baidu.com" frameborder="0" style="width:100%;height:100%;"></iframe>
+		</div>
+	</div>
+
+	<div class="gameFooter" *ngIf="activeGameType<4">
+		<div class="row1">已经选中
+			<span>{{selectedDatas.count}}</span> 注</div>
+		<div class="row2">
+			<input class="textInput" [ngModel]="buyAmount" (ngModelChange)="changeBuyAmount($event)" type="number" placeholder="输入金额">
+			<input class="btnSubmit" ion-button (click)="checkOrder()" value="下注" type="submit">
+			<input class="btnReset" ion-button (click)="cencelSelected(true)" value="重置" type="submit">
+		</div>
+		<div class="prohibit" *ngIf="stop_remaining<=0">
+			<span>已封盘</span>
 		</div>
 	</div>
 </ion-content>
-<ion-footer *ngIf="activeGameType<4">
+<!-- <ion-footer *ngIf="activeGameType<4">
 	<div class="gameFooter">
 		<div class="row1">已经选中
 			<span>{{selectedDatas.count}}</span> 注</div>
@@ -1011,4 +1025,4 @@
 			<span>已封盘</span>
 		</div>
 	</div>
-</ion-footer>
+</ion-footer> -->

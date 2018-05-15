@@ -25,6 +25,7 @@ export class GameCenterFtPage {
 	public buyAmount:any; //购买金额
 	public stop_remaining: any = {};//封盘
 	public memberAmount:any = 0; //余额
+	public getAmountTimer;
 	constructor(public navCtrl: NavController,
 		public navParams: NavParams,
 		public actionSheetCtrl: ActionSheetController,
@@ -41,6 +42,12 @@ export class GameCenterFtPage {
 	ionViewDidLoad() {
 		this.getMemberAmount();
 		this.getGamePrizes();
+		this.getAmountTimer = setInterval(()=>{
+			this.getMemberAmount();
+		},5000)
+	}
+	ionViewWillUnload(){
+		if(this.getAmountTimer){clearInterval(this.getAmountTimer)}
 	}
 	getGamePrizes() {
 		let token = window.localStorage.getItem('token');
@@ -103,8 +110,11 @@ export class GameCenterFtPage {
 		this.changeSelectedList_gg();
 	}
 	checkOrder(){
-		if(!this.buyAmount){this.httpErrorHandle({errormsg:'请输入购买金额'});return false;}
 		if(this.selectedDatas.count==0){this.httpErrorHandle({errormsg:'无下注项目'});return false;}
+		if(this.buyAmount<2){
+			this.httpErrorHandle({errormsg:'购买金额需要大于2'})
+			return false;
+		}
 		let profileModal = this.modalCtrl.create(ConfirmOrderPage, { selectedDatas: JSON.stringify(this.selectedDatas),buyAmount:this.buyAmount }, {
 			showBackdrop: true,
 			enableBackdropDismiss: true
@@ -197,7 +207,10 @@ export class GameCenterFtPage {
 		this.HttpService.post(url,params).subscribe((res: Response) => {
 			loader.dismiss();
 			if(res['errorcode']==0){
-				this.httpErrorHandle({errormsg:'下单成功!'})
+				this.httpErrorHandle({errormsg:'下单成功!'});
+				this.getMemberAmount();
+				this.cencelSelected(false);
+				this.buyAmount = 0;
 			}else{
 				this.httpErrorHandle(res)
 			}
@@ -222,7 +235,7 @@ export class GameCenterFtPage {
 					}
 				},
 				{
-					text: 'Cancel',
+					text: '取消',
 					role: 'cancel',
 					handler: () => {
 						console.log('Cancel clicked');

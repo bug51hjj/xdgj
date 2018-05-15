@@ -7,18 +7,18 @@
 	<ion-toolbar color="primary" #Menu>
 		<ion-buttons>
 			<button ion-button (click)="goHome()">
-				<span style="font-size: 13px;margin-left: 8px;">
-					<切换彩种</span>
+				<span class="gct-header-left"><ion-icon id="gct-left-icon" name="arrow-back"></ion-icon>
+					切换彩种</span>
 			</button>
 		</ion-buttons>
 		<ion-title (click)="presentActionSheet()">
-			<span style="font-size: 14px;font-weight: normal;">{{gameName}}-{{activeGamePan}}盘</span>
-			<ion-icon name="arrow-dropdown" style="font-size: 16px"></ion-icon>
+			<span class="gct-header-tit">{{gameName}}-{{activeGamePan}}盘</span>
+			<ion-icon class="gct-header-tit-icon" name="arrow-dropdown"></ion-icon>
 		</ion-title>
 		<ion-buttons end>
 			<button ion-button icon-only menuToggle>
-				<span style="font-size: 13px;margin-right: 8px;">{{memberAmount}}</span>
-				<ion-icon name="menu"></ion-icon>
+				<span class="gct-header-right">{{memberAmount}}</span>
+				<ion-icon class="gct-header-right-icon" name="menu"></ion-icon>
 			</button>
 		</ion-buttons>
 
@@ -28,17 +28,19 @@
 	<div class="gamePageContainer">
 		<div class="cont1">
 			<ul class="gameTabCont">
-				<li class="active">投注区</li>
-				<li>聊天室</li>
+				<li (click)="changeActiveIonicContent(0)" [ngClass]="{'active':activeIonicContent===0}">投注区</li>
+				<li (click)="changeActiveIonicContent(1)" [ngClass]="{'active':activeIonicContent===1}">聊天室</li>
 			</ul>
-			<opencode1 [gameKey]="gameKey" (changeStop_remaining)="changeStop_remaining($event)" (setExpect)="setExpect($event)"></opencode1>
+			<div *ngIf="activeIonicContent===0">
+				<opencode1 [gameKey]="gameKey" (changeStop_remaining)="changeStop_remaining($event)" (setExpect)="setExpect($event)"></opencode1>
+			</div>
 		</div>
-		<div class="cont2">
+		<div class="cont2" *ngIf="activeIonicContent===0">
 			<div class="gameLeftView">
 				<ion-scroll style="height:100%;width:100%" scrollY="true" scrollbar-y="false">
 					<div *ngFor="let item of gameStructure;let _index = index;">
 						<a class="gameKey" [ngClass]="{'active':_index===activeGameType}" (click)="gameKeyClickEvent(_index)">{{item.name}}</a>
-					</div>	
+					</div>
 				</ion-scroll>
 			</div>
 			<div class="gameMainView">
@@ -47,10 +49,25 @@
 				</ion-scroll>
 			</div>
 		</div>
+		<div *ngIf="activeIonicContent===1" style="width:100%;height:100%;">
+				<iframe src="https://www.baidu.com" frameborder="0" style="width:100%;height:100%;"></iframe>
+		</div>
+	</div>
+	<div class="gameFooter" *ngIf="activeIonicContent===0">
+		<div class="row1">已经选中
+			<span>{{selectedDatas.count}}</span> 注</div>
+		<div class="row2">
+			<input class="textInput" [ngModel]="buyAmount" (ngModelChange)="changeBuyAmount($event)" type="number" placeholder="输入金额">
+			<input class="btnSubmit" ion-button (click)="checkOrder()" value="下注" type="submit">
+			<input class="btnReset" ion-button (click)="gameSelect01.cencelSelected(true)" value="重置" type="submit">
+		</div>
+		<div class="prohibit" *ngIf="stop_remaining<=0">
+			<span>已封盘</span>
+		</div>
 	</div>
 </ion-content>
 
-<ion-footer>
+<!-- <ion-footer *ngIf="activeIonicContent===0">
 	<div class="gameFooter">
 		<div class="row1">已经选中 <span>{{selectedDatas.count}}</span> 注</div>
 		<div class="row2">
@@ -62,4 +79,4 @@
 			<span>已封盘</span>
 		</div>
 	</div>
-</ion-footer>
+</ion-footer> -->

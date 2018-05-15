@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component,ViewChild } from '@angular/core';
 import { IonicPage, NavController, NavParams, ActionSheetController, AlertController, LoadingController, ModalController } from 'ionic-angular';
 import { HttpServiceProvider } from '../../../providers/http-service/http-service';
 import { UuidProvider } from '../../../providers/uuid/uuid';
@@ -8,12 +8,15 @@ import gameDatas from '../../../assets/data/gameData.js';
 import { GamesProvider } from '../../../providers/games/games';
 import { ComponentsModule } from '../../../components/components.module';
 import { ConfirmOrderPage } from '../../../pages/GAME/confirm-order/confirm-order';
+import { GameSelect_01Component } from '../../../components/game-select-01/game-select-01';
 @IonicPage()
 @Component({
 	selector: 'page-game-center',
 	templateUrl: 'game-center.html',
 })
 export class GameCenterPage {
+	@ViewChild(GameSelect_01Component) gameSelect_01:GameSelect_01Component;
+	public activeIonicContent:number = 0;
 	public ReportPage: any = ReportPage;
 	public gameName: string = '游戏名称';  //游戏名称
 	public gameKey: string = '游戏ID';
@@ -26,6 +29,7 @@ export class GameCenterPage {
 	public buyAmount:any; //购买金额
 	public stop_remaining: any = {};//封盘
 	public memberAmount:any = 0;
+	public getAmountTimer;
 	constructor(public navCtrl: NavController,
 	public navParams: NavParams,
 	public actionSheetCtrl: ActionSheetController,
@@ -41,6 +45,12 @@ export class GameCenterPage {
 	ionViewDidLoad() {
 		this.getGamePrizes();
 		this.getMemberAmount();
+		this.getAmountTimer = setInterval(()=>{
+			this.getMemberAmount();
+		},5000)
+	}
+	ionViewWillUnload(){
+		if(this.getAmountTimer){clearInterval(this.getAmountTimer)}
 	}
 	getGamePrizes() {
 		let token = window.localStorage.getItem('token');
@@ -69,6 +79,9 @@ export class GameCenterPage {
 				this.httpErrorHandle(res)
 			}
 		})
+	}
+	changeActiveIonicContent(type){
+		this.activeIonicContent = type;
 	}
 	changeStop_remaining(e) {
 		this.stop_remaining = e;
@@ -105,8 +118,8 @@ export class GameCenterPage {
 			this.httpErrorHandle({errormsg:`至少选择${this.selectedDatas.comb}个`});
 			return false;
 		}
-		if(!this.buyAmount){
-			this.httpErrorHandle({errormsg:'请输入购买金额!'})
+		if(this.buyAmount<2){
+			this.httpErrorHandle({errormsg:'单注金额不能低于2'})
 			return false;
 		}
 		let profileModal = this.modalCtrl.create(ConfirmOrderPage, { selectedDatas: JSON.stringify(this.selectedDatas),buyAmount:this.buyAmount }, {
@@ -144,7 +157,10 @@ export class GameCenterPage {
 		this.HttpService.post(url,params).subscribe((res: Response) => {
 			loader.dismiss();
 			if(res['errorcode']==0){
-				this.httpErrorHandle({errormsg:'下单成功!'})
+				this.httpErrorHandle({errormsg:'下单成功!'});
+				this.getMemberAmount();
+				this.gameSelect_01.cencelSelected(false);
+				this.buyAmount = 0;
 			}else{
 				this.httpErrorHandle(res)
 			}
@@ -169,7 +185,7 @@ export class GameCenterPage {
 					}
 				},
 				{
-					text: 'Cancel',
+					text: '取消',
 					role: 'cancel',
 					handler: () => {
 						console.log('Cancel clicked');

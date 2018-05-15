@@ -11,6 +11,9 @@ export class MyApp {
   rootPage:any = HomePage;
 
   constructor(platform: Platform, statusBar: StatusBar, splashScreen: SplashScreen) {
+      platform.ready().then(() => {  
+        splashScreen.hide();  
+    })
     if(!window.localStorage.getItem('token')){  //不存在token跳转登录页面
         this.rootPage = LoginPage;
     }

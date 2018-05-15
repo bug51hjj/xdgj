@@ -27,7 +27,7 @@ export class HomePage {
 
 	public username:string;
 	public gamesList :any;
-	public newsData:any = {title:1};
+	public newsData:any = {title:""};
 	constructor(public navCtrl: NavController,
 	public loadingCtrl: LoadingController,
 	public alertCtrl: AlertController,
@@ -62,8 +62,10 @@ export class HomePage {
 		})
 	}
 	gameCenter(gameParams){
-		if(gameParams.gamekey=='bjft'||gameParams.gamekey=='cqft'||gameParams.gamekey=='jnd28'){
+		if(gameParams.gamekey=='bjft'||gameParams.gamekey=='cqft'){
 			this.navCtrl.push(GameCenterFtPage, { gameParams: gameParams })
+		}else if(gameParams.gamekey=='jnd28'){
+			this.httpErrorHandle({errormsg:'升级维护中，敬请期待!'})
 		}else{
 			this.navCtrl.push(GameCenterPage, { gameParams: gameParams })
 		}

@@ -13,18 +13,17 @@
 
 .pk10 span {
     display: inline-block;
-    width: 24px;
-    height: 24px;
+    width: 22px;
+    height: 22px;
     margin-right: 1px;
     border-radius: 4px;
     text-align: center;
     color: #fff;
-    font-size: 16px;
-    line-height: 24px;
+    font-size: 14px;
+    line-height: 22px;
     font-weight: bold;
     font-style: italic;
 }
-
 .pk10 span.number1{background:#61e5e4;}
 .pk10 span.number2{background:#8b8b8b;}
 .pk10 span.number3{background:#ed6e11;}
@@ -41,8 +40,38 @@
 }
 .hklhc_bgColor.bold{
     display: inline-block;
-    width: 26px;
-    height: 26px;
+    width: 24px;
+    height: 24px;
     margin: 0 5px 5px 0;
-    line-height: 26px;
+    font-size: 13px;
+    line-height: 24px;
+}
+.hklhc_bgColor.lhc-bgRed, .hklhc_bgColor.lhc-bgBlue, .hklhc_bgColor.lhc-bgGreen{
+    width: 24px;
+    height: 24px;
+    margin: 0 5px 5px 0;
+    font-size: 13px;
+    line-height: 24px;
+}
+@media screen and (max-width: 321px) {
+    .pk10 span {
+        width: 18px;
+        height: 18px;
+        font-size: 12px;
+        line-height: 18px;
+    }
+    .num time{font-size: 12px}
+    .data-content span{font-size: 12px;}
+    .colView .colBox .row{font-size: 13px;}
+    .ball-color-yellow, .recYellow{width: 20px;height: 20px;line-height: 20px;font-size: 12px;}
+    .hklhc_bgColor.lhc-bgRed, .hklhc_bgColor.lhc-bgBlue, .hklhc_bgColor.lhc-bgGreen{
+        width: 18px;
+        height: 18px;
+        line-height: 18px;
+        font-size: 12px;
+    }
+    .icon-zhuanhuan2{font-size: 14px;}
+    .hklhc_bgColor.bold{ width: 18px; height: 18px;line-height: 18px;font-size: 12px;}
+    .ft .ft-header .fl.ft{font-size: 12px;}
+    .ft .ft-circle.ft-circle-min{width:18px;height:18px;}
 }

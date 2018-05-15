@@ -40,9 +40,7 @@
 			<div class="box">
 				<i class="iconfont icon-laba assertive font28"></i>
 			</div>
-			<div class="move">
-				<p class="info" (click)="goMsgPage()" >{{newsData.title}}</p>
-			</div>
+			<p [ngClass]="{'info':newsData.title.length>0}"  (click)="goMsgPage()" >{{newsData.title}}</p>
 		</div>
 
 		<div class="game-class">
@@ -53,8 +51,8 @@
 					<img src="./assets/uploads/pk-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='bjpk10'">
 					<img src="./assets/uploads/lucky-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='xyft'">
 					<img src="./assets/uploads/liuhecai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='hklhc'">
-					<img src="./assets/uploads/shishicai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='bjft'">
-					<img src="./assets/uploads/shishicai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='cqft'">
+					<img src="./assets/uploads/bjft.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='bjft'">
+					<img src="./assets/uploads/cqft.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='cqft'">
 					<img src="./assets/uploads/shishicai-img.png" alt="{{item.gamename}}" *ngIf="item.gamekey=='jnd28'">
 					<p>{{item.gamename}}</p>
 				</a>

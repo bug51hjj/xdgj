@@ -86,7 +86,6 @@ export class GameSelect_01Component {
 
             }
             this.unitsDatas = this.units;
-            console.log(this.unitsDatas)
         }
     }
     numbersColor(nums:any[]){

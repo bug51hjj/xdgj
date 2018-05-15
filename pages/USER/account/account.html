@@ -6,9 +6,9 @@
 -->
 <ion-header>
 
-  <ion-navbar color="primary">
-    <ion-title>我的账户</ion-title>
-  </ion-navbar>
+    <ion-navbar color="primary">
+        <ion-title>我的账户</ion-title>
+    </ion-navbar>
 
 </ion-header>
 
@@ -28,19 +28,27 @@
             <div class="fl">账号：</div>
             <div class="fr">{{accountData.username}}</div>
         </div>
-        <div class="m-account-list clearfix font24">
+        <div class="m-account-list clearfix font24" (click)="changeInfo('realname','真实姓名')">
             <div class="fl">真实姓名：</div>
-            <div class="fr">{{accountData.realname}}</div>
+            <div class="fr">{{accountData.realname}} <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon></div>
         </div>
-        <div class="m-account-list clearfix font24">
+        <div class="m-account-list clearfix font24" (click)="changeInfo('qq','手机')">
             <div class="fl">手机：</div>
-            <div class="fr">{{accountData.qq}}</div>
+            <div class="fr">{{accountData.phone}} <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon></div>
+        </div>
+        <div class="m-account-list clearfix font24" (click)="changeInfo('email','邮箱')">
+            <div class="fl">邮箱：</div>
+            <div class="fr">{{accountData.email}} <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon></div>
+        </div>
+        <div class="m-account-list clearfix font24" (click)="changeInfo('phone','QQ')">
+            <div class="fl">QQ：</div>
+            <div class="fr">{{accountData.qq}} <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon></div>
+        </div>
+        <div class="m-account-list clearfix font24" (click)="changeInfo('weixin','微信')">
+            <div class="fl">微信：</div>
+            <div class="fr">{{accountData.weixin}} <ion-icon name="ios-arrow-forward" style="margin-left: 10px;"></ion-icon></div>
         </div>
         <div class="m-account-list clearfix font24">
-            <div class="fl">QQ：</div>
-            <div class="fr">{{accountData.phone}}</div>
-        </div>
-         <div class="m-account-list clearfix font24">
             <div class="fl">系统余额：</div>
             <div class="fr">{{accountData.amount}}</div>
         </div>

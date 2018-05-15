@@ -5,24 +5,7 @@ import { IonicPage, NavController, NavParams, ViewController } from 'ionic-angul
 @IonicPage()
 @Component({
 	selector: 'page-confirm-order',
-	template: `
-  	<div style="width:100vw; height:100vh; display:flex; justify-content:center; align-items:center; background:rgba(0,0,0,0.6);">
-	<div style="width:88%; min-height:200px; background-color:#fff; border-radius:3px;">
-		<div style="padding: 15px 10px; border-bottom: 1px solid #eee; text-align: center;">下注清单</div>
-		<div style="min-height:100px;max-height:260px; overflow-y:scroll;">
-			<ul style="padding:10px;">
-				<li style="color:#555;line-height:24px;" *ngFor="let item of selectedDatas.list">
-				{{item.unit}} {{item.name}} @ {{item.price}}x{{buyAmount}}
-				</li>
-			</ul>
-		</div>
-		<div style="display:flex; justify-content:center; align-items:center; padding: 10px; min-height: 65px;">
-			<a (click)="dissmiss()" style="flex: 1; display: block; min-height: 45px; border-radius: 2px; line-height: 45px; margin-right: 5px; text-align:center; background-color:#f8f8f8; color:#444;">取消</a>
-			<a (click)="confirm()" style="flex: 1; display: block; min-height: 45px; border-radius: 2px; line-height: 45px; margin-right: 5px; text-align:center; background-color:#d83547; color:#fff;">确定</a>
-		</div>
-	</div>
-</div>
-  `
+	templateUrl: 'confirm-order.html'
 })
 export class ConfirmOrderPage {
 	private selectedDatas:any = {list:[[0]],type:''};
