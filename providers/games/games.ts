@@ -1864,4 +1864,75 @@ export class GamesProvider {
         }
         return num;
     }
+
+    getFtLong(opencodeDatas) {
+        var lotteryCategory = this.getLotteryCategory(opencodeDatas.gameKey);
+        if (lotteryCategory == 'pk10') {
+            var dataRes = {
+                'q3': [],
+                'z3': [],
+                'h3': [],
+            };
+            for (var index in opencodeDatas.history) {
+                var opencode = opencodeDatas.history[index].opencode.split(',');
+                var q3 = (parseInt(opencode[0]) + parseInt(opencode[1]) + parseInt(opencode[2])) % 4;
+                var z3 = (parseInt(opencode[4]) + parseInt(opencode[5]) + parseInt(opencode[6])) % 4;
+                var h3 = (parseInt(opencode[7]) + parseInt(opencode[8]) + parseInt(opencode[9])) % 4;
+                dataRes.q3.push({'num': q3, 'code': (q3 % 2)});
+                dataRes.z3.push({'num': z3, 'code': (z3 % 2)});
+                dataRes.h3.push({'num': h3, 'code': (h3 % 2)});
+            }
+            return {
+                'q3': this.builderLong(dataRes.q3, 6),
+                'z3': this.builderLong(dataRes.z3, 6),
+                'h3': this.builderLong(dataRes.h3, 6),
+            };
+        } else if (lotteryCategory == 'ssc') {
+            var dataRes = {
+                'q3': [],
+            };
+            for (var index in opencodeDatas.history) {
+                var opencode = opencodeDatas.history[index].opencode.split(',');
+                var q3 = (parseInt(opencode[0]) + parseInt(opencode[1]) + parseInt(opencode[2]) + parseInt(opencode[3]) + parseInt(opencode[4])) % 4;
+                dataRes.q3.push({'num': q3, 'code': (q3 % 2)});
+            }
+            return {
+                'ft': this.builderLong(dataRes.q3, 6),
+            };
+        }
+    }
+
+    private builderLong(codes, maxLimit) {
+        var pre; // 记录长龙上一条统计
+        var x = 0; // 长龙x值,由于进入判断之后,会先运算,所以要给-1
+        var y = 0; // 长龙y值
+        var a = -1; // 出现折点时,记录折点前的x值
+        var longs = [];
+        for (var idx in codes) {
+            if (pre == codes[idx].code) {
+                y++; // 如果当前号码类型与记录的上一条类型一直,y+1;(表示同一长龙)
+                // 折点判断情况1:y值超过最大限制
+                if (y >= maxLimit) {
+                    y--; // 因为y被加了一次,所以,这里要减回去
+                    x++; // 出现折点,拐弯
+                }
+            } else {
+                a++; // 记录当前的x位置
+                // 如果当前号码类型与上一条类型不不一致,x+1(另起一行),y归0(从第一列开始)
+                x = a;
+                y = 0;
+            }
+            // 记录当前号码,用于判断下一个号码是否为长龙
+            pre = codes[idx].code;
+            if (longs[x] != undefined && longs[x][y] != undefined) {
+                y--; // 因为y被加了一次,所以,这里要减回去
+                x++; // 出现折点,拐弯
+            }
+            if (longs[x] == undefined) {
+                longs[x] = [];
+            }
+            longs[x][y] = codes[idx];
+        }
+        return longs;
+    }
 }
