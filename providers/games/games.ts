@@ -1329,10 +1329,13 @@ export class GamesProvider {
                 for (var k in plays[i].units[j]['nums']) {
                     var num = plays[i]['units'][j]['nums'][k];
                     var numPrice = prizes1[num['type']][num['play_method']];
-                    num['price'] = numPrice.price;
-                    num['name'] = k;
-                    num['unit'] = plays[i].units[j]['name'];
-                    lotteryPrizes[i].units[j].nums[k] = num;
+                    //console.log(num['type'],num['play_method']);
+                    if(numPrice!=undefined){
+                        num['price'] = numPrice.price;
+                        num['name'] = k;
+                        num['unit'] = plays[i].units[j]['name'];
+                        lotteryPrizes[i].units[j].nums[k] = num;
+                    }
                 }
             }
         }
