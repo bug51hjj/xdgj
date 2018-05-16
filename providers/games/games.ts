@@ -247,6 +247,34 @@ export class GamesProvider {
                         'nums': this.getPlayUnitByStr('五条,四条,葫芦,顺子,三条,两对,一对,散号', 'ball_11', 'j', 1)
                     },
                 ],
+            }, {
+                'name': '混合过关', 'tmpl': 'column', 'units': [
+                    {
+                        'name': '第1球',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg1_', 0)
+                    },
+                    {
+                        'name': '第2球',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg2_', 0)
+                    },
+                    {
+                        'name': '第3球',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg3_', 0)
+                    },
+                    {
+                        'name': '第4球',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg4_', 0)
+                    },
+                    {
+                        'name': '第5球',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg5_', 0)
+                    },
+                ],
             },
         ];
         plays['pk10'] = [
@@ -428,6 +456,59 @@ export class GamesProvider {
                         'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_10', 'j', 1)
                     },
                     {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_10', 'j', 11)},
+                ],
+            }, {
+                'name': '混合过关', 'tmpl': 'column', 'units': [
+                    {
+                        'name': '冠军',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg1_', 1)
+                    },
+                    {
+                        'name': '亚军',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg2_', 1)
+                    },
+                    {
+                        'name': '季军',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg3_', 1)
+                    },
+                    {
+                        'name': '第4名',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg4_', 1)
+                    },
+                    {
+                        'name': '第5名',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg5_', 1)
+                    },
+                    {
+                        'name': '第6名',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg6_', 1)
+                    },
+                    {
+                        'name': '第7名',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg7_', 1)
+                    },
+                    {
+                        'name': '第8名',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg8_', 1)
+                    },
+                    {
+                        'name': '第9名',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg9_', 1)
+                    },
+                    {
+                        'name': '第10名',
+                        'func': 'guoguan',
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg10_', 1)
+                    },
                 ],
             },
         ];
@@ -1873,59 +1954,59 @@ export class GamesProvider {
             'z3': [],
             'h3': [],
         };
-        switch(lotteryCategory){
+        switch (lotteryCategory) {
             case 'pk10':
             case 'pk10ft':
-            for (var index in opencodeDatas.history) {
-                var opencode = opencodeDatas.history[index].opencode.split(',');
-                var q3 = (parseInt(opencode[0]) + parseInt(opencode[1]) + parseInt(opencode[2])) % 4;
-                var z3 = (parseInt(opencode[4]) + parseInt(opencode[5]) + parseInt(opencode[6])) % 4;
-                var h3 = (parseInt(opencode[7]) + parseInt(opencode[8]) + parseInt(opencode[9])) % 4;
-                if(q3==0){
-                    q3=4;
+                for (var index in opencodeDatas.history) {
+                    var opencode = opencodeDatas.history[index].opencode.split(',');
+                    var q3 = (parseInt(opencode[0]) + parseInt(opencode[1]) + parseInt(opencode[2])) % 4;
+                    var z3 = (parseInt(opencode[4]) + parseInt(opencode[5]) + parseInt(opencode[6])) % 4;
+                    var h3 = (parseInt(opencode[7]) + parseInt(opencode[8]) + parseInt(opencode[9])) % 4;
+                    if (q3 == 0) {
+                        q3 = 4;
+                    }
+                    if (z3 == 0) {
+                        z3 = 4;
+                    }
+                    if (h3 == 0) {
+                        h3 = 4;
+                    }
+                    dataRes.q3.push({'num': q3, 'code': (q3 % 2)});
+                    dataRes.z3.push({'num': z3, 'code': (z3 % 2)});
+                    dataRes.h3.push({'num': h3, 'code': (h3 % 2)});
                 }
-                if(z3==0){
-                    z3=4;
-                }
-                if(h3==0){
-                    h3=4;
-                }
-                dataRes.q3.push({'num': q3, 'code': (q3 % 2)});
-                dataRes.z3.push({'num': z3, 'code': (z3 % 2)});
-                dataRes.h3.push({'num': h3, 'code': (h3 % 2)});
-            }
-            return {
-                'q3': this.builderLong(dataRes.q3, 6),
-                'z3': this.builderLong(dataRes.z3, 6),
-                'h3': this.builderLong(dataRes.h3, 6),
-            };
+                return {
+                    'q3': this.builderLong(dataRes.q3, 6),
+                    'z3': this.builderLong(dataRes.z3, 6),
+                    'h3': this.builderLong(dataRes.h3, 6),
+                };
             case 'ssc':
             case 'sscft':
-            for (var index in opencodeDatas.history) {
-                var opencode = opencodeDatas.history[index].opencode.split(',');
-                var q3 = (parseInt(opencode[0]) + parseInt(opencode[1]) + parseInt(opencode[2]) + parseInt(opencode[3]) + parseInt(opencode[4])) % 4;
-                if(q3==0){
-                    q3=4;
+                for (var index in opencodeDatas.history) {
+                    var opencode = opencodeDatas.history[index].opencode.split(',');
+                    var q3 = (parseInt(opencode[0]) + parseInt(opencode[1]) + parseInt(opencode[2]) + parseInt(opencode[3]) + parseInt(opencode[4])) % 4;
+                    if (q3 == 0) {
+                        q3 = 4;
+                    }
+                    dataRes.q3.push({'num': q3, 'code': (q3 % 2)});
                 }
-                dataRes.q3.push({'num': q3, 'code': (q3 % 2)});
-            }
-            return {
-                'ft': this.builderLong(dataRes.q3, 6),
-            };
+                return {
+                    'ft': this.builderLong(dataRes.q3, 6),
+                };
         }
     }
 
-    private arrayReverseAndFilder(arr){
-        var result=[];
-        for(var i=0;i<arr.length;i++){
-            for(var j=0;j<arr[i].length;j++){
-                if(arr[i][j]==undefined){
-                    arr[i][j]={'num':'-1','code':'-1'};
+    private arrayReverseAndFilder(arr) {
+        var result = [];
+        for (var i = 0; i < arr.length; i++) {
+            for (var j = 0; j < arr[i].length; j++) {
+                if (arr[i][j] == undefined) {
+                    arr[i][j] = {'num': '-1', 'code': '-1'};
                 }
-                if(result[j]==undefined){
-                    result[j]=[];
+                if (result[j] == undefined) {
+                    result[j] = [];
                 }
-                result[j][i]=arr[i][j];
+                result[j][i] = arr[i][j];
             }
         }
         return result;
