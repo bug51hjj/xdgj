@@ -31,6 +31,7 @@ export class GameSelect_01Component {
         public games: GamesProvider) {
     }
     ngOnChanges() {
+        console.log(this.units)
         if (this.units) {
             this.cencelSelected(false)
             this.units.units.map(item => {
@@ -186,6 +187,16 @@ export class GameSelect_01Component {
         //     }
         // }
         this.changeSelectedList.emit({list:tempArray,type:'hklhccomb',comb:comb,count:combResult<1?0:combResult});
+    }
+    selectItem_pk10gg(itemAry,type,seGroup){  //PK10 过关
+        let lengthAry = type===1?[0,1,2,3,4]:[5,6,7,8,9];
+        let tempCheckMark = itemAry['checked'];
+        lengthAry.map(_i=>{
+            this.units.units[_i].nums.map(_j=>{
+                if(_j.seGroup===seGroup){_j['checked']=false}
+            })
+        })
+        itemAry['checked'] = !tempCheckMark;
     }
     cencelSelected(isConfirm) {  //取消所有选中项
         if (isConfirm) {

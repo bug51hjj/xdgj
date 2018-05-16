@@ -69,6 +69,54 @@
 				</div>
 			</div>
 		</div>
+		<div *ngIf=" unitsDatas.name=='混合过关'">
+			<div class="titleView">
+				<span class="publicTitle">名次</span>
+				<span class="publicTitle">冠军</span>
+				<span class="publicTitle">亚军</span>
+				<span class="publicTitle">季军</span>
+				<span class="publicTitle">第四</span>
+				<span class="publicTitle">第五</span>
+			</div>
+			<div class="colView">
+				<div class="colBox">
+					<div class="row pk10" *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,'大','小','单','双','龙','虎']">
+						<span *ngIf="number<11; else elseBlock" class="number{{number}}">{{number}}</span>
+						<ng-template #elseBlock>
+							<a style="color:#333">{{number}}</a>
+						</ng-template>
+					</div>
+				</div>
+				<div class="colBox" *ngFor="let col of [0,1,2,3,4];index as index1;">
+					<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem_pk10gg(item,1,item.seGroup)" [ngClass]="{'active':item.checked}">
+						<span>{{item.price}}</span>
+					</div>
+				</div>
+			</div>
+			<div class="titleView">
+				<span class="publicTitle">名次</span>
+				<span class="publicTitle">第六</span>
+				<span class="publicTitle">第七</span>
+				<span class="publicTitle">第八</span>
+				<span class="publicTitle">第九</span>
+				<span class="publicTitle">第十</span>
+			</div>
+			<div class="colView">
+					<div class="colBox">
+						<div class="row pk10" *ngFor="let number of [1,2,3,4,5,6,7,8,9,10,'大','小','单','双']">
+							<span *ngIf="number<11; else elseBlock" class="number{{number}}">{{number}}</span>
+							<ng-template #elseBlock>
+								<a style="color:#333">{{number}}</a>
+							</ng-template>
+						</div>
+					</div>
+					<div class="colBox" *ngFor="let col of [5,6,7,8,9];index as index1;">
+						<div class="row" *ngFor="let item of unitsDatas.units[col].nums" (click)="selectItem_pk10gg(item,2,item.seGroup)" [ngClass]="{'active':item.checked}">
+							<span>{{item.price}}</span>
+						</div>
+					</div>
+				</div>
+		</div>
 	</div>
 
 	<!-- 北京PK10、飞艇 两面 特殊处理 -->

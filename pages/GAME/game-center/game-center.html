@@ -29,13 +29,14 @@
 		<div class="cont1">
 			<ul class="gameTabCont">
 				<li (click)="changeActiveIonicContent(0)" [ngClass]="{'active':activeIonicContent===0}">投注区</li>
+				<li (click)="changeActiveIonicContent(3)" [ngClass]="{'active':activeIonicContent===3}">混合过关</li>
 				<li (click)="changeActiveIonicContent(1)" [ngClass]="{'active':activeIonicContent===1}">聊天室</li>
 			</ul>
-			<div *ngIf="activeIonicContent===0">
+			<div *ngIf="activeIonicContent===0||activeIonicContent===3">
 				<opencode1 [gameKey]="gameKey" (changeStop_remaining)="changeStop_remaining($event)" (setExpect)="setExpect($event)"></opencode1>
 			</div>
 		</div>
-		<div class="cont2" *ngIf="activeIonicContent===0">
+		<div class="cont2" *ngIf="activeIonicContent===0||activeIonicContent===3">
 			<div class="gameLeftView">
 				<ion-scroll style="height:100%;width:100%" scrollY="true" scrollbar-y="false">
 					<div *ngFor="let item of gameStructure;let _index = index;">
@@ -50,10 +51,10 @@
 			</div>
 		</div>
 		<div *ngIf="activeIonicContent===1" style="width:100%;height:100%;">
-				<iframe src="https://www.baidu.com" frameborder="0" style="width:100%;height:100%;"></iframe>
+				<iframe src="http://xdj-chat.atpeu.cn:8001/chatIM/?tk=ac99e1b1befeeda2dd17ea1801c1aefc&name=web" frameborder="0" style="width:100%;height:100%;"></iframe>
 		</div>
 	</div>
-	<div class="gameFooter" *ngIf="activeIonicContent===0">
+	<div class="gameFooter" *ngIf="activeIonicContent===0||activeIonicContent===3">
 		<div class="row1">已经选中
 			<span>{{selectedDatas.count}}</span> 注</div>
 		<div class="row2">

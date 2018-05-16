@@ -252,27 +252,27 @@ export class GamesProvider {
                     {
                         'name': '第1球',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg1_', 0)
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9|大,小|单,双', 'guoguan', 'gg1_', 0)
                     },
                     {
                         'name': '第2球',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg2_', 0)
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9|大,小|单,双', 'guoguan', 'gg2_', 0)
                     },
                     {
                         'name': '第3球',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg3_', 0)
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9|大,小|单,双', 'guoguan', 'gg3_', 0)
                     },
                     {
                         'name': '第4球',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg4_', 0)
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9|大,小|单,双', 'guoguan', 'gg4_', 0)
                     },
                     {
                         'name': '第5球',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg5_', 0)
+                        'nums': this.getPlayUnitByStr('0,1,2,3,4,5,6,7,8,9|大,小|单,双', 'guoguan', 'gg5_', 0)
                     },
                 ],
             },
@@ -462,52 +462,52 @@ export class GamesProvider {
                     {
                         'name': '冠军',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg1_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双|龙,虎', 'guoguan', 'gg1_', 1)
                     },
                     {
                         'name': '亚军',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg2_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双|龙,虎', 'guoguan', 'gg2_', 1)
                     },
                     {
                         'name': '季军',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg3_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双|龙,虎', 'guoguan', 'gg3_', 1)
                     },
                     {
                         'name': '第4名',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg4_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双|龙,虎', 'guoguan', 'gg4_', 1)
                     },
                     {
                         'name': '第5名',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双,龙,虎', 'guoguan', 'gg5_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双|龙,虎', 'guoguan', 'gg5_', 1)
                     },
                     {
                         'name': '第6名',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg6_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双', 'guoguan', 'gg6_', 1)
                     },
                     {
                         'name': '第7名',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg7_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双', 'guoguan', 'gg7_', 1)
                     },
                     {
                         'name': '第8名',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg8_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双', 'guoguan', 'gg8_', 1)
                     },
                     {
                         'name': '第9名',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg9_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双', 'guoguan', 'gg9_', 1)
                     },
                     {
                         'name': '第10名',
                         'func': 'guoguan',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,大,小,单,双', 'guoguan', 'gg10_', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小|单,双', 'guoguan', 'gg10_', 1)
                     },
                 ],
             },
@@ -1299,10 +1299,15 @@ export class GamesProvider {
      * @returns {{}}
      */
     private getPlayUnitByStr(numsStr, unit, pre, i1) {
-        var nums = numsStr.split(',');
+        var nums1=numsStr.split('|');
+        var i=0;
         var playNums = {};
-        for (var i in nums) {
-            playNums[nums[i]] = {'type': unit, 'play_method': pre + (parseInt(i) + parseInt(i1))}
+        for(var a in nums1){
+            var nums=nums1[a].split(',');
+            for (var b in nums) {
+                playNums[nums[b]] = {'type': unit, 'play_method': pre + (i + parseInt(i1)),'seGroup':a};
+                i++;
+            }
         }
         return playNums;
     }
