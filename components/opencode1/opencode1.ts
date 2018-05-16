@@ -41,8 +41,10 @@ export class Opencode1Component {
 			this.viewType = 2;
 		}else if(this.gameKey=='hklhc'){
 			this.viewType = 3;
-		}else if(this.gameKey=='bjft'||this.gameKey=='cqft'){
+		}else if(this.gameKey=='bjft'){
 			this.viewType = 4;
+		}else if(this.gameKey=='cqft'){
+			this.viewType = 5;
 		}
 	}
 	ngAfterViewInit(){
@@ -81,7 +83,7 @@ export class Opencode1Component {
 				}else if(this.gameKey=='bjft'){
 					let opencodeAry = res['last_opencode'].opencode.split(',');
 					res['last_opencode'].opencode = opencodeAry;
-					let last_opencode_ft_num = (opencodeAry[0]+opencodeAry[1]+opencodeAry[2]+opencodeAry[3])%4;
+					let last_opencode_ft_num = (Number(opencodeAry[0])+Number(opencodeAry[1])+Number(opencodeAry[2]))%4;
 					this.last_opencode_ft_cir = [];
 					for(let i=0;i<last_opencode_ft_num;i++){
 						this.last_opencode_ft_cir.push(i)
@@ -95,7 +97,9 @@ export class Opencode1Component {
 				}else if(this.gameKey=='cqft'){
 					let opencodeAry = res['last_opencode'].opencode.split(',');
 					res['last_opencode'].opencode = opencodeAry;
-					let last_opencode_ft_num = (opencodeAry[0]+opencodeAry[1]+opencodeAry[2]+opencodeAry[3]+opencodeAry[4])%4;
+					console.log(opencodeAry)
+					let last_opencode_ft_num = (Number(opencodeAry[0])+Number(opencodeAry[1])+Number(opencodeAry[2])+Number(opencodeAry[3])+Number(opencodeAry[4]))%4;
+					// console.log(last_opencode_ft_num)
 					this.last_opencode_ft_cir = [];
 					for(let i=0;i<last_opencode_ft_num;i++){
 						this.last_opencode_ft_cir.push(i)

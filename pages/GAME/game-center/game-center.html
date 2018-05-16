@@ -29,7 +29,7 @@
 		<div class="cont1">
 			<ul class="gameTabCont">
 				<li (click)="changeActiveIonicContent(0)" [ngClass]="{'active':activeIonicContent===0}">投注区</li>
-				<li (click)="changeActiveIonicContent(3)" [ngClass]="{'active':activeIonicContent===3}">混合过关</li>
+				<!-- <li (click)="changeActiveIonicContent(3)" [ngClass]="{'active':activeIonicContent===3}">混合过关</li> -->
 				<li (click)="changeActiveIonicContent(1)" [ngClass]="{'active':activeIonicContent===1}">聊天室</li>
 			</ul>
 			<div *ngIf="activeIonicContent===0||activeIonicContent===3">

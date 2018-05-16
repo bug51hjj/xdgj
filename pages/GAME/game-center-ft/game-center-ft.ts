@@ -29,6 +29,7 @@ export class GameCenterFtPage {
 	public memberAmount:any = 0; //余额
 	public getAmountTimer;
 	public historyData:any;
+	public historyActive:any = 0;
 	constructor(public navCtrl: NavController,
 		public navParams: NavParams,
 		public actionSheetCtrl: ActionSheetController,
@@ -53,6 +54,9 @@ export class GameCenterFtPage {
 	}
 	ionViewWillUnload(){
 		if(this.getAmountTimer){clearInterval(this.getAmountTimer)}
+	}
+	changeHistoryActive(type){
+		this.historyActive = type;
 	}
 	getGamePrizes() {
 		let token = window.localStorage.getItem('token');
@@ -84,8 +88,8 @@ export class GameCenterFtPage {
 	}
 	getFtChanglong(){
 		let token = window.localStorage.getItem('token');
-		// let date = this.getDateProvider.today();
-		let date = '20180515';
+		let date = this.getDateProvider.today();
+		// let date = '20180515';
 		let url = `/event/history_expect?tk=${token}&gamekey=${'bjft'}&date=${date}`;
 		this.HttpService.get(url).subscribe((res: Response) => {
 			if(res['errorcode']==0){

@@ -118,6 +118,10 @@ export class GameCenterPage {
 			this.httpErrorHandle({errormsg:`至少选择${this.selectedDatas.comb}个`});
 			return false;
 		}
+		if(this.selectedDatas.type=='pk10hhgg'&&this.selectedDatas.count==0){
+			this.httpErrorHandle({errormsg:`至少选择两项`});
+			return false;
+		}
 		if(this.buyAmount<2){
 			this.httpErrorHandle({errormsg:'单注金额不能低于2'})
 			return false;

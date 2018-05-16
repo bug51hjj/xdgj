@@ -197,6 +197,33 @@ export class GameSelect_01Component {
             })
         })
         itemAry['checked'] = !tempCheckMark;
+
+        let tempArray = [];
+        this.units.units.map(_nums=>{
+            _nums.nums.map(item=>{
+                if(item['checked']){tempArray.push(item)}
+            })
+        })
+        this.changeSelectedList.emit({list:tempArray,type:'pk10hhgg',count:tempArray.length>1?1:0});
+    }
+    selectItem_cqsscgg(itemAry,seGroup){  //PK10 过关
+        // let lengthAry = type===1?[0,1,2,3,4]:[5,6,7,8,9];
+        let tempCheckMark = itemAry['checked'];
+        this.units.units.map(_units=>{
+            _units.nums.map(_nums=>{
+                if(_nums.seGroup===seGroup){_nums['checked']=false}
+            })
+        })
+
+        itemAry['checked'] = !tempCheckMark;
+        let tempArray = [];
+        this.units.units.map(_units=>{
+            _units.nums.map(_nums=>{
+                if(_nums['checked']){tempArray.push(_nums)}
+            })
+        })
+
+        this.changeSelectedList.emit({list:tempArray,type:'pk10hhgg',count:tempArray.length>1?1:0});
     }
     cencelSelected(isConfirm) {  //取消所有选中项
         if (isConfirm) {

@@ -1953,7 +1953,6 @@ export class GamesProvider {
 
     getFtLong(opencodeDatas) {
         var lotteryCategory = this.getLotteryCategory(opencodeDatas.gamekey);
-        console.log(opencodeDatas.gamekey)
         var dataRes = {
             'q3': [],
             'z3': [],

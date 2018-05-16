@@ -63,12 +63,34 @@
 	<div class="bj-data-num clearfix">
 		<div class="ft-header clearfix" style="padding: 5px 10px;">
 			<div class="fl ft">{{last_opencode.expect}}期</div>
-			<div class="fr" *ngIf="last_opencode_ft_cir" >
-				<span class="ft-circle ft-circle-min" *ngFor="let item of last_opencode_ft_cir" ></span>
+			<div class="fr" *ngIf="last_opencode_ft_cir">
+				<span class="ft-circle ft-circle-min" *ngFor="let item of last_opencode_ft_cir"></span>
 			</div>
 		</div>
 		<div class="number num clearfix pk10" style="padding: 5px 10px;">
 			<span class="number{{item}}" *ngFor="let item of last_opencode.opencode">{{item}}</span>
+		</div>
+	</div>
+	<div class="data-content">
+		<span>{{present.expect}}期</span>
+		<span>封盘：
+			<time>{{converTime.stop_remaining}}</time>
+		</span>
+		<span class="active assertive">开奖：
+			<time>{{converTime.opentime_remaining}}</time>
+		</span>
+	</div>
+</div>
+<div *ngIf="viewType==5">
+	<div class="bj-data-num clearfix">
+		<div class="ft-header clearfix" style="padding: 5px 10px;">
+			<div class="fl ft">{{last_opencode.expect}}期</div>
+			<div class="fr" *ngIf="last_opencode_ft_cir">
+				<span class="ft-circle ft-circle-min" *ngFor="let item of last_opencode_ft_cir"></span>
+			</div>
+		</div>
+		<div class="number num clearfix" style="padding: 5px 10px;">
+			<span class="ball-color-yellow" *ngFor="let item of last_opencode.opencode">{{item}}</span>
 		</div>
 	</div>
 	<div class="data-content">

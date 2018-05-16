@@ -26,7 +26,7 @@
 </ion-header>
 <ion-content>
 	<div class="gamePageContainer ft">
-		<div class="cont1">
+		<div class="cont1" id="cont1">
 			<ul class="gameTabCont">
 				<li *ngIf="gameKey=='bjft'" [ngClass]="{'active':activeGameType==0||activeGameType==1||activeGameType==2}" (click)="changeActiveGameType(0)">投注区</li>
 				<li *ngIf="gameKey=='bjft'" [ngClass]="{'active':activeGameType==3}" (click)="changeActiveGameType(3)">综合过关</li>
@@ -38,17 +38,17 @@
 			</div>
 		</div>
 
-		<div *ngIf="activeGameType==0||activeGameType==1||activeGameType==2">
+		<div style="margin-top:150px;" *ngIf="activeGameType==0||activeGameType==1||activeGameType==2||activeGameType==3">
 			<div class="height5"></div>
 			<div class="ft-table" style="padding-bottom: 0">
 				<div class="ft-table-header row" style="padding: 0" *ngIf="gameKey=='bjft'">
-					<div class="col-34" [ngClass]="{'active':activeGameType==0}" (click)="changeActiveGameType(0)">前三</div>
-					<div class="col-34" [ngClass]="{'active':activeGameType==1}" (click)="changeActiveGameType(1)">中三</div>
-					<div class="col-34" [ngClass]="{'active':activeGameType==2}" (click)="changeActiveGameType(2)">后三</div>
+					<div class="col-34" [ngClass]="{'active':historyActive==0}" (click)="changeHistoryActive(0)">前三</div>
+					<div class="col-34" [ngClass]="{'active':historyActive==1}" (click)="changeHistoryActive(1)">中三</div>
+					<div class="col-34" [ngClass]="{'active':historyActive==2}" (click)="changeHistoryActive(2)">后三</div>
 				</div>
 				<div id="ft-box-out" class="ft-box-out">
 					<table class="ft-box" border="1">
-						<tbody *ngIf="historyData&&activeGameType==0">
+						<tbody *ngIf="historyData&&(historyActive==0)">
 							<tr *ngFor="let row of historyData['q3']">
 								<td *ngFor="let col of row">
 									<span *ngIf="col&&col.code==0" class="bgB">{{col.num}}</span>
@@ -56,7 +56,7 @@
 								</td>
 							</tr>
 						</tbody>
-						<tbody *ngIf="historyData&&activeGameType==1">
+						<tbody *ngIf="historyData&&historyActive==1">
 							<tr *ngFor="let row of historyData['z3']">
 								<td *ngFor="let col of row">
 									<span *ngIf="col&&col.code==0" class="bgB">{{col.num}}</span>
@@ -64,7 +64,7 @@
 								</td>
 							</tr>
 						</tbody>
-						<tbody *ngIf="historyData&&activeGameType==2">
+						<tbody *ngIf="historyData&&historyActive==2">
 							<tr *ngFor="let row of historyData['h3']">
 								<td *ngFor="let col of row">
 									<span *ngIf="col&&col.code==0" class="bgB">{{col.num}}</span>
