@@ -1866,18 +1866,30 @@ export class GamesProvider {
     }
 
     getFtLong(opencodeDatas) {
-        var lotteryCategory = this.getLotteryCategory(opencodeDatas.gameKey);
-        if (lotteryCategory == 'pk10') {
-            var dataRes = {
-                'q3': [],
-                'z3': [],
-                'h3': [],
-            };
+        var lotteryCategory = this.getLotteryCategory(opencodeDatas.gamekey);
+        console.log(opencodeDatas.gamekey)
+        var dataRes = {
+            'q3': [],
+            'z3': [],
+            'h3': [],
+        };
+        switch(lotteryCategory){
+            case 'pk10':
+            case 'pk10ft':
             for (var index in opencodeDatas.history) {
                 var opencode = opencodeDatas.history[index].opencode.split(',');
                 var q3 = (parseInt(opencode[0]) + parseInt(opencode[1]) + parseInt(opencode[2])) % 4;
                 var z3 = (parseInt(opencode[4]) + parseInt(opencode[5]) + parseInt(opencode[6])) % 4;
                 var h3 = (parseInt(opencode[7]) + parseInt(opencode[8]) + parseInt(opencode[9])) % 4;
+                if(q3==0){
+                    q3=4;
+                }
+                if(z3==0){
+                    z3=4;
+                }
+                if(h3==0){
+                    h3=4;
+                }
                 dataRes.q3.push({'num': q3, 'code': (q3 % 2)});
                 dataRes.z3.push({'num': z3, 'code': (z3 % 2)});
                 dataRes.h3.push({'num': h3, 'code': (h3 % 2)});
@@ -1887,19 +1899,39 @@ export class GamesProvider {
                 'z3': this.builderLong(dataRes.z3, 6),
                 'h3': this.builderLong(dataRes.h3, 6),
             };
-        } else if (lotteryCategory == 'ssc') {
-            var dataRes = {
-                'q3': [],
-            };
+            case 'ssc':
+            case 'sscft':
             for (var index in opencodeDatas.history) {
                 var opencode = opencodeDatas.history[index].opencode.split(',');
                 var q3 = (parseInt(opencode[0]) + parseInt(opencode[1]) + parseInt(opencode[2]) + parseInt(opencode[3]) + parseInt(opencode[4])) % 4;
+                if(q3==0){
+                    q3=4;
+                }
                 dataRes.q3.push({'num': q3, 'code': (q3 % 2)});
             }
             return {
                 'ft': this.builderLong(dataRes.q3, 6),
             };
         }
+    }
+
+    private arrayReverseAndFilder(arr){
+        var result=[];
+        for(var i=0;i<arr.length;i++){
+            for(var j=0;j<arr[i].length;j++){
+                if(arr[i][j]==undefined){
+                    arr[i][j]={'num':'-1','code':'-1'};
+                }
+                if(result[j]==undefined){
+                    result[j]=[];
+                }
+                result[j][i]=arr[i][j];
+            }
+        }
+        return result;
+        // for(var i in arr){
+        //     for(var j in arr[j])
+        // }
     }
 
     private builderLong(codes, maxLimit) {
@@ -1933,6 +1965,6 @@ export class GamesProvider {
             }
             longs[x][y] = codes[idx];
         }
-        return longs;
+        return this.arrayReverseAndFilder(longs);
     }
 }

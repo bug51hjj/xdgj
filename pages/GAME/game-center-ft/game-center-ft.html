@@ -4,25 +4,26 @@
 	</ion-content>
 </ion-menu>
 <ion-header>
-		<ion-toolbar color="primary" #Menu>
-			<ion-buttons>
-				<button ion-button (click)="goHome()">
-					<span class="gct-header-left"><切换彩种</span>
-				</button>
-			</ion-buttons>
-			<ion-title (click)="presentActionSheet()">
-				<span class="gct-header-tit">{{gameName}}-{{activeGamePan}}盘</span>
-				<ion-icon class="gct-header-tit-icon" name="arrow-dropdown"></ion-icon>
-			</ion-title>
-			<ion-buttons end>
-				<button ion-button icon-only menuToggle>
-					<span class="gct-header-right">{{memberAmount}}</span>
-					<ion-icon class="gct-header-right-icon" name="menu"></ion-icon>
-				</button>
-			</ion-buttons>
-	
-		</ion-toolbar>
-	</ion-header>
+	<ion-toolbar color="primary" #Menu>
+		<ion-buttons>
+			<button ion-button (click)="goHome()">
+				<span class="gct-header-left">
+					<切换彩种</span>
+			</button>
+		</ion-buttons>
+		<ion-title (click)="presentActionSheet()">
+			<span class="gct-header-tit">{{gameName}}-{{activeGamePan}}盘</span>
+			<ion-icon class="gct-header-tit-icon" name="arrow-dropdown"></ion-icon>
+		</ion-title>
+		<ion-buttons end>
+			<button ion-button icon-only menuToggle>
+				<span class="gct-header-right">{{memberAmount}}</span>
+				<ion-icon class="gct-header-right-icon" name="menu"></ion-icon>
+			</button>
+		</ion-buttons>
+
+	</ion-toolbar>
+</ion-header>
 <ion-content>
 	<div class="gamePageContainer ft">
 		<div class="cont1">
@@ -45,382 +46,34 @@
 					<div class="col-34" [ngClass]="{'active':activeGameType==1}" (click)="changeActiveGameType(1)">中三</div>
 					<div class="col-34" [ngClass]="{'active':activeGameType==2}" (click)="changeActiveGameType(2)">后三</div>
 				</div>
-				<table class="ft-box" border="1">
-					<tbody>
-						<tr>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-						</tr>
-						<tr>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span class="bgR">1</span>
-							</td>
-							<td>
-								<span class="bgB">2</span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-							<td>
-								<span></span>
-							</td>
-						</tr>
-					</tbody>
-				</table>
+				<div id="ft-box-out" class="ft-box-out">
+					<table class="ft-box" border="1">
+						<tbody *ngIf="historyData&&activeGameType==0">
+							<tr *ngFor="let row of historyData['q3']">
+								<td *ngFor="let col of row">
+									<span *ngIf="col&&col.code==0" class="bgB">{{col.num}}</span>
+									<span *ngIf="col&&col.code==1" class="bgR">{{col.num}}</span>
+								</td>
+							</tr>
+						</tbody>
+						<tbody *ngIf="historyData&&activeGameType==1">
+							<tr *ngFor="let row of historyData['z3']">
+								<td *ngFor="let col of row">
+									<span *ngIf="col&&col.code==0" class="bgB">{{col.num}}</span>
+									<span *ngIf="col&&col.code==1" class="bgR">{{col.num}}</span>
+								</td>
+							</tr>
+						</tbody>
+						<tbody *ngIf="historyData&&activeGameType==2">
+							<tr *ngFor="let row of historyData['h3']">
+								<td *ngFor="let col of row">
+									<span *ngIf="col&&col.code==0" class="bgB">{{col.num}}</span>
+									<span *ngIf="col&&col.code==1" class="bgR">{{col.num}}</span>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
 			</div>
 			<div class="height5" *ngIf="activeGameType==0||activeGameType==1||activeGameType==2"></div>
 			<div class="ft-table" *ngIf="activeGameType==0||activeGameType==1||activeGameType==2">

@@ -8,6 +8,8 @@ import gameDatas from '../../../assets/data/gameData.js';
 import { GamesProvider } from '../../../providers/games/games';
 import { ComponentsModule } from '../../../components/components.module';
 import { ConfirmOrderPage } from '../../../pages/GAME/confirm-order/confirm-order';
+import { GetDateProvider } from '../../../providers/get-date/get-date';
+import { noUndefined } from '@angular/compiler/src/util';
 @IonicPage()
 @Component({
 	selector: 'page-game-center-ft',
@@ -26,6 +28,7 @@ export class GameCenterFtPage {
 	public stop_remaining: any = {};//封盘
 	public memberAmount:any = 0; //余额
 	public getAmountTimer;
+	public historyData:any;
 	constructor(public navCtrl: NavController,
 		public navParams: NavParams,
 		public actionSheetCtrl: ActionSheetController,
@@ -34,7 +37,8 @@ export class GameCenterFtPage {
 		public alertCtrl: AlertController,
 		public loadingCtrl: LoadingController,
 		public modalCtrl: ModalController,
-		public uuidProvider:UuidProvider) {
+		public uuidProvider:UuidProvider,
+		public getDateProvider:GetDateProvider) {
 		this.gameName = this.navParams.get('gameParams').gamename;
 		this.gameKey = this.navParams.get('gameParams').gamekey;
 	}
@@ -42,6 +46,7 @@ export class GameCenterFtPage {
 	ionViewDidLoad() {
 		this.getMemberAmount();
 		this.getGamePrizes();
+		this.getFtChanglong();
 		this.getAmountTimer = setInterval(()=>{
 			this.getMemberAmount();
 		},5000)
@@ -76,6 +81,32 @@ export class GameCenterFtPage {
 				this.httpErrorHandle(res)
 			}
 		})
+	}
+	getFtChanglong(){
+		let token = window.localStorage.getItem('token');
+		// let date = this.getDateProvider.today();
+		let date = '20180515';
+		let url = `/event/history_expect?tk=${token}&gamekey=${'bjft'}&date=${date}`;
+		this.HttpService.get(url).subscribe((res: Response) => {
+			if(res['errorcode']==0){
+				let tempHistoryData = this.gamesProvider.getFtLong(res);
+				for (let key in tempHistoryData) {
+					let maxLength = tempHistoryData[key][0].length;
+					tempHistoryData[key].map(item=>{
+						if(item.length<=maxLength){
+							for (let index = 0; index < maxLength; index++) {
+								if(item[index]==undefined){
+									item[index] = {num: -1, code: -1}
+								}
+							}
+						}
+					})
+				}
+				this.historyData = tempHistoryData;
+			}
+		})
+		let ftBoxOut = document.getElementById('ft-box-out');
+		ftBoxOut.scrollLeft = 2000;
 	}
 	changeActiveGameType(type){
 		this.activeGameType = type;
