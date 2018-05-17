@@ -176,47 +176,47 @@ export class GamesProvider {
             }, {
                 'name': '第一球', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第一球',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9", 'ball_1', 'a', 1)
+                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9|大,小,单,双", 'ball_1', 'a', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_1', 'a', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_1', 'a', 11)},
                 ],
             }, {
                 'name': '第二球', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第二球',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9", 'ball_2', 'b', 1)
+                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9|大,小,单,双", 'ball_2', 'b', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_2', 'b', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_2', 'b', 11)},
                 ],
             }, {
                 'name': '第三球', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第三球',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9", 'ball_3', 'c', 1)
+                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9|大,小,单,双", 'ball_3', 'c', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_3', 'c', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_3', 'c', 11)},
                 ],
             }, {
                 'name': '第四球', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第四球',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9", 'ball_4', 'd', 1)
+                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9|大,小,单,双", 'ball_4', 'd', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_4', 'd', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_4', 'd', 11)},
                 ],
             }, {
                 'name': '第五球', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第五球',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9", 'ball_5', 'e', 1)
+                        'nums': this.getPlayUnitByStr("0,1,2,3,4,5,6,7,8,9|大,小,单,双", 'ball_5', 'e', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_5', 'e', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("大,小,单,双", 'ball_5', 'e', 11)},
                 ],
             }, {
                 'name': '前三', 'tmpl': 'list', 'units': [
@@ -235,9 +235,9 @@ export class GamesProvider {
                     {
                         'name': '斗牛',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('没牛,牛1,牛2,牛3,牛4,牛5,牛6,牛7,牛8,牛9,牛牛', 'ball_10', 'i', 1)
+                        'nums': this.getPlayUnitByStr('没牛,牛1,牛2,牛3,牛4,牛5,牛6,牛7,牛8,牛9,牛牛|牛大,牛小,牛单,牛双', 'ball_10', 'i', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("牛大,牛小,牛单,牛双", 'ball_10', 'i', 12)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr("", 'ball_10', 'i', 12)},
                 ],
             }, {
                 'name': '梭哈', 'tmpl': 'list', 'units': [
@@ -248,7 +248,7 @@ export class GamesProvider {
                     },
                 ],
             }, {
-                'name': '混合过关', 'tmpl': 'column', 'units': [
+                'name': '综合过关', 'tmpl': 'column', 'units': [
                     {
                         'name': '第1球',
                         'func': 'guoguan',
@@ -356,109 +356,109 @@ export class GamesProvider {
             }, {
                 'name': '冠亚和', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '冠亚和',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19', 'ball_11', 'z', 5)
+                        'nums': this.getPlayUnitByStr('3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19', 'ball_11', 'z', 5, this.getPlayUnitByStr('大,小,单,双', 'ball_11', 'z', 1))
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_11', 'z', 1)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_11', 'z', 1)},
                 ],
             }, {
                 'name': '冠军', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '冠军',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_1', 'a', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_1', 'a', 1, this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 1))
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_1', 'a', 11)},
-                    {'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 1)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_1', 'a', 11)},
+                    //{'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 1)},
                 ],
             }, {
                 'name': '亚军', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '亚军',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_2', 'b', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_2', 'b', 1, this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 3))
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_2', 'b', 11)},
-                    {'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 3)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('', 'ball_2', 'b', 11)},
+                    //{'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 3)},
                 ],
             }, {
                 'name': '季军', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '季军',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_3', 'c', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_3', 'c', 1, this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 5))
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_3', 'c', 11)},
-                    {'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 5)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('', 'ball_3', 'c', 11)},
+                    //{'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 5)},
                 ],
             }, {
                 'name': '第4名', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第4名',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_4', 'd', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_4', 'd', 1, this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 7))
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_4', 'd', 11)},
-                    {'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 7)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('', 'ball_4', 'd', 11)},
+                    //{'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 7)},
                 ],
             }, {
                 'name': '第5名', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第5名',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_5', 'e', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_5', 'e', 1, this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 9))
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_5', 'e', 11)},
-                    {'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 9)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('', 'ball_5', 'e', 11)},
+                    //{'name': '龙虎', 'func': 'idx', 'nums': this.getPlayUnitByStr('龙,虎', 'ball_13', 'l', 9)},
                 ],
             }, {
                 'name': '第6名', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第6名',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_6', 'f', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_6', 'f', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_6', 'f', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('', 'ball_6', 'f', 11)},
                 ],
             }, {
                 'name': '第7名', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第7名',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_7', 'g', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_7', 'g', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_7', 'g', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('', 'ball_7', 'g', 11)},
                 ],
             }, {
                 'name': '第8名', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第8名',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_8', 'h', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_8', 'h', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_8', 'h', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('', 'ball_8', 'h', 11)},
                 ],
             }, {
                 'name': '第9名', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第9名',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_9', 'i', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_9', 'i', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_9', 'i', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('', 'ball_9', 'i', 11)},
                 ],
             }, {
                 'name': '第10名', 'tmpl': 'list', 'units': [
                     {
-                        'name': '定位',
+                        'name': '第10名',
                         'func': 'idx',
-                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10', 'ball_10', 'j', 1)
+                        'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10|大,小,单,双', 'ball_10', 'j', 1)
                     },
-                    {'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('大,小,单,双', 'ball_10', 'j', 11)},
+                    //{'name': '大小单双', 'func': 'idx', 'nums': this.getPlayUnitByStr('', 'ball_10', 'j', 11)},
                 ],
             }, {
-                'name': '混合过关', 'tmpl': 'column', 'units': [
+                'name': '综合过关', 'tmpl': 'column', 'units': [
                     {
                         'name': '冠军',
                         'func': 'guoguan',
@@ -514,7 +514,7 @@ export class GamesProvider {
         ];
         plays['lhc'] = [
             {
-                'name': '特码', 'tmpl': 'list', 'units': [
+                'name': '特码', 'tmpl': 'ddl', 'units': [
                 {
                     'name': '特码A',
                     'func': 'idx',
@@ -531,54 +531,30 @@ export class GamesProvider {
                 'name': '特码两面', 'tmpl': 'list', 'units': [
                 {
                     'name': '首位', 'func': 'idx', 'nums': {
-                    '1-10': {'type': 'tema_dxds', 'play_method': 'tema_dxds_1to10'},
-                    '11-20': {'type': 'tema_dxds', 'play_method': 'tema_dxds_11to20'},
-                    '21-30': {'type': 'tema_dxds', 'play_method': 'tema_dxds_21to30'},
-                    '31-40': {'type': 'tema_dxds', 'play_method': 'tema_dxds_31to40'},
-                    '41-49': {'type': 'tema_dxds', 'play_method': 'tema_dxds_41to49'},
-                }
-                },
-                {
-                    'name': '大小单双', 'func': 'idx', 'nums': {
-                    '大': {'type': 'tema_dxds', 'play_method': 'tema_dxds_da'},
-                    '小': {'type': 'tema_dxds', 'play_method': 'tema_dxds_xiao'},
-                    '单': {'type': 'tema_dxds', 'play_method': 'tema_dxds_dan'},
-                    '双': {'type': 'tema_dxds', 'play_method': 'tema_dxds_shuang'},
-                }
-                },
-                {
-                    'name': '合数', 'func': 'idx', 'nums': {
-                    '合大': {'type': 'tema_dxds', 'play_method': 'tema_dxds_heda'},
-                    '合小': {'type': 'tema_dxds', 'play_method': 'tema_dxds_hexiao'},
-                    '合单': {'type': 'tema_dxds', 'play_method': 'tema_dxds_hedan'},
-                    '合双': {'type': 'tema_dxds', 'play_method': 'tema_dxds_heshuang'},
-                }
-                },
-                {
-                    'name': '组合', 'func': 'idx', 'nums': {
-                    '大单': {'type': 'tema_dxds', 'play_method': 'tema_dxds_dadan'},
-                    '大双': {'type': 'tema_dxds', 'play_method': 'tema_dxds_dashuang'},
-                    '小单': {'type': 'tema_dxds', 'play_method': 'tema_dxds_xiaodan'},
-                    '小双': {'type': 'tema_dxds', 'play_method': 'tema_dxds_xiaoshuang'},
-                }
-                },
-                {
-                    'name': '尾数', 'func': 'idx', 'nums': {
-                    '尾大': {'type': 'tema_dxds', 'play_method': 'tema_dxds_weida'},
-                    '尾小': {'type': 'tema_dxds', 'play_method': 'tema_dxds_weixiao'},
-                }
-                },
-                {
-                    'name': '家禽野兽', 'func': 'idx', 'nums': {
-                    '家禽': {'type': 'tema_dxds', 'play_method': 'tema_dxds_jiaqin'},
-                    '野兽': {'type': 'tema_dxds', 'play_method': 'tema_dxds_yeshou'},
-                }
-                },
-                {
-                    'name': '色波', 'func': 'idx', 'nums': {
-                    '红波': {'type': 'tema_dxds', 'play_method': 'tema_dxds_red'},
-                    '绿波': {'type': 'tema_dxds', 'play_method': 'tema_dxds_green'},
-                    '蓝波': {'type': 'tema_dxds', 'play_method': 'tema_dxds_blue'},
+                    '1-10': {'type': 'tema_dxds', 'play_method': 'tema_dxds_1to10','seGroup':'1'},
+                    '11-20': {'type': 'tema_dxds', 'play_method': 'tema_dxds_11to20','seGroup':'1'},
+                    '21-30': {'type': 'tema_dxds', 'play_method': 'tema_dxds_21to30','seGroup':'1'},
+                    '31-40': {'type': 'tema_dxds', 'play_method': 'tema_dxds_31to40','seGroup':'1'},
+                    '41-49': {'type': 'tema_dxds', 'play_method': 'tema_dxds_41to49','seGroup':'1'},
+                    '大': {'type': 'tema_dxds', 'play_method': 'tema_dxds_da','seGroup':'2'},
+                    '小': {'type': 'tema_dxds', 'play_method': 'tema_dxds_xiao','seGroup':'2'},
+                    '单': {'type': 'tema_dxds', 'play_method': 'tema_dxds_dan','seGroup':'2'},
+                    '双': {'type': 'tema_dxds', 'play_method': 'tema_dxds_shuang','seGroup':'2'},
+                    '合大': {'type': 'tema_dxds', 'play_method': 'tema_dxds_heda','seGroup':'3'},
+                    '合小': {'type': 'tema_dxds', 'play_method': 'tema_dxds_hexiao','seGroup':'3'},
+                    '合单': {'type': 'tema_dxds', 'play_method': 'tema_dxds_hedan','seGroup':'3'},
+                    '合双': {'type': 'tema_dxds', 'play_method': 'tema_dxds_heshuang','seGroup':'3'},
+                    '大单': {'type': 'tema_dxds', 'play_method': 'tema_dxds_dadan','seGroup':'4'},
+                    '大双': {'type': 'tema_dxds', 'play_method': 'tema_dxds_dashuang','seGroup':'4'},
+                    '小单': {'type': 'tema_dxds', 'play_method': 'tema_dxds_xiaodan','seGroup':'4'},
+                    '小双': {'type': 'tema_dxds', 'play_method': 'tema_dxds_xiaoshuang','seGroup':'4'},
+                    '尾大': {'type': 'tema_dxds', 'play_method': 'tema_dxds_weida','seGroup':'5'},
+                    '尾小': {'type': 'tema_dxds', 'play_method': 'tema_dxds_weixiao','seGroup':'5'},
+                    '家禽': {'type': 'tema_dxds', 'play_method': 'tema_dxds_jiaqin','seGroup':'6'},
+                    '野兽': {'type': 'tema_dxds', 'play_method': 'tema_dxds_yeshou','seGroup':'6'},
+                    '红波': {'type': 'tema_dxds', 'play_method': 'tema_dxds_red','seGroup':'7'},
+                    '绿波': {'type': 'tema_dxds', 'play_method': 'tema_dxds_green','seGroup':'7'},
+                    '蓝波': {'type': 'tema_dxds', 'play_method': 'tema_dxds_blue','seGroup':'7'},
                 }
                 },
             ]
@@ -587,28 +563,16 @@ export class GamesProvider {
                 'name': '正码', 'tmpl': 'list', 'units': [
                 {
                     'name': '正码', 'func': 'idx',
-                    'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'zhengma', 'zhengma_', 1)
-                },
-                {
-                    'name': '大小单双', 'func': 'idx',
-                    'nums': {
-                        '总大': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongda'},
-                        '总小': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongxiao'},
-                        '总单': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongdan'},
-                        '总双': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongshuang'},
-                    }
-                },
-                {
-                    'name': '尾数', 'func': 'idx', 'nums': {
-                    '总尾大': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongweida'},
-                    '总尾小': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongweixiao'},
-                }
-                },
-                {
-                    'name': '龙虎', 'func': 'idx', 'nums': {
-                    '龙': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_long'},
-                    '虎': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_hu'},
-                }
+                    'nums': this.getPlayUnitByStr('1,2,3,4,5,6,7,8,9,10,11,12,13,14,15,16,17,18,19,20,21,22,23,24,25,26,27,28,29,30,31,32,33,34,35,36,37,38,39,40,41,42,43,44,45,46,47,48,49', 'zhengma', 'zhengma_', 1,{
+                        '总大': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongda','seGroup':'2'},
+                        '总小': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongxiao','seGroup':'2'},
+                        '总单': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongdan','seGroup':'2'},
+                        '总双': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongshuang','seGroup':'2'},
+                        '总尾大': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongweida','seGroup':'3'},
+                        '总尾小': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_zongweixiao','seGroup':'3'},
+                        '龙': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_long','seGroup':'4'},
+                        '虎': {'type': 'zhengma_dxds', 'play_method': 'zhengma_dxds_hu','seGroup':'4'},
+                    })
                 },
             ]
             },
@@ -1298,15 +1262,21 @@ export class GamesProvider {
      * @param i1
      * @returns {{}}
      */
-    private getPlayUnitByStr(numsStr, unit, pre, i1) {
-        var nums1=numsStr.split('|');
-        var i=0;
+    private getPlayUnitByStr(numsStr, unit, pre, i1, append) {
+        var nums1 = numsStr.split('|');
+        var i = 0;
         var playNums = {};
-        for(var a in nums1){
-            var nums=nums1[a].split(',');
+        for (var a in nums1) {
+            var nums = nums1[a].split(',');
             for (var b in nums) {
-                playNums[nums[b]] = {'type': unit, 'play_method': pre + (i + parseInt(i1)),'seGroup':a};
+                playNums[nums[b]] = {'type': unit, 'play_method': pre + (i + parseInt(i1)), 'seGroup': a};
                 i++;
+            }
+        }
+        if (append != undefined) {
+            for (var b in append) {
+                append[b]['seGroup'] = a + 1;
+                playNums[b] = append[b];
             }
         }
         return playNums;
@@ -1330,7 +1300,7 @@ export class GamesProvider {
                     var num = plays[i]['units'][j]['nums'][k];
                     var numPrice = prizes1[num['type']][num['play_method']];
                     //console.log(num['type'],num['play_method']);
-                    if(numPrice!=undefined){
+                    if (numPrice != undefined) {
                         num['price'] = numPrice.price;
                         num['name'] = k;
                         num['unit'] = plays[i].units[j]['name'];
